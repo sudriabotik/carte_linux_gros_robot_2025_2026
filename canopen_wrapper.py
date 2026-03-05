@@ -54,4 +54,4 @@ class CanopenWrapper :
 			
 			return False
 
-instance = None
+instance : CanopenWrapper = None

@@ -6,33 +6,16 @@ at the correct address to control the card.
 import canopen_wrapper
 import canopen
 
+from action_comm_node import CanActionNode
+
 
 # all the state enum from the C code
 
-class CommAutom :
+class CanAutomNode(CanActionNode) : 
 
 	def __init__(self, network : canopen.Network,  node_id : int, dictionary_path : str):
-		self.node = canopen.RemoteNode(node_id, dictionary_path)
-		network.add_node(self.node)
-		self.node.nmt.state = 'PRE-OPERATIONAL'
-		self.node.rpdo.read()
-		self.node.tpdo.read()
-		self.node.nmt.state = 'OPERATIONAL'
-
-		self.node.tpdo[1].add_callback(lambda data : self._on_tpdo_reception(data))
-		self.node.tpdo[1].enabled = True
-		self.node.tpdo[1].save()
+		super().__init__(network,  node_id, dictionary_path)
 	
-
-	def _on_tpdo_reception(self, data) :
-		print(f"received tpdo {data}")
-		for var in data :
-			print(f"{var.name} : {var.raw}")
-		print("")
-	
-
-	def get_od(self) :
-		return self.node.object_dictionary
 
 
 	def action_homing(self, speed_h_percent: int = 8, speed_v_percent : int = 8) :
