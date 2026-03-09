@@ -2,8 +2,10 @@ import sys
 
 import logger
 
+ARG_OPTION_STRAT = "strat"
+
 ARG_TABLE = {
-	"strat" : ("str", "./strats/strat_demo.py")
+	ARG_OPTION_STRAT : ("str", "./strats/strat_demo.py")
 }
 
 def parse(args : list[str]) :
@@ -18,10 +20,10 @@ def parse(args : list[str]) :
 		split = arg.split(key_val_separator)
 
 		if len(split) != 2 :
-			logger.log_error("argparse", f"the argument {arg} couldn't be split correctly")
+			logger.log_error("ArgParse", f"the argument {arg} couldn't be split correctly")
 		
 		if not split[0] in ARG_TABLE :
-			logger.log_error("argparse", f"the argument {arg} does not exist")
+			logger.log_error("ArgParse", f"the argument {arg} does not exist")
 		
 		
 		options[split[0]] = split[1]

@@ -9,7 +9,7 @@ import traceback
 import time
 
 from robot_comm_data import *
-import canopen_wrapper
+import logger
 
 class CanActionNode :
 
@@ -26,6 +26,8 @@ class CanActionNode :
 		self.node.tpdo[1].save()
 
 		self.time_last_tpdo = time.time()
+
+		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 	
 
 	def _on_tpdo_reception(self, data) :
@@ -42,10 +44,10 @@ class CanActionNode :
 		"""
 
 		try :
-			return self.node.object_dictionary["current_command_status"] in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
+			return self.node.object_dictionary["current_command_status"] not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
 		except Exception as e :
-			print(f"error : {type(e).__name__}: {e}")
-			print(f"traceback : {traceback.format_exc()}")
+			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
+			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
 
 
 	def get_problems(self) :
