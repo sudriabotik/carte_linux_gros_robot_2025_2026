@@ -4,7 +4,7 @@ import time
 import datetime
 
 start_date = datetime.datetime.now()
-sys.stdout.write(f"[INFO] [run_started:{start_date}] [t+{time.time()}s] [Logger] logger initialized")
+sys.stdout.write(f"[INFO] [run_started:{start_date}] [t+{time.time()}s] [Logger] logger initialized\n")
 
 def log_verbose(source : str, message : str) :
 	sys.stdout.write(f"[VERB] [run_started:{start_date}] [t+{time.time()}s] [{source}] : {message}\n")
