@@ -44,7 +44,8 @@ class CanActionNode :
 		"""
 
 		try :
-			return self.node.object_dictionary["current_command_status"] not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
+			print(f"{self.node.object_dictionary["current_command_status"].value}")
+			return self.node.object_dictionary["current_command_status"].value not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
