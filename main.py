@@ -10,7 +10,7 @@ import logger
 
 print("attempting to connect to the bus")
 network = canopen.Network()
-network.connect(interface="socketcan", channel="can0", bitrate=500000)
+network.connect(interface="slcan", channel="/dev/ttyACM0", bitrate=500000)
 print("connected to the network")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(network)

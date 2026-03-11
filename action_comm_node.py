@@ -27,14 +27,19 @@ class CanActionNode :
 
 		self.time_last_tpdo = time.time()
 
+		# contains the last values received via tpdo
+		self.tpdo_variables = {}
+
 		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 	
 
 	def _on_tpdo_reception(self, data) :
-		print(f"received tpdo {data}")
+		
+		# print(f"received tpdo {data}")
 		for var in data :
-			print(f"{var.name} : {var.raw}")
-		print("")
+			self.tpdo_variables[var.name] = var.raw
+			#print(f"{var.name} : {var.raw}")
+		#print("")
 		self.time_last_tpdo = time.time()
 	
 
@@ -44,8 +49,8 @@ class CanActionNode :
 		"""
 
 		try :
-			print(f"{self.node.object_dictionary["current_command_status"].value}")
-			return self.node.object_dictionary["current_command_status"].value not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
+			print(f"{self.tpdo_variables["current_command_status"]}")
+			return self.tpdo_variables["current_command_status"] not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
