@@ -49,8 +49,8 @@ class CanActionNode :
 		"""
 
 		try :
-			print(f"{self.tpdo_variables['current_command_status']}")
-			return self.tpdo_variables["current_command_status"] not in (CMD_STATUS_IDLE, CMD_STATUS_COMPLETED, CMD_STATUS_ABORTED)
+			print(f"{CMD_STATUS_IDLE}")
+			return not (self.tpdo_variables["current_command_status"] in [2,3,4])
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
