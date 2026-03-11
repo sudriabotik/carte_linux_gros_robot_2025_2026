@@ -25,6 +25,12 @@ class CanActionNode :
 		self.node.tpdo[1].enabled = True
 		self.node.tpdo[1].save()
 
+		self.node.rpdo[1].enabled = True
+		self.node.rpdo[1].save()
+
+		self.node.rpdo[2].enabled = True
+		self.node.rpdo[2].save()
+
 		self.time_last_tpdo = time.time()
 
 		# contains the last values received via tpdo

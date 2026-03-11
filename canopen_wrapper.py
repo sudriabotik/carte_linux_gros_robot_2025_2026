@@ -43,6 +43,9 @@ class CanopenWrapper :
 			self.action_id += 1 # TEMP
 			node.rpdo[2]["Command_ID"].raw = self.action_id # TEMP
 
+			node.rpdo[1].save()
+			node.rpdo[2].save()
+
 			node.rpdo[1].transmit()
 			node.rpdo[2].transmit()
 
