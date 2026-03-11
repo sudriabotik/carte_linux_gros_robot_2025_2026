@@ -1,5 +1,6 @@
 import canopen
 import can
+import threading
 
 import sys
 import traceback
@@ -11,6 +12,8 @@ class CanopenWrapper :
 		
 		self.network = canopen.Network(bus)
 		self.action_id = 1 # TEMP
+
+		self._lock = threading.Lock()
 	
 
 	def request_action(self, node : canopen.RemoteNode, action_id : int, params : list) :
@@ -22,6 +25,8 @@ class CanopenWrapper :
 		Expects that the RPDO1 is used for : action_id, argument_1, argument_2, argument_3.
 		RPDO2 should map to argument_4, argument_5, argument_6, command_id
 		"""
+
+		self._lock.acquire()
 
 		try :
 			param_resized = params.copy()
@@ -46,12 +51,18 @@ class CanopenWrapper :
 			node.rpdo[1].transmit()
 			node.rpdo[2].transmit()
 
+			self._lock.release()
+
 			return True
 		
 		except Exception as e :
 			sys.stderr.write(f"error : {type(e).__name__}: {e}\n")
 			sys.stderr.write(f"traceback : {traceback.format_exc()}\n")
+
+			self._lock.release()
 			
 			return False
+		
+		
 
 instance : CanopenWrapper = None

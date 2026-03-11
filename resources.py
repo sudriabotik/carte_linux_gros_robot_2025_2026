@@ -18,17 +18,17 @@ class Resources :
 		self._node_autom : Union[None, comm_autom.CanAutomNode]
 		self._node_asserv : Union[None, comm_asserv.CanAsservNode]
 	
-	@property
+	
 	def NETWORK(self) :
 		if not self._network_ok() : self._network_repair()
 		return self._network
 
-	@property
+	
 	def NODE_AUTOM(self) :
 		if not self._node_autom_ok() : self._node_autom_repair()
 		return self._node_autom
 
-	@property
+	
 	def NODE_ASSERV(self) :
 		if not self._node_asserv_ok() : self._node_asserv_repair()
 		return self._node_asserv
