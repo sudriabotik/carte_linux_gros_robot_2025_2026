@@ -4,6 +4,8 @@ import can
 import sys
 import traceback
 
+import logger
+
 
 class CanopenWrapper :
 
@@ -29,6 +31,8 @@ class CanopenWrapper :
 				raise ValueError(f"too many parameters given for an action request")
 			if len(param_resized) < 6 :
 				param_resized += [0] * (6 - len(param_resized))
+			
+			logger.log_info("CanOpenWrapper", f"requesting to canopen node the action {action_id} with arguments {param_resized}")
 			
 			node.rpdo[1]["ACTION_ID"].raw = action_id
 
