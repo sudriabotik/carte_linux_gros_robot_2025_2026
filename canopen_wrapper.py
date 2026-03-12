@@ -1,4 +1,3 @@
-import canopen
 import can
 
 import sys
@@ -7,15 +6,34 @@ import traceback
 import logger
 
 
+COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
+COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
+
+
 class CanopenWrapper :
 
 	def __init__(self, bus : can.BusABC):
 		
-		self.network = canopen.Network(bus)
-		self.action_id = 1 # TEMP
+		self.network = bus
+		self.command_id = 1 # TEMP
 	
 
-	def request_action(self, node : canopen.RemoteNode, action_id : int, params : list) :
+	def send_rpdo(self, node_id : int, rpdo_num : int, data : list[int]) :
+		"""
+		Send a rpdo with the given data as bytes
+		"""
+
+		msg = can.Message(arbitration_id=COB_ID_RPDO[rpdo_num] << 7 | node_id, data=data)
+
+		logger.log_info("CanOpenWrapper", f"sending rpdo {msg}")
+
+		self.network.send(msg, timeout=None)
+
+		logger.log_info("CanOpenWrapper", f"sent rpdo ")
+
+	
+
+	def request_action(self, node_id : int, action_id : int, params : list) :
 		"""
 		Sends RPDOS to modify a set of value to give to the node the action_id and parameters.
 		"""
@@ -32,8 +50,43 @@ class CanopenWrapper :
 			if len(param_resized) < 6 :
 				param_resized += [0] * (6 - len(param_resized))
 			
-			logger.log_info("CanOpenWrapper", f"requesting to canopen node the action {action_id} with arguments {param_resized}")
+			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
+
+			# prepare data for first rpdo
+
+			data = \
+			[
+				(action_id << 8) & 0xFF,
+				action_id & 0xFF,
+				(param_resized[0] << 8) & 0xFF, 
+				param_resized[0] & 0xFF,
+				(param_resized[1] << 8) & 0xFF, 
+				param_resized[1] & 0xFF,
+				(param_resized[2] << 8) & 0xFF, 
+				param_resized[2] & 0xFF,
+			]
+
+			self.send_rpdo(node_id=node_id, rpdo_num=0, data=data)
+
+			# prepare data for second rpdo
+
+			self.command_id += 1 # TEMP
+
+			data = \
+			[
+				(param_resized[0] << 8) & 0xFF, 
+				param_resized[0] & 0xFF,
+				(param_resized[1] << 8) & 0xFF, 
+				param_resized[1] & 0xFF,
+				(param_resized[2] << 8) & 0xFF, 
+				param_resized[2] & 0xFF,
+				(self.command_id << 8) & 0xFF,
+				self.command_id & 0xFF,
+			]
+
+			self.send_rpdo(node_id=node_id, rpdo_num=1, data=data)
 			
+			"""
 			node.rpdo[1]["ACTION_ID"].raw = action_id
 
 			node.rpdo[1]["param_1"].raw = param_resized[0]
@@ -52,6 +105,8 @@ class CanopenWrapper :
 
 			node.rpdo[1].transmit()
 			node.rpdo[2].transmit()
+
+			"""
 
 			return True
 		

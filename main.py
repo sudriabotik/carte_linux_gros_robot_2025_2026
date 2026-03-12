@@ -1,6 +1,8 @@
 #!/bin/env python3
 
-import canopen
+import can
+import can.interfaces.serial.serial_can
+import can.interfaces.socketcan.socketcan
 import canopen_wrapper
 import comm_autom
 import comm_asserv
@@ -9,26 +11,33 @@ import time
 import logger
 
 print("attempting to connect to the bus")
-network = canopen.Network()
-network.connect(interface="slcan", channel="/dev/ttyACM0", bitrate=500000)
+# network = can.Bus(channel="/dev/ttyACM0", interface="slcan", bitr)
+# bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
+# can.interfaces.socketcan.socketcan.BusABC()
+bus = can.Bus(channel="can0", interface="socketcan")
+# network.connect(interface="slcan", channel="/dev/ttyACM0", bitrate=500000)
 print("connected to the network")
 
-canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(network)
+canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
 
 node_autom = None
 try :
-    node_autom = comm_autom.CanAutomNode(network, 2, "./canopen_od/autom.eds")
+    node_autom = comm_autom.CanAutomNode(2)
 except Exception as e :
     logger.log_error("Main", f"cannot create autom node, {e}")
 
 node_asserv = None
 try :
-    node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds")
+    pass
+    # node_asserv = comm_asserv.CanAsservNode(2)
 except Exception as e :
     logger.log_error("Main", f"cannot create asserv node, {e}")
 
 #node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds") # at the moment, both dictionaries are the same
 
+node_autom.action_homing(10, 10)
+
+"""
 time.sleep(1)
 # attempts a homing
 if node_autom != None :
@@ -55,3 +64,6 @@ if node_autom != None :
     node_autom.action_grab()
 
 time.sleep(5)
+"""
+
+bus.shutdown()

@@ -13,25 +13,9 @@ import logger
 
 class CanActionNode :
 
-	def __init__(self, network : canopen.Network,  node_id : int, dictionary_path : str):
-		self.node = canopen.RemoteNode(node_id, dictionary_path)
-		network.add_node(self.node)
-		self.node.nmt.state = 'PRE-OPERATIONAL'
-		self.node.rpdo.read()
-		self.node.tpdo.read()
-		self.node.nmt.state = 'OPERATIONAL'
+	def __init__(self, node_id : int):
 
-		self.node.tpdo[1].add_callback(lambda data : self._on_tpdo_reception(data))
-		self.node.tpdo[1].enabled = True
-		self.node.tpdo[1].save()
-
-		self.node.rpdo[1].enabled = True
-		self.node.rpdo[1].save()
-
-		self.node.rpdo[2].enabled = True
-		self.node.rpdo[2].save()
-
-		self.time_last_tpdo = time.time()
+		self.node_id = node_id
 
 		# contains the last values received via tpdo
 		self.tpdo_variables = {}

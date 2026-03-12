@@ -13,8 +13,8 @@ from action_comm_node import CanActionNode
 
 class CanAutomNode(CanActionNode) : 
 
-	def __init__(self, network : canopen.Network,  node_id : int, dictionary_path : str):
-		super().__init__(network,  node_id, dictionary_path)
+	def __init__(self, node_id : int):
+		super().__init__(node_id)
 	
 
 
@@ -22,26 +22,26 @@ class CanAutomNode(CanActionNode) :
 		"""
 		performs the homing (initialisation of the motor positions using the switches)
 		"""
-		canopen_wrapper.instance.request_action(self.node, 1, [speed_h_percent, speed_h_percent])
+		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_h_percent, speed_h_percent])
 
 
 	def action_grab(self) :
 		"""
 		performs a grab
 		"""
-		canopen_wrapper.instance.request_action(self.node, 2, []) # no args to give
+		canopen_wrapper.instance.request_action(self.node_id, 2, []) # no args to give
 
 
 	def action_pos_elevator_h(self, pos_mm : int) :
 		"""
 		sets the horizontal position of the elevator
 		"""
-		canopen_wrapper.instance.request_action(self.node, 4, [pos_mm])
+		canopen_wrapper.instance.request_action(self.node_id, 4, [pos_mm])
 
 
 	def action_pos_elevator_v(self, pos_mm : int) :
 		"""
 		sets the vertical position of the elevator
 		"""
-		canopen_wrapper.instance.request_action(self.node, 5, [pos_mm])
+		canopen_wrapper.instance.request_action(self.node_id, 5, [pos_mm])
 
