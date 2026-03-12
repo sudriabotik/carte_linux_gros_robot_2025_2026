@@ -23,7 +23,7 @@ class CanopenWrapper :
 		Send a rpdo with the given data as bytes
 		"""
 
-		msg = can.Message(arbitration_id=COB_ID_RPDO[rpdo_num] << 7 | node_id, data=data)
+		msg = can.Message(arbitration_id=COB_ID_RPDO[rpdo_num] << 7 | node_id, data=data, is_extended_id=False)
 
 		logger.log_info("CanOpenWrapper", f"sending rpdo {msg}")
 
@@ -56,14 +56,14 @@ class CanopenWrapper :
 
 			data = \
 			[
-				(action_id << 8) & 0xFF,
 				action_id & 0xFF,
-				(param_resized[0] << 8) & 0xFF, 
+				(action_id << 8) & 0xFF,
 				param_resized[0] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
+				(param_resized[0] << 8) & 0xFF, 
 				param_resized[1] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
+				(param_resized[1] << 8) & 0xFF, 
 				param_resized[2] & 0xFF,
+				(param_resized[2] << 8) & 0xFF, 
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=0, data=data)
@@ -74,14 +74,14 @@ class CanopenWrapper :
 
 			data = \
 			[
-				(param_resized[0] << 8) & 0xFF, 
 				param_resized[0] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
+				(param_resized[0] << 8) & 0xFF, 
 				param_resized[1] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
+				(param_resized[1] << 8) & 0xFF, 
 				param_resized[2] & 0xFF,
-				(self.command_id << 8) & 0xFF,
+				(param_resized[2] << 8) & 0xFF, 
 				self.command_id & 0xFF,
+				(self.command_id << 8) & 0xFF,
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=1, data=data)
