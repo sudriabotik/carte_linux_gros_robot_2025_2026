@@ -26,8 +26,8 @@ class Facing(enum.Enum) :
 
 class CanAsservNode(CanActionNode) : 
 
-	def __init__(self,  node_id : int):
-		super().__init__(node_id)
+	def __init__(self, bus, node_id : int):
+		super().__init__(bus, node_id)
 	
 
 	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :

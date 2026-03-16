@@ -8,14 +8,13 @@ import comm_autom
 import comm_asserv
 import time
 
+import traceback
+
 import logger
 
 print("attempting to connect to the bus")
-# network = can.Bus(channel="/dev/ttyACM0", interface="slcan", bitr)
 # bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-# can.interfaces.socketcan.socketcan.BusABC()
 bus = can.Bus(channel="can0", interface="socketcan")
-# network.connect(interface="slcan", channel="/dev/ttyACM0", bitrate=500000)
 print("connected to the network")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
@@ -28,14 +27,18 @@ except Exception as e :
 
 node_asserv = None
 try :
-    pass
-    # node_asserv = comm_asserv.CanAsservNode(2)
+    node_asserv = comm_asserv.CanAsservNode(bus, 1)
 except Exception as e :
     logger.log_error("Main", f"cannot create asserv node, {e}")
+    logger.log_traceback(traceback.format_exc())
 
 #node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds") # at the moment, both dictionaries are the same
 
-node_autom.action_homing(10, 10)
+#node_autom.action_homing(10, 10)
+
+while True :
+    node_asserv.is_busy()
+    time.sleep(1)
 
 """
 time.sleep(1)
