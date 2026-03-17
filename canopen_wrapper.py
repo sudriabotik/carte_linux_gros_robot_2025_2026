@@ -66,22 +66,31 @@ class CanopenWrapper :
 		IMPORTANT : THE INDICES MUST BE FROM HIGHEST TO LOWEST
 		"""
 
+		vals = [0] * (slots[-1] + 1)
+
+		print(f"received msg {msg.data}")
+
 		if len(slots) != len(msg.data) :
 			logger.log_error("CanOpenWrapper", f"tpdo decoding : given byte slots length {len(slots)} not equal to message byte length {len(msg.data)}")
 
-		vals = [0] * slots[-1]
+		try :
 
-		consecutive = 0
-		last_val = None
-		i = 0
-		while i < len(slots) :
+			consecutive = 0
+			last_val = None
+			i = 0
+			while i < len(slots) :
 
-			if slots[i] == last_val : consecutive += 1
-			else : consecutive = 0
+				if slots[i] == last_val : consecutive += 1
+				else : consecutive = 0
 
-			vals[slots[i]] = vals[slots[i]] | (msg.data[i] << (consecutive*8))
+				vals[slots[i]] = vals[slots[i]] | (msg.data[i] << (consecutive*8))
 
-			last_val = slots[i]
+				last_val = slots[i]
+
+				i += 1
+		
+		except Exception as e :
+			logger.log_error("CanOpenWrapper", f"tpdo decoding : {e}")
 		
 		return vals
 	

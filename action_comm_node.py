@@ -7,7 +7,7 @@ import canopen_wrapper
 from canopen_wrapper import FUNCTION_CODE
 import can
 import traceback
-import time
+import threading
 
 from robot_comm_data import *
 import logger
@@ -27,6 +27,8 @@ class _CanActionNodeReader(can.Listener) :
 
 	def on_message_received(self, msg):
 
+		print(f"message received on thread : {threading.get_native_id()}")
+
 		logger.log_verbose("CanActionNodeReader", "message received")
 		
 		func, i = canopen_wrapper.instance.determine_message_type(msg)
@@ -37,7 +39,12 @@ class _CanActionNodeReader(can.Listener) :
 			if func == FUNCTION_CODE.IS_TPDO and i == 0 :
 
 				logger.log_verbose("CanActionNodeReader", "message is TPDO 0")
-				vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
+				try :
+					vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
+					logger.log_verbose("CanActionNodeReader", f"received {vals}")
+				except Exception as e :
+					print(f"{e}")
+				logger.log_verbose("CanActionNodeReader", f"received {vals}")
 				if vals != None :
 					self.current_command_status = vals[0]
 					self.current_command_id = vals[1]
@@ -61,6 +68,10 @@ class CanActionNode :
 
 		self.can_reader = _CanActionNodeReader()
 		can.Notifier(bus, [self.can_reader])
+
+		self.thread_lock = threading.Lock()
+
+		print(f"node {self.node_id} created on thread : {threading.get_native_id()}")
 	
 
 	def __del__(self) :
