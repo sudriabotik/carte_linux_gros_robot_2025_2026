@@ -14,7 +14,7 @@ import logger
 
 print("attempting to connect to the bus")
 # bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-bus = can.Bus(channel="/dev/ttyACM0", interface="slcan")
+bus = can.Bus(channel="can0", interface="socketcan")
 print("connected to the network")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
@@ -37,8 +37,10 @@ except Exception as e :
 #node_autom.action_homing(10, 10)
 
 node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
+time.sleep(0.1)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
+time.sleep(0.1)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 
 logger.log_info("Main", "program finished")

@@ -40,6 +40,7 @@ class _CanActionNodeReader(can.Listener) :
 				try :
 					# creates an array of int from the bytes of the message
 					vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
+					logger.log_error("CanActionNodeReader", f"received vals {vals}")
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", str(e))
 
@@ -86,7 +87,7 @@ class CanActionNode :
 		print(f"vars : {self.can_reader.current_command_status}")
 		
 		try :
-			return not (self.can_reader.current_command_status in [1])
+			return (self.can_reader.current_command_status == 1) or self.can_reader.current_command_status == -1
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
