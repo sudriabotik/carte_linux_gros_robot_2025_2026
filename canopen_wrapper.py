@@ -109,6 +109,9 @@ class CanopenWrapper :
 				raise ValueError(f"too many parameters given for an action request")
 			if len(param_resized) < 6 :
 				param_resized += [0] * (6 - len(param_resized))
+
+			for i in range(len(param_resized)) :
+				param_resized[i] = int(param_resized[i])
 			
 			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 

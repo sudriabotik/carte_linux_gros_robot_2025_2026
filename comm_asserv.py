@@ -2,20 +2,20 @@
 Contains functions allowing to send the correct action_id and arguments
 at the correct address to control the card.
 """
-import enum
+from enum import IntEnum
 
 import canopen_wrapper
 import canopen
 
 from action_comm_node import CanActionNode
 
-class Face(enum.Enum) :
+class Face(IntEnum) :
 
 	FACE_AVANT = 0
 	FACE_ARRIERE = 1
 
 
-class Facing(enum.Enum) :
+class Facing(IntEnum) :
 	POSITIVE_X = 0
 	POSITIVE_Y = 1
 	NEGATIVE_X = 2
