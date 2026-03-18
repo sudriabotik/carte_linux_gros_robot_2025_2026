@@ -37,10 +37,8 @@ except Exception as e :
 #node_autom.action_homing(10, 10)
 
 node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
-time.sleep(0.1)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
-time.sleep(0.1)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 
 logger.log_info("Main", "program finished")

@@ -4,7 +4,7 @@ at the correct address to control the card.
 """
 
 import canopen_wrapper
-import canopen
+import time
 
 from action_comm_node import CanActionNode
 
@@ -23,6 +23,7 @@ class CanAutomNode(CanActionNode) :
 		performs the homing (initialisation of the motor positions using the switches)
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_h_percent, speed_h_percent])
+		self.timestamp_last_command = time.time()
 
 
 	def action_grab(self) :
@@ -30,6 +31,7 @@ class CanAutomNode(CanActionNode) :
 		performs a grab
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 2, []) # no args to give
+		self.timestamp_last_command = time.time()
 
 
 	def action_pos_elevator_h(self, pos_mm : int) :
@@ -37,6 +39,7 @@ class CanAutomNode(CanActionNode) :
 		sets the horizontal position of the elevator
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 4, [pos_mm])
+		self.timestamp_last_command = time.time()
 
 
 	def action_pos_elevator_v(self, pos_mm : int) :
@@ -44,4 +47,5 @@ class CanAutomNode(CanActionNode) :
 		sets the vertical position of the elevator
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 5, [pos_mm])
+		self.timestamp_last_command = time.time()
 

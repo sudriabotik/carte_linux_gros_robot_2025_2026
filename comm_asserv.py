@@ -5,7 +5,7 @@ at the correct address to control the card.
 from enum import IntEnum
 
 import canopen_wrapper
-import canopen
+import time
 
 from action_comm_node import CanActionNode
 
@@ -37,6 +37,7 @@ class CanAsservNode(CanActionNode) :
 		The velocity is in thousandths of mm/ms^2
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 1, [speed, acceleration])
+		self.timestamp_last_command = time.time()
 	
 	def action_set_angular_speed_accel(self, speed: int, acceleration : int) :
 		"""
@@ -45,12 +46,14 @@ class CanAsservNode(CanActionNode) :
 		The velocity is in thousandths of deg/ms^2
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 2, [speed, acceleration])
+		self.timestamp_last_command = time.time()
 	
 	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face) :
 		"""
 		Goes to the given point, using the requested face
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 5, [x_mm, y_mm, face])
+		self.timestamp_last_command = time.time()
 
 	def action_translation(self, distance_mm: int, speed : int, accel : int) :
 		"""
@@ -59,6 +62,7 @@ class CanAsservNode(CanActionNode) :
 		The acceleration is in thousandths of mm/ms^2
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 3, [distance_mm, speed, accel])
+		self.timestamp_last_command = time.time()
 	
 
 	def action_recalibration(self, facing : Facing, face : Face) :
@@ -66,4 +70,5 @@ class CanAsservNode(CanActionNode) :
 		Resets a coordinate of the robot using the walls of the table
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 6, [facing, face])
+		self.timestamp_last_command = time.time()
 
