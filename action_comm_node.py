@@ -27,8 +27,6 @@ class _CanActionNodeReader(can.Listener) :
 
 	def on_message_received(self, msg):
 
-		print(f"message received on thread : {threading.get_native_id()}")
-
 		logger.log_verbose("CanActionNodeReader", "message received")
 		
 		func, i = canopen_wrapper.instance.determine_message_type(msg)
@@ -40,11 +38,11 @@ class _CanActionNodeReader(can.Listener) :
 
 				logger.log_verbose("CanActionNodeReader", "message is TPDO 0")
 				try :
+					# creates an array of int from the bytes of the message
 					vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
-					logger.log_verbose("CanActionNodeReader", f"received {vals}")
 				except Exception as e :
-					print(f"{e}")
-				logger.log_verbose("CanActionNodeReader", f"received {vals}")
+					logger.log_error("CanActionNodeReader", str(e))
+
 				if vals != None :
 					self.current_command_status = vals[0]
 					self.current_command_id = vals[1]
@@ -53,6 +51,7 @@ class _CanActionNodeReader(can.Listener) :
 					self.command_error_code = vals[4]
 					logger.log_verbose("CanActionNodeReader", "variables updated")
 	
+
 	def __string__(self) :
 		return f"current_command_status : {self.current_command_status}"
 
@@ -66,6 +65,7 @@ class CanActionNode :
 
 		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 
+		# instantiate the class resposible from catching and interpreting TPDOs
 		self.can_reader = _CanActionNodeReader()
 		can.Notifier(bus, [self.can_reader])
 
@@ -86,7 +86,7 @@ class CanActionNode :
 		print(f"vars : {self.can_reader.current_command_status}")
 		
 		try :
-			return not (self.can_reader.current_command_status in [2,3,4])
+			return not (self.can_reader.current_command_status in [1])
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))

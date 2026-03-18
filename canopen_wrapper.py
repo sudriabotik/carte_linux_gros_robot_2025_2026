@@ -68,8 +68,6 @@ class CanopenWrapper :
 
 		vals = [0] * (slots[-1] + 1)
 
-		print(f"received msg {msg.data}")
-
 		if len(slots) != len(msg.data) :
 			logger.log_error("CanOpenWrapper", f"tpdo decoding : given byte slots length {len(slots)} not equal to message byte length {len(msg.data)}")
 
