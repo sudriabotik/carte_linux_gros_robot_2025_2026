@@ -42,6 +42,7 @@ node_asserv.action_translation(100, 10, 10)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 while (node_asserv.is_busy()) : time.sleep(0.05)
+node_asserv.action_translation(100, 10, 10)
 
 logger.log_info("Main", "program finished")
 
