@@ -13,7 +13,6 @@ from robot_comm_data import *
 import logger
 
 
-
 class _CanActionNodeReader(can.Listener) :
 
 	def __init__(self):
@@ -84,7 +83,7 @@ class CanActionNode :
 		"""
 		Check if the node is currently executing a command
 		"""
-		print(f"vars : {self.can_reader.current_command_status}")
+		#print(f"vars : {self.can_reader.current_command_status}")
 		
 		try :
 			return (self.can_reader.current_command_status == 1) or self.can_reader.current_command_status == -1

@@ -1,4 +1,4 @@
-#!/bin/env python3
+##!/bin/env python3
 
 import can
 import can.interfaces.serial.serial_can
@@ -12,16 +12,25 @@ import traceback
 
 import logger
 
+CHANNEL_LINUX = '/dev/ttyACM0'
+CHANNEL_WINDOW = 'com12'
+
+INTERFACE_1 = 'slcan'
+INTERFACE_2 = 'can0'
+INTERFACE_3 = 'socketcan'
+
+
+
 print("attempting to connect to the bus")
 # bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-bus = can.Bus(channel="can0", interface="socketcan")
+bus = can.Bus(channel = CHANNEL_WINDOW, interface = INTERFACE_1)
 print("connected to the network")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
 
 node_autom = None
 try :
-    node_autom = comm_autom.CanAsservNode(bus, 1)
+    node_autom = comm_autom.CanAsservNode(bus, 2)
 except Exception as e :
     logger.log_error("Main", f"cannot create autom node, {e}")
 
