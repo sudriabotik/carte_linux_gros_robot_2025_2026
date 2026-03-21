@@ -17,8 +17,10 @@ import logger
 
 class _CanActionNodeReader(can.Listener) :
 
-	def __init__(self):
+	def __init__(self, id):
 		super().__init__()
+
+		self.id = id
 
 		self.current_command_status = -1
 		self.current_command_id = 0
@@ -44,7 +46,7 @@ class _CanActionNodeReader(can.Listener) :
 		func, i = canopen_wrapper.instance.determine_message_type(msg)
 		id = canopen_wrapper.instance.determine_message_node_id(msg)
 
-		if id :
+		if id == self.id :
 			logger.log_verbose("CanActionNodeReader", f"received message from {id}")
 			if func == FUNCTION_CODE.IS_TPDO and i == 0 :
 

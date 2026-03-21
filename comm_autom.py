@@ -13,16 +13,15 @@ from action_comm_node import CanActionNode
 
 class CanAutomNode(CanActionNode) : 
 
-	def __init__(self, node_id : int):
-		super().__init__(node_id)
+	def __init__(self, bus, node_id : int):
+		super().__init__(bus, node_id)
 	
-
 
 	def action_homing(self, speed_h_percent: int = 8, speed_v_percent : int = 8) :
 		"""
 		performs the homing (initialisation of the motor positions using the switches)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_h_percent, speed_h_percent])
+		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_h_percent, speed_v_percent])
 		self.timestamp_last_command = time.time()
 
 
