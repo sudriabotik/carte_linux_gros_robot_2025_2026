@@ -1,17 +1,20 @@
-import sys
+"""
+Parse the parameters provided in key:val format with space separation and put them in a dictionary.
+Is checks if all given parameters already exists, and also has a dictionary with all paramters and their default value.
+"""
 
 import logger
 
-ARG_OPTION_STRAT = "strat"
+ARG_OPTION_STRAT = str("strat")
 
 ARG_TABLE = {
-	ARG_OPTION_STRAT : ("str", "./strats/strat_demo.py")
+	ARG_OPTION_STRAT : (str, "./strats/strat_demo.py")
 }
 
 def parse(args : list[str]) :
 	"""Makes a dictionary from the passed argument list"""
 
-	key_val_separator : str = "="
+	key_val_separator : str = ":"
 
 	options = {}
 
@@ -25,8 +28,8 @@ def parse(args : list[str]) :
 		if not split[0] in ARG_TABLE :
 			logger.log_error("ArgParse", f"the argument {arg} does not exist")
 		
-		
-		options[split[0]] = split[1]
+		if ARG_TABLE[split[0]][0] == str : options[split[0]][1] = str(split[1])
+		elif ARG_TABLE[split[0]][0] == float : options[split[0]][1] = float(split[1])
 	
 	return options
 

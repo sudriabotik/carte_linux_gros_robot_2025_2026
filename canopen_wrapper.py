@@ -1,3 +1,7 @@
+"""
+A simple wrapper around the python-can library to enable sending and interpreting messages as canopen messages.
+"""
+
 import can
 from enum import Enum
 
