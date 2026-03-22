@@ -17,19 +17,22 @@ class CanAutomNode(CanActionNode) :
 		super().__init__(bus, node_id)
 	
 
-	def action_homing(self, speed_h_percent: int = 8, speed_v_percent : int = 8) :
+	def action_homing(self, speed_v_percent: int = 10, speed_h_percent: int = 10) :
 		"""
-		performs the homing (initialisation of the motor positions using the switches)
+		CMD_HOMING (1): Performs the homing sequence (initialisation of motor positions using switches)
+
+		:param speed_v_percent: Vertical homing speed (default 10)
+		:param speed_h_percent: Horizontal homing speed (default 10)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_h_percent, speed_v_percent])
+		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_v_percent, speed_h_percent])
 		self.timestamp_last_command = time.time()
 
 
 	def action_grab(self) :
 		"""
-		performs a grab
+		CMD_GRAB (2): Performs a grab sequence
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 2, []) # no args to give
+		canopen_wrapper.instance.request_action(self.node_id, 2, [])
 		self.timestamp_last_command = time.time()
 
 
@@ -41,10 +44,70 @@ class CanAutomNode(CanActionNode) :
 		self.timestamp_last_command = time.time()
 
 
+	def action_deposit(self) :
+		"""
+		CMD_DEPOSIT (3): Performs a deposit sequence
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 3, [])
+		self.timestamp_last_command = time.time()
+
+
 	def action_pos_elevator_v(self, pos_mm : int) :
 		"""
-		sets the vertical position of the elevator
+		CMD_POS_ELAVATOR_V (5): Sets the vertical position of the elevator
+
+		:param pos_mm: Position in millimeters
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 5, [pos_mm])
+		self.timestamp_last_command = time.time()
+
+
+	def action_pos_ax(self, id_ax: int, pos_ax: int) :
+		"""
+		CMD_POS_AX (6): Sets the position of an AX servo motor
+
+		:param id_ax: AX servo motor ID
+		:param pos_ax: Target position for the AX servo
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 6, [id_ax, pos_ax])
+		self.timestamp_last_command = time.time()
+
+
+	def action_pump_on_off(self, on_off: bool) :
+		"""
+		CMD_POMP_ON_OFF (7): Turns the pumps (3 and 4) on or off
+
+		:param on_off: True to turn on, False to turn off
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 7, [1 if on_off else 0])
+		self.timestamp_last_command = time.time()
+
+
+	def action_open_pince(self) :
+		"""
+		CMD_OPEN_PINCE (8): Opens the gripper (pince)
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 8, [])
+		self.timestamp_last_command = time.time()
+
+
+	def action_ejecter(self, num_element: int) :
+		"""
+		CMD_EJECTER (9): Ejects a specified number of elements
+
+		:param num_element: Number of elements to eject
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 9, [num_element])
+		self.timestamp_last_command = time.time()
+
+
+	def action_i2c_servo(self, channel: int, position: int) :
+		"""
+		CMD_I2C_SERVO_MOTEUR (10): Controls an I2C servo motor
+
+		:param channel: I2C servo channel
+		:param position: Target position (typically between 500 and 2500)
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 10, [channel, position])
 		self.timestamp_last_command = time.time()
 

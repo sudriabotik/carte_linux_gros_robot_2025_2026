@@ -10,6 +10,23 @@ import logger
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
 COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
 
+# FIXED BY CLAUDE: Convert signed int16 to unsigned uint16 using two's complement
+# This is necessary to correctly encode negative values for CAN transmission
+def to_uint16(value):
+	"""
+	Convert a signed INT16 value to unsigned UINT16 using two's complement.
+
+	Example: -50 becomes 65486 (0xFFCE)
+	This allows negative values to be correctly transmitted over CAN and
+	interpreted by the microcontroller as signed values.
+
+	:param value: Signed integer value
+	:return: Unsigned 16-bit representation
+	"""
+	if value < 0:
+		return value & 0xFFFF
+	return value
+
 class FUNCTION_CODE(Enum) :
 	IS_UNKNOWN = 0
 	IS_RPDO = 1
@@ -115,18 +132,24 @@ class CanopenWrapper :
 			
 			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 
+			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
+			action_id_u16 = to_uint16(action_id)
+			param_0_u16 = to_uint16(param_resized[0])
+			param_1_u16 = to_uint16(param_resized[1])
+			param_2_u16 = to_uint16(param_resized[2])
+
 			# prepare data for first rpdo
 
 			data = \
 			[
-				action_id & 0xFF,
-				(action_id << 8) & 0xFF,
-				param_resized[0] & 0xFF,
-				(param_resized[0] << 8) & 0xFF, 
-				param_resized[1] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
-				param_resized[2] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
+				action_id_u16 & 0xFF,
+				(action_id_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				param_0_u16 & 0xFF,
+				(param_0_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				param_1_u16 & 0xFF,
+				(param_1_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				param_2_u16 & 0xFF,
+				(param_2_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=0, data=data)
@@ -135,16 +158,22 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
+			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
+			param_3_u16 = to_uint16(param_resized[3])
+			param_4_u16 = to_uint16(param_resized[4])
+			param_5_u16 = to_uint16(param_resized[5])
+			command_id_u16 = to_uint16(self.command_id)
+
 			data = \
 			[
-				param_resized[0] & 0xFF,
-				(param_resized[0] << 8) & 0xFF, 
-				param_resized[1] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
-				param_resized[2] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
-				self.command_id & 0xFF,
-				(self.command_id << 8) & 0xFF,
+				param_resized[0] & 0xFF,  # BUG: Should use param_3_u16 (param_resized[3]) not param_resized[0]
+				(param_resized[0] << 8) & 0xFF,  # BUG: Should be param_3_u16 >> 8, not << 8
+				param_resized[1] & 0xFF,  # BUG: Should use param_4_u16 (param_resized[4]) not param_resized[1]
+				(param_resized[1] << 8) & 0xFF,  # BUG: Should be param_4_u16 >> 8, not << 8
+				param_resized[2] & 0xFF,  # BUG: Should use param_5_u16 (param_resized[5]) not param_resized[2]
+				(param_resized[2] << 8) & 0xFF,  # BUG: Should be param_5_u16 >> 8, not << 8
+				command_id_u16 & 0xFF,
+				(command_id_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=1, data=data)

@@ -44,6 +44,12 @@ node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_translation(100, 10, 10)
 
+node_autom.action_pos_elevator_h(0)
+node_autom.action_homing()
+node_autom.action_grab()
+while (node_autom.is_busy()) : time.sleep(0.05)
+node_autom.action_deposit()
+
 logger.log_info("Main", "program finished")
 
 """
