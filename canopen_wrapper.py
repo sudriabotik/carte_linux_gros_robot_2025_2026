@@ -139,17 +139,18 @@ class CanopenWrapper :
 			param_2_u16 = to_uint16(param_resized[2])
 
 			# prepare data for first rpdo
+			# FIXED BY CLAUDE: Corrected bit shifts to match send_rpdo_interactive.py
 
 			data = \
 			[
 				action_id_u16 & 0xFF,
-				(action_id_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				(action_id_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 				param_0_u16 & 0xFF,
-				(param_0_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				(param_0_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 				param_1_u16 & 0xFF,
-				(param_1_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				(param_1_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 				param_2_u16 & 0xFF,
-				(param_2_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				(param_2_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=0, data=data)
@@ -164,16 +165,17 @@ class CanopenWrapper :
 			param_5_u16 = to_uint16(param_resized[5])
 			command_id_u16 = to_uint16(self.command_id)
 
+			# FIXED BY CLAUDE: Use correct parameters (3,4,5) and right shift to match send_rpdo_interactive.py
 			data = \
 			[
-				param_resized[0] & 0xFF,  # BUG: Should use param_3_u16 (param_resized[3]) not param_resized[0]
-				(param_resized[0] << 8) & 0xFF,  # BUG: Should be param_3_u16 >> 8, not << 8
-				param_resized[1] & 0xFF,  # BUG: Should use param_4_u16 (param_resized[4]) not param_resized[1]
-				(param_resized[1] << 8) & 0xFF,  # BUG: Should be param_4_u16 >> 8, not << 8
-				param_resized[2] & 0xFF,  # BUG: Should use param_5_u16 (param_resized[5]) not param_resized[2]
-				(param_resized[2] << 8) & 0xFF,  # BUG: Should be param_5_u16 >> 8, not << 8
+				param_3_u16 & 0xFF,  # Use param_3 (not param_0)
+				(param_3_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_4_u16 & 0xFF,  # Use param_4 (not param_1)
+				(param_4_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_5_u16 & 0xFF,  # Use param_5 (not param_2)
+				(param_5_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 				command_id_u16 & 0xFF,
-				(command_id_u16 << 8) & 0xFF,  # BUG: Should be >> 8 (right shift) not << 8 (left shift)
+				(command_id_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=1, data=data)

@@ -83,7 +83,7 @@ class CanActionNode :
 		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 
 		# instantiate the class resposible from catching and interpreting TPDOs
-		self.can_reader = _CanActionNodeReader()
+		self.can_reader = _CanActionNodeReader(node_id)
 
 		#######
 		# The 'can' library creates a single thread to listen for CAN messages continuously.
