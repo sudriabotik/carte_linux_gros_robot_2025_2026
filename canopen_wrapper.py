@@ -10,6 +10,23 @@ import logger
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
 COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
 
+# FIXED BY CLAUDE: Convert signed int16 to unsigned uint16 using two's complement
+# This is necessary to correctly encode negative values for CAN transmission
+def to_uint16(value):
+	"""
+	Convert a signed INT16 value to unsigned UINT16 using two's complement.
+
+	Example: -50 becomes 65486 (0xFFCE)
+	This allows negative values to be correctly transmitted over CAN and
+	interpreted by the microcontroller as signed values.
+
+	:param value: Signed integer value
+	:return: Unsigned 16-bit representation
+	"""
+	if value < 0:
+		return value & 0xFFFF
+	return value
+
 class FUNCTION_CODE(Enum) :
 	IS_UNKNOWN = 0
 	IS_RPDO = 1
@@ -121,18 +138,25 @@ class CanopenWrapper :
 			
 			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 
+			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
+			action_id_u16 = to_uint16(action_id)
+			param_0_u16 = to_uint16(param_resized[0])
+			param_1_u16 = to_uint16(param_resized[1])
+			param_2_u16 = to_uint16(param_resized[2])
+
 			# prepare data for first rpdo
+			# FIXED BY CLAUDE: Corrected bit shifts to match send_rpdo_interactive.py
 
 			data = \
 			[
-				action_id & 0xFF,
-				(action_id << 8) & 0xFF,
-				param_resized[0] & 0xFF,
-				(param_resized[0] << 8) & 0xFF, 
-				param_resized[1] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
-				param_resized[2] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
+				action_id_u16 & 0xFF,
+				(action_id_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_0_u16 & 0xFF,
+				(param_0_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_1_u16 & 0xFF,
+				(param_1_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_2_u16 & 0xFF,
+				(param_2_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=0, data=data)
@@ -141,16 +165,23 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
+			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
+			param_3_u16 = to_uint16(param_resized[3])
+			param_4_u16 = to_uint16(param_resized[4])
+			param_5_u16 = to_uint16(param_resized[5])
+			command_id_u16 = to_uint16(self.command_id)
+
+			# FIXED BY CLAUDE: Use correct parameters (3,4,5) and right shift to match send_rpdo_interactive.py
 			data = \
 			[
-				param_resized[0] & 0xFF,
-				(param_resized[0] << 8) & 0xFF, 
-				param_resized[1] & 0xFF,
-				(param_resized[1] << 8) & 0xFF, 
-				param_resized[2] & 0xFF,
-				(param_resized[2] << 8) & 0xFF, 
-				self.command_id & 0xFF,
-				(self.command_id << 8) & 0xFF,
+				param_3_u16 & 0xFF,  # Use param_3 (not param_0)
+				(param_3_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_4_u16 & 0xFF,  # Use param_4 (not param_1)
+				(param_4_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				param_5_u16 & 0xFF,  # Use param_5 (not param_2)
+				(param_5_u16 >> 8) & 0xFF,  # Extract high byte with right shift
+				command_id_u16 & 0xFF,
+				(command_id_u16 >> 8) & 0xFF,  # Extract high byte with right shift
 			]
 
 			self.send_rpdo(node_id=node_id, rpdo_num=1, data=data)

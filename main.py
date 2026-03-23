@@ -13,8 +13,11 @@ import traceback
 import logger
 
 print("attempting to connect to the bus")
-# bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-bus = can.Bus(channel="com12", interface="slcan")
+#bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
+#bus = can.Bus(channel="/dev/ttyACM0", interface="slcan")
+bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
+
+
 print("connected to the network")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
@@ -42,8 +45,21 @@ node_asserv.action_translation(100, 10, 10)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 while (node_asserv.is_busy()) : time.sleep(0.05)
-node_asserv.action_translation(100, 10, 10)
 
+
+'''
+node_autom.action_homing()
+node_autom.action_grab()
+
+node_autom.action_deposit()
+node_autom.action_ejecter(2)
+
+
+## DEBUG 
+node_autom.action_pos_elevator_v(-232) #-232
+node_autom.action_pos_elevator_h(-110)
+node_autom.action_i2c_servo(2,500)
+'''
 logger.log_info("Main", "program finished")
 
 """

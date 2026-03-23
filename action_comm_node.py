@@ -32,6 +32,14 @@ class _CanActionNodeReader(can.Listener) :
 		self.timestamp_last_tpdo = -2
 
 	def on_message_received(self, msg):
+		"""
+		Callback method called automatically by can.Notifier when a CAN message is received.
+		
+		This method name is MANDATORY and defined by the can.Listener abstract class.
+		Changing the name would break the contract and prevent messages from being processed.
+		
+		:param msg: The received CAN message from the bus
+		"""
 
 		logger.log_verbose("CanActionNodeReader", "message received")
 		
