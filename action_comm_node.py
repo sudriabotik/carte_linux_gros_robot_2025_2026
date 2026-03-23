@@ -76,7 +76,8 @@ class CanActionNode :
 
 		# instantiate the class resposible from catching and interpreting TPDOs
 		self.can_reader = _CanActionNodeReader(self.node_id)
-		can.Notifier(bus, [self.can_reader])
+		canopen_wrapper.instance.add_listener(self.can_reader)
+		
 
 		self.thread_lock = threading.Lock()
 

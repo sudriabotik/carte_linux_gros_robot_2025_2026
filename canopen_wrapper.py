@@ -22,6 +22,12 @@ class CanopenWrapper :
 		
 		self.network = bus
 		self.command_id = 1 # TEMP
+
+		self.notifier = can.Notifier(bus=bus)
+
+	
+	def add_listener(self, listener : can.Listener) :
+		self.notifier.add_listener(listener)
 	
 
 	def send_rpdo(self, node_id : int, rpdo_num : int, data : list[int]) :
