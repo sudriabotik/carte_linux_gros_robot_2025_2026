@@ -9,16 +9,50 @@ import comm_asserv
 import time
 
 import traceback
-
 import logger
+import uart_logger  # DEPRECATED - kept for backwards compatibility
+import can_logger   # DEPRECATED - kept for backwards compatibility
+import unified_logger  # ADDED BY CLAUDE: Unified UART+CAN logger
+
+# =========================
+# CONFIGURATION DEBUG
+# =========================
+DEBUG_UART = True                  # Enable UART debug logging from microcontroller
+DEBUG_CAN_CHANGES_ONLY = True      # Log CAN messages only when values change
+DEBUG_CAN_LOG_TO_FILE = True       # DEPRECATED - use DEBUG_UNIFIED_LOGGER instead
+DEBUG_UNIFIED_LOGGER = True        # ADDED BY CLAUDE: Enable unified UART+CAN logging to single file
 
 print("attempting to connect to the bus")
-#bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-#bus = can.Bus(channel="/dev/ttyACM0", interface="slcan")
 bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
-
-
 print("connected to the network")
+
+# Set CAN debug configuration before creating wrapper
+canopen_wrapper.DEBUG_CAN_CHANGES_ONLY = DEBUG_CAN_CHANGES_ONLY
+
+# ADDED BY CLAUDE: Start unified logger if enabled (replaces separate UART and CAN loggers)
+if DEBUG_UNIFIED_LOGGER:
+	canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+		uart_port="/dev/ttyS2",
+		uart_baudrate=1000000,
+		log_dir="log"
+	)
+	canopen_wrapper.unified_logger.start()
+	logger.log_info("Main", "Unified logger (UART+CAN) started")
+
+# Legacy separate loggers (DEPRECATED - only used if unified logger is disabled)
+else:
+	# Start CAN file logger if enabled
+	if DEBUG_CAN_LOG_TO_FILE:
+		canopen_wrapper.can_file_logger = can_logger.CanLogger(log_dir="log_can")
+		canopen_wrapper.can_file_logger.start()
+		logger.log_info("Main", "CAN file logger started")
+
+	# Start UART logger if enabled
+	uart_log = None
+	if DEBUG_UART:
+		uart_log = uart_logger.UartLogger(port="/dev/ttyS2", baudrate=1000000, log_dir="log")
+		uart_log.start()
+		logger.log_info("Main", "UART logger started")
 
 canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
 
@@ -33,7 +67,7 @@ try :
     node_asserv = comm_asserv.CanAsservNode(bus, 1)
 except Exception as e :
     logger.log_error("Main", f"cannot create asserv node, {e}")
-    logger.log_traceback(traceback.format_exc())
+    #logger.log_traceback(traceback.format_exc())
 
 #node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds") # at the moment, both dictionaries are the same
 
@@ -45,7 +79,10 @@ node_asserv.action_translation(100, 10, 10)
 while (node_asserv.is_busy()) : time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 while (node_asserv.is_busy()) : time.sleep(0.05)
-
+node_asserv.action_translation(300, 10, 10)
+while (node_asserv.is_busy()) : time.sleep(0.05)
+node_asserv.action_goto_xy(500,1000,comm_asserv.Face.FACE_AVANT)
+while (node_asserv.is_busy()) : time.sleep(0.05)
 
 '''
 node_autom.action_homing()
@@ -90,5 +127,22 @@ if node_autom != None :
 
 time.sleep(5)
 """
+
+# =========================
+# STOP LOGGERS (if running)
+# =========================
+# MODIFIED BY CLAUDE: Stop unified logger if enabled
+if canopen_wrapper.unified_logger:
+	canopen_wrapper.unified_logger.stop()
+	logger.log_info("Main", "Unified logger stopped")
+
+# Legacy separate loggers cleanup (DEPRECATED)
+if uart_log:
+	uart_log.stop()
+	logger.log_info("Main", "UART logger stopped")
+
+if canopen_wrapper.can_file_logger:
+	canopen_wrapper.can_file_logger.stop()
+	logger.log_info("Main", "CAN file logger stopped")
 
 bus.shutdown()

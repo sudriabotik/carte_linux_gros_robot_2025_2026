@@ -1,0 +1,384 @@
+_out=0.000 speed=0.00% duty=0 dir=1
+pid_out=0.000 pid_out=0.000 target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+[CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0002 p1=2 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+stopped holding the robot
+performing a rotation of 0.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+pid_out=0.000 pid_out=0.000 target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=-0.000 current_ticks=0.000 pid_out=-0.000 speed=-0.00% duty=0 dir=0
+[MV_STATEMACHINE] state finished
+finished a rotation of 0.000 degrees
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+performing a recalibration state wake
+[wake recalibration pid_motor_R_runtime.i = 0.000000 
+pid_motor_R_runtime.i = 0.000000,  desired_speed calib at 10.000 : -0.500
+target_ticks=-38.088 current_ticks=0.000 pid_out=-38.088 speed=-38.09% duty=3237 dir=0
+target_ticks=-38.088 current_ticks=0.000 pid_out=-38.088 speed=-38.09% duty=3237 dir=0
+pid_motor_R_runtime.i = -340.883636,  desired_speed calib at 20.000 : -0.500
+target_ticks=-38.088 current_ticks=0.000 pid_out=-38.088 speed=-38.09% duty=3237 dir=0
+target_ticks=-38.088 current_ticks=0.000 pid_out=-38.088 speed=-38.09% duty=3237 dir=0
+pid_motor_R_runtime.i = -681.767273,  desired_speed calib at 30.000 : -0.500
+target_ticks=-38.088 current_ticks=-6.100 pid_out=-31.988 speed=-31.99% duty=2718 dir=0
+target_ticks=-38.088 current_ticks=-4.700 pid_out=-33.388 speed=-33.39% duty=2837 dir=0
+pid_motor_R_runtime.i = -961.650879,  desired_speed calib at 40.000 : -0.500
+target_ticks=-38.088 current_ticks=-11.000 pid_out=-27.088 speed=-27.09% duty=2302 dir=0
+target_ticks=-38.088 current_ticks=-8.500 pid_out=-29.588 speed=-29.59% duty=2514 dir=0
+pid_motor_R_runtime.i = -1192.534546,  desired_speed calib at 50.000 : -0.500
+target_ticks=-38.088 current_ticks=-14.600 pid_out=-23.488 speed=-23.49% duty=1996 dir=0
+target_ticks=-38.088 current_ticks=-11.800 pid_out=-26.288 speed=-26.29% duty=2234 dir=0
+pid_motor_R_runtime.i = -1387.418213,  desired_speed calib at 60.000 : -0.500
+target_ticks=-38.088 current_ticks=-15.700 pid_out=-22.388 speed=-22.39% duty=1902 dir=0
+target_ticks=-38.088 current_ticks=-13.200 pid_out=-24.888 speed=-24.89% duty=2115 dir=0
+pid_motor_R_runtime.i = -1571.301880,  desired_speed calib at 70.000 : -0.500
+target_ticks=-38.088 current_ticks=-14.700 pid_out=-23.388 speed=-23.39% duty=1987 dir=0
+target_ticks=-38.088 current_ticks=-12.300 pid_out=-25.788 speed=-25.79% duty=2191 dir=0
+pid_motor_R_runtime.i = -1765.185547,  desired_speed calib at 80.000 : -0.500
+target_ticks=-38.088 current_ticks=-12.700 pid_out=-25.388 speed=-25.39% duty=2157 dir=0
+target_ticks=-38.088 current_ticks=-10.000 pid_out=-28.088 speed=-28.09% duty=2387 dir=0
+pid_motor_R_runtime.i = -1979.069214,  desired_speed calib at 90.000 : -0.500
+target_ticks=-38.088 current_ticks=-11.500 pid_out=-26.588 speed=-26.59% duty=2259 dir=0
+target_ticks=-38.088 current_ticks=-8.900 pid_out=-29.188 speed=-29.19% duty=2480 dir=0
+pid_motor_R_runtime.i = -2204.952881,  desired_speed calib at 100.000 : -0.500
+target_ticks=-38.088 current_ticks=-13.800 pid_out=-24.288 speed=-24.29% duty=2064 dir=0
+target_ticks=-38.088 current_ticks=-10.100 pid_out=-27.988 speed=-27.99% duty=2378 dir=0
+[CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0003 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+______finished a recalibration
+spacestate robot :
+position : x:125.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of -90.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+pid_out=0.004 pid_out=-0.048 target_ticks=-0.610 current_ticks=-1.000 pid_out=0.390 speed=0.39% duty=33 dir=1
+target_ticks=0.735 current_ticks=-0.700 pid_out=1.435 speed=1.43% duty=121 dir=1
+pid_out=0.066 pid_out=-0.092 target_ticks=-0.369 current_ticks=-12.900 pid_out=12.531 speed=12.53% duty=1065 dir=1
+target_ticks=2.206 current_ticks=-10.400 pid_out=12.606 speed=12.61% duty=1071 dir=1
+[CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0004 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+finished a rotation of -90.000 degrees
+spacestate robot :
+position : x:125.00 y:0.00 mm
+orientation : -0.07 degrees
+linear speed : -152.93 mm/s
+angular speed : -6.06 deg/s
+performing a rotation of -90.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+pid_out=0.002 pid_out=-0.048 target_ticks=-0.654 current_ticks=-0.400 pid_out=-0.254 speed=-0.25% duty=21 dir=0
+target_ticks=0.698 current_ticks=-0.200 pid_out=0.898 speed=0.90% duty=76 dir=1
+pid_out=0.033 pid_out=-0.098 target_ticks=-0.920 current_ticks=-5.900 pid_out=4.980 speed=4.98% duty=423 dir=1
+target_ticks=1.831 current_ticks=-5.900 pid_out=7.731 speed=7.73% duty=657 dir=1
+pid_out=0.074 pid_out=-0.154 target_ticks=-1.114 current_ticks=-6.800 pid_out=5.686 speed=5.69% duty=483 dir=1
+target_ticks=3.187 current_ticks=-9.000 pid_out=12.187 speed=12.19% duty=1035 dir=1
+pid_out=0.113 pid_out=-0.215 target_ticks=-1.440 current_ticks=-4.900 pid_out=3.460 speed=3.46% duty=294 dir=1
+target_ticks=4.594 current_ticks=-9.800 pid_out=14.394 speed=14.39% duty=1223 dir=1
+pid_out=0.163 pid_out=-0.279 target_ticks=-1.617 current_ticks=-6.900 pid_out=5.283 speed=5.28% duty=448 dir=1
+target_ticks=6.182 current_ticks=-12.300 pid_out=18.482 speed=18.48% duty=1570 dir=1
+pid_out=0.236 pid_out=-0.344 target_ticks=-1.513 current_ticks=-10.700 pid_out=9.187 speed=9.19% duty=780 dir=1
+target_ticks=8.107 current_ticks=-16.900 pid_out=25.007 speed=25.01% duty=2125 dir=1
+pid_out=0.318 pid_out=-0.410 target_ticks=-1.276 current_ticks=-12.500 pid_out=11.224 speed=11.22% duty=953 dir=1
+target_ticks=10.193 current_ticks=-19.100 pid_out=29.293 speed=29.29% duty=2489 dir=1
+pid_out=0.399 pid_out=-0.484 target_ticks=-1.183 current_ticks=-10.400 pid_out=9.217 speed=9.22% duty=783 dir=1
+target_ticks=12.364 current_ticks=-20.400 pid_out=32.764 speed=32.76% duty=2784 dir=1
+pid_out=0.464 pid_out=-0.563 target_ticks=-1.379 current_ticks=-6.400 pid_out=5.021 speed=5.02% duty=426 dir=1
+target_ticks=14.383 current_ticks=-18.400 pid_out=32.783 speed=32.78% duty=2786 dir=1
+pid_out=0.500 pid_out=-0.645 target_ticks=-2.034 current_ticks=-0.100 pid_out=-1.934 speed=-1.93% duty=164 dir=0
+target_ticks=16.031 current_ticks=-13.400 pid_out=29.431 speed=29.43% duty=2501 dir=1
+pid_out=0.515 pid_out=-0.727 target_ticks=-2.968 current_ticks=3.700 pid_out=-6.668 speed=-6.67% duty=566 dir=0
+target_ticks=17.399 current_ticks=-9.600 pid_out=26.999 speed=27.00% duty=2294 dir=1
+pid_out=0.524 pid_out=-0.800 target_ticks=-3.862 current_ticks=3.000 pid_out=-6.862 speed=-6.86% duty=583 dir=0
+target_ticks=18.543 current_ticks=-6.400 pid_out=24.943 speed=24.94% duty=2119 dir=1
+pid_out=0.537 pid_out=-0.858 target_ticks=-4.494 current_ticks=-0.800 pid_out=-3.694 speed=-3.69% duty=313 dir=0
+target_ticks=19.542 current_ticks=-4.200 pid_out=23.742 speed=23.74% duty=2017 dir=1
+pid_out=0.550 pid_out=-0.908 target_ticks=-5.003 current_ticks=-2.600 pid_out=-2.403 speed=-2.40% duty=204 dir=0
+target_ticks=20.412 current_ticks=-2.300 pid_out=22.712 speed=22.71% duty=1930 dir=1
+pid_out=0.557 pid_out=-0.949 target_ticks=-5.493 current_ticks=-3.000 pid_out=-2.493 speed=-2.49% duty=211 dir=0
+target_ticks=21.085 current_ticks=0.500 pid_out=20.585 speed=20.58% duty=1749 dir=1
+[CANopen CMD] New command
+[CANopen CMD] RAW OD vrrent_ticks=4.000 pid_out=17.511 speed=17.51% duty=1488 dir=1
+speed=-2.[CANopen CMD] Executing: TRANSLATION
+finished a rotation of -90.000 degrees
+spacestate robot :
+position : x:125.00 y:0.00 mm
+orientation : 1.77 degrees
+linear speed : 6.56 mm/s
+angular speed : -16.97 deg/s
+performing a translation of distance 300.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
+[MV_STATEMACHINE] loaded new state queue
+pid_out=0.149 pid_out=0.001 target_ticks=2.106 current_ticks=-0.100 pid_out=2.206 speed=2.21% duty=187 dir=1
+target_ticks=2.072 current_ticks=0.400 pid_out=1.672 speed=1.67% duty=142 dir=1
+pid_out=0.339 pid_out=0.019 target_ticks=4.995 current_ticks=-1.700 pid_out=6.695 speed=6.70% duty=569 dir=1
+target_ticks=4.466 current_ticks=5.600 pid_out=-1.134 speed=-1.13% duty=96 dir=0
+pid_out=0.520 pid_out=0.049 target_ticks=7.908 current_ticks=-2.600 pid_out=10.508 speed=10.51% duty=893 dir=1
+target_ticks=6.543 current_ticks=9.700 pid_out=-3.157 speed=-3.16% duty=268 dir=0
+pid_out=0.697 pid_out=0.069 target_ticks=10.609 current_ticks=0.300 pid_out=10.309 speed=10.31% duty=876 dir=1
+target_ticks=8.674 current_ticks=8.700 pid_out=-0.026 speed=-0.03% duty=2 dir=0
+pid_out=0.870 pid_out=0.079 target_ticks=13.128 current_ticks=3.000 pid_out=10.128 speed=10.13% duty=860 dir=1
+target_ticks=10.916 current_ticks=7.100 pid_out=3.816 speed=3.82% duty=324 dir=1
+pid_out=1.044 pid_out=0.079 target_ticks=15.536 current_ticks=4.900 pid_out=10.636 speed=10.64% duty=903 dir=1
+target_ticks=13.324 current_ticks=4.900 pid_out=8.424 speed=8.42% duty=715 dir=1
+pid_out=1.216 pid_out=0.071 target_ticks=17.814 current_ticks=7.100 pid_out=10.714 speed=10.71% duty=910 dir=1
+target_ticks=15.818 current_ticks=3.900 pid_out=11.918 speed=11.92% duty=1012 dir=1
+pid_out=1.379 pid_out=0.062 target_ticks=19.980 current_ticks=8.800 pid_out=11.180 speed=11.18% duty=950 dir=1
+target_ticks=18.242 current_ticks=5.000 pid_out=13.242 speed=13.24% duty=1125 dir=1
+pid_out=1.536 pid_out=0.053 target_ticks=22.057 current_ticks=10.100 pid_out=11.957 speed=11.96% duty=1016 dir=1
+target_ticks=20.571 current_ticks=6.400 pid_out=14.171 speed=14.17% duty=1204 dir=1
+pid_out=1.685 pid_out=0.044 target_ticks=24.038 current_ticks=11.500 pid_out=12.538 speed=12.54% duty=1065 dir=1
+target_ticks=22.796 current_ticks=7.900 pid_out=14.896 speed=14.90% duty=1265 dir=1
+pid_out=1.828 pid_out=0.035 target_ticks=25.933 current_ticks=12.800 pid_out=13.133 speed=13.13% duty=1116 dir=1
+target_ticks=24.956 current_ticks=8.900 pid_out=16.056 speed=16.06% duty=1364 dir=1
+pid_out=1.966 pid_out=0.025 target_ticks=27.763 current_ticks=13.800 pid_out=13.963 speed=13.96% duty=1186 dir=1
+target_ticks=27.058 current_ticks=9.800 pid_out=17.258 speed=17.26% duty=1466 dir=1
+pid_out=2.099 pid_out=0.016 target_ticks=29.537 current_ticks=14.600 pid_out=14.937 speed=14.94% duty=1269 dir=1
+target_ticks=29.082 current_ticks=10.900 pid_out=18.182 speed=18.18% duty=1545 dir=1
+pid_out=2.226 pid_out=0.005 target_ticks=31.218 current_ticks=16.100 pid_out=15.118 speed=15.12% duty=1284 dir=1
+target_ticks=31.068 current_ticks=11.600 pid_out=19.468 speed=19.47% duty=1654 dir=1
+pid_out=2.348 pid_out=-0.005 target_ticks=32.764 current_ticks=17.200 pid_out=15.564 speed=15.56% duty=1322 dir=1
+target_ticks=32.913 current_ticks=12.800 pid_out=20.113 speed=20.11% duty=1709 dir=1
+pid_out=2.462 pid_out=-0.015 target_ticks=34.174 current_ticks=18.300 pid_out=15.874 speed=15.87% duty=1349 dir=1
+target_ticks=34.588 current_ticks=14.400 pid_out=20.188 speed=20.19% duty=1715 dir=1
+pid_out=2.568 pid_out=-0.023 target_ticks=35.497 current_ticks=19.500 pid_out=15.997 speed=16.00% duty=1359 dir=1
+target_ticks=36.142 current_ticks=16.100 pid_out=20.042 speed=20.04% duty=1703 dir=1
+pid_out=2.668 pid_out=-0.029 target_ticks=36.763 current_ticks=20.400 pid_out=16.363 speed=16.36% duty=1390 dir=1
+target_ticks=37.570 current_ticks=18.000 pid_out=19.570 speed=19.57% duty=1663 dir=1
+pid_out=2.761 pid_out=-0.032 target_ticks=37.986 current_ticks=21.100 pid_out=16.886 speed=16.89% duty=1435 dir=1
+target_ticks=38.896 current_ticks=19.600 pid_out=19.296 speed=19.30% duty=1639 dir=1
+pid_out=2.849 pid_out=-0.033 target_ticks=39.212 current_ticks=21.300 pid_out=17.912 speed=17.91% duty=1522 dir=1
+target_ticks=40.129 current_ticks=21.200 pid_out=18.929 speed=18.93% duty=1608 dir=1
+pid_out=2.934 pid_out=-0.033 target_ticks=40.387 current_ticks=22.000 pid_out=18.387 speed=18.39% duty=1562 dir=1
+target_ticks=41.310 current_ticks=21.900 pid_out=19.410 speed=19.41% duty=1649 dir=1
+pid_out=3.014 pid_out=-0.033 target_ticks=41.505 current_ticks=22.800 pid_out=18.705 speed=18.70% duty=1589 dir=1
+target_ticks=42.428 current_ticks=22.800 pid_out=19.628 speed=19.63% duty=1668 dir=1
+pid_out=3.089 pid_out=-0.032 target_ticks=42.569 current_ticks=23.600 pid_out=18.969 speed=18.97% duty=1612 dir=1
+target_ticks=43.471 current_ticks=23.900 pid_out=19.571 speed=19.57% duty=1663 dir=1
+pid_out=3.160 pid_out=-0.030 target_ticks=43.596 current_ticks=24.200 pid_out=19.396 speed=19.40% duty=1648 dir=1
+target_ticks=44.445 current_ticks=25.000 pid_out=19.445 speed=19.44% duty=1652 dir=1
+pid_out=3.227 pid_out=-0.029 target_ticks=44.565 current_ticks=25.000 pid_out=19.565 speed=19.56% duty=1662 dir=1
+target_ticks=45.365 current_ticks=25.700 pid_out=19.665 speed=19.67% duty=1671 dir=1
+pid_out=3.290 pid_out=-0.027 target_ticks=45.484 current_ticks=25.700 pid_out=19.784 speed=19.78% duty=1681 dir=1
+target_ticks=46.230 current_ticks=26.500 pid_out=19.730 speed=19.73% duty=1676 dir=1
+pid_out=3.349 pid_out=-0.024 target_ticks=46.355 current_ticks=26.400 pid_out=19.955 speed=19.96% duty=1696 dir=1
+target_ticks=47.034 current_ticks=27.400 pid_out=19.634 speed=19.63% duty=1668 dir=1
+pid_out=3.404 pid_out=-0.022 target_ticks=47.184 current_ticks=27.000 pid_out=20.184 speed=20.18% duty=1715 dir=1
+target_ticks=47.795 current_ticks=28.000 pid_out=19.795 speed=19.79% duty=1682 dir=1
+pid_out=3.457 pid_out=-0.021 target_ticks=47.938 current_ticks=27.900 pid_out=20.038 speed=20.04% duty=1703 dir=1
+target_ticks=48.515 current_ticks=28.400 pid_out=20.115 speed=20.12% duty=1709 dir=1
+pid_out=3.506 pid_out=-0.019 target_ticks=48.668 current_ticks=28.300 pid_out=20.368 speed=20.37% duty=1731 dir=1
+target_ticks=49.197 current_ticks=29.000 pid_out=20.197 speed=20.20% duty=1716 dir=1
+pid_out=3.554 pid_out=-0.018 target_ticks=49.346 current_ticks=28.900 pid_out=20.446 speed=20.45% duty=1737 dir=1
+target_ticks=49.855 current_ticks=29.200 pid_out=20.655 speed=20.66% duty=1755 dir=1
+pid_out=3.601 pid_out=-0.018 target_ticks=50.016 current_ticks=29.000 pid_out=21.016 speed=21.02% duty=1786 dir=1
+target_ticks=50.511 current_ticks=29.200 pid_out=21.311 speed=21.31% duty=1811 dir=1
+pid_out=3.645 pid_out=-0.016 target_ticks=50.665 current_ticks=29.400 pid_out=21.265 speed=21.27% duty=1807 dir=1
+target_ticks=51.113 current_ticks=30.100 pid_out=21.013 speed=21.01% duty=1785 dir=1
+pid_out=3.687 pid_out=-0.014 target_ticks=51.300 current_ticks=29.600 pid_out=21.700 speed=21.70% duty=1844 dir=1
+target_ticks=51.701 current_ticks=30.300 pid_out=21.401 speed=21.40% duty=1818 dir=1
+pid_out=3.729 pid_out=-0.013 target_ticks=51.912 current_ticks=29.900 pid_out=22.012 speed=22.01% duty=1870 dir=1
+target_ticks=52.271 current_ticks=30.500 pid_out=21.771 speed=21.77% duty=1850 dir=1
+pid_out=3.771 pid_out=-0.011 target_ticks=52.538 current_ticks=29.700 pid_out=22.838 speed=22.84% duty=1941 dir=1
+target_ticks=52.857 current_ticks=30.300 pid_out=22.557 speed=22.56% duty=1917 dir=1
+pid_out=3.814 pid_out=-0.011 target_ticks=53.141 current_ticks=29.900 pid_out=23.241 speed=23.24% duty=1975 dir=1
+target_ticks=53.453 current_ticks=30.000 pid_out=23.453 speed=23.45% duty=1993 dir=1
+pid_out=3.854 pid_out=-0.011 target_ticks=53.688 current_ticks=30.600 pid_out=23.088 speed=23.09% duty=1962 dir=1
+target_ticks=54.007 current_ticks=30.500 pid_out=23.507 speed=23.51% duty=1997 dir=1
+pid_out=3.891 pid_out=-0.011 target_ticks=54.210 current_ticks=31.000 pid_out=23.210 speed=23.21% duty=1972 dir=1
+target_ticks=54.523 current_ticks=31.100 pid_out=23.423 speed=23.42% duty=1990 dir=1
+pid_out=3.924 pid_out=-0.010 target_ticks=54.713 current_ticks=31.400 pid_out=23.313 speed=23.31% duty=1981 dir=1
+target_ticks=54.984 current_ticks=32.000 pid_out=22.984 speed=22.98% duty=1953 dir=1
+pid_out=3.954 pid_out=-0.007 target_ticks=55.194 current_ticks=31.800 pid_out=23.394 speed=23.39% duty=1988 dir=1
+target_ticks=55.398 current_ticks=32.800 pid_out=22.598 speed=22.60% duty=1920 dir=1
+pid_out=3.982 pid_out=-0.006 target_ticks=55.605 current_ticks=32.600 pid_out=23.005 speed=23.00% duty=1955 dir=1
+target_ticks=55.781 current_ticks=33.000 pid_out=22.781 speed=22.78% duty=1936 dir=1
+pid_out=4.009 pid_out=-0.006 target_ticks=55.999 current_ticks=32.800 pid_out=23.199 speed=23.20% duty=1971 dir=1
+target_ticks=56.155 current_ticks=33.100 pid_out=23.055 speed=23.06% duty=1959 dir=1
+pid_out=4.035 pid_out=-0.006 target_ticks=56.366 current_ticks=33.100 pid_out=23.266 speed=23.27% duty=1977 dir=1
+target_ticks=56.522 current_ticks=33.100 pid_out=23.422 speed=23.42% duty=1990 dir=1
+pid_out=4.060 pid_out=-0.007 target_ticks=56.668 current_ticks=33.800 pid_out=22.868 speed=22.87% duty=1943 dir=1
+target_ticks=56.865 current_ticks=33.200 pid_out=23.665 speed=23.67% duty=2011 dir=1
+pid_out=4.083 pid_out=-0.008 target_ticks=56.966 current_ticks=33.900 pid_out=23.066 speed=23.07% duty=1960 dir=1
+target_ticks=57.197 current_ticks=33.400 pid_out=23.797 speed=23.80% duty=2022 dir=1
+pid_out=4.105 pid_out=-0.007 target_ticks=57.303 current_ticks=33.600 pid_out=23.703 speed=23.70% duty=2014 dir=1
+target_ticks=57.507 current_ticks=34.000 pid_out=23.507 speed=23.51% duty=1997 dir=1
+pid_out=4.126 pid_out=-0.006 target_ticks=57.631 current_ticks=33.800 pid_out=23.831 speed=23.83% duty=2025 dir=1
+target_ticks=57.794 current_ticks=34.400 pid_out=23.394 speed=23.39% duty=1988 dir=1
+pid_out=4.145 pid_out=-0.005 target_ticks=57.906 current_ticks=34.400 pid_out=23.506 speed=23.51% duty=1997 dir=1
+target_ticks=58.055 current_ticks=34.600 pid_out=23.455 speed=23.46% duty=1993 dir=1
+pid_out=4.163 pid_out=-0.004 target_ticks=58.185 current_ticks=34.400 pid_out=23.785 speed=23.78% duty=2021 dir=1
+target_ticks=58.307 current_ticks=34.800 pid_out=23.507 speed=23.51% duty=1997 dir=1
+pid_out=4.181 pid_out=-0.003 target_ticks=58.459 current_ticks=34.500 pid_out=23.959 speed=23.96% duty=2036 dir=1
+target_ticks=58.547 current_ticks=35.000 pid_out=23.547 speed=23.55% duty=2001 dir=1
+pid_out=4.199 pid_out=-0.002 target_ticks=58.733 current_ticks=34.500 pid_out=24.233 speed=24.23% duty=2059 dir=1
+target_ticks=58.787 current_ticks=35.000 pid_out=23.787 speed=23.79% duty=2021 dir=1
+pid_out=4.216 pid_out=-0.001 target_ticks=58.994 current_ticks=34.600 pid_out=24.394 speed=24.39% duty=2073 dir=1
+target_ticks=59.034 current_ticks=34.800 pid_out=24.234 speed=24.23% duty=2059 dir=1
+pid_out=4.234 pid_out=0.000 target_ticks=59.275 current_ticks=34.400 pid_out=24.875 speed=24.87% duty=2114 dir=1
+target_ticks=59.268 current_ticks=35.100 pid_out=24.168 speed=24.17% duty=2054 dir=1
+pid_out=4.251 pid_out=0.002 target_ticks=59.515 current_ticks=34.600 pid_out=24.915 speed=24.92% duty=2117 dir=1
+target_ticks=59.468 current_ticks=35.200 pid_out=24.268 speed=24.27% duty=2062 dir=1
+pid_out=4.268 pid_out=0.002 target_ticks=59.761 current_ticks=34.700 pid_out=25.061 speed=25.06% duty=2129 dir=1
+target_ticks=59.707 current_ticks=34.800 pid_out=24.907 speed=24.91% duty=2116 dir=1
+pid_out=4.284 pid_out=0.002 target_ticks=59.986 current_ticks=35.000 pid_out=24.986 speed=24.99% duty=2123 dir=1
+target_ticks=59.925 current_ticks=35.100 pid_out=24.825 speed=24.82% duty=2109 dir=1
+pid_out=4.298 pid_out=0.003 target_ticks=60.184 current_ticks=35.200 pid_out=24.984 speed=24.98% duty=2123 dir=1
+target_ticks=60.089 current_ticks=35.700 pid_out=24.389 speed=24.39% duty=2072 dir=1
+pid_out=4.312 pid_out=0.005 target_ticks=60.388 current_ticks=35.100 pid_out=25.288 speed=25.29% duty=2149 dir=1
+target_ticks=60.252 current_ticks=35.700 pid_out=24.552 speed=24.55% duty=2086 dir=1
+pid_out=4.325 pid_out=0.005 target_ticks=60.572 current_ticks=35.500 pid_out=25.072 speed=25.07% duty=2130 dir=1
+target_ticks=60.423 current_ticks=35.700 pid_out=24.723 speed=24.72% duty=2101 dir=1
+pid_out=4.187 pid_out=0.006 target_ticks=58.649 current_ticks=35.600 pid_out=23.049 speed=23.05% duty=1958 dir=1
+target_ticks=58.479 current_ticks=35.900 pid_out=22.579 speed=22.58% duty=1919 dir=1
+pid_out=4.001 pid_out=0.007 target_ticks=56.046 current_ticks=35.300 pid_out=20.746 speed=20.75% duty=1763 dir=1
+target_ticks=55.850 current_ticks=35.700 pid_out=20.150 speed=20.15% duty=1712 dir=1
+pid_out=3.819 pid_out=0.008 target_ticks=53.508 current_ticks=34.400 pid_out=19.108 speed=19.11% duty=1624 dir=1
+target_ticks=53.278 current_ticks=34.900 pid_out=18.378 speed=18.38% duty=1561 dir=1
+pid_out=3.643 pid_out=0.009 target_ticks=51.059 current_ticks=33.200 pid_out=17.859 speed=17.86% duty=1517 dir=1
+target_ticks=50.795 current_ticks=33.700 pid_out=17.095 speed=17.09% duty=1452 dir=1
+pid_out=3.482 pid_out=0.010 target_ticks=48.812 current_ticks=30.500 pid_out=18.312 speed=18.31% duty=1556 dir=1
+target_ticks=48.520 current_ticks=30.900 pid_out=17.620 speed=17.62% duty=1497 dir=1
+pid_out=3.329 pid_out=0.012 target_ticks=46.680 current_ticks=28.900 pid_out=17.780 speed=17.78% duty=1511 dir=1
+target_ticks=46.354 current_ticks=29.400 pid_out=16.954 speed=16.95% duty=1440 dir=1
+pid_out=3.176 pid_out=0.011 target_ticks=44.542 current_ticks=29.200 pid_out=15.342 speed=15.34% duty=1303 dir=1
+target_ticks=44.230 current_ticks=29.000 pid_out=15.230 speed=15.23% duty=1294 dir=1
+pid_out=3.027 pid_out=0.010 target_ticks=42.448 current_ticks=28.700 pid_out=13.748 speed=13.75% duty=1168 dir=1
+target_ticks=42.176 current_ticks=28.100 pid_out=14.076 speed=14.08% duty=1196 dir=1
+pid_out=2.883 pid_out=0.010 target_ticks=40.438 current_ticks=27.300 pid_out=13.138 speed=13.14% duty=1116 dir=1
+target_ticks=40.147 current_ticks=27.600 pid_out=12.547 speed=12.55% duty=1066 dir=1
+pid_out=2.745 pid_out=0.011 target_ticks=38.507 current_ticks=26.300 pid_out=12.207 speed=12.21% duty=1037 dir=1
+target_ticks=38.208 current_ticks=26.400 pid_out=11.808 speed=11.81% duty=1003 dir=1
+pid_out=2.613 pid_out=0.012 target_ticks=36.680 current_ticks=24.800 pid_out=11.880 speed=11.88% duty=1009 dir=1
+target_ticks=36.354 current_ticks=25.200 pid_out=11.154 speed=11.15% duty=947 dir=1
+pid_out=2.488 pid_out=0.012 target_ticks=34.936 current_ticks=23.700 pid_out=11.236 speed=11.24% duty=954 dir=1
+target_ticks=34.590 current_ticks=24.000 pid_out=10.590 speed=10.59% duty=900 dir=1
+pid_out=2.368 pid_out=0.012 target_ticks=33.256 current_ticks=22.900 pid_out=10.356 speed=10.36% duty=880 dir=1
+target_ticks=32.910 current_ticks=22.900 pid_out=10.010 speed=10.01% duty=850 dir=1
+pid_out=2.254 pid_out=0.012 target_ticks=31.658 current_ticks=21.800 pid_out=9.858 speed=9.86% duty=837 dir=1
+target_ticks=31.319 current_ticks=21.700 pid_out=9.619 speed=9.62% duty=817 dir=1
+pid_out=2.178 pid_out=-0.024 target_ticks=30.031 current_ticks=21.900 pid_out=8.131 speed=8.13% duty=691 dir=1
+target_ticks=30.710 current_ticks=6.900 pid_out=23.810 speed=23.81% duty=2023 dir=1
+pid_out=2.124 pid_out=-0.077 target_ticks=28.283 current_ticks=21.100 pid_out=7.183 speed=7.18% duty=610 dir=1
+target_ticks=30.435 current_ticks=-0.600 pid_out=31.035 speed=31.03% duty=2637 dir=1
+pid_out=2.075 pid_out=-0.134 target_ticks=26.540 current_ticks=21.000 pid_out=5.540 speed=5.54% duty=470 dir=1
+target_ticks=30.279 current_ticks=-2.400 pid_out=32.679 speed=32.68% duty=2777 dir=1
+pid_out=2.025 pid_out=-0.194 target_ticks=24.715 current_ticks=22.100 pid_out=2.615 speed=2.62% duty=222 dir=1
+target_ticks=30.151 current_ticks=-2.900 pid_out=33.051 speed=33.05% duty=2809 dir=1
+pid_out=1.954 pid_out=-0.254 target_ticks=22.639 current_ticks=25.900 pid_out=-3.261 speed=-3.26% duty=277 dir=0
+target_ticks=29.758 current_ticks=1.100 pid_out=28.658 speed=28.66% duty=2435 dir=1
+pid_out=1.886 pid_out=-0.305 target_ticks=20.786 current_ticks=23.500 pid_out=-2.714 speed=-2.71% duty=230 dir=0
+target_ticks=29.338 current_ticks=2.400 pid_out=26.938 speed=26.94% duty=2289 dir=1
+pid_out=1.843 pid_out=-0.344 target_ticks=19.498 current_ticks=16.300 pid_out=3.198 speed=3.20% duty=271 dir=1
+target_ticks=29.135 current_ticks=0.300 pid_out=28.835 speed=28.83% duty=2450 dir=1
+pid_out=1.820 pid_out=-0.374 target_ticks=18.661 current_ticks=10.400 pid_out=8.261 speed=8.26% duty=702 dir=1
+target_ticks=29.119 current_ticks=-1.700 pid_out=30.819 speed=30.82% duty=2619 dir=1
+pid_out=1.786 pid_out=-0.398 target_ticks=17.771 current_ticks=11.500 pid_out=6.271 speed=6.27% duty=532 dir=1
+target_ticks=28.921 current_ticks=1.300 pid_out=27.621 speed=27.62% duty=2347 dir=1
+pid_out=1.749 pid_out=-0.424 target_ticks=16.818 current_ticks=12.400 pid_out=4.418 speed=4.42% duty=375 dir=1
+target_ticks=28.695 current_ticks=1.700 pid_out=26.995 speed=26.99% duty=2294 dir=1
+pid_out=1.718 pid_out=-0.451 target_ticks=15.928 current_ticks=11.500 pid_out=4.428 speed=4.43% duty=376 dir=1
+target_ticks=28.551 current_ticks=0.500 pid_out=28.051 speed=28.05% duty=2384 dir=1
+pid_out=1.692 pid_out=-0.477 target_ticks=15.132 current_ticks=10.200 pid_out=4.932 speed=4.93% duty=419 dir=1
+target_ticks=28.488 current_ticks=-0.600 pid_out=29.088 speed=29.09% duty=2472 dir=1
+pid_out=1.668 pid_out=-0.502 target_ticks=14.371 current_ticks=9.800 pid_out=4.571 speed=4.57% duty=388 dir=1
+target_ticks=28.420 current_ticks=-0.400 pid_out=28.820 speed=28.82% duty=2449 dir=1
+pid_out=1.640 pid_out=-0.525 target_ticks=13.608 current_ticks=10.000 pid_out=3.608 speed=3.61% duty=306 dir=1
+target_ticks=28.295 current_ticks=0.600 pid_out=27.695 speed=27.69% duty=2353 dir=1
+pid_out=1.612 pid_out=-0.543 target_ticks=12.925 current_ticks=9.100 pid_out=3.825 speed=3.83% duty=325 dir=1
+target_ticks=28.128 current_ticks=1.500 pid_out=26.628 speed=26.63% duty=2263 dir=1
+pid_out=1.590 pid_out=-0.562 target_ticks=12.317 current_ticks=8.000 pid_out=4.317 speed=4.32% duty=366 dir=1
+target_ticks=28.042 current_ticks=0.300 pid_out=27.742 speed=27.74% duty=2357 dir=1
+pid_out=1.572 pid_out=-0.581 target_ticks=11.734 current_ticks=7.600 pid_out=4.134 speed=4.13% duty=351 dir=1
+target_ticks=28.009 current_ticks=-0.500 pid_out=28.509 speed=28.51% duty=2422 dir=1
+pid_out=1.551 pid_out=-0.602 target_ticks=11.115 current_ticks=8.100 pid_out=3.015 speed=3.02% duty=256 dir=1
+target_ticks=27.967 current_ticks=-0.400 pid_out=28.367 speed=28.37% duty=2410 dir=1
+pid_out=1.530 pid_out=-0.621 target_ticks=10.504 current_ticks=8.100 pid_out=2.404 speed=2.40% duty=204 dir=1
+target_ticks=27.892 current_ticks=0.200 pid_out=27.692 speed=27.69% duty=2353 dir=1
+pid_out=1.509 pid_out=-0.637 target_ticks=9.975 current_ticks=7.100 pid_out=2.875 speed=2.87% duty=244 dir=1
+target_ticks=27.803 current_ticks=0.600 pid_out=27.203 speed=27.20% duty=2312 dir=1
+pid_out=1.491 pid_out=-0.651 target_ticks=9.490 current_ticks=6.500 pid_out=2.990 speed=2.99% duty=254 dir=1
+target_ticks=27.726 current_ticks=0.500 pid_out=27.226 speed=27.23% duty=2313 dir=1
+pid_out=1.474 pid_out=-0.666 target_ticks=9.027 current_ticks=6.200 pid_out=2.827 speed=2.83% duty=240 dir=1
+target_ticks=27.670 current_ticks=0.200 pid_out=27.470 speed=27.47% duty=2334 dir=1
+pid_out=1.457 pid_out=-0.681 target_ticks=8.556 current_ticks=6.300 pid_out=2.256 speed=2.26% duty=191 dir=1
+target_ticks=27.620 current_ticks=0.100 pid_out=27.520 speed=27.52% duty=2338 dir=1
+pid_out=1.441 pid_out=-0.696 target_ticks=8.101 current_ticks=6.100 pid_out=2.001 speed=2.00% duty=170 dir=1
+target_ticks=27.579 current_ticks=0.000 pid_out=27.579 speed=27.58% duty=2343 dir=1
+pid_out=1.426 pid_out=-0.710 target_ticks=7.669 current_ticks=5.800 pid_out=1.869 speed=1.87% duty=158 dir=1
+target_ticks=27.540 current_ticks=0.000 pid_out=27.540 speed=27.54% duty=2340 dir=1
+pid_out=1.412 pid_out=-0.723 target_ticks=7.267 current_ticks=5.400 pid_out=1.867 speed=1.87% duty=158 dir=1
+target_ticks=27.506 current_ticks=0.000 pid_out=27.506 speed=27.51% duty=2337 dir=1
+pid_out=1.398 pid_out=-0.734 target_ticks=6.907 current_ticks=4.900 pid_out=2.007 speed=2.01% duty=170 dir=1
+target_ticks=27.457 current_ticks=0.300 pid_out=27.157 speed=27.16% duty=2308 dir=1
+pid_out=1.387 pid_out=-0.744 target_ticks=6.589 current_ticks=4.300 pid_out=2.289 speed=2.29% duty=194 dir=1
+target_ticks=27.431 current_ticks=0.000 pid_out=27.431 speed=27.43% duty=2331 dir=1
+pid_out=1.376 pid_out=-0.754 target_ticks=6.294 current_ticks=4.000 pid_out=2.294 speed=2.29% duty=194 dir=1
+target_ticks=27.401 current_ticks=0.100 pid_out=27.301 speed=27.30% duty=2320 dir=1
+pid_out=1.366 pid_out=-0.763 target_ticks=6.013 current_ticks=3.800 pid_out=2.213 speed=2.21% duty=188 dir=1
+target_ticks=27.378 current_ticks=0.000 pid_out=27.378 speed=27.38% duty=2326 dir=1
+pid_out=1.358 pid_out=-0.771 target_ticks=5.769 current_ticks=3.300 pid_out=2.469 speed=2.47% duty=209 dir=1
+target_ticks=27.365 current_ticks=-0.100 pid_out=27.465 speed=27.46% duty=2334 dir=1
+pid_out=1.351 pid_out=-0.778 target_ticks=5.578 current_ticks=2.600 pid_out=2.978 speed=2.98% duty=253 dir=1
+target_ticks=27.350 current_ticks=0.000 pid_out=27.350 speed=27.35% duty=2324 dir=1
+pid_out=1.345 pid_out=-0.783 target_ticks=5.417 current_ticks=2.200 pid_out=3.217 speed=3.22% duty=273 dir=1
+target_ticks=27.331 current_ticks=0.100 pid_out=27.231 speed=27.23% duty=2314 dir=1
+pid_out=1.337 pid_out=-0.788 target_ticks=5.232 current_ticks=2.600 pid_out=2.632 speed=2.63% duty=223 dir=1
+target_ticks=27.282 current_ticks=0.600 pid_out=26.682 speed=26.68% duty=2267 dir=1
+pid_out=1.329 pid_out=-0.794 target_ticks=5.028 current_ticks=2.800 pid_out=2.228 speed=2.23% duty=189 dir=1
+target_ticks=27.255 current_ticks=0.200 pid_out=27.055 speed=27.05% duty=2299 dir=1
+pid_out=1.322 pid_out=-0.800 target_ticks=4.837 current_ticks=2.600 pid_out=2.237 speed=2.24% duty=190 dir=1
+target_ticks=27.247 current_ticks=-0.100 pid_out=27.347 speed=27.35% duty=2324 dir=1
+pid_out=1.317 pid_out=-0.807 target_ticks=4.658 current_ticks=2.400 pid_out=2.258 speed=2.26% duty=191 dir=1
+target_ticks=27.251 current_ticks=-0.300 pid_out=27.551 speed=27.55% duty=2341 dir=1
+pid_out=1.310 pid_out=-0.812 target_ticks=4.483 current_ticks=2.400 pid_out=2.083 speed=2.08% duty=177 dir=1
+target_ticks=27.233 current_ticks=0.100 pid_out=27.133 speed=27.13% duty=2306 dir=1
+pid_out=1.304 pid_out=-0.818 target_ticks=4.317 current_ticks=2.300 pid_out=2.017 speed=2.02% duty=171 dir=1
+target_ticks=27.209 current_ticks=0.200 pid_out=27.009 speed=27.01% duty=2295 dir=1
+pid_out=1.299 pid_out=-0.822 target_ticks=4.185 current_ticks=1.800 pid_out=2.385 speed=2.38% duty=202 dir=1
+target_ticks=27.205 current_ticks=-0.100 pid_out=27.305 speed=27.31% duty=2320 dir=1
+pid_out=1.295 pid_out=-0.826 target_ticks=4.067 current_ticks=1.600 pid_out=2.467 speed=2.47% duty=209 dir=1
+target_ticks=27.203 current_ticks=-0.100 pid_out=27.303 speed=27.30% duty=2320 dir=1
+pid_out=1.290 pid_out=-0.831 target_ticks=3.928 current_ticks=1.900 pid_out=2.028 speed=2.03% duty=172 dir=1
+target_ticks=27.199 current_ticks=-0.100 pid_out=27.299 speed=27.30% duty=2320 dir=1
+pid_out=1.286 pid_out=-0.835 target_ticks=3.812 current_ticks=1.600 pid_out=2.212 speed=2.21% duty=187 dir=1
+target_ticks=27.186 current_ticks=0.100 pid_out=27.086 speed=27.09% duty=2301 dir=1
+pid_out=1.284 pid_out=-0.838 target_ticks=3.730 current_ticks=1.100 pid_out=2.630 speed=2.63% duty=223 dir=1
+target_ticks=27.192 current_ticks=-0.200 pid_out=27.392 speed=27.39% duty=2328 dir=1
+pid_out=1.282 pid_out=-0.841 target_ticks=3.662 current_ticks=0.900 pid_out=2.762 speed=2.76% duty=234 dir=1
+target_ticks=27.199 current_ticks=-0.200 pid_out=27.399 speed=27.40% duty=2328 dir=1
+pid_out=1.279 pid_out=-0.843 target_ticks=3.582 current_ticks=1.100 pid_out=2.482 speed=2.48% duty=210 dir=1
+target_ticks=27.194 current_ticks=0.000 pid_out=27.194 speed=27.19% duty=2311 dir=1
+pid_out=1.275 pid_out=-0.845 target_ticks=3.504 current_ticks=1.100 pid_out=2.404 speed=2.40% duty=204 dir=1
+target_ticks=27.177 current_ticks=0.200 pid_out=26.977 speed=26.98% duty=2292 dir=1
+pid_out=1.273 pid_out=-0.847 target_ticks=3.447 current_ticks=0.800 pid_out=2.647 speed=2.65% duty=224 dir=1
+target_ticks=27.167 current_ticks=0.100 pid_out=27.067 speed=27.07% duty=2300 dir=1
+pid_out=1.271 pid_out=-0.848 target_ticks=3.398 current_ticks=0.700 pid_out=2.698 speed=2.70% duty=229 dir=1
+target_ticks=27.152 current_ticks=0.200 pid_out=26.952 speed=26.95% duty=2290 dir=1
+pid_out=1.269 pid_out=-0.850 target_ticks=3.348 current_ticks=0.700 pid_out=2.648 speed=2.65% duty=225 dir=1
+target_ticks=27.143 current_ticks=0.100 pid_out=27.043 speed=27.04% duty=2298 dir=1
+pid_out=1.266 pid_out=-0.851 target_ticks=3.291 current_ticks=0.800 pid_out=2.491 speed=2.49% duty=211 dir=1
+target_ticks=27.133 current_ticks=0.100 pid_out=27.033 speed=27.03% duty=2297 dir=1
+pid_out=1.265 pid_out=-0.853 target_ticks=3.239 current_ticks=0.700 pid_out=2.539 speed=2.54% duty=215 dir=1
+target_ticks=27.135 current_ticks=-0.100 pid_out=27.235 speed=27.24% duty=2314 dir=1
+pid_out=1.263 pid_out=-0.856 target_ticks=3.165 current_ticks=1.000 pid_out=2.165 speed=2.16% duty=183 dir=1
+target_ticks=27.142 current_ticks=-0.200 pid_out=27.342 speed=27.34% duty=2323 dir=1
+pid_out=1.259 pid_out=-0.860 target_ticks=3.056 current_ticks=1.500 pid_out=1.556 speed=1.56% duty=132 dir=1
+target_ticks=27.135 current_ticks=0.000 pid_out=27.135 speed=27.14% duty=2306 dir=1
+pid_out=1.254 pid_out=-0.864 target_ticks=2.940 current_ticks=1.600 pid_out=1.340 speed=1.34% duty=113 dir=1
+target_ticks=27.128 current_ticks=0.000 pid_out=27.128 speed=27.13% duty=2305 dir=1
+pid_out=1.251 pid_out=-0.867 target_ticks=2.831 current_ticks=1.500 pid_out=1.331 speed=1.33% duty=113 dir=1
+target_ticks=27.121 current_ticks=0.000 pid_out=27.121 speed=27.12% duty=2305 dir=1
+pid_out=1.249 pid_out=-0.871 target_ticks=2.762 current_ticks=0.900 pid_out=1.862 speed=1.86% duty=158 dir=1
+target_ticks=27.140 current_ticks=-0.400 pid_out=27.540 speed=27.54% duty=2340 dir=1
+pid_out=1.249 pid_out=-0.874 target_ticks=2.706 current_ticks=0.700 pid_out=2.006 speed=2.01% duty=170 dir=1
+target_ticks=27.172 current_ticks=-0.600 pid_out=27.772 speed=27.77% duty=2360 dir=1
+pid_out=1.248 pid_out=-0.876 target_ticks=2.653 current_ticks=0.700 pid_out=1.953 speed=1.95% duty=165 dir=1

@@ -36,9 +36,13 @@ class FUNCTION_CODE(Enum) :
 class CanopenWrapper :
 
 	def __init__(self, bus : can.BusABC):
-		
+
 		self.network = bus
 		self.command_id = 1 # TEMP
+
+		# FIXED BY CLAUDE: Initialize notifier as None - will be created on first listener registration
+		# This implements the singleton pattern to avoid "multiple active Notifier instances" error
+		self.notifier = None
 	
 
 	def send_rpdo(self, node_id : int, rpdo_num : int, data : list[int]) :
@@ -132,6 +136,10 @@ class CanopenWrapper :
 			
 			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 
+			# ADDED BY CLAUDE: Log CAN TX to unified logger if enabled
+			if unified_logger and unified_logger.is_enabled():
+				unified_logger.log_can_tx(node_id, action_id, param_resized)
+
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			action_id_u16 = to_uint16(action_id)
 			param_0_u16 = to_uint16(param_resized[0])
@@ -209,5 +217,30 @@ class CanopenWrapper :
 			sys.stderr.write(f"traceback : {traceback.format_exc()}\n")
 			
 			return False
+
+
+	# FIXED BY CLAUDE: Method to register a listener with the singleton Notifier
+	# This allows multiple nodes to share the same Notifier instance
+	def register_listener(self, listener) :
+		"""
+		Register a listener (e.g., _CanActionNodeReader) with the shared Notifier.
+		Creates the Notifier on first call (lazy initialization).
+
+		:param listener: A can.Listener instance to receive CAN messages
+		"""
+		if self.notifier is None :
+			# Create the Notifier only once, on first listener registration
+			logger.log_info("CanopenWrapper", "Creating singleton Notifier instance")
+			self.notifier = can.Notifier(self.network, [listener])
+		else :
+			# Notifier already exists, just add this listener to it
+			logger.log_info("CanopenWrapper", f"Adding listener to existing Notifier")
+			self.notifier.add_listener(listener)
+
+
+# Global configuration variables for debugging
+DEBUG_CAN_CHANGES_ONLY = True  # Will be set from main.py
+can_file_logger = None  # Will be set from main.py if DEBUG_CAN_LOG_TO_FILE = True (DEPRECATED - use unified_logger instead)
+unified_logger = None  # ADDED BY CLAUDE: Will be set from main.py for unified UART+CAN logging
 
 instance : CanopenWrapper = None

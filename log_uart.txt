@@ -1,0 +1,423 @@
+Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+stopped holding the robot
+time position_error rotation_error position_drive rotation_drive motor_r_drive motor_l_drive
+[MV_STATEMACHINE] loaded new state queue
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 10.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+[CANopen CMD] initialized
+mv statemachine callback state : 0x800fa2d
+mv statemachine callback queue : 0x800f9e5
+woke up
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 20.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 30.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 40.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 50.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 60.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 70.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 80.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 90.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 100.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 110.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 120.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 130.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 140.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 150.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 160.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 170.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 180.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 190.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 200.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 210.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 220.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 230.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 240.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 250.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 260.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 270.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 280.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 290.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 300.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 310.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 320.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 330.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 340.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 350.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 360.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 370.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 380.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 390.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 400.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=0.000 ===LOOP_START=== 410.000 0.000 0.000 0.000 0.000 0.000 0.000 
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 420.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=-0.100 pid_out=0.113 speed=0.11% duty=9 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 430.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 440.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 450.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 460.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 470.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 480.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 490.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 500.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 510.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 520.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 530.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 540.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 550.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 560.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 570.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 580.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 590.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.000 pid_out=-0.001 ===LOOP_START=== 600.000 -0.007 0.007 0.000 -0.001 -0.000 0.001 
+target_ticks=-0.006 current_ticks=0.000 pid_out=-0.006 speed=-0.01% duty=0 dir=0
+target_ticks=0.013 current_ticks=0.000 pid_out=0.013 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 610.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=-0.100 pid_out=0.126 speed=0.13% duty=10 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 620.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 630.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 640.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 650.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 660.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 670.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 680.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 690.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 700.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.002 ===LOOP_START=== 710.000 -0.020 0.020 0.001 -0.002 -0.001 0.003 
+target_ticks=-0.017 current_ticks=0.000 pid_out=-0.017 speed=-0.02% duty=1 dir=0
+target_ticks=0.039 current_ticks=-0.100 pid_out=0.139 speed=0.14% duty=11 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.002 ===LOOP_START=== 720.000 -0.020 0.020 0.001 -0.002 -0.001 0.003 
+target_ticks=-0.017 current_ticks=0.000 pid_out=-0.017 speed=-0.02% duty=1 dir=0
+target_ticks=0.039 current_ticks=0.000 pid_out=0.039 speed=0.04% duty=3 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.002 ===LOOP_START=== 730.000 -0.020 0.020 0.001 -0.002 -0.001 0.003 
+target_ticks=-0.017 current_ticks=0.000 pid_out=-0.017 speed=-0.02% duty=1 dir=0
+target_ticks=0.039 current_ticks=0.000 pid_out=0.039 speed=0.04% duty=3 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 740.000 -0.013 0.013 0.001 -0.001 -0.001 0.002 
+target_ticks=-0.011 current_ticks=0.000 pid_out=-0.011 speed=-0.01% duty=0 dir=0
+target_ticks=0.026 current_ticks=0.100 pid_out=-0.074 speed=-0.07% duty=6 dir=0
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 750.000 -0.020 0.007 0.001 -0.001 0.000 0.001 
+target_ticks=0.002 current_ticks=-0.100 pid_out=0.102 speed=0.10% duty=8 dir=1
+target_ticks=0.020 current_ticks=0.000 pid_out=0.020 speed=0.02% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=-0.001 ===LOOP_START=== 760.000 -0.020 0.007 0.001 -0.001 0.000 0.001 
+target_ticks=0.002 current_ticks=0.000 pid_out=0.002 speed=0.00% duty=0 dir=1
+target_ticks=0.020 current_ticks=0.000 pid_out=0.020 speed=0.02% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=0.000 ===LOOP_START=== 770.000 -0.026 0.000 0.001 0.000 0.001 0.001 
+target_ticks=0.015 current_ticks=-0.100 pid_out=0.115 speed=0.11% duty=9 dir=1
+target_ticks=0.015 current_ticks=0.000 pid_out=0.015 speed=0.01% duty=1 dir=1
+===LOOP_END===
+
+pid_out=0.001 pid_out=0.001 ===LOOP_START=== 780.000 -0.013 -0.013 0.001 0.001 0.002 -0.001 
+target_ticks=0.026 current_ticks=0.000 pid_out=0.026 speed=0.03% duty=2 dir=1
+target_ticks=-0.011 current_ticks=0.200 pid_out=-0.211 speed=-0.21% duty=17 dir=0
+===LOOP_END===
+
+pid_out=-0.000 pid_out=0.002 ===LOOP_START=== 790.000 0.007 -0.020 -0.000 0.002 0.002 -0.002 
+target_ticks=0.024 current_ticks=0.100 pid_out=-0.076 speed=-0.08% duty=6 dir=0
+target_ticks=-0.031 current_ticks=0.200 pid_out=-0.231 speed=-0.23% duty=19 dir=0
+===LOOP_END===
+
+pid_out=-0.001 pid_out=0.001 ===LOOP_START=== 800.000 0.013 -0.013 -0.001 0.001 0.001 -0.002 
+target_ticks=0.011 current_ticks=0.100 pid_out=-0.089 speed=-0.09% duty=7 dir=0
+target_ticks=-0.026 current_ticks=0.000 pid_out=-0.026 speed=-0.03% duty=2 dir=0
+===LOOP_END===
+
+pid_out=-0.002 pid_out=-0.001 ===LOOP_START=== 810.000 0.046 0.007 -0.002 -0.001 -0.002 -0.001 
+target_ticks=-0.035 current_ticks=0.400 pid_out=-0.435 speed=-0.43% duty=36 dir=0
+target_ticks=-0.017 current_ticks=0.100 pid_out=-0.117 speed=-0.12% duty=9 dir=0
+===LOOP_END===
+
+pid_out=-0.003 pid_out=-0.003 ===LOOP_START=== 820.000 0.066 0.026 -0.003 -0.003 -0.005 0.000 
+target_ticks=-0.074 current_ticks=0.300 pid_out=-0.374 speed=-0.37% duty=31 dir=0
+target_ticks=0.000 current_ticks=0.000 pid_out=0.000 speed=0.00% duty=0 dir=1
+===LOOP_END===
+
+pid_out=-0.003 pid_out=-0.004 ===LOOP_START=== 830.000 0.066 0.039 -0.003 -0.004 -0.007 0.001 
+target_ticks=-0.092 current_ticks=0.100 pid_out=-0.192 speed=-0.19% duty=16 dir=0
+target_ticks=0.018 current_ticks=-0.100 pid_out=0.118 speed=0

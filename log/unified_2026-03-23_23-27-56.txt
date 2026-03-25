@@ -1,0 +1,359 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-03-23_23-27-56
+Program started at: 2026-03-23 23:27:54.067866
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-03-23 23:27:56.098 (t+2.030199s)] [CAN TX] Node 1 → action:6 params:[2, 1, 0, 0, 0, 0]
+[2026-03-23 23:27:56.106 (t+2.038678s)] [UART] [CANopen CMD] New command
+[2026-03-23 23:27:56.107 (t+2.039374s)] [UART] [CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0002 p1=2 p2=1 [2026-03-23 23:27:56.107 (t+2.039942s)] [UART] p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-03-23 23:27:56.118 (t+2.050581s)] [UART] stopped holding the robot
+performing a rotation of 0.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-23 23:27:56.121 (t+2.053197s)] [CAN RX] Node 1 → status:1 cmd_id:2 action:6 completed:0 error:0
+[2026-03-23 23:27:56.129 (t+2.061582s)] [UART] [MV_STATEMACHINE] state finished
+finished a rotation of 0.000 degrees
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+performing a recalibration state wake
+[wake recalibration pid_motor_R_runtime.i = 0.000000 
+pid_motor_R_runtime.i = 0.000000,  desired_speed calib at 10.000 : -0.500
+[2026-03-23 23:27:56.133 (t+2.065958s)] [CAN RX] Node 2 → status:10 cmd_id:0 action:0 completed:0 error:0
+[2026-03-23 23:27:56.140 (t+2.072312s)] [UART] pid_motor_R_runtime.i = -340.883636,  desired_speed calib at 20.000 : -0.500
+[2026-03-23 23:27:56.150 (t+2.082778s)] [UART] pid_motor_R_runtime.i = -681.767273,  desired_speed calib at 30.000 : -0.500
+[2026-03-23 23:27:56.161 (t+2.093246s)] [UART] pid_motor_R_runtime.i = -977.650879,  desired_speed calib at 40.000 : -0.500
+[2026-03-23 23:27:56.171 (t+2.103686s)] [UART] pid_motor_R_runtime.i = -1204.534546,  desired_speed calib at 50.000 : -0.500
+[2026-03-23 23:27:56.182 (t+2.114439s)] [UART] pid_motor_R_runtime.i = -1396.418213,  desired_speed calib at 60.000 : -0.500
+[2026-03-23 23:27:56.192 (t+2.124918s)] [UART] pid_motor_R_runtime.i = -1584.301880,  desired_speed calib at 70.000 : -0.500
+[2026-03-23 23:27:56.203 (t+2.135505s)] [UART] pid_motor_R_runtime.i = -1777.185547,  desired_speed calib at 80.000 : -0.500
+[2026-03-23 23:27:56.204 (t+2.136288s)] [UART] pid_motor_R_runtime.i = -2001.069214,  desired_speed calib at 90.000 [2026-03-23 23:27:56.204 (t+2.136881s)] [UART] : -0.500
+[2026-03-23 23:27:56.215 (t+2.147463s)] [UART] pid_motor_R_runtime.i = -2242.952881,  desired_speed calib at 100.000 : -0.500
+[2026-03-23 23:27:56.226 (t+2.158396s)] [UART] pid_motor_R_runtime.i = -2465.836426,  desired_speed calib at 110.000 : -0.500
+[2026-03-23 23:27:56.236 (t+2.168886s)] [UART] pid_motor_R_runtime.i = -2644.719971,  desired_speed calib at 120.000 : -0.500
+[2026-03-23 23:27:56.247 (t+2.179819s)] [UART] pid_motor_R_runtime.i = -2764.603516,  desired_speed calib at 130.000 : -0.500
+[2026-03-23 23:27:56.258 (t+2.190667s)] [UART] pid_motor_R_runtime.i = -2837.487061,  desired_speed calib at 140.000 : -0.500
+[2026-03-23 23:27:56.268 (t+2.201062s)] [UART] pid_motor_R_runtime.i = -2919.370605,  desired_speed calib at 150.000 : -0.500
+[2026-03-23 23:27:56.279 (t+2.211482s)] [UART] pid_motor_R_runtime.i = -3029.254150,  desired_speed calib at 160.000 : -0.500
+[2026-03-23 23:27:56.289 (t+2.221892s)] [UART] pid_motor_R_runtime.i = -3150.137695,  desired_speed calib at 170.000 : -0.500
+[2026-03-23 23:27:56.300 (t+2.232389s)] [UART] pid_motor_R_runtime.i = -3276.021240,  desired_speed calib at 180.000 : -0.500
+[2026-03-23 23:27:56.310 (t+2.243002s)] [UART] pid_motor_R_runtime.i = -3383.904785,  desired_speed calib at 190.000 : -0.500
+[2026-03-23 23:27:56.321 (t+2.253629s)] [UART] pid_motor_R_runtime.i = -3479.788330,  desired_speed calib at 200.000 : -0.500
+[2026-03-23 23:27:56.332 (t+2.264396s)] [UART] pid_motor_R_runtime.i = -3572.671875,  desired_speed calib at 210.000 : -0.500
+[2026-03-23 23:27:56.343 (t+2.275405s)] [UART] pid_motor_R_runtime.i = -3674.555420,  desired_speed calib at 220.000 : -0.500
+[2026-03-23 23:27:56.353 (t+2.285923s)] [UART] pid_motor_R_runtime.i = -3793.438965,  desired_speed calib at 230.000 : -0.500
+[2026-03-23 23:27:56.364 (t+2.296415s)] [UART] pid_motor_R_runtime.i = -3916.322510,  desired_speed calib at 240.000 : -0.500
+[2026-03-23 23:27:56.374 (t+2.306926s)] [UART] pid_motor_R_runtime.i = -4032.206055,  desired_speed calib at 250.000 : -0.500
+[2026-03-23 23:27:56.375 (t+2.307294s)] [UART] pid_motor_R_runtime.i = -4140.08[2026-03-23 23:27:56.375 (t+2.307450s)] [UART] 9844,  desired_speed calib at 260[2026-03-23 23:27:56.385 (t+2.317742s)] [UART] .000 : -0.500
+pid_motor_R_runtime.i = -4252.973633,  desired_speed calib at 270.000 : -0.500
+[2026-03-23 23:27:56.396 (t+2.328230s)] [UART] pid_motor_R_runtime.i = -4363.857422,  desired_speed calib at 280.000 : -0.500
+[2026-03-23 23:27:56.406 (t+2.338764s)] [UART] pid_motor_R_runtime.i = -4478.741211,  desired_speed calib at 290.000 : -0.500
+[2026-03-23 23:27:56.417 (t+2.349348s)] [UART] pid_motor_R_runtime.i = -4595.625000,  desired_speed calib at 300.000 : -0.500
+[2026-03-23 23:27:56.428 (t+2.360523s)] [UART] pid_motor_R_runtime.i = -4710.508789,  desired_speed calib at 310.000 : -0.500
+[2026-03-23 23:27:56.438 (t+2.371125s)] [UART] pid_motor_R_runtime.i = -4821.392578,  desired_speed calib at 320.000 : -0.500
+[2026-03-23 23:27:56.450 (t+2.382330s)] [UART] pid_motor_R_runtime.i = -4934.276367,  desired_speed calib at 330.000 : -0.500
+[2026-03-23 23:27:56.461 (t+2.393215s)] [UART] pid_motor_R_runtime.i = -5048.160156,  desired_speed calib at 340.000 : -0.500
+[2026-03-23 23:27:56.471 (t+2.403801s)] [UART] pid_motor_R_runtime.i = -5158.043945,  desired_speed calib at 350.000 : -0.500
+[2026-03-23 23:27:56.482 (t+2.414443s)] [UART] pid_motor_R_runtime.i = -5268.927734,  desired_speed calib at 360.000 : -0.500
+[2026-03-23 23:27:56.493 (t+2.425346s)] [UART] pid_motor_R_runtime.i = -5381.811523,  desired_speed calib at 370.000 : -0.500
+[2026-03-23 23:27:56.504 (t+2.436180s)] [UART] pid_motor_R_runtime.i = -5494.695312,  desired_speed calib at 380.000 : -0.500
+[2026-03-23 23:27:56.514 (t+2.446577s)] [UART] pid_motor_R_runtime.i = -5607.579102,  desired_speed calib at 390.000 : -0.500
+[2026-03-23 23:27:56.524 (t+2.456964s)] [UART] pid_motor_R_runtime.i = -5723.462891,  desired_speed calib at 400.000 : -0.500
+[2026-03-23 23:27:56.535 (t+2.467340s)] [UART] pid_motor_R_runtime.i = -5837.346680,  desired_speed calib at 410.000 : -0.500
+[2026-03-23 23:27:56.545 (t+2.477890s)] [UART] pid_motor_R_runtime.i = -5948.230469,  desired_speed calib at 420.000 : -0.500
+[2026-03-23 23:27:56.556 (t+2.488552s)] [UART] pid_motor_R_runtime.i = -6061.114258,  desired_speed calib at 430.000 : -0.500
+pid_motor_R_runtime.i = -6171.998[2026-03-23 23:27:56.556 (t+2.488956s)] [UART] 047,  desired_speed calib at 440.[2026-03-23 23:27:56.556 (t+2.489091s)] [UART] 000 : -0.500
+[2026-03-23 23:27:56.567 (t+2.499394s)] [UART] pid_motor_R_runtime.i = -6278.881836,  desired_speed calib at 450.000 : -0.500
+[2026-03-23 23:27:56.577 (t+2.510031s)] [UART] pid_motor_R_runtime.i = -6381.765625,  desired_speed calib at 460.000 : -0.500
+[2026-03-23 23:27:56.593 (t+2.525544s)] [UART] pid_motor_R_runtime.i = -6484.649414,  desired_speed calib at 470.000 : -0.500
+[2026-03-23 23:27:56.604 (t+2.536385s)] [UART] pid_motor_R_runtime.i = -6586.533203,  desired_speed calib at 480.000 : -0.500
+[2026-03-23 23:27:56.616 (t+2.549124s)] [UART] pid_motor_R_runtime.i = -6691.416992,  desired_speed calib at 490.000 : -0.500
+pid_motor_R_runtime.i = -6799.3007[2026-03-23 23:27:56.617 (t+2.549780s)] [UART] 81,  desired_speed calib at 500.000 : -0.500
+[2026-03-23 23:27:56.628 (t+2.560582s)] [UART] pid_motor_R_runtime.i = -6914.184570,  desired_speed calib at 510.000 : -0.500
+[2026-03-23 23:27:56.639 (t+2.571794s)] [UART] pid_motor_R_runtime.i = -7033.068359,  desired_speed calib at 520.000 : -0.500
+[2026-03-23 23:27:56.651 (t+2.583259s)] [UART] pid_motor_R_runtime.i = -7145.952148,  desired_speed calib at 530.000 : -0.500
+[2026-03-23 23:27:56.661 (t+2.593849s)] [UART] pid_motor_R_runtime.i = -7260.835938,  desired_speed calib at 540.000 : -0.500
+[2026-03-23 23:27:56.672 (t+2.604457s)] [UART] pid_motor_R_runtime.i = -7376.719727,  desired_speed calib at 550.000 : -0.500
+[2026-03-23 23:27:56.682 (t+2.615127s)] [UART] pid_motor_R_runtime.i = -7490.603516,  desired_speed calib at 560.000 : -0.500
+[2026-03-23 23:27:56.693 (t+2.625769s)] [UART] pid_motor_R_runtime.i = -7607.487305,  desired_speed calib at 570.000 : -0.500
+[2026-03-23 23:27:56.704 (t+2.636693s)] [UART] pid_motor_R_runtime.i = -7727.371094,  desired_speed calib at 580.000 : -0.500
+[2026-03-23 23:27:56.715 (t+2.648105s)] [UART] pid_motor_R_runtime.i = -7845.254883,  desired_speed calib at 590.000 : -0.500
+[2026-03-23 23:27:56.726 (t+2.658716s)] [UART] pid_motor_R_runtime.i = -7960.138672,  desired_speed calib at 600.000 : -0.500
+[2026-03-23 23:27:56.737 (t+2.669337s)] [UART] pid_motor_R_runtime.i = -8073.022461,  desired_speed calib at 610.000 : -0.500
+[2026-03-23 23:27:56.747 (t+2.680073s)] [UART] pid_motor_R_runtime.i = -8193.906250,  desired_speed calib at 620.000 : -0.500
+pid_motor_R_runtime.i = -8500.790[2026-03-23 23:27:56.748 (t+2.680666s)] [UART] 039,  desired_speed calib at 630.000 : -0.500
+[2026-03-23 23:27:56.760 (t+2.692519s)] [UART] pid_motor_R_runtime.i = -8824.673828,  desired_speed calib at 640.000 : -0.500
+[2026-03-23 23:27:56.771 (t+2.704123s)] [UART] pid_motor_R_runtime.i = -9170.557617,  desired_speed calib at 650.000 : -0.500
+[2026-03-23 23:27:56.782 (t+2.714904s)] [UART] pid_motor_R_runtime.i = -9520.441406,  desired_speed calib at 660.000 : -0.500
+[2026-03-23 23:27:56.793 (t+2.725572s)] [UART] pid_motor_R_runtime.i = -9905.325195,  desired_speed calib at 670.000 : -0.500
+[2026-03-23 23:27:56.803 (t+2.735961s)] [UART] pid_motor_R_runtime.i = -10277.208984,  desired_speed calib at 680.000 : -0.500
+[2026-03-23 23:27:56.814 (t+2.746173s)] [UART] pid_motor_R_runtime.i = -10649.092773,  desired_speed calib at 690.000 : -0.500
+[2026-03-23 23:27:56.824 (t+2.756463s)] [UART] pid_motor_R_runtime.i = -11011.976562,  desired_speed calib at 700.000 : -0.500
+[2026-03-23 23:27:56.834 (t+2.766865s)] [UART] pid_motor_R_runtime.i = -11355.860352,  desired_speed calib at 710.000 : -0.500
+[2026-03-23 23:27:56.845 (t+2.777285s)] [UART] pid_motor_R_runtime.i = -11673.744141,  desired_speed calib at 720.000 : -0.500
+[2026-03-23 23:27:56.855 (t+2.788003s)] [UART] pid_motor_R_runtime.i = -12005.627930,  desired_speed calib at 730.000 : -0.500
+[2026-03-23 23:27:56.866 (t+2.798439s)] [UART] pid_motor_R_runtime.i = -12344.511719,  desired_speed calib at 740.000 : -0.500
+[2026-03-23 23:27:56.876 (t+2.808837s)] [UART] pid_motor_R_runtime.i = -12685.395508,  desired_speed calib at 750.000 : -0.500
+[2026-03-23 23:27:56.887 (t+2.819187s)] [UART] pid_motor_R_runtime.i = -13034.279297,  desired_speed calib at 760.000 : -0.500
+[2026-03-23 23:27:56.897 (t+2.829512s)] [UART] pid_motor_R_runtime.i = -13388.163086,  desired_speed calib at 770.000 : -0.500
+[2026-03-23 23:27:56.907 (t+2.839792s)] [UART] pid_motor_R_runtime.i = -13758.046875,  desired_speed calib at 780.000 : -0.500
+[2026-03-23 23:27:56.917 (t+2.850038s)] [UART] pid_motor_R_runtime.i = -14159.930664,  desired_speed calib at 790.000 : -0.500
+[2026-03-23 23:27:56.928 (t+2.860314s)] [UART] pid_motor_R_runtime.i = -14587.814453,  desired_speed calib at 800.000 : -0.500
+[2026-03-23 23:27:56.938 (t+2.870620s)] [UART] pid_motor_R_runtime.i = -15006.698242,  desired_speed calib at 810.000 : -0.500
+[2026-03-23 23:27:56.948 (t+2.880864s)] [UART] pid_motor_R_runtime.i = -15375.582031,  desired_speed calib at 820.000 : -0.500
+[2026-03-23 23:27:56.959 (t+2.891218s)] [UART] pid_motor_R_runtime.i = -15662.465820,  desired_speed calib at 830.000 : -0.500
+[2026-03-23 23:27:56.959 (t+2.891578s)] [UART] pid_motor_R_runtime.i = -15866.34[2026-03-23 23:27:56.960 (t+2.892246s)] [UART] 9609,  desired_speed calib at 840.000 : -0.500
+[2026-03-23 23:27:56.970 (t+2.902636s)] [UART] pid_motor_R_runtime.i = -16015.233398,  desired_speed calib at 850.000 : -0.500
+[2026-03-23 23:27:56.981 (t+2.913355s)] [UART] pid_motor_R_runtime.i = -16443.117188,  desired_speed calib at 860.000 : -0.500
+[2026-03-23 23:27:56.991 (t+2.923810s)] [UART] pid_motor_R_runtime.i = -16768.000000,  desired_speed calib at 870.000 : -0.500
+[2026-03-23 23:27:57.002 (t+2.934485s)] [UART] pid_motor_R_runtime.i = -17153.882812,  desired_speed calib at 880.000 : -0.500
+[2026-03-23 23:27:57.013 (t+2.945673s)] [UART] pid_motor_R_runtime.i = -17510.765625,  desired_speed calib at 890.000 : -0.500
+[2026-03-23 23:27:57.024 (t+2.956154s)] [UART] pid_motor_R_runtime.i = -17835.648438,  desired_speed calib at 900.000 : -0.500
+[2026-03-23 23:27:57.034 (t+2.966725s)] [UART] pid_motor_R_runtime.i = -18142.531250,  desired_speed calib at 910.000 : -0.500
+[2026-03-23 23:27:57.045 (t+2.977394s)] [UART] pid_motor_R_runtime.i = -18478.414062,  desired_speed calib at 920.000 : -0.500
+[2026-03-23 23:27:57.056 (t+2.988167s)] [UART] pid_motor_R_runtime.i = -18831.296875,  desired_speed calib at 930.000 : -0.500
+[2026-03-23 23:27:57.067 (t+2.999822s)] [UART] pid_motor_R_runtime.i = -19185.179688,  desired_speed calib at 940.000 : -0.500
+[2026-03-23 23:27:57.078 (t+3.010329s)] [UART] pid_motor_R_runtime.i = -19529.062500,  desired_speed calib at 950.000 : -0.500
+[2026-03-23 23:27:57.088 (t+3.020826s)] [UART] pid_motor_R_runtime.i = -19858.945312,  desired_speed calib at 960.000 : -0.500
+[2026-03-23 23:27:57.099 (t+3.031324s)] [UART] pid_motor_R_runtime.i = -20192.828125,  desired_speed calib at 970.000 : -0.500
+[2026-03-23 23:27:57.109 (t+3.041764s)] [UART] pid_motor_R_runtime.i = -20532.710938,  desired_speed calib at 980.000 : -0.500
+[2026-03-23 23:27:57.120 (t+3.052317s)] [UART] pid_motor_R_runtime.i = -20872.593750,  desired_speed calib at 990.000 : -0.500
+[2026-03-23 23:27:57.120 (t+3.053038s)] [UART] [MV_STATEMACHINE] state finished
+______finished a recalibration
+s[2026-03-23 23:27:57.121 (t+3.053405s)] [UART] pacestate robot :
+[2026-03-23 23:27:57.132 (t+3.064863s)] [UART] position : x:125.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-23 23:27:57.137 (t+3.069422s)] [CAN RX] Node 1 → status:2 cmd_id:2 action:6 completed:2 error:100
+[2026-03-23 23:27:57.158 (t+3.090756s)] [CAN TX] Node 1 → action:3 params:[100, 10, 10, 0, 0, 0]
+[2026-03-23 23:27:57.173 (t+3.105797s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0003 p1=100 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+stopped holding the robot
+performing a translation of distance 100.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-23 23:27:57.186 (t+3.118854s)] [CAN RX] Node 1 → status:1 cmd_id:3 action:3 completed:2 error:0
+[2026-03-23 23:27:58.296 (t+4.228741s)] [CAN RX] Node 1 → status:2 cmd_id:3 action:3 completed:3 error:100
+[2026-03-23 23:27:58.297 (t+4.230133s)] [UART] [MV_STATEMACHINE] state finished
+finished a translation of distance 100.000 mm
+spacestate robot :
+position : x:222.65 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : -0.48 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-23 23:27:58.319 (t+4.251221s)] [CAN TX] Node 1 → action:6 params:[1, 1, 0, 0, 0, 0]
+[2026-03-23 23:27:58.335 (t+4.267791s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0004 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-03-23 23:27:58.343 (t+4.275172s)] [CAN RX] Node 1 → status:1 cmd_id:4 action:6 completed:3 error:0
+[2026-03-23 23:27:58.346 (t+4.278394s)] [UART] stopped holding the robot
+performing a rotation of -90.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-23 23:28:01.118 (t+7.050643s)] [UART] [MV_STATEMACHINE] state finished
+finished a rotation of -90.000 degrees
+spacestate robot :
+position : x:222.65 y:0.00 mm
+orientation : -88.61 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+performing a recalibration state wake
+[wake recalibration pid_motor_R_runtime.i = 0.000000 
+pid_motor_R_runtime.i = 0.000000,  desired_speed calib at 10.000 : -0.500
+[2026-03-23 23:28:01.129 (t+7.061214s)] [UART] pid_motor_R_runtime.i = -340.883636,  desired_speed calib at 20.000 : -0.500
+[2026-03-23 23:28:01.139 (t+7.071734s)] [UART] pid_motor_R_runtime.i = -681.767273,  desired_speed calib at 30.000 : -0.500
+[2026-03-23 23:28:01.150 (t+7.082432s)] [UART] pid_motor_R_runtime.i = -995.650879,  desired_speed calib at 40.000 : -0.500
+[2026-03-23 23:28:01.151 (t+7.083927s)] [UART] pid_motor_R_runtime.i = -1269.534546,  desired_speed calib at 50.00[2026-03-23 23:28:01.152 (t+7.084266s)] [UART] 0 : -0.500
+[2026-03-23 23:28:01.162 (t+7.094740s)] [UART] pid_motor_R_runtime.i = -1498.418213,  desired_speed calib at 60.000 : -0.500
+[2026-03-23 23:28:01.174 (t+7.106747s)] [UART] pid_motor_R_runtime.i = -1702.301880,  desired_speed calib at 70.000 : -0.500
+[2026-03-23 23:28:01.185 (t+7.117272s)] [UART] pid_motor_R_runtime.i = -1914.185547,  desired_speed calib at 80.000 : -0.500
+[2026-03-23 23:28:01.197 (t+7.129361s)] [UART] pid_motor_R_runtime.i = -2145.069092,  desired_speed calib at 90.000 : -0.500
+[2026-03-23 23:28:01.207 (t+7.139988s)] [UART] pid_motor_R_runtime.i = -2386.952637,  desired_speed calib at 100.000 : -0.500
+[2026-03-23 23:28:01.218 (t+7.150546s)] [UART] pid_motor_R_runtime.i = -2618.836182,  desired_speed calib at 110.000 : -0.500
+[2026-03-23 23:28:01.228 (t+7.161129s)] [UART] pid_motor_R_runtime.i = -2811.719727,  desired_speed calib at 120.000 : -0.500
+[2026-03-23 23:28:01.239 (t+7.171790s)] [UART] pid_motor_R_runtime.i = -2939.603271,  desired_speed calib at 130.000 : -0.500
+[2026-03-23 23:28:01.250 (t+7.182242s)] [UART] pid_motor_R_runtime.i = -3014.486816,  desired_speed calib at 140.000 : -0.500
+[2026-03-23 23:28:01.260 (t+7.192780s)] [UART] pid_motor_R_runtime.i = -3102.370361,  desired_speed calib at 150.000 : -0.500
+[2026-03-23 23:28:01.271 (t+7.203458s)] [UART] pid_motor_R_runtime.i = -3217.253906,  desired_speed calib at 160.000 : -0.500
+[2026-03-23 23:28:01.271 (t+7.203868s)] [UART] pid_motor_R_runtime.i = -3346.1374[2026-03-23 23:28:01.271 (t+7.204122s)] [UART] 51,  desired_speed calib at 170.0[2026-03-23 23:28:01.272 (t+7.204827s)] [UART] 00 : -0.500
+[2026-03-23 23:28:01.283 (t+7.215282s)] [UART] pid_motor_R_runtime.i = -3475.020996,  desired_speed calib at 180.000 : -0.500
+[2026-03-23 23:28:01.293 (t+7.225836s)] [UART] pid_motor_R_runtime.i = -3578.904541,  desired_speed calib at 190.000 : -0.500
+[2026-03-23 23:28:01.306 (t+7.238358s)] [UART] pid_motor_R_runtime.i = -3673.788086,  desired_speed calib at 200.000 : -0.500
+[2026-03-23 23:28:01.316 (t+7.248996s)] [UART] pid_motor_R_runtime.i = -3759.671631,  desired_speed calib at 210.000 : -0.500
+[2026-03-23 23:28:01.327 (t+7.259485s)] [UART] pid_motor_R_runtime.i = -3861.555176,  desired_speed calib at 220.000 : -0.500
+[2026-03-23 23:28:01.338 (t+7.270155s)] [UART] pid_motor_R_runtime.i = -3977.438721,  desired_speed calib at 230.000 : -0.500
+[2026-03-23 23:28:01.349 (t+7.281428s)] [UART] pid_motor_R_runtime.i = -4092.322266,  desired_speed calib at 240.000 : -0.500
+[2026-03-23 23:28:01.359 (t+7.291915s)] [UART] pid_motor_R_runtime.i = -4208.206055,  desired_speed calib at 250.000 : -0.500
+[2026-03-23 23:28:01.370 (t+7.302552s)] [UART] pid_motor_R_runtime.i = -4315.089844,  desired_speed calib at 260.000 : -0.500
+[2026-03-23 23:28:01.383 (t+7.315183s)] [UART] pid_motor_R_runtime.i = -4419.973633,  desired_speed calib at 270.000 : -0.500
+pid_motor_R_runtime.i = -4529.857422,  desired_speed calib at 280.000 : -0.500
+[2026-03-23 23:28:01.395 (t+7.327561s)] [UART] pid_motor_R_runtime.i = -4640.741211,  desired_speed calib at 290.000 : -0.500
+[2026-03-23 23:28:01.405 (t+7.338108s)] [UART] pid_motor_R_runtime.i = -4755.625000,  desired_speed calib at 300.000 : -0.500
+[2026-03-23 23:28:01.416 (t+7.348549s)] [UART] pid_motor_R_runtime.i = -4871.508789,  desired_speed calib at 310.000 : -0.500
+[2026-03-23 23:28:01.426 (t+7.359108s)] [UART] pid_motor_R_runtime.i = -4983.392578,  desired_speed calib at 320.000 : -0.500
+[2026-03-23 23:28:01.438 (t+7.370442s)] [UART] pid_motor_R_runtime.i = -5093.276367,  desired_speed calib at 330.000 : -0.500
+[2026-03-23 23:28:01.448 (t+7.381019s)] [UART] pid_motor_R_runtime.i = -5207.160156,  desired_speed calib at 340.000 : -0.500
+[2026-03-23 23:28:01.465 (t+7.397135s)] [UART] pid_motor_R_runtime.i = -5324.043945,  desired_speed calib at 350.000 : -0.500
+pid_motor_R_runtime.i = -5437.927734,  desired_speed calib at 360.000 : -0.500
+[2026-03-23 23:28:01.475 (t+7.408033s)] [UART] pid_motor_R_runtime.i = -5548.811523,  desired_speed calib at 370.000 : -0.500
+[2026-03-23 23:28:01.486 (t+7.418731s)] [UART] pid_motor_R_runtime.i = -5656.695312,  desired_speed calib at 380.000 : -0.500
+[2026-03-23 23:28:01.498 (t+7.431070s)] [UART] pid_motor_R_runtime.i = -5763.579102,  desired_speed calib at 390.000 : -0.500
+[2026-03-23 23:28:01.509 (t+7.441766s)] [UART] pid_motor_R_runtime.i = -5870.462891,  desired_speed calib at 400.000 : -0.500
+[2026-03-23 23:28:01.521 (t+7.453216s)] [UART] pid_motor_R_runtime.i = -5976.346680,  desired_speed calib at 410.000 : -0.500
+[2026-03-23 23:28:01.531 (t+7.463715s)] [UART] pid_motor_R_runtime.i = -6083.230469,  desired_speed calib at 420.000 : -0.500
+[2026-03-23 23:28:01.542 (t+7.474144s)] [UART] pid_motor_R_runtime.i = -6194.114258,  desired_speed calib at 430.000 : -0.500
+[2026-03-23 23:28:01.552 (t+7.484455s)] [UART] pid_motor_R_runtime.i = -6303.998047,  desired_speed calib at 440.000 : -0.500
+[2026-03-23 23:28:01.562 (t+7.494820s)] [UART] pid_motor_R_runtime.i = -6412.881836,  desired_speed calib at 450.000 : -0.500
+[2026-03-23 23:28:01.573 (t+7.505524s)] [UART] pid_motor_R_runtime.i = -6518.765625,  desired_speed calib at 460.000 : -0.500
+[2026-03-23 23:28:01.574 (t+7.506176s)] [UART] pid_motor_R_runtime.i = -6623.649[2026-03-23 23:28:01.574 (t+7.506655s)] [UART] 414,  desired_speed calib at 470.000 : -0.500
+[2026-03-23 23:28:01.584 (t+7.517077s)] [UART] pid_motor_R_runtime.i = -6725.533203,  desired_speed calib at 480.000 : -0.500
+[2026-03-23 23:28:01.595 (t+7.527580s)] [UART] pid_motor_R_runtime.i = -6828.416992,  desired_speed calib at 490.000 : -0.500
+[2026-03-23 23:28:01.606 (t+7.538215s)] [UART] pid_motor_R_runtime.i = -6933.300781,  desired_speed calib at 500.000 : -0.500
+[2026-03-23 23:28:01.616 (t+7.548729s)] [UART] pid_motor_R_runtime.i = -7040.184570,  desired_speed calib at 510.000 : -0.500
+[2026-03-23 23:28:01.627 (t+7.559309s)] [UART] pid_motor_R_runtime.i = -7153.068359,  desired_speed calib at 520.000 : -0.500
+[2026-03-23 23:28:01.637 (t+7.569839s)] [UART] pid_motor_R_runtime.i = -7272.952148,  desired_speed calib at 530.000 : -0.500
+[2026-03-23 23:28:01.648 (t+7.580374s)] [UART] pid_motor_R_runtime.i = -7391.835938,  desired_speed calib at 540.000 : -0.500
+[2026-03-23 23:28:01.658 (t+7.590904s)] [UART] pid_motor_R_runtime.i = -7505.719727,  desired_speed calib at 550.000 : -0.500
+[2026-03-23 23:28:01.669 (t+7.601571s)] [UART] pid_motor_R_runtime.i = -7618.603516,  desired_speed calib at 560.000 : -0.500
+[2026-03-23 23:28:01.679 (t+7.612060s)] [UART] pid_motor_R_runtime.i = -7730.487305,  desired_speed calib at 570.000 : -0.500
+[2026-03-23 23:28:01.690 (t+7.622633s)] [UART] pid_motor_R_runtime.i = -7838.371094,  desired_speed calib at 580.000 : -0.500
+[2026-03-23 23:28:01.701 (t+7.633216s)] [UART] pid_motor_R_runtime.i = -7945.254883,  desired_speed calib at 590.000 : -0.500
+[2026-03-23 23:28:01.711 (t+7.643977s)] [UART] pid_motor_R_runtime.i = -8051.138672,  desired_speed calib at 600.000 : -0.500
+[2026-03-23 23:28:01.722 (t+7.654493s)] [UART] pid_motor_R_runtime.i = -8153.022461,  desired_speed calib at 610.000 : -0.500
+[2026-03-23 23:28:01.732 (t+7.664992s)] [UART] pid_motor_R_runtime.i = -8252.906250,  desired_speed calib at 620.000 : -0.500
+[2026-03-23 23:28:01.743 (t+7.675753s)] [UART] pid_motor_R_runtime.i = -8354.790039,  desired_speed calib at 630.000 : -0.500
+[2026-03-23 23:28:01.754 (t+7.686313s)] [UART] pid_motor_R_runtime.i = -8463.673828,  desired_speed calib at 640.000 : -0.500
+[2026-03-23 23:28:01.764 (t+7.696896s)] [UART] pid_motor_R_runtime.i = -8574.557617,  desired_speed calib at 650.000 : -0.500
+[2026-03-23 23:28:01.775 (t+7.708064s)] [UART] pid_motor_R_runtime.i = -8685.441406,  desired_speed calib at 660.000 : -0.500
+pid_motor_R_runtime.i = -8798.325[2026-03-23 23:28:01.776 (t+7.708571s)] [UART] 195,  desired_speed calib at 670.000 : -0.500
+[2026-03-23 23:28:01.786 (t+7.718998s)] [UART] pid_motor_R_runtime.i = -8908.208984,  desired_speed calib at 680.000 : -0.500
+[2026-03-23 23:28:01.797 (t+7.729489s)] [UART] pid_motor_R_runtime.i = -9015.092773,  desired_speed calib at 690.000 : -0.500
+[2026-03-23 23:28:01.808 (t+7.740228s)] [UART] pid_motor_R_runtime.i = -9121.976562,  desired_speed calib at 700.000 : -0.500
+[2026-03-23 23:28:01.818 (t+7.750842s)] [UART] pid_motor_R_runtime.i = -9230.860352,  desired_speed calib at 710.000 : -0.500
+[2026-03-23 23:28:01.829 (t+7.761436s)] [UART] pid_motor_R_runtime.i = -9343.744141,  desired_speed calib at 720.000 : -0.500
+[2026-03-23 23:28:01.839 (t+7.771946s)] [UART] pid_motor_R_runtime.i = -9458.627930,  desired_speed calib at 730.000 : -0.500
+[2026-03-23 23:28:01.850 (t+7.782484s)] [UART] pid_motor_R_runtime.i = -9572.511719,  desired_speed calib at 740.000 : -0.500
+[2026-03-23 23:28:01.861 (t+7.793140s)] [UART] pid_motor_R_runtime.i = -9686.395508,  desired_speed calib at 750.000 : -0.500
+[2026-03-23 23:28:01.871 (t+7.803697s)] [UART] pid_motor_R_runtime.i = -9797.279297,  desired_speed calib at 760.000 : -0.500
+[2026-03-23 23:28:01.882 (t+7.814667s)] [UART] pid_motor_R_runtime.i = -9908.163086,  desired_speed calib at 770.000 : -0.500
+[2026-03-23 23:28:01.893 (t+7.825229s)] [UART] pid_motor_R_runtime.i = -10021.046875,  desired_speed calib at 780.000 : -0.500
+[2026-03-23 23:28:01.903 (t+7.836015s)] [UART] pid_motor_R_runtime.i = -10133.930664,  desired_speed calib at 790.000 : -0.500
+[2026-03-23 23:28:01.914 (t+7.846748s)] [UART] pid_motor_R_runtime.i = -10245.814453,  desired_speed calib at 800.000 : -0.500
+[2026-03-23 23:28:01.925 (t+7.857290s)] [UART] pid_motor_R_runtime.i = -10356.698242,  desired_speed calib at 810.000 : -0.500
+[2026-03-23 23:28:01.935 (t+7.867879s)] [UART] pid_motor_R_runtime.i = -10467.582031,  desired_speed calib at 820.000 : -0.500
+[2026-03-23 23:28:01.946 (t+7.878409s)] [UART] pid_motor_R_runtime.i = -10576.465820,  desired_speed calib at 830.000 : -0.500
+[2026-03-23 23:28:01.946 (t+7.878789s)] [UART] pid_motor_R_runtime.i = -10685.34[2026-03-23 23:28:01.956 (t+7.889114s)] [UART] 9609,  desired_speed calib at 840.000 : -0.500
+pid_motor_R_runtime.i = -10797.233398,  desired_speed calib at 850[2026-03-23 23:28:01.957 (t+7.889425s)] [UART] .000 : -0.500
+[2026-03-23 23:28:01.967 (t+7.899820s)] [UART] pid_motor_R_runtime.i = -10909.117188,  desired_speed calib at 860.000 : -0.500
+[2026-03-23 23:28:01.978 (t+7.910319s)] [UART] pid_motor_R_runtime.i = -11019.000977,  desired_speed calib at 870.000 : -0.500
+[2026-03-23 23:28:01.988 (t+7.920907s)] [UART] pid_motor_R_runtime.i = -11126.884766,  desired_speed calib at 880.000 : -0.500
+[2026-03-23 23:28:01.999 (t+7.931440s)] [UART] pid_motor_R_runtime.i = -11235.768555,  desired_speed calib at 890.000 : -0.500
+[2026-03-23 23:28:02.009 (t+7.941894s)] [UART] pid_motor_R_runtime.i = -11345.652344,  desired_speed calib at 900.000 : -0.500
+[2026-03-23 23:28:02.020 (t+7.952336s)] [UART] pid_motor_R_runtime.i = -11457.536133,  desired_speed calib at 910.000 : -0.500
+[2026-03-23 23:28:02.030 (t+7.962677s)] [UART] pid_motor_R_runtime.i = -11570.419922,  desired_speed calib at 920.000 : -0.500
+[2026-03-23 23:28:02.041 (t+7.973901s)] [UART] pid_motor_R_runtime.i = -11682.303711,  desired_speed calib at 930.000 : -0.500
+[2026-03-23 23:28:02.052 (t+7.984652s)] [UART] pid_motor_R_runtime.i = -11793.187500,  desired_speed calib at 940.000 : -0.500
+[2026-03-23 23:28:02.063 (t+7.995307s)] [UART] pid_motor_R_runtime.i = -11905.071289,  desired_speed calib at 950.000 : -0.500
+[2026-03-23 23:28:02.073 (t+8.006015s)] [UART] pid_motor_R_runtime.i = -12016.955078,  desired_speed calib at 960.000 : -0.500
+[2026-03-23 23:28:02.084 (t+8.016657s)] [UART] pid_motor_R_runtime.i = -12126.838867,  desired_speed calib at 970.000 : -0.500
+[2026-03-23 23:28:02.095 (t+8.027193s)] [UART] pid_motor_R_runtime.i = -12237.722656,  desired_speed calib at 980.000 : -0.500
+[2026-03-23 23:28:02.106 (t+8.038393s)] [UART] pid_motor_R_runtime.i = -12348.606445,  desired_speed calib at 990.000 : -0.500
+[2026-03-23 23:28:02.117 (t+8.049587s)] [UART] pid_motor_R_runtime.i = -12460.490234,  desired_speed calib at 1000.000 : -0.500
+[2026-03-23 23:28:02.118 (t+8.050166s)] [UART] pid_motor_R_runtime.i = -12579.37[2026-03-23 23:28:02.118 (t+8.050408s)] [UART] 4023,  desired_speed calib at 1010.000 : -0.500
+[2026-03-23 23:28:02.128 (t+8.060762s)] [UART] pid_motor_R_runtime.i = -12748.257812,  desired_speed calib at 1020.000 : -0.500
+[2026-03-23 23:28:02.139 (t+8.071592s)] [UART] pid_motor_R_runtime.i = -12970.141602,  desired_speed calib at 1030.000 : -0.500
+[2026-03-23 23:28:02.150 (t+8.082180s)] [UART] pid_motor_R_runtime.i = -13126.025391,  desired_speed calib at 1040.000 : -0.500
+[2026-03-23 23:28:02.160 (t+8.092757s)] [UART] pid_motor_R_runtime.i = -13169.909180,  desired_speed calib at 1050.000 : -0.500
+[2026-03-23 23:28:02.171 (t+8.103610s)] [UART] pid_motor_R_runtime.i = -13164.792969,  desired_speed calib at 1060.000 : -0.500
+[2026-03-23 23:28:02.182 (t+8.114363s)] [UART] pid_motor_R_runtime.i = -13444.676758,  desired_speed calib at 1070.000 : -0.500
+[2026-03-23 23:28:02.192 (t+8.124951s)] [UART] pid_motor_R_runtime.i = -13758.560547,  desired_speed calib at 1080.000 : -0.500
+[2026-03-23 23:28:02.203 (t+8.135641s)] [UART] pid_motor_R_runtime.i = -14134.444336,  desired_speed calib at 1090.000 : -0.500
+[2026-03-23 23:28:02.217 (t+8.150051s)] [UART] pid_motor_R_runtime.i = -14491.328125,  desired_speed calib at 1100.000 : -0.500
+[2026-03-23 23:28:02.228 (t+8.160685s)] [UART] pid_motor_R_runtime.i = -14826.211914,  desired_speed calib at 1110.000 : -0.500
+[2026-03-23 23:28:02.228 (t+8.161102s)] [UART] pid_motor_R_runtime.i = -15113.095703,  desired_speed calib at 1120[2026-03-23 23:28:02.229 (t+8.161249s)] [UART] .000 : -0.500
+[2026-03-23 23:28:02.239 (t+8.171526s)] [UART] pid_motor_R_runtime.i = -15471.979492,  desired_speed calib at 1130.000 : -0.500
+[2026-03-23 23:28:02.249 (t+8.182072s)] [UART] pid_motor_R_runtime.i = -15810.863281,  desired_speed calib at 1140.000 : -0.500
+[2026-03-23 23:28:02.260 (t+8.192826s)] [UART] pid_motor_R_runtime.i = -16170.747070,  desired_speed calib at 1150.000 : -0.500
+[2026-03-23 23:28:02.271 (t+8.203341s)] [UART] pid_motor_R_runtime.i = -16522.630859,  desired_speed calib at 1160.000 : -0.500
+[2026-03-23 23:28:02.285 (t+8.217353s)] [UART] pid_motor_R_runtime.i = -16898.513672,  desired_speed calib at 1170.000 : -0.500
+[2026-03-23 23:28:02.295 (t+8.227839s)] [UART] pid_motor_R_runtime.i = -17286.396484,  desired_speed calib at 1180.000 : -0.500
+[2026-03-23 23:28:02.306 (t+8.238137s)] [UART] pid_motor_R_runtime.i = -17715.279297,  desired_speed calib at 1190.000 : -0.500
+[2026-03-23 23:28:02.322 (t+8.254390s)] [UART] pid_motor_R_runtime.i = -18196.162109,  desired_speed calib at 1200.000 : -0.500
+pid_motor_R_runtime.i = -18647.044922,  desired_speed calib at 1210.000 : -0.500
+[2026-03-23 23:28:02.332 (t+8.264705s)] [UART] pid_motor_R_runtime.i = -19006.927734,  desired_speed calib at 1220.000 : -0.500
+[2026-03-23 23:28:02.344 (t+8.276980s)] [UART] pid_motor_R_runtime.i = -19278.810547,  desired_speed calib at 1230.000 : -0.500
+[2026-03-23 23:28:02.355 (t+8.287294s)] [UART] pid_motor_R_runtime.i = -19542.693359,  desired_speed calib at 1240.000 : -0.500
+[2026-03-23 23:28:02.365 (t+8.297698s)] [UART] pid_motor_R_runtime.i = -19840.576172,  desired_speed calib at 1250.000 : -0.500
+[2026-03-23 23:28:02.375 (t+8.308048s)] [UART] pid_motor_R_runtime.i = -20104.458984,  desired_speed calib at 1260.000 : -0.500
+[2026-03-23 23:28:02.386 (t+8.318310s)] [UART] pid_motor_R_runtime.i = -20268.341797,  desired_speed calib at 1270.000 : -0.500
+[2026-03-23 23:28:02.398 (t+8.331077s)] [UART] pid_motor_R_runtime.i = -20644.224609,  desired_speed calib at 1280.000 : -0.500
+[2026-03-23 23:28:02.409 (t+8.341421s)] [UART] pid_motor_R_runtime.i = -20976.107422,  desired_speed calib at 1290.000 : -0.500
+[2026-03-23 23:28:02.419 (t+8.351876s)] [UART] pid_motor_R_runtime.i = -21327.990234,  desired_speed calib at 1300.000 : -0.500
+[2026-03-23 23:28:02.423 (t+8.355391s)] [UART] pid_motor_R_runtime.i = -21665.873047,  desired_speed calib at 1310.000 : -0.500
+[2026-03-23 23:28:02.433 (t+8.365792s)] [UART] pid_motor_R_runtime.i = -21989.755859,  desired_speed calib at 1320.000 : -0.500
+[2026-03-23 23:28:02.444 (t+8.376265s)] [UART] pid_motor_R_runtime.i = -22355.638672,  desired_speed calib at 1330.000 : -0.500
+[2026-03-23 23:28:02.454 (t+8.386761s)] [UART] pid_motor_R_runtime.i = -22688.521484,  desired_speed calib at 1340.000 : -0.500
+[2026-03-23 23:28:02.465 (t+8.397227s)] [UART] pid_motor_R_runtime.i = -23024.404297,  desired_speed calib at 1350.000 : -0.500
+[2026-03-23 23:28:02.475 (t+8.407553s)] [UART] pid_motor_R_runtime.i = -23363.287109,  desired_speed calib at 1360.000 : -0.500
+[2026-03-23 23:28:02.485 (t+8.417818s)] [UART] pid_motor_R_runtime.i = -23709.169922,  desired_speed calib at 1370.000 : -0.500
+[2026-03-23 23:28:02.495 (t+8.428114s)] [UART] pid_motor_R_runtime.i = -24051.052734,  desired_speed calib at 1380.000 : -0.500
+[2026-03-23 23:28:02.506 (t+8.438581s)] [UART] [MV_STATEMACHINE] state finished
+______finished a recalibration
+spacestate robot :
+position : x:222.65 y:1875.00 mm
+orientation : -88.61 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-23 23:28:02.511 (t+8.443630s)] [CAN RX] Node 1 → status:2 cmd_id:4 action:6 completed:4 error:100
+[2026-03-23 23:28:02.558 (t+8.491091s)] [CAN TX] Node 1 → action:3 params:[300, 10, 10, 0, 0, 0]
+[2026-03-23 23:28:02.567 (t+8.499746s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0005 p1=300 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-03-23 23:28:02.577 (t+8.510042s)] [UART] stopped holding the robot
+performing a translation of distance 300.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-23 23:28:02.581 (t+8.513723s)] [CAN RX] Node 1 → status:1 cmd_id:5 action:3 completed:4 error:0
+[2026-03-23 23:28:04.384 (t+10.316385s)] [UART] [MV_STATEMACHINE] state finished
+[2026-03-23 23:28:04.384 (t+10.316862s)] [UART] finished a translation of distance 300.000 mm
+s[2026-03-23 23:28:04.386 (t+10.318794s)] [UART] pacestate robot :
+position : x:229.85 y:1577.70 mm
+orientation : -88.61 degrees
+linear speed : 0.00 mm/s
+angular spee[2026-03-23 23:28:04.387 (t+10.319445s)] [UART] d : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] s[2026-03-23 23:28:04.387 (t+10.319978s)] [UART] witching to the next state
+[MV_ST[2026-03-23 23:28:04.388 (t+10.320249s)] [UART] ATEMACHINE] reached end of the st[2026-03-23 23:28:04.388 (t+10.320444s)] [UART] ates queue
+mv statemachine callba[2026-03-23 23:28:04.396 (t+10.328848s)] [CAN RX] Node 1 → status:2 cmd_id:5 action:3 completed:5 error:100
+[2026-03-23 23:28:04.398 (t+10.330757s)] [UART] ck queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-23 23:28:04.430 (t+10.362368s)] [CAN TX] Node 1 → action:5 params:[500, 1000, 0, 0, 0, 0]
+[2026-03-23 23:28:04.442 (t+10.374623s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0005 CMD_ID=0x0006 p1=500 p2=1000 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[2026-03-23 23:28:04.451 (t+10.383200s)] [CAN RX] Node 1 → status:1 cmd_id:6 action:5 completed:5 error:0

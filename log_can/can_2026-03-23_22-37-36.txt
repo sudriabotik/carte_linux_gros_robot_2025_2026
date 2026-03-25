@@ -1,0 +1,12 @@
+================================================================================
+CAN Debug Log - Started: 2026-03-23_22-37-36
+Program started at: 2026-03-23 22:37:34.529961
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-03-23 22:37:36.567 (t+2.037114s)] Node 1 → status:2 cmd_id:0 action:0 completed:0 error:0
+[2026-03-23 22:37:36.571 (t+2.041551s)] Node 2 → status:10 cmd_id:0 action:0 completed:0 error:0
+[2026-03-23 22:37:36.727 (t+2.197717s)] Node 1 → status:1 cmd_id:2 action:6 completed:0 error:0
+[2026-03-23 22:37:36.729 (t+2.199810s)] Node 1 → status:1 cmd_id:3 action:6 completed:0 error:0
+[2026-03-23 22:37:36.731 (t+2.201423s)] Node 1 → status:1 cmd_id:4 action:6 completed:0 error:0
+[2026-03-23 22:37:36.869 (t+2.339177s)] Node 1 → status:1 cmd_id:5 action:3 completed:0 error:0
