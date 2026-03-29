@@ -24,10 +24,11 @@ class Facing(IntEnum) :
 
 # all the state enum from the C code
 
-class CanAsservNode(CanActionNode) : 
+class CanAsservNode(CanActionNode) :
 
-	def __init__(self, bus, node_id : int):
-		super().__init__(bus, node_id)
+	def __init__(self, bus, node_id : int, robot=None):
+		# MODIFIED BY CLAUDE: Pass robot parameter to parent class for position updates
+		super().__init__(bus, node_id, robot=robot)
 	
 
 	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :

@@ -136,10 +136,6 @@ class CanopenWrapper :
 			
 			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 
-			# ADDED BY CLAUDE: Log CAN TX to unified logger if enabled
-			if unified_logger and unified_logger.is_enabled():
-				unified_logger.log_can_tx(node_id, action_id, param_resized)
-
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			action_id_u16 = to_uint16(action_id)
 			param_0_u16 = to_uint16(param_resized[0])
@@ -166,6 +162,10 @@ class CanopenWrapper :
 			# prepare data for second rpdo
 
 			self.command_id += 1 # TEMP
+
+			# ADDED BY CLAUDE: Log CAN TX to unified logger if enabled (after command_id increment)
+			if unified_logger and unified_logger.is_enabled():
+				unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])
@@ -240,7 +240,6 @@ class CanopenWrapper :
 
 # Global configuration variables for debugging
 DEBUG_CAN_CHANGES_ONLY = True  # Will be set from main.py
-can_file_logger = None  # Will be set from main.py if DEBUG_CAN_LOG_TO_FILE = True (DEPRECATED - use unified_logger instead)
 unified_logger = None  # ADDED BY CLAUDE: Will be set from main.py for unified UART+CAN logging
 
 instance : CanopenWrapper = None

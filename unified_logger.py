@@ -173,12 +173,13 @@ class UnifiedLogger:
 			logger.log_error("UnifiedLogger", f"Error writing UART to log file: {e}")
 
 
-	def log_can_tx(self, node_id, action_id, params):
+	def log_can_tx(self, node_id, command_id, action_id, params):
 		"""
 		Log CAN TX message to the unified file with [CAN TX] tag.
 		Thread-safe method called from CAN transmission code.
 
 		:param node_id: CAN node ID
+		:param command_id: Command ID (incremental counter for correlation with RX)
 		:param action_id: Action command ID being sent
 		:param params: List of 6 parameters being sent
 		"""
@@ -190,8 +191,8 @@ class UnifiedLogger:
 				# Use unified timestamp for perfect synchronization
 				timestamp = logger.get_unified_timestamp_absolute()
 
-				# Format: [timestamp] [CAN TX] Node X → action_id params
-				log_line = f"[{timestamp}] [CAN TX] Node {node_id} → action:{action_id} params:{params}\n"
+				# Format: [timestamp] [CAN TX] Node X → cmd_id action_id params
+				log_line = f"[{timestamp}] [CAN TX] Node {node_id} → cmd_id:{command_id} action:{action_id} params:{params}\n"
 
 				self.log_file.write(log_line)
 				self.log_file.flush()
@@ -224,6 +225,34 @@ class UnifiedLogger:
 
 		except Exception as e:
 			logger.log_error("UnifiedLogger", f"Error writing CAN RX to log file: {e}")
+
+
+	def log_python(self, tag, message):
+		"""
+		Log Python application messages to the unified file with [PYTHON] tag.
+		Thread-safe method called from logger.py when application logs a message.
+
+		:param tag: Tag/module name (e.g., "Main", "CanOpenWrapper")
+		:param message: Log message content
+		"""
+		if not self.enabled or self.log_file is None:
+			return
+
+		try:
+			with self.lock:
+				# Use unified timestamp for perfect synchronization
+				timestamp = logger.get_unified_timestamp_absolute()
+
+				# ADDED BY CLAUDE: Python application logs with [PYTHON] tag
+				# Format: [timestamp] [PYTHON] [tag] message
+				log_line = f"[{timestamp}] [PYTHON] [{tag}] {message}\n"
+
+				self.log_file.write(log_line)
+				self.log_file.flush()
+
+		except Exception as e:
+			# Avoid infinite loop: don't use logger.log_error here
+			print(f"[UnifiedLogger] Error writing Python log to file: {e}")
 
 
 	def stop(self):

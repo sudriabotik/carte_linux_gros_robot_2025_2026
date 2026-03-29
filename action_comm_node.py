@@ -17,10 +17,11 @@ import logger
 
 class _CanActionNodeReader(can.Listener) :
 
-	def __init__(self, id):
+	def __init__(self, id, robot=None):
 		super().__init__()
 
 		self.id = id
+		self.robot = robot  # ADDED BY CLAUDE: Reference to Robot object for position updates
 
 		self.current_command_status = -1
 		self.current_command_id = 0
@@ -94,9 +95,11 @@ class _CanActionNodeReader(can.Listener) :
 			if func == FUNCTION_CODE.IS_TPDO and i == 0 :
 
 				self.timestamp_last_tpdo = time.time()
+				logger.log_info("CanActionNodeReader", f"[DEBUG] TPDO[0] received from Node {id}")  # ADDED BY CLAUDE: Debug TPDO reception
 				try :
 					# creates an array of int from the bytes of the message
 					vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
+					logger.log_info("CanActionNodeReader", f"[DEBUG] TPDO[0] decoded: {vals}")  # ADDED BY CLAUDE: Debug decoding
 
 					# Log CAN values based on DEBUG_CAN_CHANGES_ONLY setting
 					if canopen_wrapper.DEBUG_CAN_CHANGES_ONLY:
@@ -105,33 +108,58 @@ class _CanActionNodeReader(can.Listener) :
 							logger.log_info("CanActionNodeReader", f"[Node {id}] CAN CHANGE → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
 							self._update_cache(vals)
 
-							# MODIFIED BY CLAUDE: Write to unified logger instead of separate CAN log file
+							# MODIFIED BY CLAUDE: Write to unified logger
+							logger.log_info("CanActionNodeReader", f"[DEBUG] About to call unified_logger.log_can_rx")  # ADDED BY CLAUDE: Debug
 							if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
 								canopen_wrapper.unified_logger.log_can_rx(id, vals)
-							# Legacy support for old can_file_logger (DEPRECATED)
-							elif canopen_wrapper.can_file_logger and canopen_wrapper.can_file_logger.is_enabled():
-								canopen_wrapper.can_file_logger.log_message(id, vals)
+							logger.log_info("CanActionNodeReader", f"[DEBUG] unified_logger.log_can_rx completed")  # ADDED BY CLAUDE: Debug
 					else:
 						# Debug mode: log every message (verbose)
 						logger.log_verbose("CanActionNodeReader", f"[Node {id}] CAN → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
 
-						# MODIFIED BY CLAUDE: Write to unified logger instead of separate CAN log file (in debug mode, log all messages)
+						# MODIFIED BY CLAUDE: Write to unified logger (in debug mode, log all messages)
 						if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
 							canopen_wrapper.unified_logger.log_can_rx(id, vals)
-						# Legacy support for old can_file_logger (DEPRECATED)
-						elif canopen_wrapper.can_file_logger and canopen_wrapper.can_file_logger.is_enabled():
-							canopen_wrapper.can_file_logger.log_message(id, vals)
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}")
 
+				logger.log_info("CanActionNodeReader", f"[DEBUG] About to update current_command_status")  # ADDED BY CLAUDE: Debug
 				if vals != None :
 					self.current_command_status = vals[0]
 					self.current_command_id = vals[1]
 					self.current_action_id = vals[2]
 					self.last_completed_command_id = vals[3]
 					self.command_error_code = vals[4]
-	
+					logger.log_info("CanActionNodeReader", f"[DEBUG] Updated current_command_status = {self.current_command_status}")  # ADDED BY CLAUDE: Debug
+
+			# ADDED BY CLAUDE: Handle TPDO[1] - Robot position (X, Y, θ)
+			elif func == FUNCTION_CODE.IS_TPDO and i == 1 :
+				try :
+					# TPDO[1] contains robot position data from odometry
+					# Bytes 0-1: X position in mm (INT16, little-endian)
+					# Bytes 2-3: Y position in mm (INT16, little-endian)
+					# Bytes 4-5: Orientation θ in degrees (INT16, little-endian)
+					# Bytes 6-7: Unused
+
+					if len(msg.data) >= 6:
+						# Decode INT16 values from little-endian bytes
+						x = int.from_bytes(msg.data[0:2], byteorder='little', signed=True)
+						y = int.from_bytes(msg.data[2:4], byteorder='little', signed=True)
+						angle = int.from_bytes(msg.data[4:6], byteorder='little', signed=True)
+
+						# Update robot position if robot object exists
+						if self.robot:
+							self.robot.update_position(x, y, angle)
+							# Position updates disabled to avoid log spam (10Hz)
+							# Uncomment line below for debugging position issues:
+							# logger.log_info("CanActionNodeReader", f"[Node {id}] POSITION UPDATE → X:{x}mm Y:{y}mm θ:{angle}°")
+
+						# Note: Position logging disabled to avoid spam (TPDO[1] sent at 10Hz)
+
+				except Exception as e :
+					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}")
+
 
 	def __string__(self) :
 		return f"current_command_status : {self.current_command_status}"
@@ -140,14 +168,15 @@ class _CanActionNodeReader(can.Listener) :
 
 class CanActionNode :
 
-	def __init__(self, bus : can.BusABC, node_id : int):
+	def __init__(self, bus : can.BusABC, node_id : int, robot=None):
 
 		self.node_id = node_id
 
 		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 
 		# instantiate the class resposible from catching and interpreting TPDOs
-		self.can_reader = _CanActionNodeReader(node_id)
+		# MODIFIED BY CLAUDE: Pass robot parameter to enable position updates from TPDO[1]
+		self.can_reader = _CanActionNodeReader(node_id, robot=robot)
 
 		#######
 		# The 'can' library creates a single thread to listen for CAN messages continuously.

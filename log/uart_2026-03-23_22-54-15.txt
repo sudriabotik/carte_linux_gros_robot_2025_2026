@@ -1,275 +1,0 @@
-[CANopen CMD] New command
-[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0002 p1=2 p2=1 p3=0 p4=0 p5=0 p6=0
-[CANopen CMD] Executing: recalibration
-stopped holding the robot
-performing a rotation of 0.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
-[MV_STATEMACHINE] loaded new state queue
-[MV_STATEMACHINE] state finished
-finished a rotation of 0.000 degrees
-spacestate robot :
-position : x:0.00 y:0.00 mm
-orientation : 0.00 degrees
-linear speed : 0.00 mm/s
-angular speed : 0.00 deg/s
-canopen state finished callback
-[MV_STATEMACHINE] switching to the next state
-performing a recalibration state wake
-[wake recalibration pid_motor_R_runtime.i = 0.000000 
-pid_motor_R_runtime.i = 0.000000,  desired_speed calib at 10.000 : -0.500
-pid_motor_R_runtime.i = -340.883636,  desired_speed calib at 20.000 : -0.500
-pid_motor_R_runtime.i = -679.767273,  desired_speed calib at 30.000 : -0.500
-pid_motor_R_runtime.i = -962.650879,  desired_speed calib at 40.000 : -0.500
-[CANopen CMD] New command
-[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0003 p1=100 p2=10 p3=10 p4=0 p5=0 p6=0
-[CANopen CMD] Executing: TRANSLATION
-______finished a recalibration
-spacestate robot :
-position : x:125.00 y:0.00 mm
-orientation : 0.00 degrees
-linear speed : 0.00 mm/s
-angular speed : 0.00 deg/s
-performing a translation of distance 100.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
-[MV_STATEMACHINE] loaded new state queue
-[MV_STATEMACHINE] state finished
-finished a translation of distance 100.000 mm
-spacestate robot :
-position : x:222.00 y:0.00 mm
-orientation : 0.00 degrees
-linear speed : 0.66 mm/s
-angular speed : -0.24 deg/s
-canopen state finished callback
-[MV_STATEMACHINE] switching to the next state
-[MV_STATEMACHINE] reached end of the states queue
-mv statemachine callback queue : 0x800f9e5
-calling the callback
-canopen queue finished callback
-[CANopen CMD] New command
-[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0004 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
-[CANopen CMD] Executing: recalibration
-stopped holding the robot
-performing a rotation of -90.000 degrees, speed 0.050 deg/ms, accel 0.100 deg/ms^2
-[MV_STATEMACHINE] loaded new state queue
-[MV_STATEMACHINE] state finished
-finished a rotation of -90.000 degrees
-spacestate robot :
-position : x:222.00 y:0.00 mm
-orientation : -88.54 degrees
-linear speed : 0.00 mm/s
-angular speed : 0.00 deg/s
-canopen state finished callback
-[MV_STATEMACHINE] switching to the next state
-performing a recalibration state wake
-[wake recalibration pid_motor_R_runtime.i = 0.000000 
-pid_motor_R_runtime.i = 0.000000,  desired_speed calib at 10.000 : -0.500
-pid_motor_R_runtime.i = -340.883636,  desired_speed calib at 20.000 : -0.500
-pid_motor_R_runtime.i = -680.767334,  desired_speed calib at 30.000 : -0.500
-pid_motor_R_runtime.i = -960.651001,  desired_speed calib at 40.000 : -0.500
-pid_motor_R_runtime.i = -1183.534668,  desired_speed calib at 50.000 : -0.500
-pid_motor_R_runtime.i = -1372.418335,  desired_speed calib at 60.000 : -0.500
-pid_motor_R_runtime.i = -1553.302002,  desired_speed calib at 70.000 : -0.500
-pid_motor_R_runtime.i = -1744.185669,  desired_speed calib at 80.000 : -0.500
-pid_motor_R_runtime.i = -1962.069336,  desired_speed calib at 90.000 : -0.500
-pid_motor_R_runtime.i = -2191.952881,  desired_speed calib at 100.000 : -0.500
-pid_motor_R_runtime.i = -2405.836426,  desired_speed calib at 110.000 : -0.500
-pid_motor_R_runtime.i = -2588.719971,  desired_speed calib at 120.000 : -0.500
-pid_motor_R_runtime.i = -2727.603516,  desired_speed calib at 130.000 : -0.500
-pid_motor_R_runtime.i = -2821.487061,  desired_speed calib at 140.000 : -0.500
-pid_motor_R_runtime.i = -2924.370605,  desired_speed calib at 150.000 : -0.500
-pid_motor_R_runtime.i = -3038.254150,  desired_speed calib at 160.000 : -0.500
-pid_motor_R_runtime.i = -3161.137695,  desired_speed calib at 170.000 : -0.500
-pid_motor_R_runtime.i = -3286.021240,  desired_speed calib at 180.000 : -0.500
-pid_motor_R_runtime.i = -3395.904785,  desired_speed calib at 190.000 : -0.500
-pid_motor_R_runtime.i = -3486.788330,  desired_speed calib at 200.000 : -0.500
-pid_motor_R_runtime.i = -3577.671875,  desired_speed calib at 210.000 : -0.500
-pid_motor_R_runtime.i = -3686.555420,  desired_speed calib at 220.000 : -0.500
-pid_motor_R_runtime.i = -3798.438965,  desired_speed calib at 230.000 : -0.500
-pid_motor_R_runtime.i = -3914.322510,  desired_speed calib at 240.000 : -0.500
-pid_motor_R_runtime.i = -4035.206055,  desired_speed calib at 250.000 : -0.500
-pid_motor_R_runtime.i = -4157.089844,  desired_speed calib at 260.000 : -0.500
-pid_motor_R_runtime.i = -4273.973633,  desired_speed calib at 270.000 : -0.500
-pid_motor_R_runtime.i = -4393.857422,  desired_speed calib at 280.000 : -0.500
-pid_motor_R_runtime.i = -4512.741211,  desired_speed calib at 290.000 : -0.500
-pid_motor_R_runtime.i = -4628.625000,  desired_speed calib at 300.000 : -0.500
-pid_motor_R_runtime.i = -4744.508789,  desired_speed calib at 310.000 : -0.500
-pid_motor_R_runtime.i = -4859.392578,  desired_speed calib at 320.000 : -0.500
-pid_motor_R_runtime.i = -4972.276367,  desired_speed calib at 330.000 : -0.500
-pid_motor_R_runtime.i = -5086.160156,  desired_speed calib at 340.000 : -0.500
-pid_motor_R_runtime.i = -5202.043945,  desired_speed calib at 350.000 : -0.500
-pid_motor_R_runtime.i = -5318.927734,  desired_speed calib at 360.000 : -0.500
-pid_motor_R_runtime.i = -5434.811523,  desired_speed calib at 370.000 : -0.500
-pid_motor_R_runtime.i = -5551.695312,  desired_speed calib at 380.000 : -0.500
-pid_motor_R_runtime.i = -5663.579102,  desired_speed calib at 390.000 : -0.500
-pid_motor_R_runtime.i = -5776.462891,  desired_speed calib at 400.000 : -0.500
-pid_motor_R_runtime.i = -5889.346680,  desired_speed calib at 410.000 : -0.500
-pid_motor_R_runtime.i = -6003.230469,  desired_speed calib at 420.000 : -0.500
-pid_motor_R_runtime.i = -6119.114258,  desired_speed calib at 430.000 : -0.500
-pid_motor_R_runtime.i = -6232.998047,  desired_speed calib at 440.000 : -0.500
-pid_motor_R_runtime.i = -6344.881836,  desired_speed calib at 450.000 : -0.500
-pid_motor_R_runtime.i = -6461.765625,  desired_speed calib at 460.000 : -0.500
-pid_motor_R_runtime.i = -6577.649414,  desired_speed calib at 470.000 : -0.500
-pid_motor_R_runtime.i = -6696.533203,  desired_speed calib at 480.000 : -0.500
-pid_motor_R_runtime.i = -6816.416992,  desired_speed calib at 490.000 : -0.500
-pid_motor_R_runtime.i = -6932.300781,  desired_speed calib at 500.000 : -0.500
-pid_motor_R_runtime.i = -7044.184570,  desired_speed calib at 510.000 : -0.500
-pid_motor_R_runtime.i = -7159.068359,  desired_speed calib at 520.000 : -0.500
-pid_motor_R_runtime.i = -7271.952148,  desired_speed calib at 530.000 : -0.500
-pid_motor_R_runtime.i = -7386.835938,  desired_speed calib at 540.000 : -0.500
-pid_motor_R_runtime.i = -7501.719727,  desired_speed calib at 550.000 : -0.500
-pid_motor_R_runtime.i = -7613.603516,  desired_speed calib at 560.000 : -0.500
-pid_motor_R_runtime.i = -7727.487305,  desired_speed calib at 570.000 : -0.500
-pid_motor_R_runtime.i = -7845.371094,  desired_speed calib at 580.000 : -0.500
-pid_motor_R_runtime.i = -7962.254883,  desired_speed calib at 590.000 : -0.500
-pid_motor_R_runtime.i = -8078.138672,  desired_speed calib at 600.000 : -0.500
-pid_motor_R_runtime.i = -8191.022461,  desired_speed calib at 610.000 : -0.500
-pid_motor_R_runtime.i = -8305.906250,  desired_speed calib at 620.000 : -0.500
-pid_motor_R_runtime.i = -8423.790039,  desired_speed calib at 630.000 : -0.500
-pid_motor_R_runtime.i = -8542.673828,  desired_speed calib at 640.000 : -0.500
-pid_motor_R_runtime.i = -8662.557617,  desired_speed calib at 650.000 : -0.500
-pid_motor_R_runtime.i = -8781.441406,  desired_speed calib at 660.000 : -0.500
-pid_motor_R_runtime.i = -8897.325195,  desired_speed calib at 670.000 : -0.500
-pid_motor_R_runtime.i = -9015.208984,  desired_speed calib at 680.000 : -0.500
-pid_motor_R_runtime.i = -9134.092773,  desired_speed calib at 690.000 : -0.500
-pid_motor_R_runtime.i = -9251.976562,  desired_speed calib at 700.000 : -0.500
-pid_motor_R_runtime.i = -9368.860352,  desired_speed calib at 710.000 : -0.500
-pid_motor_R_runtime.i = -9486.744141,  desired_speed calib at 720.000 : -0.500
-pid_motor_R_runtime.i = -9603.627930,  desired_speed calib at 730.000 : -0.500
-pid_motor_R_runtime.i = -9719.511719,  desired_speed calib at 740.000 : -0.500
-pid_motor_R_runtime.i = -9835.395508,  desired_speed calib at 750.000 : -0.500
-pid_motor_R_runtime.i = -9951.279297,  desired_speed calib at 760.000 : -0.500
-pid_motor_R_runtime.i = -10069.163086,  desired_speed calib at 770.000 : -0.500
-pid_motor_R_runtime.i = -10190.046875,  desired_speed calib at 780.000 : -0.500
-pid_motor_R_runtime.i = -10309.930664,  desired_speed calib at 790.000 : -0.500
-pid_motor_R_runtime.i = -10429.814453,  desired_speed calib at 800.000 : -0.500
-pid_motor_R_runtime.i = -10549.698242,  desired_speed calib at 810.000 : -0.500
-pid_motor_R_runtime.i = -10670.582031,  desired_speed calib at 820.000 : -0.500
-pid_motor_R_runtime.i = -10792.465820,  desired_speed calib at 830.000 : -0.500
-pid_motor_R_runtime.i = -10913.349609,  desired_speed calib at 840.000 : -0.500
-pid_motor_R_runtime.i = -11032.233398,  desired_speed calib at 850.000 : -0.500
-pid_motor_R_runtime.i = -11151.117188,  desired_speed calib at 860.000 : -0.500
-pid_motor_R_runtime.i = -11268.000977,  desired_speed calib at 870.000 : -0.500
-pid_motor_R_runtime.i = -11381.884766,  desired_speed calib at 880.000 : -0.500
-pid_motor_R_runtime.i = -11489.768555,  desired_speed calib at 890.000 : -0.500
-pid_motor_R_runtime.i = -11595.652344,  desired_speed calib at 900.000 : -0.500
-pid_motor_R_runtime.i = -11697.536133,  desired_speed calib at 910.000 : -0.500
-pid_motor_R_runtime.i = -11802.419922,  desired_speed calib at 920.000 : -0.500
-pid_motor_R_runtime.i = -11913.303711,  desired_speed calib at 930.000 : -0.500
-pid_motor_R_runtime.i = -12028.187500,  desired_speed calib at 940.000 : -0.500
-pid_motor_R_runtime.i = -12151.071289,  desired_speed calib at 950.000 : -0.500
-pid_motor_R_runtime.i = -12277.955078,  desired_speed calib at 960.000 : -0.500
-pid_motor_R_runtime.i = -12395.838867,  desired_speed calib at 970.000 : -0.500
-pid_motor_R_runtime.i = -12513.722656,  desired_speed calib at 980.000 : -0.500
-pid_motor_R_runtime.i = -12633.606445,  desired_speed calib at 990.000 : -0.500
-pid_motor_R_runtime.i = -12751.490234,  desired_speed calib at 1000.000 : -0.500
-pid_motor_R_runtime.i = -12871.374023,  desired_speed calib at 1010.000 : -0.500
-pid_motor_R_runtime.i = -12993.257812,  desired_speed calib at 1020.000 : -0.500
-pid_motor_R_runtime.i = -13116.141602,  desired_speed calib at 1030.000 : -0.500
-pid_motor_R_runtime.i = -13236.025391,  desired_speed calib at 1040.000 : -0.500
-pid_motor_R_runtime.i = -13355.909180,  desired_speed calib at 1050.000 : -0.500
-pid_motor_R_runtime.i = -13471.792969,  desired_speed calib at 1060.000 : -0.500
-pid_motor_R_runtime.i = -13584.676758,  desired_speed calib at 1070.000 : -0.500
-pid_motor_R_runtime.i = -13693.560547,  desired_speed calib at 1080.000 : -0.500
-pid_motor_R_runtime.i = -13801.444336,  desired_speed calib at 1090.000 : -0.500
-pid_motor_R_runtime.i = -13907.328125,  desired_speed calib at 1100.000 : -0.500
-pid_motor_R_runtime.i = -14013.211914,  desired_speed calib at 1110.000 : -0.500
-pid_motor_R_runtime.i = -14125.095703,  desired_speed calib at 1120.000 : -0.500
-pid_motor_R_runtime.i = -14239.979492,  desired_speed calib at 1130.000 : -0.500
-pid_motor_R_runtime.i = -14356.863281,  desired_speed calib at 1140.000 : -0.500
-pid_motor_R_runtime.i = -14478.747070,  desired_speed calib at 1150.000 : -0.500
-pid_motor_R_runtime.i = -14604.630859,  desired_speed calib at 1160.000 : -0.500
-pid_motor_R_runtime.i = -14719.514648,  desired_speed calib at 1170.000 : -0.500
-pid_motor_R_runtime.i = -14831.398438,  desired_speed calib at 1180.000 : -0.500
-pid_motor_R_runtime.i = -14946.282227,  desired_speed calib at 1190.000 : -0.500
-pid_motor_R_runtime.i = -15061.166016,  desired_speed calib at 1200.000 : -0.500
-pid_motor_R_runtime.i = -15178.049805,  desired_speed calib at 1210.000 : -0.500
-pid_motor_R_runtime.i = -15295.933594,  desired_speed calib at 1220.000 : -0.500
-pid_motor_R_runtime.i = -15412.817383,  desired_speed calib at 1230.000 : -0.500
-pid_motor_R_runtime.i = -15527.701172,  desired_speed calib at 1240.000 : -0.500
-pid_motor_R_runtime.i = -15645.584961,  desired_speed calib at 1250.000 : -0.500
-pid_motor_R_runtime.i = -15762.468750,  desired_speed calib at 1260.000 : -0.500
-pid_motor_R_runtime.i = -15876.352539,  desired_speed calib at 1270.000 : -0.500
-pid_motor_R_runtime.i = -15989.236328,  desired_speed calib at 1280.000 : -0.500
-pid_motor_R_runtime.i = -16104.120117,  desired_speed calib at 1290.000 : -0.500
-pid_motor_R_runtime.i = -16219.003906,  desired_speed calib at 1300.000 : -0.500
-pid_motor_R_runtime.i = -16333.887695,  desired_speed calib at 1310.000 : -0.500
-pid_motor_R_runtime.i = -16449.771484,  desired_speed calib at 1320.000 : -0.500
-pid_motor_R_runtime.i = -16563.654297,  desired_speed calib at 1330.000 : -0.500
-pid_motor_R_runtime.i = -16678.537109,  desired_speed calib at 1340.000 : -0.500
-pid_motor_R_runtime.i = -16796.419922,  desired_speed calib at 1350.000 : -0.500
-pid_motor_R_runtime.i = -16917.302734,  desired_speed calib at 1360.000 : -0.500
-pid_motor_R_runtime.i = -17036.185547,  desired_speed calib at 1370.000 : -0.500
-pid_motor_R_runtime.i = -17153.068359,  desired_speed calib at 1380.000 : -0.500
-pid_motor_R_runtime.i = -17269.951172,  desired_speed calib at 1390.000 : -0.500
-pid_motor_R_runtime.i = -17386.833984,  desired_speed calib at 1400.000 : -0.500
-pid_motor_R_runtime.i = -17503.716797,  desired_speed calib at 1410.000 : -0.500
-pid_motor_R_runtime.i = -17623.599609,  desired_speed calib at 1420.000 : -0.500
-pid_motor_R_runtime.i = -17779.482422,  desired_speed calib at 1430.000 : -0.500
-pid_motor_R_runtime.i = -18171.365234,  desired_speed calib at 1440.000 : -0.500
-pid_motor_R_runtime.i = -18513.248047,  desired_speed calib at 1450.000 : -0.500
-pid_motor_R_runtime.i = -18833.130859,  desired_speed calib at 1460.000 : -0.500
-pid_motor_R_runtime.i = -19208.013672,  desired_speed calib at 1470.000 : -0.500
-pid_motor_R_runtime.i = -19559.896484,  desired_speed calib at 1480.000 : -0.500
-pid_motor_R_runtime.i = -19902.779297,  desired_speed calib at 1490.000 : -0.500
-pid_motor_R_runtime.i = -20241.662109,  desired_speed calib at 1500.000 : -0.500
-pid_motor_R_runtime.i = -20589.544922,  desired_speed calib at 1510.000 : -0.500
-pid_motor_R_runtime.i = -20931.427734,  desired_speed calib at 1520.000 : -0.500
-pid_motor_R_runtime.i = -21224.310547,  desired_speed calib at 1530.000 : -0.500
-pid_motor_R_runtime.i = -21532.193359,  desired_speed calib at 1540.000 : -0.500
-pid_motor_R_runtime.i = -21886.076172,  desired_speed calib at 1550.000 : -0.500
-pid_motor_R_runtime.i = -22235.958984,  desired_speed calib at 1560.000 : -0.500
-pid_motor_R_runtime.i = -22602.841797,  desired_speed calib at 1570.000 : -0.500
-pid_motor_R_runtime.i = -22978.724609,  desired_speed calib at 1580.000 : -0.500
-pid_motor_R_runtime.i = -23368.607422,  desired_speed calib at 1590.000 : -0.500
-pid_motor_R_runtime.i = -23768.490234,  desired_speed calib at 1600.000 : -0.500
-pid_motor_R_runtime.i = -24141.373047,  desired_speed calib at 1610.000 : -0.500
-pid_motor_R_runtime.i = -24491.255859,  desired_speed calib at 1620.000 : -0.500
-pid_motor_R_runtime.i = -24810.138672,  desired_speed calib at 1630.000 : -0.500
-pid_motor_R_runtime.i = -25098.021484,  desired_speed calib at 1640.000 : -0.500
-pid_motor_R_runtime.i = -25364.904297,  desired_speed calib at 1650.000 : -0.500
-pid_motor_R_runtime.i = -25642.787109,  desired_speed calib at 1660.000 : -0.500
-pid_motor_R_runtime.i = -25967.669922,  desired_speed calib at 1670.000 : -0.500
-pid_motor_R_runtime.i = -26319.552734,  desired_speed calib at 1680.000 : -0.500
-pid_motor_R_runtime.i = -26674.435547,  desired_speed calib at 1690.000 : -0.500
-pid_motor_R_runtime.i = -27030.318359,  desired_speed calib at 1700.000 : -0.500
-pid_motor_R_runtime.i = -27385.201172,  desired_speed calib at 1710.000 : -0.500
-pid_motor_R_runtime.i = -27726.083984,  desired_speed calib at 1720.000 : -0.500
-pid_motor_R_runtime.i = -28049.966797,  desired_speed calib at 1730.000 : -0.500
-pid_motor_R_runtime.i = -28384.849609,  desired_speed calib at 1740.000 : -0.500
-pid_motor_R_runtime.i = -28731.732422,  desired_speed calib at 1750.000 : -0.500
-pid_motor_R_runtime.i = -29078.615234,  desired_speed calib at 1760.000 : -0.500
-pid_motor_R_runtime.i = -29410.498047,  desired_speed calib at 1770.000 : -0.500
-pid_motor_R_runtime.i = -29739.380859,  desired_speed calib at 1780.000 : -0.500
-[MV_STATEMACHINE] state finished
-______finished a recalibration
-spacestate robot :
-position : x:222.00 y:1875.00 mm
-orientation : -88.54 degrees
-linear speed : 0.00 mm/s
-angular speed : 0.00 deg/s
-canopen state finished callback
-[MV_STATEMACHINE] switching to the next state
-[MV_STATEMACHINE] reached end of the states queue
-mv statemachine callback queue : 0x800f9e5
-calling the callback
-canopen queue finished callback
-[CANopen CMD] New command
-[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0005 p1=300 p2=10 p3=10 p4=0 p5=0 p6=0
-[CANopen CMD] Executing: TRANSLATION
-stopped holding the robot
-performing a translation of distance 300.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
-[MV_STATEMACHINE] loaded new state queue
-[MV_STATEMACHINE] state finished
-finished a translation of distance 300.000 mm
-spacestate robot :
-position : x:229.58 y:1578.04 mm
-orientation : -88.54 degrees
-linear speed : 0.66 mm/s
-angular speed : -0.24 deg/s
-canopen state finished callback
-[MV_STATEMACHINE] switching to the next state
-[MV_STATEMACHINE] reached end of the states queue
-mv statemachine callback queue : 0x800f9e5
-calling the callback
-canopen queue finished callback
-[CANopen CMD] New command
-[CANopen CMD] RAW OD values: ACTION_ID=0x0005 CMD_ID=0x0006 p1=500 p2=1000 p3=0 p4=0 p5=0 p6=0
-[CANopen CMD] Executing: GOTO

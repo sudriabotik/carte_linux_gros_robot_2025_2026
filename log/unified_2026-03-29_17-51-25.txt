@@ -1,0 +1,116 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-03-29_17-51-25
+Program started at: 2026-03-29 17:51:23.409356
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-03-29 17:51:25.444 (t+2.034774s)] [CAN RX] Node 2 → status:10 cmd_id:0 action:0 completed:0 error:0
+[2026-03-29 17:51:25.451 (t+2.042377s)] [CAN RX] Node 1 → status:0 cmd_id:999 action:0 completed:0 error:0
+[2026-03-29 17:51:25.660 (t+2.251270s)] [CAN TX] Node 1 → cmd_id:2 action:6 params:[2, 1, 0, 0, 0, 0]
+[2026-03-29 17:51:25.674 (t+2.264912s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0002 p1=2 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-03-29 17:51:25.684 (t+2.275519s)] [UART] stopped holding the robot
+performing a rotation of 0.000 degrees, speed 0.200 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-29 17:51:25.685 (t+2.275908s)] [UART] [MV_STATEMACHINE] state finished
+[2026-03-29 17:51:25.686 (t+2.276721s)] [CAN RX] Node 1 → status:1 cmd_id:2 action:6 completed:0 error:0
+[2026-03-29 17:51:25.695 (t+2.286271s)] [UART] finished a rotation of 0.000 degrees
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+performing a recalibration state wake
+[2026-03-29 17:51:26.446 (t+3.037455s)] [UART] [MV_STATEMACHINE] state finished
+______finished a recalibration
+spacestate robot :
+position : x:147.50 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-29 17:51:26.449 (t+3.040404s)] [CAN RX] Node 1 → status:2 cmd_id:2 action:6 completed:2 error:100
+[2026-03-29 17:51:26.476 (t+3.066969s)] [CAN TX] Node 1 → cmd_id:3 action:3 params:[100, 10, 10, 0, 0, 0]
+[2026-03-29 17:51:26.487 (t+3.078546s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0003 p1=100 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-03-29 17:51:26.495 (t+3.086551s)] [CAN RX] Node 1 → status:1 cmd_id:3 action:3 completed:2 error:0
+[2026-03-29 17:51:26.498 (t+3.089419s)] [UART] stopped holding the robot
+performing a translation of distance 100.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-29 17:51:27.795 (t+4.385661s)] [UART] [MV_STATEMACHINE] state finished
+finished a translation of distance 100.000 mm
+spacestate robot :
+position : x:245.64 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.64 mm/s
+angular speed : 0.24 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queu[2026-03-29 17:51:27.795 (t+4.386128s)] [UART] e finished callback
+[2026-03-29 17:51:27.806 (t+4.397257s)] [CAN RX] Node 1 → status:2 cmd_id:3 action:3 completed:3 error:100
+[2026-03-29 17:51:27.848 (t+4.439033s)] [CAN TX] Node 1 → cmd_id:4 action:6 params:[1, 1, 0, 0, 0, 0]
+[2026-03-29 17:51:27.866 (t+4.457398s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0004 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-03-29 17:51:27.875 (t+4.466437s)] [CAN RX] Node 1 → status:1 cmd_id:4 action:6 completed:3 error:0
+[2026-03-29 17:51:27.877 (t+4.467963s)] [UART] stopped holding the robot
+performing a rotation of -90.000 degrees, speed 0.200 deg/ms, accel 0.100 deg/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-29 17:51:29.267 (t+5.858460s)] [UART] [MV_STATEMACHINE] state finished
+finished a rotation of -90.000 degrees
+spacestate robot :
+position : x:245.64 y:0.00 mm
+orientation : -88.92 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+performing a recalibration state wake
+[2026-03-29 17:51:30.930 (t+7.520874s)] [UART] [MV_STATEMACHINE] state finished
+______finished a recalibration
+spacestate robot :
+position : x:245.64 y:1852.50 mm
+orientation : -88.92 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queue finished callback
+[2026-03-29 17:51:30.932 (t+7.522968s)] [CAN RX] Node 1 → status:2 cmd_id:4 action:6 completed:4 error:100
+[2026-03-29 17:51:30.982 (t+7.573053s)] [CAN TX] Node 1 → cmd_id:5 action:3 params:[300, 10, 10, 0, 0, 0]
+[2026-03-29 17:51:30.991 (t+7.582616s)] [UART] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0003 CMD_ID=0x0005 p1=300 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-03-29 17:51:31.001 (t+7.592281s)] [CAN RX] Node 1 → status:1 cmd_id:5 action:3 completed:4 error:0
+[2026-03-29 17:51:31.002 (t+7.593229s)] [UART] stopped holding the robot
+performing a translation of distance 300.000 mm, top speed 0.500 mm/ms, accel 0.100 mm/ms^2
+[MV_STATEMACHINE] loaded new state queue
+[2026-03-29 17:51:58.827 (t+35.417989s)] [UART] [MV_STATEMACHINE] state finished
+finished a translation of distance 300.000 mm
+spacestate robot :
+position : x:251.24 y:1554.53 mm
+orientation : -88.92 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+canopen state finished callback
+[MV_STATEMACHINE] switching to the next state
+[MV_STATEMACHINE] reached end of the states queue
+mv statemachine callback queue : 0x800f9e5
+calling the callback
+canopen queu[2026-03-29 17:51:58.827 (t+35.418526s)] [UART] e finished callback
+[2026-03-29 17:51:58.833 (t+35.423708s)] [CAN RX] Node 1 → status:2 cmd_id:5 action:3 completed:5 error:100
