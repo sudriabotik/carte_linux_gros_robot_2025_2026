@@ -67,88 +67,78 @@ if node_asserv:
 
 time.sleep(0.200) # pour bien avoir tous le debut des logs. 
 
+######
+## CALAGE DEPART
+######
+while (node_autom.is_busy()) : 
+    time.sleep(0.05)
+node_autom.action_safe_position_ascenseur()
+while (node_asserv.is_busy()) : 
+    time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
 while (node_asserv.is_busy()) : 
     time.sleep(0.05)
-node_asserv.action_translation(100, 10, 10)
+node_asserv.action_translation(50, 10, 10)
 while (node_asserv.is_busy()) :
     time.sleep(0.05)
 node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 while (node_asserv.is_busy()) : 
     time.sleep(0.05)
-node_asserv.action_translation(300, 10, 10)
+node_asserv.action_translation(50, 10, 10)
 while (node_asserv.is_busy()) : 
     time.sleep(0.05)
 
-logger.log_info("Main", f"Robot position: {robot_state}")
+logger.log_info("Main", f"Robot position après callage demarage: {robot_state}")
 
-node_asserv.action_goto_xy(175,750,comm_asserv.Face.FACE_AVANT)
+node_autom.action_ready_to_grap()
+node_asserv.action_goto_xy(175,1700,comm_asserv.Face.FACE_AVANT)
 while (node_asserv.is_busy()) :
     time.sleep(0.05)
-node_autom.action_open_pince()
+node_asserv.action_lookat(175,1200,comm_asserv.Face.FACE_AVANT)
+while (node_asserv.is_busy()) :
+    time.sleep(0.05)
 while (node_autom.is_busy()) : 
     time.sleep(0.05)
-node_asserv.action_goto_xy(175,450,comm_asserv.Face.FACE_AVANT)
+node_autom.action_open_pince()
+
+#node_asserv.action_set_linear_speed_accel(100,1)
+while (node_asserv.is_busy()) :
+    time.sleep(0.05)
+node_asserv.action_goto_xy(175,1250,comm_asserv.Face.FACE_AVANT) # trop brutal ici faut changer la decel avant 
 while (node_asserv.is_busy()) : 
     time.sleep(0.05)
 
 node_autom.action_grab()
 while (node_autom.is_busy()) : 
     time.sleep(0.05)
+node_asserv.action_goto_xy(400,800,comm_asserv.Face.FACE_AVANT)
 node_autom.action_deposit()
+
 while (node_autom.is_busy()) : 
     time.sleep(0.05)
-
-node_asserv.action_goto_xy(1200,450,comm_asserv.Face.FACE_AVANT)
-# ADDED BY CLAUDE: Debug logs to understand why condition doesn't work
-logger.log_info("Main", f"Starting goto_xy(1200,450), waiting for X < 800. Current position: {robot_state}")
-while(robot_state.position_x < 800):
-    logger.log_info("Main", f"Still waiting (X < 800)... Current position: {robot_state}")
+while (node_asserv.is_busy()) : 
     time.sleep(0.05)
+node_autom.action_close_pince()
+node_asserv.action_goto_xy(1700,800,comm_asserv.Face.FACE_AVANT)
 
-logger.log_info("Main", f"Condition met (X >= 800)! Final position: {robot_state}")
+# ADDED BY CLAUDE: Debug logs to understand why condition doesn't work
+
+while(robot_state.position_x < 750):
+    time.sleep(0.05)
 node_autom.action_ejecter(2)
-
-
-node_asserv.action_set_linear_speed_accel(100,50)
-node_asserv.action_translation(-2500, 1, 1)
 '''
 ## DEBUG 
+node_asserv.action_set_linear_speed_accel(50,1)
+node_asserv.action_translation(500, 1, 1)
+node_autom.action_pos_ax(7,550)
+
+
 node_autom.action_homing()
 node_autom.action_pos_elevator_v(-232) #-232
 node_autom.action_pos_elevator_h(-110)
 node_autom.action_i2c_servo(2,500)
 '''
 logger.log_info("Main", "program finished")
-
-"""
-time.sleep(1)
-# attempts a homing
-if node_autom != None :
-    print("attempting a homing")
-    node_autom.action_homing()
-
-time.sleep(5)
-
-
-if node_asserv != None :
-    print("doing a small translation")
-    node_asserv.action_translation(0, 10, 1)
-
-    print("waiting for the translation to finish")
-    while node_asserv.is_busy() :
-        time.sleep(0.01)
-    print("translation finished")
-
-if node_autom != None :
-    print("small wait before the grab")
-    time.sleep(1)
-
-    print("attempting a grab")
-    node_autom.action_grab()
-
-time.sleep(5)
-"""
 
 # =========================
 # STOP LOGGERS (if running)

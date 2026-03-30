@@ -95,12 +95,9 @@ class _CanActionNodeReader(can.Listener) :
 			if func == FUNCTION_CODE.IS_TPDO and i == 0 :
 
 				self.timestamp_last_tpdo = time.time()
-				logger.log_info("CanActionNodeReader", f"[DEBUG] TPDO[0] received from Node {id}")  # ADDED BY CLAUDE: Debug TPDO reception
 				try :
 					# creates an array of int from the bytes of the message
 					vals = canopen_wrapper.instance.decode_tpdo(msg, [0, 1, 1, 2, 2, 3, 3, 4])
-					logger.log_info("CanActionNodeReader", f"[DEBUG] TPDO[0] decoded: {vals}")  # ADDED BY CLAUDE: Debug decoding
-
 					# Log CAN values based on DEBUG_CAN_CHANGES_ONLY setting
 					if canopen_wrapper.DEBUG_CAN_CHANGES_ONLY:
 						# Only log if values have changed
@@ -109,14 +106,9 @@ class _CanActionNodeReader(can.Listener) :
 							self._update_cache(vals)
 
 							# MODIFIED BY CLAUDE: Write to unified logger
-							logger.log_info("CanActionNodeReader", f"[DEBUG] About to call unified_logger.log_can_rx")  # ADDED BY CLAUDE: Debug
 							if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
 								canopen_wrapper.unified_logger.log_can_rx(id, vals)
-							logger.log_info("CanActionNodeReader", f"[DEBUG] unified_logger.log_can_rx completed")  # ADDED BY CLAUDE: Debug
 					else:
-						# Debug mode: log every message (verbose)
-						logger.log_verbose("CanActionNodeReader", f"[Node {id}] CAN → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
-
 						# MODIFIED BY CLAUDE: Write to unified logger (in debug mode, log all messages)
 						if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
 							canopen_wrapper.unified_logger.log_can_rx(id, vals)
@@ -147,7 +139,7 @@ class _CanActionNodeReader(can.Listener) :
 						x = int.from_bytes(msg.data[0:2], byteorder='little', signed=True)
 						y = int.from_bytes(msg.data[2:4], byteorder='little', signed=True)
 						angle = int.from_bytes(msg.data[4:6], byteorder='little', signed=True)
-
+						logger.log_info("CanActionNodeReader", f"[Node {id}] TPDO[1] Position → X:{x}mm Y:{y}mm θ:{angle}°")
 						# Update robot position if robot object exists
 						if self.robot:
 							self.robot.update_position(x, y, angle)
@@ -163,8 +155,6 @@ class _CanActionNodeReader(can.Listener) :
 
 	def __string__(self) :
 		return f"current_command_status : {self.current_command_status}"
-
-
 
 class CanActionNode :
 
@@ -203,7 +193,7 @@ class CanActionNode :
 		"""
 		Check if the node is currently executing a command
 		"""
-		print(f"vars : {self.can_reader.current_command_status}")
+		#print(f"vars : {self.can_reader.current_command_status}")
 
 		# if we didn't receive any tpdos since the last command, it is likely the node is still busy
 		if self.timestamp_last_command > self.can_reader.timestamp_last_tpdo : return True

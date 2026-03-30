@@ -111,3 +111,27 @@ class CanAutomNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 10, [channel, position])
 		self.timestamp_last_command = time.time()
 
+
+	def action_close_pince(self) :
+		"""
+		CDM_CLOSE_PINCE (11): Closes the gripper (pince)
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 11, [])
+		self.timestamp_last_command = time.time()
+
+
+	def action_ready_to_grap(self) :
+		"""
+		CDM_READY_TO_GRAP (12): Moves to ready-to-grab position
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 12, [])
+		self.timestamp_last_command = time.time()
+
+
+	def action_safe_position_ascenseur(self) :
+		"""
+		CDM_SAFE_POSITION_ASCENSEUR (13): Moves elevator to safe position
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 13, [])
+		self.timestamp_last_command = time.time()
+
