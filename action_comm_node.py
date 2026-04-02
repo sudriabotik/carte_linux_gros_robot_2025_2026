@@ -14,7 +14,6 @@ from robot_comm_data import *
 import logger
 
 
-
 class _CanActionNodeReader(can.Listener) :
 
 	def __init__(self, id, robot=None):
@@ -40,7 +39,6 @@ class _CanActionNodeReader(can.Listener) :
 			'completed_command_id': None,
 			'error_code': None
 		}
-
 
 	def _has_changed(self, vals):
 		"""
@@ -116,14 +114,13 @@ class _CanActionNodeReader(can.Listener) :
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}")
 
-				logger.log_info("CanActionNodeReader", f"[DEBUG] About to update current_command_status")  # ADDED BY CLAUDE: Debug
 				if vals != None :
 					self.current_command_status = vals[0]
 					self.current_command_id = vals[1]
 					self.current_action_id = vals[2]
 					self.last_completed_command_id = vals[3]
 					self.command_error_code = vals[4]
-					logger.log_info("CanActionNodeReader", f"[DEBUG] Updated current_command_status = {self.current_command_status}")  # ADDED BY CLAUDE: Debug
+					#logger.log_info("CanActionNodeReader", f"[DEBUG] Node {id} Updated current_command_status = {self.current_command_status}")  # ADDED BY CLAUDE: Debug
 
 			# ADDED BY CLAUDE: Handle TPDO[1] - Robot position (X, Y, θ)
 			elif func == FUNCTION_CODE.IS_TPDO and i == 1 :
@@ -132,22 +129,18 @@ class _CanActionNodeReader(can.Listener) :
 					# Bytes 0-1: X position in mm (INT16, little-endian)
 					# Bytes 2-3: Y position in mm (INT16, little-endian)
 					# Bytes 4-5: Orientation θ in degrees (INT16, little-endian)
-					# Bytes 6-7: Unused
+					# Bytes 6-7: Linear velocity in mm/s (INT16, little-endian)
 
-					if len(msg.data) >= 6:
+					if len(msg.data) >= 8:
 						# Decode INT16 values from little-endian bytes
 						x = int.from_bytes(msg.data[0:2], byteorder='little', signed=True)
 						y = int.from_bytes(msg.data[2:4], byteorder='little', signed=True)
 						angle = int.from_bytes(msg.data[4:6], byteorder='little', signed=True)
-						logger.log_info("CanActionNodeReader", f"[Node {id}] TPDO[1] Position → X:{x}mm Y:{y}mm θ:{angle}°")
+						lin_vel = int.from_bytes(msg.data[6:8], byteorder='little', signed=True)
+						logger.log_info("CanActionNodeReader", f"[Node {id}] TPDO[1] Position → X:{x}mm Y:{y}mm θ:{angle}° V:{lin_vel}mm/s")
 						# Update robot position if robot object exists
 						if self.robot:
-							self.robot.update_position(x, y, angle)
-							# Position updates disabled to avoid log spam (10Hz)
-							# Uncomment line below for debugging position issues:
-							# logger.log_info("CanActionNodeReader", f"[Node {id}] POSITION UPDATE → X:{x}mm Y:{y}mm θ:{angle}°")
-
-						# Note: Position logging disabled to avoid spam (TPDO[1] sent at 10Hz)
+							self.robot.update_position(x, y, angle, lin_vel)
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}")

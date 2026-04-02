@@ -12,6 +12,9 @@ import traceback
 import logger
 import unified_logger  # ADDED BY CLAUDE: Unified UART+CAN logger
 import robot  # ADDED BY CLAUDE: Robot state management
+import function_strat
+from gpio import read_gpio_couleur, read_gpio_tirette
+import constants as const
 
 # =========================
 # CONFIGURATION DEBUG
@@ -61,11 +64,19 @@ if node_asserv:
     node_asserv.can_reader.robot = robot_state
     logger.log_info("Main", "Robot position tracking enabled via TPDO[1]")
 
-#node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds") # at the moment, both dictionaries are the same
-
-#node_autom.action_homing(10, 10)
+strat = function_strat.Strategie(node_asserv, node_autom, robot_state)
+logger.log_info("Main", f"Strategie unutialized: {strat}")
 
 time.sleep(0.200) # pour bien avoir tous le debut des logs. 
+
+
+while (read_gpio_tirette == const.PRESENCE_TIRETTE):
+	time.sleep(0.05)
+    
+couleur_equipe = read_gpio_couleur
+robot_state.update_couleur_equipe(couleur_equipe)
+
+strat.calage_depart(robot_state.couleur_equipe)
 
 ######
 ## CALAGE DEPART
@@ -121,23 +132,27 @@ while (node_asserv.is_busy()) :
 node_autom.action_close_pince()
 node_asserv.action_goto_xy(1700,800,comm_asserv.Face.FACE_AVANT)
 
-# ADDED BY CLAUDE: Debug logs to understand why condition doesn't work
-
 while(robot_state.position_x < 750):
     time.sleep(0.05)
 node_autom.action_ejecter(2)
-'''
-## DEBUG 
-node_asserv.action_set_linear_speed_accel(50,1)
-node_asserv.action_translation(500, 1, 1)
-node_autom.action_pos_ax(7,550)
 
+
+## DEBUG ##
+node_asserv.action_translation(-1250,1,1)
+node_asserv.action_goto_xy(400,1000,comm_asserv.Face.FACE_ARRIERE)
+node_asserv.action_moveto(400,1000,comm_asserv.Face.FACE_AVANT)
+node_asserv.action_rotation(180,1,1)
+node_asserv.action_orientation(0,comm_asserv.Face.FACE_ARRIERE)
+
+#node_asserv.action_set_linear_speed_accel(50,1)
+#node_asserv.action_translation(500, 1, 1)
+node_autom.action_pos_ax(5,550)
 
 node_autom.action_homing()
 node_autom.action_pos_elevator_v(-232) #-232
 node_autom.action_pos_elevator_h(-110)
 node_autom.action_i2c_servo(2,500)
-'''
+
 logger.log_info("Main", "program finished")
 
 # =========================

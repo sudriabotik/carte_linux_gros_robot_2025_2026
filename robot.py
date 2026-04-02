@@ -34,12 +34,19 @@ class Robot:
 		self.asserv = node_asserv
 		self.autom = node_autom
 
+		#couleur equipe
+		self.couleur_equipe = None
+
 		# Robot position state (updated from TPDO[1])
 		self.position_x = 0  # Position X in millimeters
 		self.position_y = 0  # Position Y in millimeters
 		self.angle = 0       # Orientation θ in degrees
+		self.lin_vel = 0     # Linear velocity in mm/s
 
-	def update_position(self, x, y, angle):
+	def update_couleur_equipe(self, couleur_equipe):
+		self.couleur_equipe = couleur_equipe
+
+	def update_position(self, x, y, angle, lin_vel=0):
 		"""
 		Update the robot's position from TPDO[1] data.
 
@@ -49,10 +56,12 @@ class Robot:
 		:param x: Position X in millimeters (INT16)
 		:param y: Position Y in millimeters (INT16)
 		:param angle: Orientation θ in degrees (INT16)
+		:param lin_vel: Linear velocity in mm/s (INT16), default 0
 		"""
 		self.position_x = x
 		self.position_y = y
 		self.angle = angle
+		self.lin_vel = lin_vel
 
 	def get_position(self):
 		"""
@@ -68,7 +77,7 @@ class Robot:
 
 		:return: Formatted string with position information
 		"""
-		return f"Robot(x={self.position_x}mm, y={self.position_y}mm, θ={self.angle}°)"
+		return f"Robot(x={self.position_x}mm, y={self.position_y}mm, θ={self.angle}°, v={self.lin_vel}mm/s)"
 
 	def __repr__(self):
 		"""
@@ -76,4 +85,5 @@ class Robot:
 
 		:return: Technical string representation
 		"""
-		return f"Robot(x={self.position_x}, y={self.position_y}, angle={self.angle})"
+		return f"Robot(x={self.position_x}, y={self.position_y}, angle={self.angle}, lin_vel={self.lin_vel})"
+

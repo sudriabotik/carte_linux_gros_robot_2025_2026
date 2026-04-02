@@ -120,10 +120,25 @@ class CanAsservNode(CanActionNode) :
 
 	def action_debug_on_off(self, enable: bool) :
 		"""
-		CMD_DEBUG_ON_OFF (9): Enables or disables debug UART of asservissement to view the graphe. 
+		CMD_DEBUG_ON_OFF (9): Enables or disables debug UART of asservissement to view the graphe.
 
 		:param enable: True to enable debug output, False to disable
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 9, [1 if enable else 0])
+		self.timestamp_last_command = time.time()
+
+
+	def action_orientation(self, target_angle_deg: float, face: Face = Face.FACE_AVANT,
+	                       speed_percent: int = 100, accel_percent: int = 100) :
+		"""
+		CMD_ACTION_ORIENTATION (10): Sets the robot orientation to a specific angle
+
+		:param target_angle_deg: Target orientation in degrees
+		:param face: Face to use (FACE_AVANT or FACE_ARRIERE), default FACE_AVANT
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 10,
+			[int(target_angle_deg), face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 

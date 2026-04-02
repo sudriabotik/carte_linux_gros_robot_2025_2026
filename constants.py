@@ -1,5 +1,7 @@
-from enum import Enum
+#couleur equipe 
+BLEU = 0
+JAUNE = 1
 
-class Team(Enum) :
-	TEAM_B = 0
-	TEAM_Y = 1
+# presence tirette 
+PRESENCE_TIRETTE = 0
+ABSENCE_TIRETTE = 1 
