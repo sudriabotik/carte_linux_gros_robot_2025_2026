@@ -3,6 +3,7 @@ import comm_autom
 import comm_asserv
 import logger
 import constants as const
+import canopen_wrapper
 
 class Strategie:
     def __init__(self, node_autom, node_asserv, robot_state):
@@ -20,12 +21,13 @@ class Strategie:
 
     def calage_depart(self, couleur_equipe):
 
-        logger.log_info("Stratégie", "Début du calage de départ")
+        canopen_wrapper.unified_logger.log_python("Stratégie", "Début du calage de départ")
 
         self.wait_autom()
         self.node_autom.action_safe_position_ascenseur()
 
         if (couleur_equipe == const.BLEU):
+            canopen_wrapper.unified_logger.log_python("Stratégie", "Début du calage bleu")
             self.wait_asserv()
             self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X, comm_asserv.Face.FACE_AVANT)
 
@@ -33,12 +35,14 @@ class Strategie:
             self.node_asserv.action_translation(-50, 10, 10)
 
         if (couleur_equipe == const.JAUNE):
+            canopen_wrapper.unified_logger.log_python("Stratégie", "Début du calage JAUNE")
             self.wait_asserv()
             self.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
 
             self.wait_asserv()
             self.node_asserv.action_translation(50, 10, 10)
 
+        canopen_wrapper.unified_logger.log_python("Stratégie", " calage suite")
         self.wait_asserv()
         self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 
@@ -46,7 +50,7 @@ class Strategie:
         self.node_asserv.action_translation(50, 10, 10)
 
         self.wait_asserv()
-        logger.log_info("Stratégie", "Fin du calage de départ")
+        canopen_wrapper.unified_logger.log_python("Stratégie", "Fin du calage de départ")
 
     def attraper_un_tas(self):
 

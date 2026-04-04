@@ -23,7 +23,7 @@ DEBUG_CAN_CHANGES_ONLY = True      # Log CAN messages only when values change
 DEBUG_UNIFIED_LOGGER = True        # ADDED BY CLAUDE: Enable unified UART+CAN logging to single file
 
 print("attempting to connect to the bus")
-bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
+bus = can.interface.Bus(bustype='slcan', channel='/dev/canable', bitrate=500000)
 print("connected to the network")
 
 # Set CAN debug configuration before creating wrapper
@@ -64,16 +64,18 @@ if node_asserv:
     node_asserv.can_reader.robot = robot_state
     logger.log_info("Main", "Robot position tracking enabled via TPDO[1]")
 
-strat = function_strat.Strategie(node_asserv, node_autom, robot_state)
+strat = function_strat.Strategie(node_autom, node_asserv, robot_state)
 logger.log_info("Main", f"Strategie unutialized: {strat}")
 
 time.sleep(0.200) # pour bien avoir tous le debut des logs. 
 
 
-while (read_gpio_tirette == const.PRESENCE_TIRETTE):
+while (read_gpio_tirette() == const.ABSENCE_TIRETTE):
 	time.sleep(0.05)
-    
-couleur_equipe = read_gpio_couleur
+
+canopen_wrapper.unified_logger.log_python("Main","tirette insérer ")
+couleur_equipe = read_gpio_couleur()
+canopen_wrapper.unified_logger.log_python("Main", f"couleur equipe {couleur_equipe} ({'BLEU' if couleur_equipe == const.BLEU else 'JAUNE'})")
 robot_state.update_couleur_equipe(couleur_equipe)
 
 strat.calage_depart(robot_state.couleur_equipe)
