@@ -15,7 +15,7 @@ import threading
 import time
 import os
 import datetime
-import logger
+import core.interface.log_management.logger as logger
 
 
 class UnifiedLogger:

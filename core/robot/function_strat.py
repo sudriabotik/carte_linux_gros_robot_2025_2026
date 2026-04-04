@@ -1,11 +1,12 @@
 import time
-import comm_autom
-import comm_asserv
-import logger
-import constants as const
-import canopen_wrapper
+from core.interface.can import comm_autom
+from core.interface.can import comm_asserv
+from core.interface.log_management import logger
+from core.robot import constants as const
+from core.interface.can import canopen_wrapper
+from core.interface.gpio.gpio import read_gpio_tirette, read_gpio_couleur
 
-class Strategie:
+class FunctStrat:
     def __init__(self, node_autom, node_asserv, robot_state):
         self.node_autom = node_autom
         self.node_asserv = node_asserv
@@ -18,6 +19,32 @@ class Strategie:
     def wait_autom(self):
         while (self.node_autom.is_busy()) :
             time.sleep(0.05)
+
+    def wait_and_read_team_color(self):
+        """
+        Attend que la tirette soit retirée et lit la couleur de l'équipe
+
+        Returns:
+            int: Couleur de l'équipe (const.BLEU ou const.JAUNE)
+        """
+        # Attente de la tirette
+        canopen_wrapper.unified_logger.log_python("FunctStrat", "En attente de la tirette...")
+        while read_gpio_tirette() == const.ABSENCE_TIRETTE:
+            time.sleep(0.05)
+
+        canopen_wrapper.unified_logger.log_python("FunctStrat", "Tirette retirée")
+
+        # Lecture de la couleur
+        couleur = read_gpio_couleur()
+        canopen_wrapper.unified_logger.log_python(
+            "FunctStrat",
+            f"Couleur équipe {couleur} ({'BLEU' if couleur == const.BLEU else 'JAUNE'})"
+        )
+
+        # Mise à jour de l'état du robot
+        self.robot_state.update_couleur_equipe(couleur)
+
+        return couleur
 
     def calage_depart(self, couleur_equipe):
 
