@@ -70,6 +70,14 @@ class Robot:
 		:return: Tuple (x, y, angle) with x, y in mm and angle in degrees
 		"""
 		return (self.position_x, self.position_y, self.angle)
+	
+	def get_position_x_y(self):
+		"""
+		Get the current position as a tuple.
+
+		:return: Tuple (x, y, angle) with x, y in mm and angle in degrees
+		"""
+		return (self.position_x, self.position_y)
 
 	def __str__(self):
 		"""

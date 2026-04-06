@@ -11,7 +11,7 @@ from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
 from core.interface.log_management import unified_logger
-from core.interface.gpio.gpio import init_gpio, read_gpio_couleur, read_gpio_tirette
+from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
 
 @dataclass
 class InterfacesContext:
@@ -71,9 +71,8 @@ def initialize_interfaces() -> InterfacesContext:
     except Exception as e:
         logger.log_error("Init", f"Cannot create asserv node: {e}")
 
-    # Initialiser GPIO
-    init_gpio()
-    logger.log_info("Init", "GPIO initialized")
+    # GPIO prêt (aucune initialisation nécessaire avec gpiofind/gpioget)
+    logger.log_info("Init", "GPIO ready")
 
     # Retourner toutes les interfaces
     return InterfacesContext(

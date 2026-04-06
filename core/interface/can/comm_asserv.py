@@ -142,3 +142,10 @@ class CanAsservNode(CanActionNode) :
 			[int(target_angle_deg), face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
+	def action_evitement_on_off(self,enable: bool):
+		'''
+		CMD_EVITEMENT_ON_OFF pour activer l'evitement ou le desactiver 
+		:param enable: True to enable evitement, False to disable
+		'''
+		canopen_wrapper.instance.request_action(self.node_id, 11, [1 if enable else 0])
+		self.timestamp_last_command = time.time()

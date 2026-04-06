@@ -197,4 +197,4 @@ class CanActionNode :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
 			
-
+	
