@@ -135,3 +135,10 @@ class CanAutomNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 13, [])
 		self.timestamp_last_command = time.time()
 
+	def action_couleur_equipe(self, couleur_equipe ):
+		"""
+		CMD_COULEUR_EQUIPE 
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 14, [couleur_equipe])
+		self.timestamp_last_command = time.time()
+

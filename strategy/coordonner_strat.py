@@ -35,7 +35,7 @@ TAS_COORDS = {
 }
 
 # Pour appréhender ces tas, le robot doit arriver avec une certaine distance de ce tas.
-dist_tas = 200
+dist_tas = 400
 
 # En fonction des tas, cette distance doit être ajoutée en x ou en y :
 # tas : 1, 2, 5, 8 la distance doit être ajoutée en y

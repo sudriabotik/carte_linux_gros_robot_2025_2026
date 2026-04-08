@@ -42,7 +42,8 @@ class StratDynamique:
         # 1. ATTENTE DÉPART
         # ======================
         couleur = self.funct.wait_and_read_team_color()
-
+        
+        self.funct.node_autom.action_couleur_equipe(couleur)
         # ======================
         # 2. CALAGE DE DÉPART
         # ======================
@@ -50,6 +51,7 @@ class StratDynamique:
 
         self.funct.wait_debut_match()
 
+        self.funct.node_asserv.action_evitement_on_off(False)
         # ======================
         # 3. STRATÉGIE DE JEU
         # ======================
@@ -61,8 +63,7 @@ class StratDynamique:
         # - deposer des elements de jeux
         # - aller un tas_d'elements de jeux
         # - pousser un tas d'element de jeux
-        self.go_and_catch_tas('tas_1')
-
+        self.go_and_catch_tas('tas_5')
 
         logger.log_info("StratDynamique", f"Position finale du robot: {self.robot}")
 
@@ -91,7 +92,7 @@ class StratDynamique:
 
         # 2. Suivre le chemin généré (type_cible=1 pour catch)
         self.funct.follow_path(path, type_cible=1)
-        
+
         # 3. Attraper le tas à sa position centrale
         centre_tas = TAS_COORDS[target_tas]
         self.funct.catch_tas(centre_tas)

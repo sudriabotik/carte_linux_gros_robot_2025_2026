@@ -1,0 +1,36 @@
+# Règle udev pour configuration automatique du PCAN-USB
+#
+# Cette règle configure automatiquement l'interface can0 dès que le PCAN-USB est branché
+#
+# Installation:
+#   sudo cp 99-pcan-usb.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#
+# Note: Cette règle nécessite un script helper dans /usr/local/bin/
+# Voir README_CAN_SETUP.md pour les instructions complètes
+
+# ============================================================================
+# RÈGLE CORRIGÉE - Basée sur les propriétés observées dans udevadm monitor
+# ============================================================================
+#
+# Événement observé lors du branchement :
+#   ACTION=add
+#   SUBSYSTEM=net
+#   INTERFACE=can0
+#   ID_USB_DRIVER=peak_usb
+#   ID_VENDOR_ID=0c72
+#   ID_MODEL_ID=000c
+#
+# La règle doit matcher sur les ENV{} (propriétés de l'événement),
+# pas sur ATTRS{} (attributs du device USB parent).
+# ============================================================================
+
+# Méthode 1 : Match sur le driver peak_usb ET l'interface can0 (RECOMMANDÉ)
+ACTION=="add", SUBSYSTEM=="net", ENV{ID_USB_DRIVER}=="peak_usb", ENV{INTERFACE}=="can0", RUN+="/usr/local/bin/setup-pcan-helper.sh"
+
+# Méthode 2 : Match sur vendor/product ID (alternative, plus spécifique)
+# ACTION=="add", SUBSYSTEM=="net", ENV{ID_VENDOR_ID}=="0c72", ENV{ID_MODEL_ID}=="000c", ENV{INTERFACE}=="can0", RUN+="/usr/local/bin/setup-pcan-helper.sh"
+
+# Méthode 3 : Match sur ID_NET_DRIVER (encore une alternative)
+# ACTION=="add", SUBSYSTEM=="net", ENV{ID_NET_DRIVER}=="peak_usb", ENV{INTERFACE}=="can0", RUN+="/usr/local/bin/setup-pcan-helper.sh"

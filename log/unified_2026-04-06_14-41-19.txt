@@ -1,8 +1,0 @@
-================================================================================
-Unified Debug Log (UART + CAN) - Started: 2026-04-06_14-41-19
-Program started at: 2026-04-06 14:41:17.770955
-All timestamps use unified clock: absolute (relative)
-================================================================================
-
-[2026-04-06 14:41:19.841 (t+2.070099s)] [CAN RX] Node 1 → status:1 cmd_id:999 action:0 completed:0 error:103
-[2026-04-06 14:41:19.903 (t+2.132522s)] [CAN RX] Node 2 → status:10 cmd_id:0 action:0 completed:0 error:0

@@ -2,7 +2,7 @@ import time
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
-from core.robot import constants as const
+from core.interface.can import constants as const
 from core.interface.can import canopen_wrapper
 from core.interface.gpio.gpio import read_gpio_tirette, read_gpio_couleur
 
@@ -11,7 +11,7 @@ from core.interface.can.comm_autom import CanAutomNode #  Type hint uniquement (
 from core.robot.robot import Robot  # Type hint uniquement (pour Ctrl+Click IDE)
 
 class FunctStrat:
-    def __init__(self, node_autom: CanAutomNode, node_asserv: CanAsservNode, robot_state: Robot):
+    def __init__(self, node_autom: "CanAutomNode", node_asserv: "CanAsservNode", robot_state: "Robot"):
         self.node_autom = node_autom
         self.node_asserv = node_asserv
         self.robot_state = robot_state
@@ -86,7 +86,6 @@ class FunctStrat:
         '''
         On attend que la tirette soit retiré.
         '''
-        self.node_asserv.action_evitement_on_off(True)
 
         while read_gpio_tirette() == const.PRESENCE_TIRETTE:
             time.sleep(0.05)

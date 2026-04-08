@@ -39,7 +39,17 @@ def initialize_interfaces() -> InterfacesContext:
 
     # Initialiser bus CAN
     logger.log_info("Init", "Attempting to connect to CAN bus...")
-    bus = can.interface.Bus(bustype='slcan', channel='/dev/canable', bitrate=500000)
+    #avec le usb to can qui a le firmware canable on utilise  cette commande pour le bus : 
+    # il y a un dev rule pour fixer le nom du port serie car le nom du port peut changer.
+    #bus = can.interface.Bus(bustype='slcan', channel='/dev/canable', bitrate=500000)
+    
+    #avec le usb to can qui a le firmware PCAN on utilise cette commande pour le bus :
+    # il y a une dev rule pour configurer et activer l'interace can0 à chaque branchement de usb to can. 
+    bus = can.interface.Bus(
+        interface='socketcan',
+        channel='can0',
+        bitrate=500000
+    )
     logger.log_info("Init", "Connected to CAN network")
 
     # Configuration debug CAN

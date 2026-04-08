@@ -10,7 +10,7 @@ import traceback
 import threading
 import time
 
-from core.interface.can.robot_comm_data import *
+from core.interface.can.constants import *
 import core.interface.log_management.logger as logger
 
 
@@ -197,4 +197,4 @@ class CanActionNode :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
 			
-	
+
