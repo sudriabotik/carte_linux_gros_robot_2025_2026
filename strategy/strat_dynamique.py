@@ -31,6 +31,7 @@ class StratDynamique:
         self.robot_adv = robot_adv
         self.available_tas = available_tas
         self.zone_depose_utiliser = []  # zones de dépôt déjà utilisées (deviennent interdites)
+        self.tas_attraper = []          # tas déjà ramassés
         logger.log_info("StratDynamique", "Moteur de stratégie dynamique initialisé")
 
     def run_strat(self):
