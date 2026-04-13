@@ -5,7 +5,7 @@ Prend les décisions en fonction de l'état du robot et exécute le match comple
 from core.interface.can import canopen_wrapper
 from core.interface.log_management import logger
 
-from strategy.generate_path_V2 import generate_path
+from strategy.generate_path_V2 import generate_path, generate_path_to_deposit_caca
 from strategy.coordonner_strat import TAS_COORDS
 
 from core.robot.function_strat import FunctStrat  # Type hint uniquement (pour Ctrl+Click IDE)
@@ -112,7 +112,7 @@ class StratDynamique:
             num_element_ejecter: Nombre d'éléments à éjecter
         '''
         # 1. Générer le chemin vers la zone de dépôt
-        path = generate_path(
+        path = generate_path_to_deposit_caca(
             self.robot.get_position_x_y(),  # Position actuelle du robot
             target_zone_depose,              # Zone de dépôt cible
             self.robot_adv,                  # Position adversaire

@@ -16,10 +16,10 @@ from typing import List, Tuple, Dict, Optional
 from strategy.coordonner_strat import (
     POINTS, GRAPH, TARGETS, PRIORITY_ORDER,
     TAS_COORDS,                                                   # claude diane
-    TARGETS_DEPOT_CACA,                                           # début diane
+    TARGETS_DEPOT_CACA,                                           # claude diane
     # DEPOTS_CIRCULAIRE,  # plus utilisé — approche circulaire abandonnée
     ZONES_INTERDITES_TAS, ZONES_INTERDITES_DEPOT,                # claude diane
-    dist_depose, ROBOT_WIDTH, ROBOT_LENGTH, ZONE_INTERDITE,      # fin diane
+    # dist_depose, ROBOT_WIDTH, ROBOT_LENGTH, ZONE_INTERDITE,   # plus utilisés (approche circulaire abandonnée)
 )
 
 
@@ -376,63 +376,8 @@ def optimize_path(path: List[Tuple[float, float]]) -> List[Tuple[float, float]]:
 
 
 ########
-### FONCTION PRINCIPALE (unifiée tas + dépôt)
+### FONCTIONS PRINCIPALES
 ########
-
-# --- Ancien code séparé (deux fonctions) — conservé comme référence ---
-# def generate_path(robot_pos, target_tas, adversary_pos, available_tas, deposited_zones=None):
-#     # Vérification tas, update_graph_available_tas, update_graph_tas_zones,
-#     # update_graph_depot_zones, update_graph_exclusion, A* vers meilleur point d'approche
-#     # (distance brute, pas chemin réel), ajout TAS_COORDS[target_tas] en final
-#     ...
-#
-# def generate_path_to_deposit_caca(robot_pos, target_deposit, adversary_pos, available_tas=None, deposited_zones=None):
-#     # GRAPH brut (pas update_graph_available_tas), update_graph_tas_zones,
-#     # update_graph_exclusion, A* vers meilleur point d'approche (distance chemin réel),
-#     # ajout du point d'approche opposé en final
-#     # Ancien code circulaire d4/d5/d6 :
-#     #   if target_deposit in DEPOTS_CIRCULAIRE:
-#     #       path → centre → exit = _best_circle_point(path[-2], centre, dist_depose)
-#     ...
-# --- Fin ancien code ---
-
-# claude diane
-ROBOT_MARGIN = math.sqrt(ROBOT_WIDTH**2 + ROBOT_LENGTH**2) / 2  # demi-diagonale ≈ 221mm
-
-
-def _is_reachable(point):
-    """Vérifie qu'un point est dans le terrain et hors zone interdite (avec marge robot)."""
-    x_min, x_max = ROBOT_MARGIN, 3000 - ROBOT_MARGIN
-    y_min, y_max = ROBOT_MARGIN, 2000 - ROBOT_MARGIN
-    zi_x1, zi_x2, zi_y1, zi_y2 = ZONE_INTERDITE
-    px, py = point
-    if not (x_min <= px <= x_max and y_min <= py <= y_max):
-        return False
-    if zi_x1 - ROBOT_MARGIN < px < zi_x2 + ROBOT_MARGIN and zi_y1 - ROBOT_MARGIN < py < zi_y2 + ROBOT_MARGIN:
-        return False
-    return True
-
-
-def _best_circle_point(reference_point, center, dist):  # claude diane — gardé comme trace de l'approche circulaire
-    """
-    Retourne le point sur le cercle de rayon `dist` autour de `center`,
-    dans la direction de `reference_point` vers `center`, valide pour le robot.
-    Tourne par pas de 5° si la direction idéale est invalide.
-    """
-    dx = center[0] - reference_point[0]
-    dy = center[1] - reference_point[1]
-    length = math.sqrt(dx**2 + dy**2)
-    base_angle = math.atan2(dy, dx) if length != 0 else 0.0
-
-    for delta_deg in range(0, 181, 5):
-        for sign in ([0] if delta_deg == 0 else [1, -1]):
-            angle = base_angle + math.radians(delta_deg * sign)
-            px = center[0] + dist * math.cos(angle)
-            py = center[1] + dist * math.sin(angle)
-            if _is_reachable((px, py)):
-                return (int(px), int(py))
-    return center  # fallback
-
 
 # claude diane
 def _get_opposite_approach(arrived_node: str, approach_nodes: List[str]) -> Optional[str]:
@@ -448,63 +393,104 @@ def _get_opposite_approach(arrived_node: str, approach_nodes: List[str]) -> Opti
             candidate = arrived_node[:-len(suffix)] + opp_suffix
             if candidate in approach_nodes:
                 return candidate
-    # fallback : premier nœud différent (cas 2 points sans convention _a/_b)
+    # fallback : premier nœud différent
     for node in approach_nodes:
         if node != arrived_node:
             return node
     return None
+# claude diane
 
 
 def generate_path(robot_pos: Tuple[float, float],
-                  target: str,
+                  target_tas: str,
                   adversary_pos: Tuple[float, float],
-                  available_tas: List[str] = None,
+                  available_tas: List[str],
                   deposited_zones: List[str] = None) -> Optional[List[Tuple[float, float]]]:
     """
-    Génère un chemin vers un tas ou une zone de dépôt.
+    Génère un chemin pour atteindre un tas cible en évitant l'adversaire.
 
     Args:
         robot_pos: Position actuelle du robot (x, y)
-        target: Nom du tas (ex: 'tas_4') ou de la zone de dépôt (ex: 'd5')
+        target_tas: Nom du tas cible (ex: 'tas_4')
         adversary_pos: Position de l'adversaire (x, y)
-        available_tas: Liste des tas encore disponibles sur le terrain
-        deposited_zones: Liste des zones de dépôt déjà utilisées (interdites)
+        available_tas: Liste des tas encore disponibles
+        deposited_zones: Zones de dépôt déjà utilisées (interdites)
 
     Returns:
-        Liste de coordonnées [(x1, y1), ...] formant le chemin, ou None si aucun chemin trouvé
-
-    Comportement selon le type de cible :
-        - Tas (tas_*) : chemin → point d'approche → centre du tas
-        - Dépôt (d*)  : chemin → point d'approche proche → point d'approche opposé
+        Liste de coordonnées [(x1, y1), ...] ou None si aucun chemin trouvé
+        Chemin : robot → points de passage → point d'approche → centre du tas
     """
-    is_tas   = target in TARGETS
-    is_depot = target in TARGETS_DEPOT_CACA
-
-    if not is_tas and not is_depot:
+    if target_tas not in TARGETS:
         return None
-    if is_tas and available_tas and target not in available_tas:
+    if target_tas not in available_tas:
         return None
 
-    # --- Construction du graphe ---
-    if is_tas:
-        # Retirer les points d'approche des tas indisponibles
-        graph = update_graph_available_tas(available_tas or [])
-    else:
-        graph = {node: neighbors[:] for node, neighbors in GRAPH.items()}
+    graph = update_graph_available_tas(available_tas)
+    graph = update_graph_tas_zones(graph, available_tas)
+    if deposited_zones:
+        graph = update_graph_depot_zones(graph, deposited_zones)
+    # Retirer les points d'approche dépôt (d*_a, d*_b...) — inutiles pour aller à un tas, perturbent A*
+    depot_approach = {k for k in graph if k.startswith('d') and '_' in k}
+    graph = {k: [n for n in v if n not in depot_approach] for k, v in graph.items() if k not in depot_approach}
+    graph, robot_node = update_graph_exclusion(graph, adversary_pos, robot_pos)
 
+    approach_nodes = TARGETS[target_tas]
+    best_path = None
+    best_dist = float('inf')
+
+    for ap_node in approach_nodes:
+        if ap_node not in graph:
+            continue
+        path_nodes = astar(robot_node, ap_node, graph)
+        if path_nodes is None:
+            continue
+        coords = [robot_pos] + [POINTS[n] for n in path_nodes[1:]]
+        total = sum(dist_euclidean(coords[i], coords[i + 1]) for i in range(len(coords) - 1))
+        if total < best_dist:
+            best_dist = total
+            best_path = coords
+
+    if best_path is None:
+        return None
+
+    # Avancer jusqu'au centre du tas pour attraper les éléments
+    best_path.append(TAS_COORDS[target_tas])
+    return optimize_path(best_path)
+
+
+def generate_path_to_deposit_caca(robot_pos: Tuple[float, float],          # claude diane
+                                   target_deposit: str,
+                                   adversary_pos: Tuple[float, float],
+                                   available_tas: List[str] = None,
+                                   deposited_zones: List[str] = None) -> Optional[List[Tuple[float, float]]]:
+    """
+    Génère un chemin vers une zone de dépôt (méthode caca).
+
+    Args:
+        robot_pos: Position actuelle du robot (x, y)
+        target_deposit: Nom de la zone de dépôt (ex: 'd5')
+        adversary_pos: Position de l'adversaire (x, y)
+        available_tas: Liste des tas encore présents (zones interdites actives)
+        deposited_zones: Zones de dépôt déjà utilisées (interdites)
+
+    Returns:
+        Liste de coordonnées [(x1, y1), ...] ou None si aucun chemin trouvé
+        Chemin : robot → points de passage → point d'approche proche → point d'approche opposé
+    """
+    if target_deposit not in TARGETS_DEPOT_CACA:
+        return None
+
+    graph = {node: neighbors[:] for node, neighbors in GRAPH.items()}
     if available_tas:
         graph = update_graph_tas_zones(graph, available_tas)
     if deposited_zones:
         graph = update_graph_depot_zones(graph, deposited_zones)
-
     graph, robot_node = update_graph_exclusion(graph, adversary_pos, robot_pos)
 
-    # --- A* vers le point d'approche avec le chemin le plus court ---
-    approach_nodes = TARGETS[target] if is_tas else TARGETS_DEPOT_CACA[target]
-
-    best_path     = None
-    best_dist     = float('inf')
-    best_ap_node  = None  # claude diane — mémorise le nœud d'arrivée choisi
+    approach_nodes = TARGETS_DEPOT_CACA[target_deposit]
+    best_path    = None
+    best_dist    = float('inf')
+    best_ap_node = None
 
     for ap_node in approach_nodes:
         if ap_node not in graph:
@@ -517,20 +503,15 @@ def generate_path(robot_pos: Tuple[float, float],
         if total < best_dist:
             best_dist    = total
             best_path    = coords
-            best_ap_node = ap_node  # claude diane
+            best_ap_node = ap_node
 
     if best_path is None:
         return None
 
-    # --- Point final selon le type de cible ---
-    if is_tas:
-        # Avancer jusqu'au centre du tas pour attraper les éléments
-        best_path.append(TAS_COORDS[target])
-    else:
-        # Traverser la zone de dépôt : point d'approche proche → point d'approche OPPOSÉ  # claude diane
-        opposite = _get_opposite_approach(best_ap_node, approach_nodes)                    # claude diane
-        if opposite:                                                                        # claude diane
-            best_path.append(POINTS[opposite])                                             # claude diane
+    # Traverser la zone : point d'approche proche → point d'approche OPPOSÉ
+    opposite = _get_opposite_approach(best_ap_node, approach_nodes)
+    if opposite:
+        best_path.append(POINTS[opposite])
 
     return optimize_path(best_path)
 # claude diane
@@ -587,7 +568,7 @@ if __name__ == "__main__":
 
     # claude diane
     print("\n=== Test dépose caca vers d5 (milieu) ===")
-    path_d = generate_path((500, 1150), 'd5', (2600, 1200))
+    path_d = generate_path_to_deposit_caca((500, 1150), 'd5', (2600, 1200), available_tas)
     if path_d:
         print(f"Chemin trouvé ({len(path_d)} points):")
         for pt in path_d:
@@ -596,7 +577,7 @@ if __name__ == "__main__":
         print("Aucun chemin trouvé!")
 
     print("\n=== Test dépose caca vers d1 (bord haut) ===")
-    path_d1 = generate_path((500, 1150), 'd1', (2600, 1200))
+    path_d1 = generate_path_to_deposit_caca((500, 1150), 'd1', (2600, 1200), available_tas)
     if path_d1:
         print(f"Chemin trouvé ({len(path_d1)} points):")
         for pt in path_d1:
@@ -605,7 +586,7 @@ if __name__ == "__main__":
         print("Aucun chemin trouvé!")
 
     print("\n=== Test dépose caca vers d7 (bord droit) ===")
-    path_d7 = generate_path((2500, 500), 'd7', (500, 500))
+    path_d7 = generate_path_to_deposit_caca((2500, 500), 'd7', (500, 500), available_tas)
     if path_d7:
         print(f"Chemin trouvé ({len(path_d7)} points):")
         for pt in path_d7:
@@ -614,7 +595,7 @@ if __name__ == "__main__":
         print("Aucun chemin trouvé!")
 
     print("\n=== Test dépose caca vers d10 (bord bas) ===")
-    path_d10 = generate_path((2500, 500), 'd10', (500, 500))
+    path_d10 = generate_path_to_deposit_caca((2500, 500), 'd10', (500, 500), available_tas)
     if path_d10:
         print(f"Chemin trouvé ({len(path_d10)} points):")
         for pt in path_d10:
