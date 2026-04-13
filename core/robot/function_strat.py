@@ -141,3 +141,13 @@ class FunctStrat:
         self.wait_autom()
         self.node_autom.action_deposit()
 
+    def depose_element_zone(self,pos_cible:tuple,num_element_depose):
+
+        #peut-être plusieurs pos cible
+        canopen_wrapper.unified_logger.log_python("Stratégie", f"depose_element_zone x={x}, y={y}")
+
+        # là comment on gère les mouvements.
+
+        self.wait_autom()
+        self.node_autom.action_ejecter(1) # pour l'instant seulement l'ejection d'un seul element fonctione
+

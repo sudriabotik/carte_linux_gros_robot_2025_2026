@@ -30,6 +30,8 @@ class StratDynamique:
         self.robot = robot_state
         self.robot_adv = robot_adv
         self.available_tas = available_tas
+        self.tas_attraper = []
+        self.zone_depose_utiliser = []
         logger.log_info("StratDynamique", "Moteur de stratégie dynamique initialisé")
 
     def run_strat(self):
@@ -86,7 +88,8 @@ class StratDynamique:
             self.robot.get_position_x_y(),  # Position actuelle du robot
             target_tas,                      # Tas cible
             self.robot_adv,                  # Position adversaire
-            self.available_tas               # Liste des tas disponibles
+            self.available_tas,               # Liste des tas disponibles
+            self.tas_attraper,
         )
 
         canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
@@ -95,5 +98,27 @@ class StratDynamique:
         self.funct.follow_path(path, type_cible=1)
 
         # 3. Attraper le tas à sa position centrale
+        self.tas_attraper.append(target_tas)
         centre_tas = TAS_COORDS[target_tas]
         self.funct.catch_tas(centre_tas)
+
+    def go_and_caca(self,target_zone_depose,num_element_ejecter):
+
+                # 1. Générer le chemin vers le tas
+        path = generate_path(
+            self.robot.get_position_x_y(),  # Position actuelle du robot
+            target_zone_depose,                      # Tas cible
+            self.robot_adv,                  # Position adversaire
+            self.available_tas,               # Liste des tas disponibles
+            self.tas_attraper
+        )
+
+        canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
+
+        # 2. Suivre le chemin généré (type_cible=1 pour catch)
+        self.funct.follow_path(path, type_cible=1)
+        self.zone_depose_utiliser.append(target_zone_depose)
+        
+        # determiner les point cible pour les passer en parametre à la fonction 
+
+        self.funct.depose_element_zone()

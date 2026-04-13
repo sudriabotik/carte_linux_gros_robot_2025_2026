@@ -92,6 +92,47 @@ def update_graph_available_tas(available_tas: List[str]) -> Dict[str, List[str]]
 
     return graph_copy
 
+def update_graph_tas_attraper(available_tas: List[str]) -> Dict[str, List[str]]:
+    """
+    Relie entre eux les points d'approche des tas déjà attrapés
+
+    Pour chaque tas que l'on a deeja attrapé, on peut maintenant
+    relier directement ses 2 points d'approche entre eux dans le graphe,
+    car il n'y a plus d'obstacle.
+
+    Args:
+        available_tas: Liste des tas encore disponibles
+
+    Returns:
+        Graphe modifié avec connexions directes entre points d'approche des tas attrapés
+
+    Exemple:
+        Si tas_1 a été attrapé, on relie t1_a <-> t1_b
+    """
+    # Créer une copie profonde du graphe
+    graph_copy = {node: neighbors[:] for node, neighbors in GRAPH.items()}
+
+    # Identifier les tas qui ont été attrapés (pas dans available_tas)
+    all_tas = set(TARGETS.keys())
+    captured_tas = all_tas - set(available_tas)
+
+    # Pour chaque tas attrapé, relier ses points d'approche
+    for tas in captured_tas:
+        approach_points = TARGETS[tas]
+
+        # Certains tas n'ont qu'un seul point d'approche (tas_5, tas_8)
+        if len(approach_points) >= 2:
+            point_a = approach_points[0]
+            point_b = approach_points[1]
+
+            # Ajouter la connexion bidirectionnelle entre les deux points
+            if point_a in graph_copy and point_b not in graph_copy[point_a]:
+                graph_copy[point_a].append(point_b)
+
+            if point_b in graph_copy and point_a not in graph_copy[point_b]:
+                graph_copy[point_b].append(point_a)
+
+    return graph_copy
 
 def update_graph_exclusion(graph: Dict[str, List[str]],
                            adversary_pos: Tuple[float, float],
@@ -320,7 +361,8 @@ def optimize_path(path: List[Tuple[float, float]]) -> List[Tuple[float, float]]:
 def generate_path(robot_pos: Tuple[float, float],
                   target_tas: str,
                   adversary_pos: Tuple[float, float],
-                  available_tas: List[str]) -> Optional[List[Tuple[float, float]]]:
+                  available_tas: List[str],
+                  tas_attraper) -> Optional[List[Tuple[float, float]]]:
     """
     Génère un chemin pour atteindre un tas cible en évitant l'adversaire
 
@@ -341,7 +383,9 @@ def generate_path(robot_pos: Tuple[float, float],
         return None
 
     # 2. Créer le graphe filtré par tas disponibles
-    graph = update_graph_available_tas(available_tas)
+    #graph = update_graph_available_tas(available_tas)
+
+    graph = update_graph_tas_attraper(tas_attraper)
 
     # 3. Appliquer l'exclusion et insérer le robot
     graph, robot_node = update_graph_exclusion(graph, adversary_pos, robot_pos)
@@ -371,6 +415,17 @@ def generate_path(robot_pos: Tuple[float, float],
 
     if path_nodes is None:
         return None
+
+    # 8. Supprimer le premier waypoint s'il est trop proche du robot (< 150mm)
+    if len(path_coords) > 1:  # S'assurer qu'il y a au moins 2 points
+        first_point = path_coords[0]
+        dx = abs(first_point[0] - robot_pos[0])
+        dy = abs(first_point[1] - robot_pos[1])
+        
+        # Si le premier point est dans un carré de 150mm autour du robot
+        if dx < 75 and dy < 75:  # 150mm / 2 = 75mm de rayon
+            path_coords = path_coords[1:]  # Supprimer le premier point
+
 
     # 6. Convertir les noms de nœuds en coordonnées
     path_coords = []
