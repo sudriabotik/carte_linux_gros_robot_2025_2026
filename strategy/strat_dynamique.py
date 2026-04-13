@@ -63,6 +63,7 @@ class StratDynamique:
         # - deposer des elements de jeux
         # - aller un tas_d'elements de jeux
         # - pousser un tas d'element de jeux
+        self.go_and_catch_tas('tas_1')
         self.go_and_catch_tas('tas_5')
 
         logger.log_info("StratDynamique", f"Position finale du robot: {self.robot}")

@@ -2,7 +2,7 @@
 """
 Script de debug REPL pour tester les commandes du robot ligne par ligne
 
-Usage: python -i debug_repl.py
+Usage: python3 -i debug_repl.py
 
 Ce script initialise tout le matériel et crée des variables globales
 pour permettre l'exécution de commandes individuelles avec Shift+Enter
@@ -70,3 +70,41 @@ print("\n N'OUBLIE PAS:")
 print("  Pour quitter: Ctrl+D ou exit()")
 print("  Pour arrêter proprement: canopen_wrapper.unified_logger.stop()")
 print("=" * 60 + "\n")
+
+
+"""
+========== TOUTES LES FONCTIONS NODE_AUTOM ==========
+
+node_autom.action_homing(speed_v_percent=10, speed_h_percent=10)
+node_autom.action_grab()
+node_autom.action_deposit()
+node_autom.action_pos_elevator_h(pos_mm=100)
+node_autom.action_pos_elevator_v(pos_mm=200)
+node_autom.action_pos_ax(id_ax=2, pos_ax=200)
+node_autom.action_pump_on_off(on_off=True)
+node_autom.action_open_pince()
+node_autom.action_close_pince()
+node_autom.action_ejecter(num_element=1)
+node_autom.action_i2c_servo(channel=0, position=1500)
+node_autom.action_ready_to_grap()
+node_autom.action_safe_position_ascenseur()
+node_autom.action_couleur_equipe(couleur_equipe=0)
+node_autom.action_fermer_porte_rentrer_ax_caca()
+"""
+
+
+"""
+========== TOUTES LES FONCTIONS NODE_ASSERV ==========
+
+node_asserv.action_set_linear_speed_accel(speed=100, acceleration=50)
+node_asserv.action_set_angular_speed_accel(speed=100, acceleration=50)
+node_asserv.action_translation(distance_mm=-1500, speed=100, accel=50)
+node_asserv.action_rotation(angle_deg=(360*10), speed=100, accel=50)
+node_asserv.action_goto_xy(x_mm=1000, y_mm=1500, face=comm_asserv.Face.FACE_AVANT)
+node_asserv.action_recalibration(facing=comm_asserv.Facing.NEGATIVE_X, face=comm_asserv.Face.FACE_ARRIERE)
+node_asserv.action_moveto(x_mm=800, y_mm=1200, face=comm_asserv.Face.FACE_AVANT)
+node_asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
+node_asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
+node_asserv.action_evitement_on_off(enable=True)
+node_asserv.action_debug_on_off(enable=True)
+"""

@@ -137,7 +137,7 @@ class _CanActionNodeReader(can.Listener) :
 						y = int.from_bytes(msg.data[2:4], byteorder='little', signed=True)
 						angle = int.from_bytes(msg.data[4:6], byteorder='little', signed=True)
 						lin_vel = int.from_bytes(msg.data[6:8], byteorder='little', signed=True)
-						logger.log_info("CanActionNodeReader", f"[Node {id}] TPDO[1] Position → X:{x}mm Y:{y}mm θ:{angle}° V:{lin_vel}mm/s")
+						#logger.log_info("CanActionNodeReader", f"[Node {id}] TPDO[1] Position → X:{x}mm Y:{y}mm θ:{angle}° V:{lin_vel}mm/s")
 						# Update robot position if robot object exists
 						if self.robot:
 							self.robot.update_position(x, y, angle, lin_vel)

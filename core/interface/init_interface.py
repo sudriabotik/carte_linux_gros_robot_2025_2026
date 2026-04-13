@@ -37,6 +37,10 @@ def initialize_interfaces() -> InterfacesContext:
     DEBUG_CAN_CHANGES_ONLY = True
     DEBUG_UNIFIED_LOGGER = True
 
+    # UART_ASSERV et UART_AUTOM can't be true at the same time.
+    UART_ASSERV  =True
+    UART_AUTOM = False
+
     # Initialiser bus CAN
     logger.log_info("Init", "Attempting to connect to CAN bus...")
     #avec le usb to can qui a le firmware canable on utilise  cette commande pour le bus : 
@@ -57,11 +61,19 @@ def initialize_interfaces() -> InterfacesContext:
 
     # Démarrer le unified logger (UART + CAN)
     if DEBUG_UNIFIED_LOGGER:
-        canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
-            uart_port="/dev/ttyS2",
-            uart_baudrate=1000000,
-            log_dir="log"
-        )
+        if (UART_AUTOM):
+            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+                uart_port="/dev/ttyS6",
+                uart_baudrate=1000000,
+                log_dir="log"
+            )
+        else:
+            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+                uart_port="/dev/ttyS2",
+                uart_baudrate=1000000,
+                log_dir="log"
+            )
+
         canopen_wrapper.unified_logger.start()
         logger.log_info("Init", "Unified logger (UART+CAN) started")
 

@@ -117,7 +117,8 @@ class FunctStrat:
             #print(f"  {i+1}. {point}")
             if ((i == len(path)-2) and (type_cible == 1) ):
                 #pour l'avant dernière trajectoire on prépare l'autom catch
-                self.node_autom.action_ready_to_grap()
+                if ( not(self.node_autom.is_busy)):
+                    self.node_autom.action_ready_to_grap()
 
             self.wait_asserv()
             x = point[0]

@@ -142,3 +142,9 @@ class CanAutomNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 14, [couleur_equipe])
 		self.timestamp_last_command = time.time()
 
+	def action_fermer_porte_rentrer_ax_caca(self):
+		"""
+		CMD_FERMER_PORTE_RENTRER_AX_CACA
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 15, [])
+		self.timestamp_last_command = time.time()
