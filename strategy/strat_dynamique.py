@@ -30,6 +30,7 @@ class StratDynamique:
         self.robot = robot_state
         self.robot_adv = robot_adv
         self.available_tas = available_tas
+        self.zone_depose_utiliser = []  # zones de dépôt déjà utilisées (deviennent interdites)
         logger.log_info("StratDynamique", "Moteur de stratégie dynamique initialisé")
 
     def run_strat(self):
@@ -63,7 +64,9 @@ class StratDynamique:
         # - deposer des elements de jeux
         # - aller un tas_d'elements de jeux
         # - pousser un tas d'element de jeux
-        self.go_and_catch_tas('tas_5')
+        self.go_and_catch_tas('tas_3')
+        self.available_tas.remove('tas_3')   # tas_3 ramassé, ne plus l'éviter comme zone interdite
+        self.go_and_caca('d5', 4)            # déposer au dépôt d5 (3 éléments éjectés)
 
         logger.log_info("StratDynamique", f"Position finale du robot: {self.robot}")
 
@@ -94,5 +97,35 @@ class StratDynamique:
         self.funct.follow_path(path, type_cible=1)
 
         # 3. Attraper le tas à sa position centrale
+        self.tas_attraper.append(target_tas)
         centre_tas = TAS_COORDS[target_tas]
         self.funct.catch_tas(centre_tas)
+
+    def go_and_caca(self, target_zone_depose: str, num_element_ejecter: int):
+        '''
+        Cette fonction regroupe la génération de trajectoire
+        et l'action de l'autom pour déposer des éléments (méthode caca)
+
+        Args:
+            target_zone_depose: Nom de la zone de dépôt (ex: 'd5')
+            num_element_ejecter: Nombre d'éléments à éjecter
+        '''
+        # 1. Générer le chemin vers la zone de dépôt
+        path = generate_path(
+            self.robot.get_position_x_y(),  # Position actuelle du robot
+            target_zone_depose,              # Zone de dépôt cible
+            self.robot_adv,                  # Position adversaire
+            self.available_tas,              # Liste des tas disponibles
+            self.zone_depose_utiliser        # Zones déjà utilisées (interdites)
+        )
+
+        canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
+
+        # 2. Suivre le chemin généré
+        self.funct.follow_path(path, type_cible=1)
+
+        # 3. Déposer les éléments
+        self.funct.depose_element_zone(num_element_ejecter)
+
+        # 4. Marquer la zone comme utilisée (devient interdite pour les prochains chemins)
+        self.zone_depose_utiliser.append(target_zone_depose)
