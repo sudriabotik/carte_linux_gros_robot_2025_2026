@@ -125,6 +125,11 @@ class FunctStrat:
             self.node_asserv.action_goto_xy(x, y, comm_asserv.Face.FACE_AVANT)
             self.wait_asserv()
 
+    def depose_element_zone(self, num_element: int):
+        self.wait_autom()
+        self.node_autom.action_ejecter(num_element)
+        self.wait_autom()
+
     def catch_tas(self, centre_tas: tuple):
         x = centre_tas[0]
         y = centre_tas[1]
