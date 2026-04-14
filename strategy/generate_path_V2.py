@@ -15,7 +15,6 @@ import heapq
 from typing import List, Tuple, Dict, Optional
 from strategy.coordonner_strat import (
     POINTS, GRAPH, TARGETS, PRIORITY_ORDER,
-    TAS_COORDS,                                                   # claude diane
     TARGETS_DEPOT_CACA,                                           # claude diane
     # DEPOTS_CIRCULAIRE,  # plus utilisé — approche circulaire abandonnée
     ZONES_INTERDITES_TAS, ZONES_INTERDITES_DEPOT,                # claude diane
@@ -453,8 +452,6 @@ def generate_path(robot_pos: Tuple[float, float],
     if best_path is None:
         return None
 
-    # Avancer jusqu'au centre du tas pour attraper les éléments
-    best_path.append(TAS_COORDS[target_tas])
     return optimize_path(best_path)
 
 
