@@ -125,7 +125,7 @@ class FunctStrat:
             self.node_asserv.action_goto_xy(x, y, comm_asserv.Face.FACE_AVANT)
             self.wait_asserv()
 
-    def depose_element_zone(self, num_element: int):
+    def depose_element_zone(self, num_element: int): #diane
         self.wait_autom()
         self.node_autom.action_ejecter(num_element)
         self.wait_autom()
@@ -144,4 +144,5 @@ class FunctStrat:
         self.node_autom.action_grab()
         self.wait_autom()
         self.node_autom.action_deposit()
+        self.wait_autom()
 
