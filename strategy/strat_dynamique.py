@@ -123,7 +123,7 @@ class StratDynamique:
         canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
 
         # 2. Suivre le chemin généré
-        self.funct.follow_path(path, type_cible=1)
+        self.funct.follow_path(path, type_cible=2)
 
         # 3. Déposer les éléments
         self.funct.depose_element_zone(num_element_ejecter)
