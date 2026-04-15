@@ -8,7 +8,7 @@ from enum import Enum
 import sys
 import traceback
 
-import logger
+import core.interface.log_management.logger as logger
 
 
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
@@ -40,15 +40,13 @@ class FUNCTION_CODE(Enum) :
 class CanopenWrapper :
 
 	def __init__(self, bus : can.BusABC):
-		
+
 		self.network = bus
 		self.command_id = 1 # TEMP
 
-		self.notifier = can.Notifier(bus=bus)
-
-	
-	def add_listener(self, listener : can.Listener) :
-		self.notifier.add_listener(listener)
+		# FIXED BY CLAUDE: Initialize notifier as None - will be created on first listener registration
+		# This implements the singleton pattern to avoid "multiple active Notifier instances" error
+		self.notifier = None
 	
 
 	def send_rpdo(self, node_id : int, rpdo_num : int, data : list[int]) :
@@ -169,6 +167,10 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
+			# ADDED BY CLAUDE: Log CAN TX to unified logger if enabled (after command_id increment)
+			if unified_logger and unified_logger.is_enabled():
+				unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
+
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])
 			param_4_u16 = to_uint16(param_resized[4])
@@ -219,5 +221,29 @@ class CanopenWrapper :
 			sys.stderr.write(f"traceback : {traceback.format_exc()}\n")
 			
 			return False
+
+
+	# FIXED BY CLAUDE: Method to register a listener with the singleton Notifier
+	# This allows multiple nodes to share the same Notifier instance
+	def register_listener(self, listener) :
+		"""
+		Register a listener (e.g., _CanActionNodeReader) with the shared Notifier.
+		Creates the Notifier on first call (lazy initialization).
+
+		:param listener: A can.Listener instance to receive CAN messages
+		"""
+		if self.notifier is None :
+			# Create the Notifier only once, on first listener registration
+			logger.log_info("CanopenWrapper", "Creating singleton Notifier instance")
+			self.notifier = can.Notifier(self.network, [listener])
+		else :
+			# Notifier already exists, just add this listener to it
+			logger.log_info("CanopenWrapper", f"Adding listener to existing Notifier")
+			self.notifier.add_listener(listener)
+
+
+# Global configuration variables for debugging
+DEBUG_CAN_CHANGES_ONLY = True  # Will be set from main.py
+unified_logger = None  # ADDED BY CLAUDE: Will be set from main.py for unified UART+CAN logging
 
 instance : CanopenWrapper = None

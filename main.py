@@ -1,94 +1,31 @@
-##!/bin/env python3
-
-import can
-import can.interfaces.serial.serial_can
-import can.interfaces.socketcan.socketcan
-import canopen_wrapper
-import comm_autom
-import comm_asserv
-import time
-
-import traceback
-
-import logger
-
-print("attempting to connect to the bus")
-#bus : can.BusABC = can.interfaces.serial.serial_can.SerialBus(channel="/dev/ttyACM0", baudrate=500000)
-#bus = can.Bus(channel="/dev/ttyACM0", interface="slcan")
-bus = can.interface.Bus(bustype='slcan', channel='/dev/ttyACM0', bitrate=500000)
-
-
-print("connected to the network")
-
-canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
-
-node_autom = None
-try :
-    node_autom = comm_autom.CanAutomNode(bus, 2)
-except Exception as e :
-    logger.log_error("Main", f"cannot create autom node, {e}")
-
-node_asserv = None
-try :
-    node_asserv = comm_asserv.CanAsservNode(bus, 1)
-except Exception as e :
-    logger.log_error("Main", f"cannot create asserv node, {e}")
-    logger.log_traceback(traceback.format_exc())
-
-#node_asserv = comm_asserv.CanAsservNode(network, 1, "./canopen_od/autom.eds") # at the moment, both dictionaries are the same
-
-#node_autom.action_homing(10, 10)
-
-node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
-while (node_asserv.is_busy()) : time.sleep(0.05)
-node_asserv.action_translation(100, 10, 10)
-while (node_asserv.is_busy()) : time.sleep(0.05)
-node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
-while (node_asserv.is_busy()) : time.sleep(0.05)
-
-
-'''
-node_autom.action_homing()
-node_autom.action_grab()
-
-node_autom.action_deposit()
-node_autom.action_ejecter(2)
-
-
-## DEBUG 
-node_autom.action_pos_elevator_v(-232) #-232
-node_autom.action_pos_elevator_h(-110)
-node_autom.action_i2c_servo(2,500)
-'''
-logger.log_info("Main", "program finished")
-
+#!/bin/env python3
 """
-time.sleep(1)
-# attempts a homing
-if node_autom != None :
-    print("attempting a homing")
-    node_autom.action_homing()
-
-time.sleep(5)
-
-
-if node_asserv != None :
-    print("doing a small translation")
-    node_asserv.action_translation(0, 10, 1)
-
-    print("waiting for the translation to finish")
-    while node_asserv.is_busy() :
-        time.sleep(0.01)
-    print("translation finished")
-
-if node_autom != None :
-    print("small wait before the grab")
-    time.sleep(1)
-
-    print("attempting a grab")
-    node_autom.action_grab()
-
-time.sleep(5)
+Point d'entrée principal du robot
 """
+from core.init_core import initialize_all
+from strategy.strat_dynamique import StratDynamique
+from core.interface.can import canopen_wrapper
+from core.interface.log_management import logger
 
-bus.shutdown()
+
+def main():
+    """
+    Fonction principale du robot
+    """
+    # Initialisation complète du robot
+    hw = initialize_all()
+
+    # Création et exécution de la stratégie dynamique
+    strat_dyn = StratDynamique(hw.strat, hw.robot_state,(1000,1000),['tas_4', 'tas_8', 'tas_6', 'tas_3', 'tas_5', 'tas_2', 'tas_7', 'tas_1'] )
+    strat_dyn.run_strat()
+
+    # Arrêt propre
+    logger.log_info("Main", "Program finished")
+    if canopen_wrapper.unified_logger:
+        canopen_wrapper.unified_logger.stop()
+        logger.log_info("Main", "Unified logger stopped")
+    hw.bus.shutdown()
+
+
+if __name__ == "__main__":
+    main()
