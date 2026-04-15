@@ -114,6 +114,8 @@ class FunctStrat:
         #type_cible = 1 --> catch
         #type_cible = 2 --> deposite
         for i, point in enumerate(path):
+            if i == 0:
+                continue  # claude diane — sauter le premier point (position actuelle du robot)
             #print(f"  {i+1}. {point}")
             if ((i == len(path)-2) and (type_cible == 1) ):
                 #pour l'avant dernière trajectoire on prépare l'autom catch
