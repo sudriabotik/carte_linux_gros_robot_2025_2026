@@ -3,22 +3,24 @@ Contains functions allowing to send the correct action_id and arguments
 at the correct address to control the card.
 """
 
-from enum import IntEnum
+from types import FunctionType
 from typing import override
 
 import can
 
 import core.interface.can.canopen_wrapper as canopen_wrapper
+import core.interface.log_management.logger as logger
+import math
 import time
 
-from core.interface.can.action_comm_node import CanActionNode, _CanActionNodeReader, FUNCTION_CODE
-
+from core.interface.can.comm_node import CanCommNode
+from core.robot.robot import Robot
 
 
 
 class _CanLidarNodeReader(can.Listener) :
 
-	def __init__(self, id : int):
+	def __init__(self, id : int, on_msg_callback : FunctionType):
 		super().__init__()
 
 		self.id : int = id;
@@ -28,6 +30,8 @@ class _CanLidarNodeReader(can.Listener) :
 		self.lidar_status : int
 
 		self.timestamp_last_tpdo : float = -2
+
+		self.on_msg_callback : FunctionType = on_msg_callback
 	
 
 	@override
@@ -38,7 +42,7 @@ class _CanLidarNodeReader(can.Listener) :
 
 		if id == self.id :
 
-			if func == FUNCTION_CODE.IS_TPDO :
+			if func == canopen_wrapper.FUNCTION_CODE.IS_TPDO :
 
 				if i == 0 :
 
@@ -52,134 +56,43 @@ class _CanLidarNodeReader(can.Listener) :
 
 						self.timestamp_last_tpdo = time.time()
 
+						self.on_msg_callback()
+
 					else :
-						pass # will need to do unified logging or stuff
+						logger.log_info("CanActionNode", f"error receiving TPDO 1 for node {self.id}")
 			
 
 
 
-class CanLidarNode(CanActionNode) :
+class CanLidarNode(CanCommNode) :
 
-	def __init__(self, bus : can.BusABC, node_id : int):
-		super().__init__(bus, node_id, robot=robot)
+	def __init__(self, bus : can.BusABC, node_id : int, robot : Robot | None):
+
+		def callback() : self.process_opponent_data()
+		
+		self.lidar_reader : _CanLidarNodeReader = _CanLidarNodeReader(node_id, callback)
+
+		super().__init__(bus, node_id, self.lidar_reader)
+
+		self.robot : Robot | None = robot
+		self.on_evitement : FunctionType | None
 	
+	def get_opponent_pos(self) :
+		return (self.lidar_reader.opponent_x, self.lidar_reader.opponent_y)
 
-	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :
-		"""
-		performs the homing (initialisation of the motor positions using the switches)
-		The speed is in thousandths of mm/ms
-		The velocity is in thousandths of mm/ms^2
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 1, [speed, acceleration])
-		self.timestamp_last_command = time.time()
-	
-	def action_set_angular_speed_accel(self, speed: int, acceleration : int) :
-		"""
-		performs the homing (initialisation of the motor positions using the switches)
-		The speed is in thousandths of deg/ms
-		The velocity is in thousandths of deg/ms^2
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 2, [speed, acceleration])
-		self.timestamp_last_command = time.time()
-	
-	def action_translation(self, distance_mm: int, speed : int, accel : int) :
-		"""
-		performs a translation
-		The speed is in thousandths of mm/ms
-		The acceleration is in thousandths of mm/ms^2
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 3, [distance_mm, speed, accel])
-		self.timestamp_last_command = time.time()
+	def get_opponent_distance(self) :
+		if self.robot == None : return None
+		x, y = self.robot.get_position_x_y()
+		return math.sqrt((x - self.lidar_reader.opponent_x)**2 + (y - self.lidar_reader.opponent_y)**2)
 
+	def process_opponent_data(self) :
+		
+		distance = self.get_opponent_distance()
+		if (distance == None) :
+			logger.log_error("CanLidarNode", "Cannot obtain distance to opponent")
+			return
 
-	def action_rotation(self, angle_deg: int, speed : int, accel : int) :
-		"""
-		CMD_ACTION_ROTATION (4): Performs a rotation by the specified angle
-
-		:param angle_deg: Angle in degrees to rotate
-		:param speed: Angular speed in thousandths of deg/ms
-		:param accel: Angular acceleration in thousandths of deg/ms^2
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 4, [angle_deg, speed, accel])
-		self.timestamp_last_command = time.time()
-
-
-	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face) :
-		"""
-		CMD_ACTION_GOTO (5): Goes to the given point, using the requested face
-
-		:param x_mm: X coordinate in mm
-		:param y_mm: Y coordinate in mm
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 5, [x_mm, y_mm, face])
-		self.timestamp_last_command = time.time()
-
-
-	def action_recalibration(self, facing : Facing, face : Face) :
-		"""
-		CMD_ACTION_RECALIBRATE (6): Resets a coordinate of the robot using the walls of the table
-
-		:param facing: Direction to recalibrate (POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y)
-		:param face: Face to use during recalibration (FACE_AVANT or FACE_ARRIERE)
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 6, [facing, face])
-		self.timestamp_last_command = time.time()
-
-
-	def action_moveto(self, x_mm: int, y_mm : int, face : Face) :
-		"""
-		CMD_ACTION_MOVETO (7): Moves to the given point using the requested face (without rotation)
-
-		:param x_mm: X coordinate in mm
-		:param y_mm: Y coordinate in mm
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 7, [x_mm, y_mm, face])
-		self.timestamp_last_command = time.time()
-
-
-	def action_lookat(self, x_mm: int, y_mm : int, face : Face) :
-		"""
-		CMD_ACTION_LOOKAT (8): Rotates to look at the given point using the requested face
-
-		:param x_mm: X coordinate in mm to look at
-		:param y_mm: Y coordinate in mm to look at
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 8, [x_mm, y_mm, face])
-		self.timestamp_last_command = time.time()
-
-
-	def action_debug_on_off(self, enable: bool) :
-		"""
-		CMD_DEBUG_ON_OFF (9): Enables or disables debug UART of asservissement to view the graphe.
-
-		:param enable: True to enable debug output, False to disable
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 9, [1 if enable else 0])
-		self.timestamp_last_command = time.time()
-
-
-	def action_orientation(self, target_angle_deg: float, face: Face = Face.FACE_AVANT,
-	                       speed_percent: int = 100, accel_percent: int = 100) :
-		"""
-		CMD_ACTION_ORIENTATION (10): Sets the robot orientation to a specific angle
-
-		:param target_angle_deg: Target orientation in degrees
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE), default FACE_AVANT
-		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
-		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
-		"""
-		canopen_wrapper.instance.request_action(self.node_id, 10,
-			[int(target_angle_deg), face, speed_percent, accel_percent])
-		self.timestamp_last_command = time.time()
-
-	def action_evitement_on_off(self,enable: bool):
-		'''
-		CMD_EVITEMENT_ON_OFF pour activer l'evitement ou le desactiver 
-		:param enable: True to enable evitement, False to disable
-		'''
-		canopen_wrapper.instance.request_action(self.node_id, 11, [1 if enable else 0])
-		self.timestamp_last_command = time.time()
+		if distance < 2000 :
+			if self.on_evitement != None :
+				self.on_evitement()
 

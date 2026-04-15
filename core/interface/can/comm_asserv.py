@@ -149,3 +149,8 @@ class CanAsservNode(CanActionNode) :
 		'''
 		canopen_wrapper.instance.request_action(self.node_id, 11, [1 if enable else 0])
 		self.timestamp_last_command = time.time()
+	
+	def action_evitement(self) :
+		
+		canopen_wrapper.instance.request_action(self.node_id, 12, [])
+		self.timestamp_last_command = time.time()

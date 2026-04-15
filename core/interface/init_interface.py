@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import can
 import can.interfaces.serial.serial_can
 import can.interfaces.socketcan.socketcan
-from core.interface.can import canopen_wrapper
+from core.interface.can import canopen_wrapper, comm_lidar
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
@@ -21,6 +21,7 @@ class InterfacesContext:
     bus: can.Bus
     node_autom: comm_autom.CanAutomNode
     node_asserv: comm_asserv.CanAsservNode
+	node_lidar: comm_lidar.CanLidarNode
     read_gpio_tirette: callable
     read_gpio_couleur: callable
 
@@ -92,6 +93,13 @@ def initialize_interfaces() -> InterfacesContext:
         node_asserv = comm_asserv.CanAsservNode(bus, 1)
     except Exception as e:
         logger.log_error("Init", f"Cannot create asserv node: {e}")
+	
+    node_lidar = None
+    try :
+        node_lidar = comm_lidar.CanLidarNode(bus, 3)
+    except Exception as e:
+        logger.log_error("Init", f"Cannot create lidar node: {e}")
+
 
     # GPIO prêt (aucune initialisation nécessaire avec gpiofind/gpioget)
     logger.log_info("Init", "GPIO ready")
@@ -101,6 +109,7 @@ def initialize_interfaces() -> InterfacesContext:
         bus=bus,
         node_autom=node_autom,
         node_asserv=node_asserv,
+		node_lidar=node_lidar,
         read_gpio_tirette=read_gpio_tirette,
         read_gpio_couleur=read_gpio_couleur
     )
