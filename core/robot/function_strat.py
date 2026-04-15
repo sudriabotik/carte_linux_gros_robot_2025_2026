@@ -130,6 +130,53 @@ class FunctStrat:
         self.node_autom.action_ejecter(num_element)
         self.wait_autom()
 
+    def depose_caca_oriented(self, num_element: int, deposit_center: tuple):  # claude diane
+        """
+        Éjecte les éléments en orientant la face arrière vers le centre du dépôt.
+        Séquence : lookat(centre, FACE_ARRIERE) → éjecter → wait
+        """
+        x, y = deposit_center
+        canopen_wrapper.unified_logger.log_python("Stratégie",
+            f"depose_caca_oriented eject={num_element} facing depot ({x},{y})")
+
+        # Orienter la face arrière vers le centre du dépôt
+        self.node_asserv.action_lookat(x, y, comm_asserv.Face.FACE_ARRIERE)
+        self.wait_asserv()
+
+        # Éjecter
+        self.node_autom.action_ejecter(num_element)
+        self.wait_autom()
+    # claude diane
+
+    def caca_and_catch(self, num_element: int, deposit_center: tuple, centre_tas: tuple):  # claude diane
+        """
+        Combine éjection (caca) + catch en un mouvement continu.
+        Évite les allers-retours quand un dépôt est suivi d'un catch de tas proche.
+        Séquence : lookat(depot, FACE_ARRIERE) → éjecter → lookat tas → open_pince → goto centre → grab → deposit
+        """
+        x, y = centre_tas
+        canopen_wrapper.unified_logger.log_python("Stratégie", f"caca_and_catch eject={num_element} then catch x={x}, y={y}")
+
+        # 1. Orienter face arrière vers le dépôt puis éjecter
+        self.depose_caca_oriented(num_element, deposit_center)
+
+        # 2. Regarder vers le tas et ouvrir la pince
+        self.node_asserv.action_lookat(x, y, comm_asserv.Face.FACE_AVANT)
+        self.wait_asserv()
+        self.node_autom.action_open_pince()
+        self.wait_autom()
+
+        # 3. Avancer vers le centre du tas
+        self.node_asserv.action_goto_xy(x, y, comm_asserv.Face.FACE_AVANT)
+        self.wait_asserv()
+
+        # 4. Attraper
+        self.node_autom.action_grab()
+        self.wait_autom()
+        self.node_autom.action_deposit()
+        self.wait_autom()
+    # claude diane
+
     def catch_tas(self, centre_tas: tuple):
         x = centre_tas[0]
         y = centre_tas[1]
