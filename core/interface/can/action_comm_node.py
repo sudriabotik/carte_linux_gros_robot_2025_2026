@@ -3,15 +3,18 @@ Base class for canopen nodes implementing the TPDO and RPDO necessary for action
 See docs/action_comm.md
 """
 
+from abc import ABC, abstractmethod
 import core.interface.can.canopen_wrapper as canopen_wrapper
 from core.interface.can.canopen_wrapper import FUNCTION_CODE
 import can
 import traceback
 import threading
 import time
+from typing import Type, override
 
 from core.interface.can.constants import *
 import core.interface.log_management.logger as logger
+
 
 
 class _CanActionNodeReader(can.Listener) :
@@ -19,7 +22,7 @@ class _CanActionNodeReader(can.Listener) :
 	def __init__(self, id, robot=None):
 		super().__init__()
 
-		self.id = id
+		self.id : int = id
 		self.robot = robot  # ADDED BY CLAUDE: Reference to Robot object for position updates
 
 		self.current_command_status = -1
@@ -144,6 +147,10 @@ class _CanActionNodeReader(can.Listener) :
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}")
+	
+
+	def on_message_received_extension(self, msg: can.Message, id : int, func : FUNCTION_CODE, i : int) -> None:
+		pass
 
 
 	def __string__(self) :
@@ -151,7 +158,7 @@ class _CanActionNodeReader(can.Listener) :
 
 class CanActionNode :
 
-	def __init__(self, bus : can.BusABC, node_id : int, robot=None):
+	def __init__(self, bus : can.BusABC, node_id : int, listener : any, robot=None):
 
 		self.node_id = node_id
 
@@ -159,7 +166,7 @@ class CanActionNode :
 
 		# instantiate the class resposible from catching and interpreting TPDOs
 		# MODIFIED BY CLAUDE: Pass robot parameter to enable position updates from TPDO[1]
-		self.can_reader = _CanActionNodeReader(node_id, robot=robot)
+		self.can_reader = listener(node_id, robot=robot)
 
 		#######
 		# The 'can' library creates a single thread to listen for CAN messages continuously.
@@ -175,6 +182,7 @@ class CanActionNode :
 		self.timestamp_last_command = -1
 
 		print(f"node {self.node_id} created on thread : {threading.get_native_id()}")
+
 	
 
 	def __del__(self) :

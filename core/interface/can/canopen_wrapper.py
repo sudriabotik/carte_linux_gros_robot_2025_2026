@@ -85,7 +85,7 @@ class CanopenWrapper :
 
 
 
-	def decode_tpdo(self, msg : can.Message, slots : list[int]) -> list[int] :
+	def decode_tpdo(self, msg : can.Message, slots : list[int]) -> list[int] | None :
 		"""
 		The number of times an index appear in the list indicates how much space a variable takes.
 		IMPORTANT : THE INDICES MUST BE FROM HIGHEST TO LOWEST
@@ -114,6 +114,7 @@ class CanopenWrapper :
 		
 		except Exception as e :
 			logger.log_error("CanOpenWrapper", f"tpdo decoding : {e}")
+			return None
 		
 		return vals
 	
