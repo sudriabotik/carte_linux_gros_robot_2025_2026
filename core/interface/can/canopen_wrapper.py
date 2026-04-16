@@ -9,7 +9,8 @@ import sys
 import traceback
 
 import core.interface.log_management.logger as logger
-import core.interface.log_management.unified_logger as module_unified_logger
+
+
 
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
 COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
@@ -30,6 +31,11 @@ def to_uint16(value):
 	if value < 0:
 		return value & 0xFFFF
 	return value
+
+def format_can_tx_string(node_id : int, command_id : int, action_id : int, params : list[int]) :
+	return f"[CAN TX] Node {node_id} → cmd_id:{command_id} action:{action_id} params:{params}"
+
+
 
 class FUNCTION_CODE(Enum) :
 	IS_UNKNOWN = 0
@@ -168,8 +174,7 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
-			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-				module_unified_logger.unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
+			logger.log_verbose("CANOPEN_WRAPPER", f"{format_can_tx_string(node_id, self.command_id, action_id, param_resized)}")
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])

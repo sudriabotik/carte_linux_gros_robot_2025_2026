@@ -8,6 +8,10 @@ import time
 import core.interface.log_management.logger as logger
 
 
+UART_AUTOM = "/dev/ttyS6"
+UART_ASSERV = "/dev/ttyS2"
+
+
 
 class UartLogger :
 
@@ -67,3 +71,23 @@ class UartLogger :
 			logger.log_error("UnifiedLogger", f"Error in UART listener thread: {e}")
 
 		logger.log_info("UnifiedLogger", "UART listener thread stopped")
+
+
+
+_uart_logger : UartLogger
+
+
+
+try :
+	uart_logger = UartLogger(UART_ASSERV, 1000000)
+except Exception as e :
+	logger.log_error("UartLogger", "Cannot start : {e}")
+
+
+
+def close() :
+	try :
+		_uart_logger.destroy()
+	except Exception as e :
+		logger.log_error("UartLogger", "Cannot stop : {e}")
+

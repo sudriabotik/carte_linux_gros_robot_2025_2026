@@ -9,6 +9,7 @@ from core.interface.init_interface import initialize_interfaces
 from core.robot.robot import Robot
 from core.robot.function_strat import FunctStrat
 from core.interface.log_management import logger
+import core.interface.log_management.uart_logger as uart_logger
 import time
 
 @dataclass
@@ -88,3 +89,8 @@ def initialize_all() -> RobotContext:
 		robot_state=robot_state,
 		strat=strat
 	)
+
+
+def deinit_all() :
+
+	uart_logger.close()

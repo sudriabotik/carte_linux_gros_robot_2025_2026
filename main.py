@@ -3,8 +3,9 @@
 Point d'entrée principal du robot
 """
 from core.init_core import initialize_all
+from core.interface.log_management.uart_logger import uart_logger
 from strategy.strat_dynamique import StratDynamique
-import core.interface.log_management.unified_logger as module_unified_logger
+import core.interface.log_management.logger as logger
 from core.interface.log_management import logger
 
 
@@ -21,9 +22,8 @@ def main():
 
     # Arrêt propre
     logger.log_info("Main", "Program finished")
-    if module_unified_logger.unified_logger:
-        module_unified_logger.unified_logger.stop()
-        logger.log_info("Main", "Unified logger stopped")
+    logger.close()
+    print("logger stopped")
     hw.bus.shutdown()
 
 

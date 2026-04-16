@@ -14,9 +14,10 @@ from typing import Type, override
 
 from core.interface.can.constants import *
 import core.interface.log_management.logger as logger
-import core.interface.log_management.unified_logger as module_unified_logger
 
 
+def format_can_rx_string(node_id : int, vals : list[any]) :
+	return f"[CAN RX] Node {node_id} → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}\n"
 
 class _CanActionNodeReader(can.Listener) :
 
@@ -104,16 +105,12 @@ class _CanActionNodeReader(can.Listener) :
 					if canopen_wrapper.DEBUG_CAN_CHANGES_ONLY:
 						# Only log if values have changed
 						if self._has_changed(vals):
-							logger.log_info("CanActionNodeReader", f"[Node {id}] CAN CHANGE → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
+							# logger.log_info("CanActionNodeReader", f"[Node {id}] CAN CHANGE → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
 							self._update_cache(vals)
 
-							# MODIFIED BY CLAUDE: Write to unified logger
-							if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-								module_unified_logger.unified_logger.log_can_rx(id, vals)
+							logger.log_verbose("CanActionNodeReader", f"CAN CHANGE : {format_can_rx_string(id, vals)}")
 					else:
-						# MODIFIED BY CLAUDE: Write to unified logger (in debug mode, log all messages)
-						if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-							module_unified_logger.unified_logger.log_can_rx(id, vals)
+						logger.log_verbose("CanActionNodeReader", f"{format_can_rx_string(id, vals)}")
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}")

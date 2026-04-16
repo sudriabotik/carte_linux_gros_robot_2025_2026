@@ -3,7 +3,6 @@ from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
 from core.interface.can import constants as const
-import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_tirette, read_gpio_couleur
 
 from core.interface.can.comm_asserv import CanAsservNode # Type hint uniquement (pour Ctrl+Click IDE)
@@ -32,13 +31,13 @@ class FunctStrat:
             int: Couleur de l'équipe (const.BLEU ou const.JAUNE)
         """
         # Attente de la tirette
-        module_unified_logger.unified_logger.log_python("FunctStrat", "En attente de l'insertion de la tirette")
+        logger.log_info("FunctStrat", "En attente de l'insertion de la tirette")
         while read_gpio_tirette() == const.ABSENCE_TIRETTE:
             time.sleep(0.05)
 
         # Lecture de la couleur
         couleur = read_gpio_couleur()
-        module_unified_logger.unified_logger.log_python(
+        logger.log_info(
             "FunctStrat",
             f" Tirette insérer Couleur équipe {couleur} ({'BLEU' if couleur == const.BLEU else 'JAUNE'})"
         )
@@ -50,13 +49,13 @@ class FunctStrat:
 
     def calage_depart(self, couleur_equipe):
 
-        module_unified_logger.unified_logger.log_python("Stratégie", "Début du calage de départ")
+        logger.log_info("Stratégie", "Début du calage de départ")
 
         self.wait_autom()
         self.node_autom.action_safe_position_ascenseur()
 
         if (couleur_equipe == const.BLEU):
-            module_unified_logger.unified_logger.log_python("Stratégie", "Début du calage bleu")
+            logger.log_info("Stratégie", "Début du calage bleu")
             self.wait_asserv()
             self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X, comm_asserv.Face.FACE_AVANT)
 
@@ -64,7 +63,7 @@ class FunctStrat:
             self.node_asserv.action_translation(-50, 10, 10)
 
         if (couleur_equipe == const.JAUNE):
-            module_unified_logger.unified_logger.log_python("Stratégie", "Début du calage JAUNE")
+            logger.log_info("Stratégie", "Début du calage JAUNE")
             
             self.wait_asserv()
             self.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
@@ -72,7 +71,7 @@ class FunctStrat:
             self.wait_asserv()
             self.node_asserv.action_translation(50, 10, 10)
 
-        module_unified_logger.unified_logger.log_python("Stratégie", " calage suite")
+        logger.log_info.log_python("Stratégie", " calage suite")
         self.wait_asserv()
         self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 
@@ -80,7 +79,7 @@ class FunctStrat:
         self.node_asserv.action_translation(50, 10, 10)
 
         self.wait_asserv()
-        module_unified_logger.unified_logger.log_python("Stratégie", "Fin du calage de départ")
+        logger.log_info("Stratégie", "Fin du calage de départ")
 
     def wait_debut_match(self):
         '''
@@ -90,7 +89,7 @@ class FunctStrat:
         while read_gpio_tirette() == const.PRESENCE_TIRETTE:
             time.sleep(0.05)
 
-        module_unified_logger.unified_logger.log_python("Stratégie", "DEBUT DU MATCH, tirette retirer")
+        logger.log_info("Stratégie", "DEBUT DU MATCH, tirette retirer")
 
     def attraper_un_tas(self):
 
@@ -130,7 +129,7 @@ class FunctStrat:
         x = centre_tas[0]
         y = centre_tas[1]
 
-        module_unified_logger.unified_logger.log_python("Stratégie", f"catch_tas x={x}, y={y}")
+        logger.log_info("Stratégie", f"catch_tas x={x}, y={y}")
         self.node_asserv.action_lookat(x, y, comm_asserv.Face.FACE_AVANT)
         self.wait_asserv()
         self.node_autom.action_open_pince()
@@ -145,7 +144,7 @@ class FunctStrat:
     def depose_element_zone(self,pos_cible:tuple,num_element_depose):
 
         #peut-être plusieurs pos cible
-        module_unified_logger.unified_logger.log_python("Stratégie", f"depose_element_zone x={x}, y={y}")
+        logger.log_info("Stratégie", f"depose_element_zone x={x}, y={y}")
 
         # là comment on gère les mouvements.
 

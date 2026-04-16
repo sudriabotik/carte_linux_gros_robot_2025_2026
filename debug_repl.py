@@ -13,7 +13,7 @@ from core.init_core import initialize_all
 from strategy.strat_dynamique import StratDynamique
 from core.interface.can import comm_asserv, comm_autom
 from core.robot import constants as const
-from core.interface.log_management.unified_logger import unified_logger
+import core.interface.log_management.logger as logger
 import time
 
 print("=" * 60)

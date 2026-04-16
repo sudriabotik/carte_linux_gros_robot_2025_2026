@@ -9,8 +9,7 @@ import can.interfaces.socketcan.socketcan
 from core.interface.can import canopen_wrapper, comm_lidar
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
-from core.interface.log_management import logger
-import core.interface.log_management.unified_logger as module_unified_logger
+import core.interface.log_management.logger as logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
 
 import time
@@ -24,7 +23,7 @@ class InterfacesContext:
     bus: can.Bus
     node_autom: comm_autom.CanAutomNode
     node_asserv: comm_asserv.CanAsservNode
-	node_lidar: comm_lidar.CanLidarNode
+    node_lidar: comm_lidar.CanLidarNode
     read_gpio_tirette: callable
     read_gpio_couleur: callable
 
@@ -76,7 +75,6 @@ def initialize_interfaces() -> InterfacesContext:
     """
     # Configuration debug
     DEBUG_CAN_CHANGES_ONLY = True
-    DEBUG_UNIFIED_LOGGER = True
 
     # UART_ASSERV et UART_AUTOM can't be true at the same time.
     UART_ASSERV  =True
@@ -105,23 +103,6 @@ def initialize_interfaces() -> InterfacesContext:
     # Configuration debug CAN
     canopen_wrapper.DEBUG_CAN_CHANGES_ONLY = DEBUG_CAN_CHANGES_ONLY
 
-    # Démarrer le unified logger (UART + CAN)
-    if DEBUG_UNIFIED_LOGGER:
-        if (UART_AUTOM):
-            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
-                uart_port="/dev/ttyS6",
-                uart_baudrate=1000000,
-                log_dir="log"
-            )
-        else:
-            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
-                uart_port="/dev/ttyS2",
-                uart_baudrate=1000000,
-                log_dir="log"
-            )
-
-        module_unified_logger.unified_logger.start()
-        logger.log_info("Init", "Unified logger (UART+CAN) started")
 
     # Créer le wrapper CANopen
     canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
@@ -138,7 +119,7 @@ def initialize_interfaces() -> InterfacesContext:
         node_asserv = comm_asserv.CanAsservNode(bus, 1)
     except Exception as e:
         logger.log_error("Init", f"Cannot create asserv node: {e}")
-	
+    
     node_lidar = None
     try :
         node_lidar = comm_lidar.CanLidarNode(bus, 3)
@@ -154,7 +135,7 @@ def initialize_interfaces() -> InterfacesContext:
         bus=bus,
         node_autom=node_autom,
         node_asserv=node_asserv,
-		node_lidar=node_lidar,
+        node_lidar=node_lidar,
         read_gpio_tirette=read_gpio_tirette,
         read_gpio_couleur=read_gpio_couleur
     )
