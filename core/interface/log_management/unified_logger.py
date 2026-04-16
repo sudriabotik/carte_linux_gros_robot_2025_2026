@@ -9,7 +9,7 @@ This module provides a unified logger that combines UART data and CAN messages
 
 All timestamps use the unified clock from logger.py for perfect synchronization.
 """
-
+'''
 import serial
 import threading
 import time
@@ -306,3 +306,4 @@ class UnifiedLogger:
 # Global instance to be set from init_interface.py
 unified_logger :UnifiedLogger  = None
 
+'''

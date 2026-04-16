@@ -1,15 +1,29 @@
+from io import TextIOWrapper
 import sys
+import os
 
 import time
 import datetime
+import threading
+
+from can.io import logger
+
+
+# configuration variables
+use_file = True # write to file
+use_std = True # write to stdout and sterr
+
+# constants
+LOG_DIR = "log"
 
 # Global timing reference for all loggers (UART, CAN, console)
 initial_time = time.time()
 start_date = datetime.datetime.now()
-sys.stdout.write(f"[INFO] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
 
 
-def get_unified_timestamp_relative():
+
+
+def get_timestamp_relative():
 	"""
 	Get unified relative timestamp (time since program start).
 	Used for perfect synchronization between console, UART, and CAN logs.
@@ -20,30 +34,86 @@ def get_unified_timestamp_relative():
 	return f"t+{elapsed:.6f}s"
 
 
-def get_unified_timestamp_absolute():
+def get_timestamp_absolute():
 	"""
-	Get unified absolute timestamp with microsecond precision.
+	Get unified absolute timestamp with millisecond precision.
 	Uses the same time reference as relative timestamp for perfect synchronization.
 
-	:return: Formatted string "YYYY-MM-DD HH:MM:SS.mmm (t+X.XXXs)"
+	:return: Formatted string "YYYY-MM-DD HH:MM:SS.mmm"
 	"""
-	elapsed = time.time() - initial_time
 	current_time = datetime.datetime.now()
 	timestamp_abs = current_time.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]  # Milliseconds
-	timestamp_rel = f"t+{elapsed:.6f}s"
-	return f"{timestamp_abs} ({timestamp_rel})"
+	return f"{timestamp_abs}"
+
+
+
+class Logger :
+
+	def __init__(self) -> None:
+
+		if not os.path.exists(LOG_DIR):
+			os.makedirs(LOG_DIR)
+
+		self.log_filename : str = os.path.join(LOG_DIR, f"log_{get_timestamp_absolute()}.txt")
+		self.log_file : TextIOWrapper = open(self.log_filename, "w", buffering=1)  # Line buffering
+
+		self.lock : threading.Lock = threading.Lock()
+
+		self.write(f"[INFO] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
+	
+	def __del__(self) -> None
+		self.log_file.flush()
+		self.log_file.close()
+	
+	"""
+	Will log the given line finished by a line break to the correct outputs.
+	"""
+	def write(self, line : str) :
+
+		with self.lock :
+			if use_std :
+				sys.stdout.write(line + "\n")
+			if use_file :
+				self.log_file.write(line + "\n")
+				self.log_file.flush()
+
+	"""
+	Will log the given line finished by a line break to the correct outputs.
+	"""
+	def write_err(self, line : str) :
+
+		with self.lock :
+			if use_std :
+				sys.stderr.write(line + "\n")
+			if use_file :
+				self.log_file.write(line + "\n")
+				self.log_file.flush()
+			
+
+
+try :
+	instance : Logger = Logger()
+except Exception as e :
+	sys.stderr.write(f"[FATAL] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [LOGGER] cannot start logger : {e}\n")
+
+
 
 def log_verbose(source : str, message : str) :
-	sys.stdout.write(f"[VERB] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [{source}] : {message}\n")
+	instance.write(f"[VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_info(source : str, message : str) :
-	sys.stdout.write(f"[INFO] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [{source}] : {message}\n")
+	instance.write(f"[INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_warning(source : str, message : str) :
-	sys.stdout.write(f"[WARN] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [{source}] : {message}\n")
+	instance.write(f"[WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_error(source : str, message : str) :
-	sys.stderr.write(f"[ERR] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [{source}] : {message}\n")
+	instance.write_err(f"[ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_traceback(source : str, message : str) :
-	sys.stderr.write(f"[TRCBCK] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [{source}] : {message}\n")
+	instance.write_err(f"[TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+
+
+def close() :
+	global instance
+	del instance
