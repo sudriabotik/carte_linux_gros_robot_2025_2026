@@ -55,7 +55,7 @@ class CanAsservNode(CanActionNode) :
 		The speed is in thousandths of mm/ms
 		The acceleration is in thousandths of mm/ms^2
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 3, [distance_mm, speed, accel])
+		canopen_wrapper.instance.request_action(self.node_id, 100, [distance_mm, speed, accel])
 		self.timestamp_last_command = time.time()
 
 
@@ -67,7 +67,7 @@ class CanAsservNode(CanActionNode) :
 		:param speed: Angular speed in thousandths of deg/ms
 		:param accel: Angular acceleration in thousandths of deg/ms^2
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 4, [angle_deg, speed, accel])
+		canopen_wrapper.instance.request_action(self.node_id, 101, [angle_deg, speed, accel])
 		self.timestamp_last_command = time.time()
 
 
@@ -79,7 +79,7 @@ class CanAsservNode(CanActionNode) :
 		:param y_mm: Y coordinate in mm
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 5, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 
 
@@ -90,7 +90,7 @@ class CanAsservNode(CanActionNode) :
 		:param facing: Direction to recalibrate (POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y)
 		:param face: Face to use during recalibration (FACE_AVANT or FACE_ARRIERE)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 6, [facing, face])
+		canopen_wrapper.instance.request_action(self.node_id, 152, [facing, face])
 		self.timestamp_last_command = time.time()
 
 
@@ -102,7 +102,7 @@ class CanAsservNode(CanActionNode) :
 		:param y_mm: Y coordinate in mm
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 7, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 151, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 
 
@@ -114,7 +114,7 @@ class CanAsservNode(CanActionNode) :
 		:param y_mm: Y coordinate in mm to look at
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 8, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 153, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 
 
@@ -124,7 +124,7 @@ class CanAsservNode(CanActionNode) :
 
 		:param enable: True to enable debug output, False to disable
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 9, [1 if enable else 0])
+		canopen_wrapper.instance.request_action(self.node_id, 3, [1 if enable else 0])
 		self.timestamp_last_command = time.time()
 
 
@@ -138,7 +138,7 @@ class CanAsservNode(CanActionNode) :
 		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
 		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 10,
+		canopen_wrapper.instance.request_action(self.node_id, 154,
 			[int(target_angle_deg), face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
@@ -147,5 +147,5 @@ class CanAsservNode(CanActionNode) :
 		CMD_EVITEMENT_ON_OFF pour activer l'evitement ou le desactiver 
 		:param enable: True to enable evitement, False to disable
 		'''
-		canopen_wrapper.instance.request_action(self.node_id, 11, [1 if enable else 0])
+		canopen_wrapper.instance.request_action(self.node_id, 4, [1 if enable else 0])
 		self.timestamp_last_command = time.time()

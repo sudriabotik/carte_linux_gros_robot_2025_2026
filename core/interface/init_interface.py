@@ -10,7 +10,7 @@ from core.interface.can import canopen_wrapper
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
-from core.interface.log_management import unified_logger
+import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
 
 import time
@@ -107,19 +107,19 @@ def initialize_interfaces() -> InterfacesContext:
     # Démarrer le unified logger (UART + CAN)
     if DEBUG_UNIFIED_LOGGER:
         if (UART_AUTOM):
-            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
                 uart_port="/dev/ttyS6",
                 uart_baudrate=1000000,
                 log_dir="log"
             )
         else:
-            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
                 uart_port="/dev/ttyS2",
                 uart_baudrate=1000000,
                 log_dir="log"
             )
 
-        canopen_wrapper.unified_logger.start()
+        module_unified_logger.unified_logger.start()
         logger.log_info("Init", "Unified logger (UART+CAN) started")
 
     # Créer le wrapper CANopen

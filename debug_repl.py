@@ -13,7 +13,7 @@ from core.init_core import initialize_all
 from strategy.strat_dynamique import StratDynamique
 from core.interface.can import comm_asserv, comm_autom
 from core.robot import constants as const
-from core.interface.can import canopen_wrapper
+from core.interface.log_management.unified_logger import unified_logger
 import time
 
 print("=" * 60)
@@ -68,7 +68,7 @@ print("    self.wait_asserv() → funct.wait_asserv()")
 
 print("\n N'OUBLIE PAS:")
 print("  Pour quitter: Ctrl+D ou exit()")
-print("  Pour arrêter proprement: canopen_wrapper.unified_logger.stop()")
+print("  Pour arrêter proprement: unified_logger.stop()")
 print("=" * 60 + "\n")
 
 
