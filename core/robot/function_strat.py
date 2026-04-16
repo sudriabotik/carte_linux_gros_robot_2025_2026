@@ -141,6 +141,7 @@ class FunctStrat:
         self.wait_autom()
         self.node_autom.action_deposit()
 
+
     def depose_element_zone(self,pos_cible:tuple,num_element_depose):
 
         #peut-être plusieurs pos cible

@@ -1,0 +1,38 @@
+[Unit]
+Description=Robot Coupe de France - Main Program
+Documentation=file:///home/radxa/Repositories/carte_linux_gros_robot_2025_2026/doc/guide_service_robot.md
+After=network.target
+# Python gère l'attente de can0 automatiquement (wait_for_can0)
+
+[Service]
+Type=simple
+User=radxa
+Group=radxa
+WorkingDirectory=/home/radxa/Repositories/carte_linux_gros_robot_2025_2026
+
+# Utiliser l'environnement virtuel Python (chemin absolu)
+ExecStart=/home/radxa/Documents/virtual_env/canopen-env/bin/python3 /home/radxa/Repositories/carte_linux_gros_robot_2025_2026/main.py
+
+# Redémarrage automatique en cas d'erreur/crash uniquement
+# Le service ne redémarre PAS si arrêté manuellement avec systemctl stop
+Restart=on-failure
+RestartSec=5s
+
+# Logs systemd (accessibles via journalctl)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=robot
+
+# Variables d'environnement
+Environment="PYTHONUNBUFFERED=1"
+Environment="PYTHONPATH=/home/radxa/Repositories/carte_linux_gros_robot_2025_2026"
+
+# Timeouts
+TimeoutStartSec=30s
+TimeoutStopSec=10s
+
+# Permissions pour accès CAN et GPIO
+SupplementaryGroups=dialout
+
+[Install]
+WantedBy=multi-user.target

@@ -90,7 +90,9 @@ node_autom.action_ready_to_grap()
 node_autom.action_safe_position_ascenseur()
 node_autom.action_couleur_equipe(couleur_equipe=0)
 node_autom.action_fermer_porte_rentrer_ax_caca()
+node_autom.action_pos_vitesse_ax(6,500,100)
 """
+
 
 
 """
