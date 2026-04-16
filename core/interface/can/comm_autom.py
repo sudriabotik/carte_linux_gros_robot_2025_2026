@@ -137,14 +137,24 @@ class CanAutomNode(CanActionNode) :
 
 	def action_couleur_equipe(self, couleur_equipe ):
 		"""
-		CMD_COULEUR_EQUIPE 
+		CMD_COULEUR_EQUIPE (14)
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 14, [couleur_equipe])
 		self.timestamp_last_command = time.time()
 
 	def action_fermer_porte_rentrer_ax_caca(self):
 		"""
-		CMD_FERMER_PORTE_RENTRER_AX_CACA
+		CMD_FERMER_PORTE_RENTRER_AX_CACA(15)
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 15, [])
+		self.timestamp_last_command = time.time()
+
+	def action_pos_vitesse_ax(self, id, position, vitesse):
+		"""
+		CMD_POS_VITESSE_AX (16)
+		param position : 0.29 [°]/unité maximum 1023-->(300 degrés)
+		param vitess : 0.111 rpm / unité  
+		ax12 max rpm = 59 --> maximum = 59/0.111 = 531 
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 16, [id, position, vitesse])
 		self.timestamp_last_command = time.time()

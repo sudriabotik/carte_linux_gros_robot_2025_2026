@@ -301,3 +301,8 @@ class UnifiedLogger:
 		:return: True if enabled, False otherwise
 		"""
 		return self.enabled
+
+
+# Global instance to be set from init_interface.py
+unified_logger :UnifiedLogger  = None
+

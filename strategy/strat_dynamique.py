@@ -2,7 +2,8 @@
 Moteur de stratégie dynamique
 Prend les décisions en fonction de l'état du robot et exécute le match complet
 """
-from core.interface.can import canopen_wrapper
+
+import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.log_management import logger
 
 from strategy.generate_path_V2 import generate_path
@@ -38,7 +39,7 @@ class StratDynamique:
         """
         Exécute TOUTE la stratégie du match
         """
-        canopen_wrapper.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
+        module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
 
         # ======================
         # 1. ATTENTE DÉPART
@@ -73,7 +74,7 @@ class StratDynamique:
         # ======================
         # 4. FIN DU MATCH
         # ======================
-        canopen_wrapper.unified_logger.log_python("StratDynamique", "=== FIN DU MATCH ===")
+        module_unified_logger.unified_logger.log_python("StratDynamique", "=== FIN DU MATCH ===")
 
     def go_and_catch_tas(self, target_tas: str):
         '''
@@ -92,7 +93,7 @@ class StratDynamique:
             self.tas_attraper,
         )
 
-        canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
+        module_unified_logger.unified_logger.log_python("StratDynamique", f" path : {path}")
 
         # 2. Suivre le chemin généré (type_cible=1 pour catch)
         self.funct.follow_path(path, type_cible=1)
@@ -113,7 +114,7 @@ class StratDynamique:
             self.tas_attraper
         )
 
-        canopen_wrapper.unified_logger.log_python("StratDynamique", f" path : {path}")
+        module_unified_logger.unified_logger.log_python("StratDynamique", f" path : {path}")
 
         # 2. Suivre le chemin généré (type_cible=1 pour catch)
         self.funct.follow_path(path, type_cible=1)

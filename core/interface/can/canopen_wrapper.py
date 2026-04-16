@@ -9,7 +9,7 @@ import sys
 import traceback
 
 import core.interface.log_management.logger as logger
-
+import core.interface.log_management.unified_logger as module_unified_logger
 
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
 COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
@@ -168,9 +168,8 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
-			# ADDED BY CLAUDE: Log CAN TX to unified logger if enabled (after command_id increment)
-			if unified_logger and unified_logger.is_enabled():
-				unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
+			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+				module_unified_logger.unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])
@@ -245,6 +244,3 @@ class CanopenWrapper :
 
 # Global configuration variables for debugging
 DEBUG_CAN_CHANGES_ONLY = True  # Will be set from main.py
-unified_logger = None  # ADDED BY CLAUDE: Will be set from main.py for unified UART+CAN logging
-
-instance : CanopenWrapper = None

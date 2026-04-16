@@ -10,8 +10,11 @@ from core.interface.can import canopen_wrapper, comm_lidar
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
-from core.interface.log_management import unified_logger
+import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
+
+import time
+import subprocess
 
 @dataclass
 class InterfacesContext:
@@ -24,6 +27,43 @@ class InterfacesContext:
 	node_lidar: comm_lidar.CanLidarNode
     read_gpio_tirette: callable
     read_gpio_couleur: callable
+
+
+def wait_for_can0(timeout=10):
+    """
+    Attend que can0 soit UP et configuré
+    
+    :param timeout: Temps max d'attente en secondes
+    :return: True si can0 est prêt, False sinon
+    """
+    logger.log_info("Init", "Waiting for can0 interface...")
+    
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            # Vérifier si can0 existe et est UP
+            result = subprocess.run(
+                ['ip', 'link', 'show', 'can0'],
+                capture_output=True,
+                text=True,
+                timeout=2
+            )
+            
+            if result.returncode == 0:
+                # can0 existe, vérifier si UP
+                if 'state UP' in result.stdout or 'UP' in result.stdout:
+                    logger.log_info("Init", "can0 is UP and ready")
+                    return True
+                else:
+                    logger.log_info("Init", f"can0 exists but not UP yet, waiting...")
+            
+        except Exception as e:
+            logger.log_warning("Init", f"can0 check failed: {e}")
+        
+        time.sleep(0.5)  # Attendre 500ms avant de réessayer
+    
+    logger.log_error("Init", f"can0 not ready after {timeout}s")
+    return False
 
 def initialize_interfaces() -> InterfacesContext:
     """
@@ -41,6 +81,11 @@ def initialize_interfaces() -> InterfacesContext:
     # UART_ASSERV et UART_AUTOM can't be true at the same time.
     UART_ASSERV  =True
     UART_AUTOM = False
+
+     # Attendre que can0 soit prêt AVANT de créer le bus
+    if not wait_for_can0(timeout=10):
+        raise RuntimeError("can0 interface not available - cannot start robot")
+
 
     # Initialiser bus CAN
     logger.log_info("Init", "Attempting to connect to CAN bus...")
@@ -63,19 +108,19 @@ def initialize_interfaces() -> InterfacesContext:
     # Démarrer le unified logger (UART + CAN)
     if DEBUG_UNIFIED_LOGGER:
         if (UART_AUTOM):
-            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
                 uart_port="/dev/ttyS6",
                 uart_baudrate=1000000,
                 log_dir="log"
             )
         else:
-            canopen_wrapper.unified_logger = unified_logger.UnifiedLogger(
+            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
                 uart_port="/dev/ttyS2",
                 uart_baudrate=1000000,
                 log_dir="log"
             )
 
-        canopen_wrapper.unified_logger.start()
+        module_unified_logger.unified_logger.start()
         logger.log_info("Init", "Unified logger (UART+CAN) started")
 
     # Créer le wrapper CANopen

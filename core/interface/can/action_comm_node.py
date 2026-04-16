@@ -14,6 +14,7 @@ from typing import Type, override
 
 from core.interface.can.constants import *
 import core.interface.log_management.logger as logger
+import core.interface.log_management.unified_logger as module_unified_logger
 
 
 
@@ -107,12 +108,12 @@ class _CanActionNodeReader(can.Listener) :
 							self._update_cache(vals)
 
 							# MODIFIED BY CLAUDE: Write to unified logger
-							if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
-								canopen_wrapper.unified_logger.log_can_rx(id, vals)
+							if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+								module_unified_logger.unified_logger.log_can_rx(id, vals)
 					else:
 						# MODIFIED BY CLAUDE: Write to unified logger (in debug mode, log all messages)
-						if canopen_wrapper.unified_logger and canopen_wrapper.unified_logger.is_enabled():
-							canopen_wrapper.unified_logger.log_can_rx(id, vals)
+						if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+							module_unified_logger.unified_logger.log_can_rx(id, vals)
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}")

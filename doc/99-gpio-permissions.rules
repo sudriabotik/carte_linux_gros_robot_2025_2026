@@ -1,0 +1,13 @@
+# Règle udev pour donner les permissions GPIO au groupe gpio
+# Fichier à copier dans : /etc/udev/rules.d/99-gpio-permissions.rules
+#
+# Installation :
+#   sudo cp 99-gpio-permissions.rules /etc/udev/rules.d/
+#   sudo groupadd gpio  # Si le groupe n'existe pas
+#   sudo usermod -a -G gpio radxa
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#   # Puis se déconnecter/reconnecter ou redémarrer
+
+SUBSYSTEM=="gpio", GROUP="gpio", MODE="0660"
+KERNEL=="gpiochip*", GROUP="gpio", MODE="0660"

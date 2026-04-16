@@ -13,7 +13,7 @@ from core.init_core import initialize_all
 from strategy.strat_dynamique import StratDynamique
 from core.interface.can import comm_asserv, comm_autom
 from core.robot import constants as const
-from core.interface.can import canopen_wrapper
+from core.interface.log_management.unified_logger import unified_logger
 import time
 
 print("=" * 60)
@@ -68,7 +68,7 @@ print("    self.wait_asserv() → funct.wait_asserv()")
 
 print("\n N'OUBLIE PAS:")
 print("  Pour quitter: Ctrl+D ou exit()")
-print("  Pour arrêter proprement: canopen_wrapper.unified_logger.stop()")
+print("  Pour arrêter proprement: unified_logger.stop()")
 print("=" * 60 + "\n")
 
 
@@ -90,7 +90,9 @@ node_autom.action_ready_to_grap()
 node_autom.action_safe_position_ascenseur()
 node_autom.action_couleur_equipe(couleur_equipe=0)
 node_autom.action_fermer_porte_rentrer_ax_caca()
+node_autom.action_pos_vitesse_ax(6,500,100)
 """
+
 
 
 """
