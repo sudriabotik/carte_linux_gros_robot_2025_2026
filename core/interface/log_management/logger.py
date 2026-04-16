@@ -90,7 +90,7 @@ class Logger :
 				self.log_file.flush()
 			
 
-
+instance : Logger | None = None
 try :
 	instance : Logger = Logger()
 except Exception as e :
@@ -99,18 +99,23 @@ except Exception as e :
 
 
 def log_verbose(source : str, message : str) :
+	if (instance == None) : return
 	instance.write(f"[VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_info(source : str, message : str) :
+	if (instance == None) : return
 	instance.write(f"[INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_warning(source : str, message : str) :
+	if (instance == None) : return
 	instance.write(f"[WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_error(source : str, message : str) :
+	if (instance == None) : return
 	instance.write_err(f"[ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 def log_traceback(source : str, message : str) :
+	if (instance == None) : return
 	instance.write_err(f"[TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 
