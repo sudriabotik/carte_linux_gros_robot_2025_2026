@@ -61,7 +61,7 @@ class Logger :
 
 		self.write(f"[INFO] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
 	
-	def __del__(self) -> None
+	def __del__(self) -> None :
 		self.log_file.flush()
 		self.log_file.close()
 	
