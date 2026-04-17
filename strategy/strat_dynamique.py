@@ -8,9 +8,13 @@ from core.interface.log_management import logger
 
 from strategy.generate_path_V2 import generate_path
 from strategy.coordonner_strat import TAS_COORDS
+from core.interface.can import comm_autom  
+from core.interface.can import comm_asserv
 
 from core.robot.function_strat import FunctStrat  # Type hint uniquement (pour Ctrl+Click IDE)
 from core.robot.robot import Robot  # Type hint uniquement (pour Ctrl+Click IDE)
+
+
 
 class StratDynamique:
     """
@@ -34,6 +38,50 @@ class StratDynamique:
         self.tas_attraper = []
         self.zone_depose_utiliser = []
         logger.log_info("StratDynamique", "Moteur de stratégie dynamique initialisé")
+
+
+    def run_homologation(self):
+        module_unified_logger.unified_logger.log_python("Strat_homologation", "=== DÉBUT DU MATCH ===")
+
+        # ======================
+        # 1. ATTENTE DÉPART
+        # ======================
+        couleur = self.funct.wait_and_read_team_color()
+        
+        self.funct.wait_autom
+        self.funct.node_autom.action_couleur_equipe(couleur)
+        self.funct.wait_autom
+        self.funct.node_autom.action_close_pince()
+        self.funct.wait_autom
+        # ======================
+        # 2. CALAGE DE DÉPART
+        # ======================
+
+        self.funct.calage_depart(couleur)
+
+        self.funct.wait_debut_match()
+
+        self.funct.node_asserv.action_evitement_on_off(True)
+
+        self.funct.wait_asserv()
+        self.funct.node_asserv.action_goto_xy(175,1500, comm_asserv.Face.FACE_AVANT )
+
+        self.funct.wait_asserv()
+        self.funct.node_asserv.action_goto_xy(175,950, comm_asserv.Face.FACE_AVANT )
+
+        self.funct.wait_asserv()
+        self.funct.node_asserv.action_goto_xy(175,1200, comm_asserv.Face.FACE_ARRIERE )
+
+        self.funct.wait_asserv()
+        self.funct.node_asserv.action_goto_xy(1500,1200, comm_asserv.Face.FACE_AVANT )
+
+        self.funct.wait_asserv()
+        logger.log_info("Strat_homologation", f"Position finale du robot: {self.robot}")
+
+        # ======================
+        # 4. FIN DU MATCH
+        # ======================
+        module_unified_logger.unified_logger.log_python("StratDynamique", "=== FIN DU MATCH ===")
 
     def run_strat(self):
         """
@@ -123,3 +171,7 @@ class StratDynamique:
         # determiner les point cible pour les passer en parametre à la fonction 
 
         self.funct.depose_element_zone()
+
+
+
+
