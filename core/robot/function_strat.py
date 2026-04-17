@@ -61,7 +61,7 @@ class FunctStrat:
             self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X, comm_asserv.Face.FACE_AVANT)
 
             self.wait_asserv()
-            self.node_asserv.action_translation(-50, 10, 10)
+            self.node_asserv.action_translation(-70, 10, 10)
 
         if (couleur_equipe == const.JAUNE):
             module_unified_logger.unified_logger.log_python("Stratégie", "Début du calage JAUNE")

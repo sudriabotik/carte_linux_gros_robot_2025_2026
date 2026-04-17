@@ -199,8 +199,8 @@ class CanActionNode :
 			if ((self.can_reader.current_command_status == CMD_STATUS_RUNNING) or (self.can_reader.current_command_status == -1) ):
 				return BUSY
 			
-			if (self.can_reader.current_command_status == CMD_STATUS_COMPLETED):
-				return NOT_BUSY
+			#if (self.can_reader.current_command_status == CMD_STATUS_COMPLETED):
+			#	return NOT_BUSY
 
 			if ( (self.can_reader.current_command_id == self.can_reader.last_completed_command_id) ):
 				return NOT_BUSY
