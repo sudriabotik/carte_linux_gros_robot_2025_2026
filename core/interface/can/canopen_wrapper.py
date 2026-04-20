@@ -9,8 +9,8 @@ import sys
 import traceback
 
 import core.interface.log_management.logger as logger
-
-
+import core.interface.log_management.unified_logger as module_unified_logger
+from core.interface.can.constants import ID_NOEUD_CAN_ASSERV, ID_NOEUD_CAN_AUTOM, ID_NOEUD_CAN_LIDAR
 
 COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]
 COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]
@@ -49,6 +49,11 @@ class CanopenWrapper :
 
 		self.network = bus
 		self.command_id = 1 # TEMP
+
+		#paul rajoute 
+		self.command_id_asserv = 0
+		self.command_id_autom = 0
+		self.command_id_lidar = 0
 
 		# FIXED BY CLAUDE: Initialize notifier as None - will be created on first listener registration
 		# This implements the singleton pattern to avoid "multiple active Notifier instances" error
@@ -174,7 +179,19 @@ class CanopenWrapper :
 
 			self.command_id += 1 # TEMP
 
-			logger.log_verbose("CANOPEN_WRAPPER", f"{format_can_tx_string(node_id, self.command_id, action_id, param_resized)}")
+			#rajout paul : 
+			if (node_id == ID_NOEUD_CAN_ASSERV ):
+				self.command_id_asserv = self.command_id 
+
+			if (node_id == ID_NOEUD_CAN_AUTOM):
+				self.command_id_autom = self.command_id 
+
+			if (node_id == ID_NOEUD_CAN_LIDAR):
+				self.command_id_lidar = self.command_id 
+
+
+			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+				module_unified_logger.unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])

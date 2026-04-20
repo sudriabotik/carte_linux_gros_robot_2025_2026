@@ -194,29 +194,56 @@ class CanActionNode :
 		"""
 		BUSY = 1
 		NOT_BUSY = 0
-		#print(f"vars : {self.can_reader.current_command_status}")
 
-		try :
+		try:
 			# if we didn't receive any tpdos since the last command, it is likely the node is still busy
-			if self.timestamp_last_command > self.can_reader.timestamp_last_tpdo :
+			if self.timestamp_last_command > self.can_reader.timestamp_last_tpdo:
 				return BUSY
 
-			if ((self.can_reader.current_command_status == CMD_STATUS_RUNNING) or (self.can_reader.current_command_status == -1) ):
+			if ((self.can_reader.current_command_status == CMD_STATUS_RUNNING) or 
+				(self.can_reader.current_command_status == -1)):
 				return BUSY
 			
-			#if (self.can_reader.current_command_status == CMD_STATUS_COMPLETED):
-			#	return NOT_BUSY
-
-			if ( (self.can_reader.current_command_id == self.can_reader.last_completed_command_id) ):
+			# ═══════════════════════════════════════════════════════════
+			# NOUVELLE VERSION : Vérifier le bon compteur selon le node
+			# ═══════════════════════════════════════════════════════════
+			
+			# Récupérer le compteur command_id approprié selon le type de node
+			if self.node_id == ID_NOEUD_CAN_ASSERV:
+				# Pour le node ASSERV, utiliser command_id_asserv
+				expected_command_id = canopen_wrapper.instance.command_id_asserv
+			elif self.node_id == ID_NOEUD_CAN_AUTOM:
+				# Pour le node AUTOM, utiliser command_id_autom
+				expected_command_id = canopen_wrapper.instance.command_id_autom
+			elif self.node_id == ID_NOEUD_CAN_LIDAR:
+				# Pour le node LIDAR, utiliser command_id_lidar
+				expected_command_id = canopen_wrapper.instance.command_id_lidar
+			else:
+				# Fallback pour nodes inconnus : utiliser le compteur global
+				expected_command_id = canopen_wrapper.instance.command_id
+			
+			# Comparer le compteur attendu avec last_completed_command_id
+			if expected_command_id == self.can_reader.last_completed_command_id:
+				# Log debug info BEFORE returning
+				if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+					module_unified_logger.unified_logger.log_python(
+						"CanActionNode",
+						f"Node {self.node_id} NOT_BUSY: expected_id={expected_command_id} == completed_id={self.can_reader.last_completed_command_id}"
+					)
 				return NOT_BUSY
-			else : 
+			else:
 				return BUSY
 
-		# if status == 0 c'est ignorer. à tester. 
-
-		except Exception as e :
-			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
-			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
+		except Exception as e:
+			error_msg = f"Node {self.node_id} is_busy() error: {type(e).__name__}: {e}"
+			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+				module_unified_logger.unified_logger.log_python("CanActionNode_ERROR", error_msg)
+				module_unified_logger.unified_logger.log_python("CanActionNode_TRACEBACK", str(traceback.format_exc()))
+			else:
+				# Fallback to console if unified_logger not available
+				logger.log_error("CanActionNode", error_msg)
+				logger.log_traceback("CanActionNode", str(traceback.format_exc()))
+				
 			return BUSY
 
 

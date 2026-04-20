@@ -1,6 +1,11 @@
 """
 Contains many constants shared between the different nodes of the canopen network, necessary to request actions ect
 """
+# ID des differents noeuds du bus can 
+ID_NOEUD_CAN_ASSERV = 1
+ID_NOEUD_CAN_AUTOM = 2
+ID_NOEUD_CAN_LIDAR = 3
+
 #couleur equipe 
 BLEU = 0
 JAUNE = 1

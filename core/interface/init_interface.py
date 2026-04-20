@@ -9,7 +9,9 @@ import can.interfaces.socketcan.socketcan
 from core.interface.can import canopen_wrapper, comm_lidar
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
-import core.interface.log_management.logger as logger
+from core.interface.can.constants import ID_NOEUD_CAN_ASSERV, ID_NOEUD_CAN_AUTOM, ID_NOEUD_CAN_LIDAR 
+from core.interface.log_management import logger
+import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
 
 import time
@@ -76,10 +78,6 @@ def initialize_interfaces() -> InterfacesContext:
     # Configuration debug
     DEBUG_CAN_CHANGES_ONLY = True
 
-    # UART_ASSERV et UART_AUTOM can't be true at the same time.
-    UART_ASSERV  =True
-    UART_AUTOM = False
-
      # Attendre que can0 soit prêt AVANT de créer le bus
     if not wait_for_can0(timeout=10):
         raise RuntimeError("can0 interface not available - cannot start robot")
@@ -110,13 +108,13 @@ def initialize_interfaces() -> InterfacesContext:
     # Créer les nodes CAN
     node_autom = None
     try:
-        node_autom = comm_autom.CanAutomNode(bus, 2)
+        node_autom = comm_autom.CanAutomNode(bus, ID_NOEUD_CAN_AUTOM)
     except Exception as e:
         logger.log_error("Init", f"Cannot create autom node: {e}")
 
     node_asserv = None
     try:
-        node_asserv = comm_asserv.CanAsservNode(bus, 1)
+        node_asserv = comm_asserv.CanAsservNode(bus, ID_NOEUD_CAN_ASSERV)
     except Exception as e:
         logger.log_error("Init", f"Cannot create asserv node: {e}")
     

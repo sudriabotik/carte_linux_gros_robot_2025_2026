@@ -26,28 +26,36 @@ class UnifiedLogger:
 	Thread-safe for concurrent access from UART thread and CAN message handlers.
 	"""
 
-	def __init__(self, uart_port="/dev/ttyS2", uart_baudrate=1000000, log_dir="log"):
+	def __init__(self, uart_port_asserv="/dev/ttyS2", uart_port_autom="/dev/ttyS6", uart_baudrate=1000000, log_dir="log"):
 		"""
 		Initialize the unified logger.
 
-		:param uart_port: UART port device (default: /dev/ttyS2 for Rock5 pins 8/10)
+		:param uart_port_asserv: UART port for ASSERV (default: /dev/ttyS2)
+		:param uart_port_autom: UART port for AUTOM (default: /dev/ttyS6)
 		:param uart_baudrate: UART baudrate (default: 1000000)
 		:param log_dir: Directory to store log files (default: "log")
 		"""
-		self.uart_port = uart_port
+		# Deux ports UART distincts
+		self.uart_port_asserv = uart_port_asserv
+		self.uart_port_autom = uart_port_autom
 		self.uart_baudrate = uart_baudrate
 		self.log_dir = log_dir
 
-		# Thread control for UART listener
+		# Thread control for UART listeners
 		self.running = False
-		self.uart_thread = None
+
+		# Deux threads séparés
+		self.uart_thread_asserv = None
+		self.uart_thread_autom = None
 
 		# Serial port and log file handles
-		self.serial_port = None
+		# Deux ports série séparés
+		self.serial_port_asserv = None
+		self.serial_port_autom = None
 		self.log_file = None
 		self.log_filename = None
 
-		# Thread-safe file writing (shared lock for UART thread and CAN callbacks)
+		# Thread-safe file writing (shared lock for UART threads and CAN callbacks)
 		self.lock = threading.Lock()
 
 		self.enabled = False
@@ -67,18 +75,31 @@ class UnifiedLogger:
 			logger.log_warning("UnifiedLogger", "Unified logger already started")
 			return
 
-		# Open UART serial port
+		# Open UART serial port ASSERV
 		try:
-			self.serial_port = serial.Serial(
-				port=self.uart_port,
+			self.serial_port_asserv = serial.Serial(
+				port=self.uart_port_asserv,
 				baudrate=self.uart_baudrate,
 				timeout=0.1  # Non-blocking with small timeout
 			)
-			logger.log_info("UnifiedLogger", f"Opened UART on {self.uart_port} @ {self.uart_baudrate} baud")
+			logger.log_info("UnifiedLogger", f"Opened UART ASSERV on {self.uart_port_asserv} @ {self.uart_baudrate} baud")
 		except Exception as e:
-			logger.log_error("UnifiedLogger", f"Failed to open UART port {self.uart_port}: {e}")
-			logger.log_warning("UnifiedLogger", "Continuing without UART logging")
-			self.serial_port = None
+			logger.log_error("UnifiedLogger", f"Failed to open UART ASSERV port {self.uart_port_asserv}: {e}")
+			logger.log_warning("UnifiedLogger", "Continuing without UART ASSERV logging")
+			self.serial_port_asserv = None
+
+		# Open UART serial port AUTOM
+		try:
+			self.serial_port_autom = serial.Serial(
+				port=self.uart_port_autom,
+				baudrate=self.uart_baudrate,
+				timeout=0.1  # Non-blocking with small timeout
+			)
+			logger.log_info("UnifiedLogger", f"Opened UART AUTOM on {self.uart_port_autom} @ {self.uart_baudrate} baud")
+		except Exception as e:
+			logger.log_error("UnifiedLogger", f"Failed to open UART AUTOM port {self.uart_port_autom}: {e}")
+			logger.log_warning("UnifiedLogger", "Continuing without UART AUTOM logging")
+			self.serial_port_autom = None
 
 		# Create timestamped log file
 		timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -104,29 +125,39 @@ class UnifiedLogger:
 				self.serial_port.close()
 			return
 
-		# Start the UART listener thread (only if UART port opened successfully)
-		if self.serial_port:
-			self.running = True
-			self.uart_thread = threading.Thread(target=self._uart_listener_thread, daemon=True)
-			self.uart_thread.start()
-			logger.log_info("UnifiedLogger", "UART listener thread started")
+		# Start the UART listener threads
+		self.running = True
+
+		# Thread ASSERV
+		if self.serial_port_asserv:
+			self.uart_thread_asserv = threading.Thread(target=self._uart_listener_thread_asserv, daemon=True)
+			self.uart_thread_asserv.start()
+			logger.log_info("UnifiedLogger", "UART ASSERV listener thread started")
 		else:
-			logger.log_info("UnifiedLogger", "UART logging disabled (no serial port)")
+			logger.log_info("UnifiedLogger", "UART ASSERV logging disabled (no serial port)")
+
+		# Thread AUTOM
+		if self.serial_port_autom:
+			self.uart_thread_autom = threading.Thread(target=self._uart_listener_thread_autom, daemon=True)
+			self.uart_thread_autom.start()
+			logger.log_info("UnifiedLogger", "UART AUTOM listener thread started")
+		else:
+			logger.log_info("UnifiedLogger", "UART AUTOM logging disabled (no serial port)")
 
 
-	def _uart_listener_thread(self):
+	def _uart_listener_thread_asserv(self):
 		"""
-		Private method that runs in the background thread.
-		Continuously reads UART data and writes to log file with [UART] tag.
+		Private method that runs in the background thread for ASSERV UART.
+		Continuously reads UART data and writes to log file with [UART_ASSERV] tag.
 		"""
-		logger.log_info("UnifiedLogger", "UART listener thread running")
+		logger.log_info("UnifiedLogger", "UART ASSERV listener thread running")
 
 		try:
 			while self.running:
 				# Check if data is available
-				if self.serial_port.in_waiting > 0:
+				if self.serial_port_asserv.in_waiting > 0:
 					# Read all available data
-					data = self.serial_port.read(self.serial_port.in_waiting)
+					data = self.serial_port_asserv.read(self.serial_port_asserv.in_waiting)
 
 					# Try to decode as UTF-8, fallback to raw string
 					try:
@@ -134,25 +165,59 @@ class UnifiedLogger:
 					except:
 						text = str(data)
 
-					# Write to log file with [UART] tag and unified timestamp
-					self.log_uart(text)
+					# Write to log file with [UART_ASSERV] tag and unified timestamp
+					self.log_uart(text, "ASSERV")
 
 				else:
 					# Small sleep to avoid busy-waiting
 					time.sleep(0.01)
 
 		except Exception as e:
-			logger.log_error("UnifiedLogger", f"Error in UART listener thread: {e}")
+			logger.log_error("UnifiedLogger", f"Error in UART ASSERV listener thread: {e}")
 
-		logger.log_info("UnifiedLogger", "UART listener thread stopped")
+		logger.log_info("UnifiedLogger", "UART ASSERV listener thread stopped")
 
 
-	def log_uart(self, data):
+	def _uart_listener_thread_autom(self):
 		"""
-		Log UART data to the unified file with [UART] tag.
-		Thread-safe method called from UART listener thread.
+		Private method that runs in the background thread for AUTOM UART.
+		Continuously reads UART data and writes to log file with [UART_AUTOM] tag.
+		"""
+		logger.log_info("UnifiedLogger", "UART AUTOM listener thread running")
+
+		try:
+			while self.running:
+				# Check if data is available
+				if self.serial_port_autom.in_waiting > 0:
+					# Read all available data
+					data = self.serial_port_autom.read(self.serial_port_autom.in_waiting)
+
+					# Try to decode as UTF-8, fallback to raw string
+					try:
+						text = data.decode('utf-8', errors='ignore')
+					except:
+						text = str(data)
+
+					# Write to log file with [UART_AUTOM] tag and unified timestamp
+					self.log_uart(text, "AUTOM")
+
+				else:
+					# Small sleep to avoid busy-waiting
+					time.sleep(0.01)
+
+		except Exception as e:
+			logger.log_error("UnifiedLogger", f"Error in UART AUTOM listener thread: {e}")
+
+		logger.log_info("UnifiedLogger", "UART AUTOM listener thread stopped")
+
+
+	def log_uart(self, data, tag):
+		"""
+		Log UART data to the unified file with [UART_ASSERV] or [UART_AUTOM] tag.
+		Thread-safe method called from UART listener threads.
 
 		:param data: UART data string to log
+		:param tag: "ASSERV" or "AUTOM"
 		"""
 		if not self.enabled or self.log_file is None:
 			return
@@ -162,9 +227,9 @@ class UnifiedLogger:
 				# Use unified timestamp for perfect synchronization with CAN logs
 				timestamp = logger.get_unified_timestamp_absolute()
 
-				# Format: [timestamp] [UART] {data}
+				# Format: [timestamp] [UART_ASSERV] {data} or [timestamp] [UART_AUTOM] {data}
 				# Note: UART data already contains newlines from microcontroller
-				log_line = f"[{timestamp}] [UART] {data}"
+				log_line = f"[{timestamp}] [UART_{tag}] {data}"
 
 				self.log_file.write(log_line)
 				self.log_file.flush()
@@ -266,17 +331,26 @@ class UnifiedLogger:
 
 		logger.log_info("UnifiedLogger", "Stopping unified logger...")
 
-		# Signal UART thread to stop
+		# Signal UART threads to stop
 		self.running = False
 
-		# Wait for UART thread to finish (max 2 seconds)
-		if self.uart_thread and self.uart_thread.is_alive():
-			self.uart_thread.join(timeout=2.0)
+		# Wait for UART ASSERV thread to finish (max 2 seconds)
+		if self.uart_thread_asserv and self.uart_thread_asserv.is_alive():
+			self.uart_thread_asserv.join(timeout=2.0)
 
-		# Close serial port
-		if self.serial_port and self.serial_port.is_open:
-			self.serial_port.close()
-			logger.log_info("UnifiedLogger", f"Closed UART port {self.uart_port}")
+		# Wait for UART AUTOM thread to finish (max 2 seconds)
+		if self.uart_thread_autom and self.uart_thread_autom.is_alive():
+			self.uart_thread_autom.join(timeout=2.0)
+
+		# Close serial port ASSERV
+		if self.serial_port_asserv and self.serial_port_asserv.is_open:
+			self.serial_port_asserv.close()
+			logger.log_info("UnifiedLogger", f"Closed UART ASSERV port {self.uart_port_asserv}")
+
+		# Close serial port AUTOM
+		if self.serial_port_autom and self.serial_port_autom.is_open:
+			self.serial_port_autom.close()
+			logger.log_info("UnifiedLogger", f"Closed UART AUTOM port {self.uart_port_autom}")
 
 		# Close log file
 		with self.lock:
