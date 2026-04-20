@@ -16,10 +16,12 @@ UART_ASSERV = "/dev/ttyS2"
 class UartLogger :
 
 
-	def __init__(self, uart_port : str = "/dev/ttyS2", uart_baudrate : int = 1000000) :
+	def __init__(self, name : str, log_suffix : str, uart_port : str = "/dev/ttyS2", uart_baudrate : int = 1000000) :
 
+		self.name : str = name
 		self.uart_port : str = uart_port
 		self.uart_baudrate : int = uart_baudrate
+		self.log_suffix : str = log_suffix
 
 		self.serial_port : serial.Serial = serial.Serial(
 			port=self.uart_port,
@@ -45,7 +47,7 @@ class UartLogger :
 		Private method that runs in the background thread.
 		Continuously reads UART data and writes to log file with [UART] tag.
 		"""
-		logger.log_info("UnifiedLogger", "UART listener thread running")
+		logger.log_info(self.name, f"UART listener thread running : {self.serial_port}", suffix=self.log_suffix)
 
 		try:
 			while self.running:
@@ -61,7 +63,7 @@ class UartLogger :
 						text = str(data)
 
 					# Write to log file with [UART] tag and unified timestamp
-					logger.log_info("UART", text)
+					logger.log_info(self.name, text, suffix=self.log_suffix)
 
 				else:
 					# Small sleep to avoid busy-waiting
@@ -74,20 +76,32 @@ class UartLogger :
 
 
 
-_uart_logger : UartLogger
 
+global _uart_asserv
+_uart_asserv : UartLogger | None = None
+
+global _uart_autom
+_uart_autom : UartLogger | None = None
 
 
 try :
-	uart_logger = UartLogger(UART_ASSERV, 1000000)
+	_uart_asserv = UartLogger("UART_ASSERV", "uart_asserv", UART_ASSERV, 1000000)
 except Exception as e :
-	logger.log_error("UartLogger", "Cannot start : {e}")
+	logger.log_error("UartLogger", "Cannot start asserv listener : {e}")
+
+try :
+	_uart_autom = UartLogger("UART_AUTOM", "uart_autom", UART_AUTOM, 1000000)
+except Exception as e :
+	logger.log_error("UartLogger", "Cannot start autom listener : {e}")
 
 
 
 def close() :
 	try :
-		_uart_logger.destroy()
+		if _uart_asserv != None :
+			_uart_asserv.destroy()
+		if _uart_autom != None :
+			_uart_autom.destroy()
 	except Exception as e :
 		logger.log_error("UartLogger", "Cannot stop : {e}")
 

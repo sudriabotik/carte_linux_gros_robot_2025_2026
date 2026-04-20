@@ -2,11 +2,9 @@
 """
 Point d'entrée principal du robot
 """
-from core.init_core import initialize_all
-from core.interface.log_management.uart_logger import uart_logger
+from core.init_core import initialize_all, deinit_all
 from strategy.strat_dynamique import StratDynamique
 import core.interface.log_management.logger as logger
-from core.interface.log_management import logger
 
 
 def main():
@@ -22,6 +20,7 @@ def main():
     strat_dyn.run_homologation()
 
     # Arrêt propre
+    deinit_all()
     logger.log_info("Main", "Program finished")
     logger.close()
     print("logger stopped")

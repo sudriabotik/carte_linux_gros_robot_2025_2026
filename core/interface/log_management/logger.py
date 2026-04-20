@@ -55,33 +55,34 @@ class Logger :
 			os.makedirs(LOG_DIR)
 
 		self.log_filename : str = os.path.join(LOG_DIR, f"log_{get_timestamp_absolute()}.txt")
-		# logfile directory as keys
+		# logfile suffix as keys
 		self.logfiles : dict[str, TextIOWrapper] = {}
-		self.log_file : TextIOWrapper = open(self.log_filename, "w", buffering=1)  # Line buffering
 
 		self.lock : threading.Lock = threading.Lock()
 
 		self.write(f">> [INFO] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
 	
 	def __del__(self) -> None :
-		self.log_file.flush()
-		self.log_file.close()
-	
-	def get_or_make_logfile(self, dir : str) -> TextIOWrapper :
 		with self.lock :
-			if dir in self.logfiles.keys() :
-				return self.logfiles[dir]
+			for logfile in self.logfiles.values() :
+				logfile.flush()
+				logfile.close()
+	
+	def get_or_make_logfile(self, suffix : str) -> TextIOWrapper :
+		with self.lock :
+			if suffix in self.logfiles.keys() :
+				return self.logfiles[suffix]
 			else :
-				self.logfiles[dir] = open(dir + "/" + self.log_filename, "w", buffering=1)
-				return self.logfiles[dir]
+				self.logfiles[suffix] = open(LOG_DIR + self.log_filename + "_" + suffix, "w", buffering=1)
+				return self.logfiles[suffix]
 
 	
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
-	def write(self, line : str, directory : str = "log") :
+	def write(self, line : str, suffix : str = "log") :
 
-		logfile = self.get_or_make_logfile(directory)
+		logfile = self.get_or_make_logfile(suffix)
 
 		with self.lock :
 			if use_std :
@@ -93,9 +94,9 @@ class Logger :
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
-	def write_err(self, line : str, directory : str = "log") :
+	def write_err(self, line : str, suffix : str = "log") :
 
-		logfile = self.get_or_make_logfile(directory)
+		logfile = self.get_or_make_logfile(suffix)
 
 		with self.lock :
 			if use_std :
@@ -114,25 +115,25 @@ except Exception as e :
 
 
 
-def log_verbose(source : str, message : str, directory : str = "log") :
+def log_verbose(source : str, message : str, suffix : str = "log") :
 	if (instance == None) : return
-	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
+	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
 
-def log_info(source : str, message : str, directory : str = "log") :
+def log_info(source : str, message : str, suffix : str = "log") :
 	if (instance == None) : return
-	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
+	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
 
-def log_warning(source : str, message : str, directory : str = "log") :
+def log_warning(source : str, message : str, suffix : str = "log") :
 	if (instance == None) : return
-	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
+	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
 
-def log_error(source : str, message : str, directory : str = "log") :
+def log_error(source : str, message : str, suffix : str = "log") :
 	if (instance == None) : return
-	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
+	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
 
-def log_traceback(source : str, message : str, directory : str = "log") :
+def log_traceback(source : str, message : str, suffix : str = "log") :
 	if (instance == None) : return
-	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
+	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
 
 
 def close() :
