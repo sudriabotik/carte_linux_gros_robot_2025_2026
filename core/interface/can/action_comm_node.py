@@ -108,12 +108,12 @@ class _CanActionNodeReader(can.Listener) :
 							# logger.log_info("CanActionNodeReader", f"[Node {id}] CAN CHANGE → status:{vals[0]} cmd_id:{vals[1]} action:{vals[2]} completed:{vals[3]} error:{vals[4]}")
 							self._update_cache(vals)
 
-							logger.log_verbose("CanActionNodeReader", f"CAN CHANGE : {format_can_rx_string(id, vals)}", suffix=f"{threading.get_native_id()}")
+							logger.log_verbose("CanActionNodeReader", f"CAN CHANGE : {format_can_rx_string(id, vals)}")
 					else:
-						logger.log_verbose("CanActionNodeReader", f"{format_can_rx_string(id, vals)}", suffix=f"{threading.get_native_id()}")
+						logger.log_verbose("CanActionNodeReader", f"{format_can_rx_string(id, vals)}")
 
 				except Exception as e :
-					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}", suffix=f"{threading.get_native_id()}")
+					logger.log_error("CanActionNodeReader", f"Error decoding TPDO: {e}")
 
 				if vals != None :
 					self.current_command_status = vals[0]
@@ -144,7 +144,7 @@ class _CanActionNodeReader(can.Listener) :
 							self.robot.update_position(x, y, angle, lin_vel)
 
 				except Exception as e :
-					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}", suffix=f"{threading.get_native_id()}")
+					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}")
 	
 
 	def on_message_received_extension(self, msg: can.Message, id : int, func : FUNCTION_CODE, i : int) -> None:
@@ -160,7 +160,7 @@ class CanActionNode :
 
 		self.node_id = node_id
 
-		logger.log_info("CanActionNode", f"node with id {node_id} initialized", suffix=f"{threading.get_native_id()}")
+		logger.log_info("CanActionNode", f"node with id {node_id} initialized")
 
 		# instantiate the class resposible from catching and interpreting TPDOs
 		# MODIFIED BY CLAUDE: Pass robot parameter to enable position updates from TPDO[1]

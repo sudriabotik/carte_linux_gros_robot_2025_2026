@@ -42,7 +42,7 @@ def get_timestamp_absolute():
 	:return: Formatted string "YYYY-MM-DD HH:MM:SS.mmm"
 	"""
 	current_time = datetime.datetime.now()
-	timestamp_abs = current_time.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]  # Milliseconds
+	timestamp_abs = current_time.strftime("%Y-%m-%d_%H:%M:%S:%f")[:-3]  # Milliseconds
 	return f"{timestamp_abs}"
 
 
@@ -54,9 +54,14 @@ class Logger :
 		if not os.path.exists(LOG_DIR):
 			os.makedirs(LOG_DIR)
 
-		self.log_filename : str = os.path.join(LOG_DIR, f"log_{get_timestamp_absolute()}.txt")
-		# logfile suffix as keys
-		self.logfiles : dict[str, TextIOWrapper] = {}
+		self.start_date : str = get_timestamp_absolute()
+		
+		self.current_log_dir : str = os.path.join(LOG_DIR, self.start_date)
+		if not os.path.exists(self.current_log_dir) :
+			os.makedirs(self.current_log_dir)
+
+		# threads native ids as keys
+		self.logfiles : dict[int, TextIOWrapper] = {}
 
 		self.lock : threading.Lock = threading.Lock()
 
@@ -68,21 +73,22 @@ class Logger :
 				logfile.flush()
 				logfile.close()
 	
-	def get_or_make_logfile(self, suffix : str) -> TextIOWrapper :
+	# use the threading id and program start time to fetch/create a logfile in a folder
+	def get_or_make_logfile_for_thread(self) -> TextIOWrapper :
 		with self.lock :
-			if suffix in self.logfiles.keys() :
-				return self.logfiles[suffix]
+			if threading.get_native_id() in self.logfiles.keys() :
+				return self.logfiles[threading.get_native_id()]
 			else :
-				self.logfiles[suffix] = open(LOG_DIR + self.log_filename + "_" + suffix, "w", buffering=1)
-				return self.logfiles[suffix]
+				self.logfiles[threading.get_native_id()] = open(os.path.join(self.current_log_dir, f"log_{threading.get_native_id()}.txt"), "w", buffering=1)
+				return self.logfiles[threading.get_native_id()]
 
 	
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
-	def write(self, line : str, suffix : str = "log") :
+	def write(self, line : str) :
 
-		logfile = self.get_or_make_logfile(suffix)
+		logfile = self.get_or_make_logfile_for_thread()
 
 		with self.lock :
 			if use_std :
@@ -96,7 +102,7 @@ class Logger :
 	"""
 	def write_err(self, line : str, suffix : str = "log") :
 
-		logfile = self.get_or_make_logfile(suffix)
+		logfile = self.get_or_make_logfile_for_thread(suffix)
 
 		with self.lock :
 			if use_std :
@@ -115,25 +121,25 @@ except Exception as e :
 
 
 
-def log_verbose(source : str, message : str, suffix : str = "log") :
+def log_verbose(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
+	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
-def log_info(source : str, message : str, suffix : str = "log") :
+def log_info(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
+	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
-def log_warning(source : str, message : str, suffix : str = "log") :
+def log_warning(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
+	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
-def log_error(source : str, message : str, suffix : str = "log") :
+def log_error(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
+	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
-def log_traceback(source : str, message : str, suffix : str = "log") :
+def log_traceback(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", suffix)
+	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
 
 
 def close() :
