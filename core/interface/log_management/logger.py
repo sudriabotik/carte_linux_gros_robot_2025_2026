@@ -55,68 +55,84 @@ class Logger :
 			os.makedirs(LOG_DIR)
 
 		self.log_filename : str = os.path.join(LOG_DIR, f"log_{get_timestamp_absolute()}.txt")
+		# logfile directory as keys
+		self.logfiles : dict[str, TextIOWrapper] = {}
 		self.log_file : TextIOWrapper = open(self.log_filename, "w", buffering=1)  # Line buffering
 
 		self.lock : threading.Lock = threading.Lock()
 
-		self.write(f"[INFO] [run_started:{start_date}] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
+		self.write(f">> [INFO] [t+{time.time() - initial_time:.6f}s] [Logger] logger initialized\n")
 	
 	def __del__(self) -> None :
 		self.log_file.flush()
 		self.log_file.close()
 	
+	def get_or_make_logfile(self, dir : str) -> TextIOWrapper :
+		with self.lock :
+			if dir in self.logfiles.keys() :
+				return self.logfiles[dir]
+			else :
+				self.logfiles[dir] = open(dir + "/" + self.log_filename, "w", buffering=1)
+				return self.logfiles[dir]
+
+	
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
-	def write(self, line : str) :
+	def write(self, line : str, directory : str = "log") :
+
+		logfile = self.get_or_make_logfile(directory)
 
 		with self.lock :
 			if use_std :
 				sys.stdout.write(line + "\n")
 			if use_file :
-				self.log_file.write(line + "\n")
-				self.log_file.flush()
+				logfile.write(line + "\n")
+				logfile.flush()
 
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
-	def write_err(self, line : str) :
+	def write_err(self, line : str, directory : str = "log") :
+
+		logfile = self.get_or_make_logfile(directory)
 
 		with self.lock :
 			if use_std :
-				sys.stderr.write(line + "\n")
+				sys.stdout.write(line + "\n")
 			if use_file :
-				self.log_file.write(line + "\n")
-				self.log_file.flush()
+				logfile.write(line + "\n")
+				logfile.flush()
 			
 
+global instance
 instance : Logger | None = None
 try :
-	instance : Logger = Logger()
+	instance = Logger()
 except Exception as e :
-	sys.stderr.write(f"[FATAL] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [LOGGER] cannot start logger : {e}\n")
+	sys.stderr.write(f">> [FATAL] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [LOGGER] cannot start logger : {e}\n")
 
 
 
-def log_verbose(source : str, message : str) :
+def log_verbose(source : str, message : str, directory : str = "log") :
 	if (instance == None) : return
-	instance.write(f"[VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
 
-def log_info(source : str, message : str) :
+def log_info(source : str, message : str, directory : str = "log") :
 	if (instance == None) : return
-	instance.write(f"[INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
 
-def log_warning(source : str, message : str) :
+def log_warning(source : str, message : str, directory : str = "log") :
 	if (instance == None) : return
-	instance.write(f"[WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
 
-def log_error(source : str, message : str) :
+def log_error(source : str, message : str, directory : str = "log") :
 	if (instance == None) : return
-	instance.write_err(f"[ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
 
-def log_traceback(source : str, message : str) :
+def log_traceback(source : str, message : str, directory : str = "log") :
 	if (instance == None) : return
-	instance.write_err(f"[TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n", directory)
 
 
 def close() :
