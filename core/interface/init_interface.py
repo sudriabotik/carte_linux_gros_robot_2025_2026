@@ -9,6 +9,7 @@ import can.interfaces.socketcan.socketcan
 from core.interface.can import canopen_wrapper
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
+from core.interface.can.constants import ID_NOEUD_CAN_ASSERV, ID_NOEUD_CAN_AUTOM, ID_NOEUD_CAN_LIDAR 
 from core.interface.log_management import logger
 import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
@@ -77,10 +78,6 @@ def initialize_interfaces() -> InterfacesContext:
     DEBUG_CAN_CHANGES_ONLY = True
     DEBUG_UNIFIED_LOGGER = True
 
-    # UART_ASSERV et UART_AUTOM can't be true at the same time.
-    UART_ASSERV  =True
-    UART_AUTOM = False
-
      # Attendre que can0 soit prêt AVANT de créer le bus
     if not wait_for_can0(timeout=10):
         raise RuntimeError("can0 interface not available - cannot start robot")
@@ -104,23 +101,17 @@ def initialize_interfaces() -> InterfacesContext:
     # Configuration debug CAN
     canopen_wrapper.DEBUG_CAN_CHANGES_ONLY = DEBUG_CAN_CHANGES_ONLY
 
-    # Démarrer le unified logger (UART + CAN)
+    # Démarrer le unified logger (UART ASSERV + UART AUTOM + CAN)
     if DEBUG_UNIFIED_LOGGER:
-        if (UART_AUTOM):
-            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
-                uart_port="/dev/ttyS6",
-                uart_baudrate=1000000,
-                log_dir="log"
-            )
-        else:
-            module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
-                uart_port="/dev/ttyS2",
-                uart_baudrate=1000000,
-                log_dir="log"
-            )
+        module_unified_logger.unified_logger = module_unified_logger.UnifiedLogger(
+            uart_port_asserv="/dev/ttyS2",
+            uart_port_autom="/dev/ttyS6",
+            uart_baudrate=1000000,
+            log_dir="log"
+        )
 
         module_unified_logger.unified_logger.start()
-        logger.log_info("Init", "Unified logger (UART+CAN) started")
+        logger.log_info("Init", "Unified logger (UART_ASSERV + UART_AUTOM + CAN) started")
 
     # Créer le wrapper CANopen
     canopen_wrapper.instance = canopen_wrapper.CanopenWrapper(bus)
@@ -128,13 +119,13 @@ def initialize_interfaces() -> InterfacesContext:
     # Créer les nodes CAN
     node_autom = None
     try:
-        node_autom = comm_autom.CanAutomNode(bus, 2)
+        node_autom = comm_autom.CanAutomNode(bus, ID_NOEUD_CAN_AUTOM)
     except Exception as e:
         logger.log_error("Init", f"Cannot create autom node: {e}")
 
     node_asserv = None
     try:
-        node_asserv = comm_asserv.CanAsservNode(bus, 1)
+        node_asserv = comm_asserv.CanAsservNode(bus, ID_NOEUD_CAN_ASSERV)
     except Exception as e:
         logger.log_error("Init", f"Cannot create asserv node: {e}")
 

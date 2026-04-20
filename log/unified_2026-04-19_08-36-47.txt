@@ -1,0 +1,19 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-19_08-36-47
+Program started at: 2026-04-19 08:36:47.641603
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-19 08:36:47.901 (t+0.260215s)] [PYTHON] [StratDynamique] === DÉBUT DU MATCH ===
+[2026-04-19 08:36:47.901 (t+0.260354s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette
+[2026-04-19 08:45:15.335 (t+507.694170s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 08:45:15.423 (t+507.781820s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 08:45:15.499 (t+507.857457s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520

@@ -8,6 +8,8 @@ import core.interface.can.canopen_wrapper as canopen_wrapper
 import time
 
 from core.interface.can.action_comm_node import CanActionNode
+from core.interface.gpio.gpio import read_gpio_couleur
+from core.interface.log_management.unified_logger import unified_logger
 
 class Face(IntEnum) :
 
@@ -29,6 +31,38 @@ class CanAsservNode(CanActionNode) :
 	def __init__(self, bus, node_id : int, robot=None):
 		# MODIFIED BY CLAUDE: Pass robot parameter to parent class for position updates
 		super().__init__(bus, node_id, robot=robot)
+
+	
+	""" 1 pour jaune, 0 pour bleu"""
+	def get_couleur(self) :
+		return read_gpio_couleur()
+
+	def team_dependent_flip_x_coordinates(self, x) -> int :
+		if self.get_couleur() == 0 :
+			return 3000 - x
+		else :
+			return x # keep original if yellow
+	
+
+	def team_dependent_flip_rotation(self, rot) -> int :
+		if self.get_couleur() == 0 :
+			return -rot
+		else :
+			return rot # keep original if yellow
+	
+	def team_dependent_flip_orientation(self, orientation) -> int :
+		result = orientation
+		if self.get_couleur() == 0 :
+			result = -result
+		
+		# normalize
+		if result < -180 :
+			result += 360
+		if result > 180 :
+			result -= 360
+		
+		return result
+			
 	
 
 	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :
@@ -67,28 +101,43 @@ class CanAsservNode(CanActionNode) :
 		:param speed: Angular speed in thousandths of deg/ms
 		:param accel: Angular acceleration in thousandths of deg/ms^2
 		"""
+
+		angle_deg = self.team_dependent_flip_rotation(angle_deg)
+
 		canopen_wrapper.instance.request_action(self.node_id, 101, [angle_deg, speed, accel])
 		self.timestamp_last_command = time.time()
 
 
-	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face) :
+	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face=None ) :
 		"""
 		CMD_ACTION_GOTO (5): Goes to the given point, using the requested face
 
 		:param x_mm: X coordinate in mm
 		:param y_mm: Y coordinate in mm
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
+		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)( par default FACE_AVANT)
 		"""
+		if face == None:
+			face = Face.FACE_AVANT
+
+		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
+
 		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 
 
 	def action_recalibration(self, facing : Facing, face : Face) :
 		"""
-		CMD_ACTION_RECALIBRATE (6): Resets a coordinate of the robot using the walls of the table
+		CMD_ACTION_RECALIBRATE (152): Resets a coordinate of the robot using the walls of the table
 
 		:param facing: Direction to recalibrate (POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y)
 		:param face: Face to use during recalibration (FACE_AVANT or FACE_ARRIERE)
+		"""
+		"""
+		if self.get_couleur() == 0 : # bleu 
+			if facing == Facing.POSITIVE_X :
+				facing = Facing.NEGATIVE_X
+			elif facing == Facing.NEGATIVE_X :
+				facing = Facing.POSITIVE_X
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 152, [facing, face])
 		self.timestamp_last_command = time.time()
@@ -96,7 +145,7 @@ class CanAsservNode(CanActionNode) :
 
 	def action_moveto(self, x_mm: int, y_mm : int, face : Face) :
 		"""
-		CMD_ACTION_MOVETO (7): Moves to the given point using the requested face (without rotation)
+		CMD_ACTION_MOVETO (151): Moves to the given point using the requested face (without rotation)
 
 		:param x_mm: X coordinate in mm
 		:param y_mm: Y coordinate in mm
@@ -108,12 +157,15 @@ class CanAsservNode(CanActionNode) :
 
 	def action_lookat(self, x_mm: int, y_mm : int, face : Face) :
 		"""
-		CMD_ACTION_LOOKAT (8): Rotates to look at the given point using the requested face
+		CMD_ACTION_LOOKAT (153): Rotates to look at the given point using the requested face
 
 		:param x_mm: X coordinate in mm to look at
 		:param y_mm: Y coordinate in mm to look at
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
 		"""
+
+		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
+
 		canopen_wrapper.instance.request_action(self.node_id, 153, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 

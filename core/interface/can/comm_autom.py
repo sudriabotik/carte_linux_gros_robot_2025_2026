@@ -8,6 +8,11 @@ import time
 
 from core.interface.can.action_comm_node import CanActionNode
 
+# debut config pour les hint uniquement : 
+from core.interface.can.canopen_wrapper import CanopenWrapper  # Type hint uniquement
+# Pour l'autocomplétion dans l'IDE
+canopen_wrapper.instance = CanopenWrapper(None)
+# debut config pour les hint uniquement : 
 
 # all the state enum from the C code
 
@@ -26,7 +31,7 @@ class CanAutomNode(CanActionNode) :
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_v_percent, speed_h_percent])
 		self.timestamp_last_command = time.time()
-
+		
 
 	def action_grab(self) :
 		"""
@@ -157,4 +162,12 @@ class CanAutomNode(CanActionNode) :
 		ax12 max rpm = 59 --> maximum = 59/0.111 = 531 
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 16, [id, position, vitesse])
+		self.timestamp_last_command = time.time()
+
+	def action_pos_ax_caca_calage(self) :
+		"""
+		CMD_POS_AX_CACA_CALAGE (17): il ne faut pas que l'ax soit en position ejecter avant de faire un calage
+		sinon le robott va se caler sur l'ax.
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 17, [])
 		self.timestamp_last_command = time.time()

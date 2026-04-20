@@ -1,0 +1,26 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-18_14-54-13
+Program started at: 2026-04-18 14:54:13.516242
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-18 14:54:13.719 (t+0.203295s)] [CAN RX] Node 1 → status:0 cmd_id:0 action:0 completed:0 error:0
+[2026-04-18 14:54:13.760 (t+0.243899s)] [CAN RX] Node 2 → status:1 cmd_id:0 action:1 completed:0 error:0
+[2026-04-18 14:54:13.771 (t+0.255169s)] [PYTHON] [Strat_homologation] === DÉBUT DU MATCH ===
+[2026-04-18 14:54:13.771 (t+0.255279s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette
+[2026-04-18 14:54:13.985 (t+0.468866s)] [UART_AUTOM] endstop_vertical
+[2026-04-18 14:54:13.995 (t+0.479318s)] [UART_AUTOM] elevator V : endstop reached, resetting position to 0
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-18 14:54:14.005 (t+0.489702s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-18 14:54:14.016 (t+0.500278s)] [UART_AUTOM] elevator H : homing wake
+loaded new state queue
+[2026-04-18 14:54:14.895 (t+1.379454s)] [UART_AUTOM] elevator H : endstop reached, resetting position to 0
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-18 14:54:14.900 (t+1.384622s)] [CAN RX] Node 2 → status:2 cmd_id:0 action:1 completed:0 error:0
+[2026-04-18 14:54:14.906 (t+1.389859s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=0
+[CANopen STATUS] status=2 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)

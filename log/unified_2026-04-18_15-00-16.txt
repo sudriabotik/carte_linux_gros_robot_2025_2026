@@ -1,0 +1,8 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-18_15-00-16
+Program started at: 2026-04-18 15:00:16.162731
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-18 15:00:16.407 (t+0.244553s)] [PYTHON] [Strat_homologation] === DÉBUT DU MATCH ===
+[2026-04-18 15:00:16.407 (t+0.244691s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette

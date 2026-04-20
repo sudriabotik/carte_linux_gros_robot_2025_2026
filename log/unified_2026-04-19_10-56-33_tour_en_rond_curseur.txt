@@ -1,0 +1,2234 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-19_10-56-33
+Program started at: 2026-04-19 10:56:33.297049
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-19 10:56:33.540 (t+0.243918s)] [PYTHON] [StratDynamique] === DÉBUT DU MATCH ===
+[2026-04-19 10:56:33.541 (t+0.244115s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette
+[2026-04-19 10:57:30.212 (t+56.915687s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 10:57:30.313 (t+57.016078s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 10:57:30.725 (t+57.428086s)] [UART_AUTOM] sequencer: idle registered for machine 0
+sequencer: idle registered for machine 1
+[CANo[2026-04-19 10:57:30.725 (t+57.428825s)] [UART_AUTOM] pen CMD] Processor initialized
+[CANopen STATUS] status=0 cmd_id=0 action_id=0 complete[2026-04-19 10:57:30.726 (t+57.429349s)] [UART_AUTOM] d=0 error=0 (TPDO sent)
+[2026-04-19 10:57:30.812 (t+57.515887s)] [CAN RX] Node 1 → status:0 cmd_id:0 action:0 completed:0 error:0
+[2026-04-19 10:57:30.819 (t+57.522009s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine callback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
+[2026-04-19 10:57:31.035 (t+57.738451s)] [CAN RX] Node 2 → status:1 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 10:57:31.038 (t+57.741568s)] [UART_AUTOM] [CANopen STATUS] status=1 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[CANopen CMD] Manual sequence started: action_id=1, cmd_id=0
+sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+[CAN_DEBUG] RX logging disabled
+===== CANopen Detailed Status =====
+Node ID: 2 (desired: 2)
+Baudrate: 500 kbps
+NMT State: INITIALIZING
+Emergency: No errors
+SDO Server: Configured (index 0)
+TPDO: Configured
+RPDO: Configured
+SYNC: Available
+LED Status: Green=231 Red=135
+===================================
+[OD_READ] RAW OD values: ACTION_ID=0x0000 CMD_ID=0x0000 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[2026-04-19 10:57:31.049 (t+57.752320s)] [UART_AUTOM] sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 10:57:31.060 (t+57.762977s)] [UART_AUTOM] elevator V : homing wake
+loaded new state queue
+[2026-04-19 10:57:31.755 (t+58.458608s)] [UART_AUTOM] endstop_vertical
+[2026-04-19 10:57:31.766 (t+58.469349s)] [UART_AUTOM] elevator V : endstop reached, resetting position to 0
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 10:57:31.777 (t+58.479991s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 10:57:31.787 (t+58.490735s)] [UART_AUTOM] elevator H : homing wake
+loaded new state queue
+[2026-04-19 10:57:33.578 (t+60.281189s)] [UART_AUTOM] elevator H : endstop reached, resetting position to 0
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 10:57:33.589 (t+60.291968s)] [CAN RX] Node 2 → status:2 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 10:57:33.589 (t+60.292383s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=0
+[CANopen STATUS] status=2 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[2026-04-19 10:57:47.794 (t+74.497812s)] [PYTHON] [FunctStrat]  Tirette insérer Couleur équipe 0 (BLEU)
+[2026-04-19 10:57:47.795 (t+74.498069s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 10:57:47.795 (t+74.498774s)] [CAN TX] Node 2 → cmd_id:2 action:14 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 10:57:47.802 (t+74.505533s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0E 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=0 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 02 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000E CMD_ID=0x0002 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=14, command_id=2
+[CANopen CMD] Executing[2026-04-19 10:57:47.803 (t+74.506035s)] [UART_AUTOM] : CMD_COULEUR_EQUIPE
+
+[CANopen STATUS] status=2 cmd_id=[2026-04-19 10:57:47.803 (t+74.506387s)] [UART_AUTOM] 2 action_id=14 completed=2 error=0[2026-04-19 10:57:47.803 (t+74.506750s)] [UART_AUTOM]  (TPDO sent)
+[2026-04-19 10:57:47.804 (t+74.507735s)] [CAN RX] Node 2 → status:2 cmd_id:2 action:14 completed:2 error:0
+[2026-04-19 10:57:47.846 (t+74.549329s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=2 == completed_id=2
+[2026-04-19 10:57:47.846 (t+74.549840s)] [CAN TX] Node 2 → cmd_id:3 action:11 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 10:57:47.855 (t+74.558189s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0B 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=14 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 03 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000B CMD_ID=0x0003 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=11, command_id=3
+[CANopen CMD] Executing: CDM_CLOSE_PINCE
+
+[CANopen STATUS] status=1 cmd_id=3 action_id=11 completed=2 error=0 (TPDO sent)
+sequencer: add ACTION step 0 (dela[2026-04-19 10:57:47.857 (t+74.560146s)] [CAN RX] Node 2 → status:1 cmd_id:3 action:11 completed:2 error:0
+[2026-04-19 10:57:47.865 (t+74.568815s)] [UART_AUTOM] y=0ms)
+sequencer: add ACTION step 1 (delay=0ms)
+sequencer: start (2 steps)
+sequencer: executing ACTION step 1/2
+[2026-04-19 10:57:47.876 (t+74.579476s)] [UART_AUTOM] sequencer: executing ACTION step 2/2
+[2026-04-19 10:57:47.887 (t+74.590534s)] [CAN RX] Node 2 → status:2 cmd_id:3 action:11 completed:3 error:0
+[2026-04-19 10:57:47.888 (t+74.591027s)] [UART_AUTOM] sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=3
+[CANopen STATUS] status=2 cmd_id=3 action_id=11 completed=3 error=0 (TPDO sent)
+[2026-04-19 10:57:47.897 (t+74.600386s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 10:57:47.897 (t+74.600504s)] [PYTHON] [Stratégie] Début du calage de départ
+[2026-04-19 10:57:47.897 (t+74.600581s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 10:57:47.897 (t+74.600952s)] [CAN TX] Node 2 → cmd_id:4 action:13 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 10:57:47.898 (t+74.601241s)] [PYTHON] [Stratégie] Début du calage bleu
+[2026-04-19 10:57:47.898 (t+74.601322s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 10:57:47.898 (t+74.601847s)] [CAN TX] Node 1 → cmd_id:5 action:152 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 10:57:47.907 (t+74.610857s)] [CAN RX] Node 2 → status:1 cmd_id:4 action:13 completed:3 error:0
+[2026-04-19 10:57:47.909 (t+74.612011s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0D 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=11 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 04 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000D CMD_ID=0x0004 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=13, command_id=4
+[CANopen CMD] Executing: CDM_SAFE_POSITION_ASCENSEUR
+
+[CANopen STATUS] status=1 cmd_id=4 action_id=13 completed=3 error=0 (TPDO sent)
+sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+[2026-04-19 10:57:47.919 (t+74.622439s)] [UART_AUTOM] sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 10:57:47.919 (t+74.622899s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0005 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 10:57:47.924 (t+74.627836s)] [CAN RX] Node 1 → status:1 cmd_id:5 action:152 completed:0 error:0
+[2026-04-19 10:57:47.930 (t+74.633230s)] [UART_AUTOM] elevator H : released hold
+elevator H : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 10:57:47.930 (t+74.633683s)] [UART_ASSERV] performing a rotation of 0.000 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:57:47.941 (t+74.644191s)] [UART_ASSERV] finished a rotation of 0.000 degrees
+
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 10:57:48.882 (t+75.585496s)] [CAN RX] Node 1 → status:2 cmd_id:5 action:152 completed:5 error:200
+[2026-04-19 10:57:48.888 (t+75.591533s)] [UART_ASSERV] 
+______finished a recalibration
+
+spacestate robot :
+position : x:2884.50 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 10:57:48.904 (t+75.607651s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=5 == completed_id=5
+[2026-04-19 10:57:48.905 (t+75.608316s)] [CAN TX] Node 1 → cmd_id:6 action:100 params:[-110, 10, 10, 0, 0, 0]
+[2026-04-19 10:57:48.905 (t+75.608724s)] [PYTHON] [Stratégie]  calage suite
+[2026-04-19 10:57:48.920 (t+75.622980s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0006 p1=-110 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+performing a translation of distance -110.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:57:48.929 (t+75.632353s)] [CAN RX] Node 1 → status:1 cmd_id:6 action:100 completed:5 error:0
+[2026-04-19 10:57:50.147 (t+76.850075s)] [UART_ASSERV] finished a translation of distance -110.000 mm
+spacestate robot :
+position : x:2775.87 y:-0.12 mm
+orientation : -0.03 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:57:50.148 (t+76.851177s)] [CAN RX] Node 1 → status:2 cmd_id:6 action:100 completed:6 error:200
+[2026-04-19 10:57:50.162 (t+76.865216s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=6 == completed_id=6
+[2026-04-19 10:57:50.162 (t+76.865890s)] [CAN TX] Node 1 → cmd_id:7 action:152 params:[1, 1, 0, 0, 0, 0]
+[2026-04-19 10:57:50.169 (t+76.872528s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x009[2026-04-19 10:57:50.170 (t+76.873055s)] [UART_ASSERV] 8 CMD_ID=0x0007 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing:[2026-04-19 10:57:50.170 (t+76.873615s)] [UART_ASSERV]  recalibration
+[2026-04-19 10:57:50.181 (t+76.884318s)] [UART_ASSERV] performing a rotation of -89.967 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:57:50.182 (t+76.885481s)] [CAN RX] Node 1 → status:1 cmd_id:7 action:152 completed:6 error:0
+[2026-04-19 10:57:50.569 (t+77.271955s)] [UART_AUTOM] elevator H : reached  mm (target was  mm)
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 10:57:50.579 (t+77.282832s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 10:57:50.590 (t+77.293697s)] [UART_AUTOM] elevator V : released hold
+elevator V : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 10:57:51.242 (t+77.945047s)] [UART_AUTOM] elevator V : reached  mm (target was  mm)
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 10:57:51.247 (t+77.950089s)] [CAN RX] Node 2 → status:2 cmd_id:4 action:13 completed:4 error:0
+[2026-04-19 10:57:51.252 (t+77.955931s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=4
+[CANopen STATUS] status=2 cmd_id=4 action_id=13 completed=4 error=0 (TPDO sent)
+[2026-04-19 10:57:51.442 (t+78.145259s)] [UART_ASSERV] finished a rotation of -89.967 degrees
+
+spacestate robot :
+position : x:2775.87 y:-0.12 mm
+orientation : -88.85 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 10:57:52.403 (t+79.106891s)] [UART_ASSERV] 
+______finished a recalibration
+
+spacestate robot :
+position : x:2775.87 y:1852.50 mm
+orientation[2026-04-19 10:57:52.404 (t+79.107529s)] [UART_ASSERV]  : -90.00 degrees
+linear spee[2026-04-19 10:57:52.405 (t+79.107999s)] [UART_ASSERV] d : -1.28 mm/s
+angular speed : 0.00 deg/s
+c[2026-04-19 10:57:52.405 (t+79.108464s)] [UART_ASSERV] anopen queue finished callback
+[2026-04-19 10:57:52.412 (t+79.114990s)] [CAN RX] Node 1 → status:2 cmd_id:7 action:152 completed:7 error:200
+[2026-04-19 10:57:52.424 (t+79.127864s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=7 == completed_id=7
+[2026-04-19 10:57:52.425 (t+79.128493s)] [CAN TX] Node 1 → cmd_id:8 action:100 params:[50, 10, 10, 0, 0, 0]
+[2026-04-19 10:57:52.436 (t+79.139712s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0008 p1=50 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-04-19 10:57:52.447 (t+79.149951s)] [CAN RX] Node 1 → status:1 cmd_id:8 action:100 completed:7 error:0
+[2026-04-19 10:57:52.447 (t+79.150672s)] [UART_ASSERV] performing a translation of distance 50.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:57:53.388 (t+80.091887s)] [UART_ASSERV] finished a translation of distance 50.000 mm
+spacestate robot :
+position : x:2775.96 y:1804.02 mm
+orientation : -89.93 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:57:53.391 (t+80.094899s)] [CAN RX] Node 1 → status:2 cmd_id:8 action:100 completed:8 error:200
+[2026-04-19 10:57:53.431 (t+80.134317s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=8 == completed_id=8
+[2026-04-19 10:57:53.431 (t+80.134490s)] [PYTHON] [Stratégie] Fin du calage de départ
+[2026-04-19 10:59:07.262 (t+153.965480s)] [PYTHON] [Stratégie] DEBUT DU MATCH, tirette retirer
+[2026-04-19 10:59:07.263 (t+153.966787s)] [CAN TX] Node 1 → cmd_id:9 action:4 params:[1, 0, 0, 0, 0, 0]
+[2026-04-19 10:59:07.278 (t+153.981692s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0004 CMD_ID=0x0009 p1=1 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: CMD_EVITEMENT_ON_OFF
+[2026-04-19 10:59:07.285 (t+153.988835s)] [CAN RX] Node 1 → status:2 cmd_id:9 action:4 completed:9 error:0
+[2026-04-19 10:59:07.314 (t+154.017737s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=9 == completed_id=9
+[2026-04-19 10:59:07.315 (t+154.018540s)] [CAN TX] Node 1 → cmd_id:10 action:100 params:[250, 10, 10, 0, 0, 0]
+[2026-04-19 10:59:07.319 (t+154.022897s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x000A p1=250 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-04-19 10:59:07.330 (t+154.033551s)] [UART_ASSERV] performing a translation of distance 250.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:07.331 (t+154.034667s)] [CAN RX] Node 1 → status:1 cmd_id:10 action:100 completed:9 error:0
+[2026-04-19 10:59:08.879 (t+155.582585s)] [UART_ASSERV] finished a translation of distance 250.000 mm
+spacestate robot :
+position : x:2775.96 y:1555.47 mm
+orientation : -89.98 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.72 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:08.880 (t+155.583762s)] [CAN RX] Node 1 → status:2 cmd_id:10 action:100 completed:10 error:200
+[2026-04-19 10:59:08.924 (t+155.627755s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=10 == completed_id=10
+[2026-04-19 10:59:08.945 (t+155.648832s)] [CAN TX] Node 1 → cmd_id:11 action:150 params:[2500, 1200, 0, 0, 0, 0]
+[2026-04-19 10:59:08.957 (t+155.660087s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x00[2026-04-19 10:59:08.957 (t+155.660618s)] [UART_ASSERV] 96 CMD_ID=0x000B p1=2500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: G[2026-04-19 10:59:08.958 (t+155.661088s)] [UART_ASSERV] OTO
+[2026-04-19 10:59:08.958 (t+155.661724s)] [UART_ASSERV] [MOVEMENT] goto x:2500.000 y:1200.000 requir[2026-04-19 10:59:08.959 (t+155.662197s)] [UART_ASSERV] es translation 450.018mm and rotation -0.661deg
+[2026-04-19 10:59:08.970 (t+155.673221s)] [UART_ASSERV] performing a rotation of -37.847 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:08.971 (t+155.674260s)] [CAN RX] Node 1 → status:1 cmd_id:11 action:150 completed:10 error:0
+[2026-04-19 10:59:10.125 (t+156.828264s)] [UART_ASSERV] finished a rotation of -37.847 degrees
+
+spacestate robot :
+position : x:2775.96 y:1555.47 mm
+orientation : -126.71 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+performing a translation of distance 450.018 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:12.231 (t+158.934285s)] [CAN RX] Node 1 → status:2 cmd_id:11 action:150 completed:11 error:200
+[2026-04-19 10:59:12.233 (t+158.936507s)] [UART_ASSERV] finished a translation of distance 450.018 mm
+spacestate robot :
+position : x:2507.35 y:1196.23 mm
+orientation : -126.66 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:12.264 (t+158.967330s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=11 == completed_id=11
+[2026-04-19 10:59:12.290 (t+158.993233s)] [CAN TX] Node 1 → cmd_id:12 action:150 params:[1500, 1200, 0, 0, 0, 0]
+[2026-04-19 10:59:12.306 (t+159.008965s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000C p1=1500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:1200.000 requires translation 1007.358mm and rotation -0.935deg
+[2026-04-19 10:59:12.311 (t+159.014757s)] [CAN RX] Node 1 → status:1 cmd_id:12 action:150 completed:11 error:0
+[2026-04-19 10:59:12.316 (t+159.019341s)] [UART_ASSERV] performing a rotation of -53.555 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:13.594 (t+160.297426s)] [UART_ASSERV] finished a rotation of -53.555 degrees
+
+spacestate robot :
+position : x:2507.35 y:1196.23 mm
+orientation : -179.22 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 1007.358 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:17.191 (t+163.894723s)] [UART_ASSERV] finished a translation of distance 1007.358 mm
+spacestate robot :
+position : x:1501.59 y:1183.85 mm
+orientation : -179.30 degrees
+linear speed : -0.64 mm/s
+an[2026-04-19 10:59:17.192 (t+163.895030s)] [UART_ASSERV] gular speed : -0.24 deg/s
+canopen queue fini[2026-04-19 10:59:17.197 (t+163.900009s)] [CAN RX] Node 1 → status:2 cmd_id:12 action:150 completed:12 error:200
+[2026-04-19 10:59:17.202 (t+163.905539s)] [UART_ASSERV] shed callback
+[2026-04-19 10:59:17.215 (t+163.917957s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=12 == completed_id=12
+[2026-04-19 10:59:17.239 (t+163.942031s)] [CAN TX] Node 1 → cmd_id:13 action:150 params:[1500, 800, 0, 0, 0, 0]
+[2026-04-19 10:59:17.253 (t+163.956618s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000D p1=1500 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:800.000 requires translation 383.851mm an[2026-04-19 10:59:17.253 (t+163.956874s)] [UART_ASSERV] d rotation 1.554deg
+[2026-04-19 10:59:17.264 (t+163.967239s)] [UART_ASSERV] performing a rotation of 89.061 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:17.265 (t+163.968695s)] [CAN RX] Node 1 → status:1 cmd_id:13 action:150 completed:12 error:0
+[2026-04-19 10:59:18.634 (t+165.337834s)] [UART_ASSERV] finished a rotation of 89.061 degrees
+
+spacestate robot :
+position : x:1501.59 y:1183.85 mm
+orientation : -91.47 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 383.851 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:20.586 (t+167.289640s)] [UART_ASSERV] finished a translation of distance 383.851 mm
+spacestate robot :
+position : x:1491.36 y:801.85 mm
+orientation : -91.50 degrees
+linear speed : 0.64 mm/s
+angular speed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:20.593 (t+167.296427s)] [CAN RX] Node 1 → status:2 cmd_id:13 action:150 completed:13 error:200
+[2026-04-19 10:59:20.601 (t+167.304476s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=13 == completed_id=13
+[2026-04-19 10:59:20.626 (t+167.329057s)] [CAN TX] Node 1 → cmd_id:14 action:150 params:[1000, 800, 0, 0, 0, 0]
+[2026-04-19 10:59:20.638 (t+167.340951s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000E p1=1000 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[2026-04-19 10:59:20.648 (t+167.351573s)] [UART_ASSERV] [MOVEMENT] goto x:1000.000 y:800.000 requires translation 491.361mm and rotation -1.541deg
+performing a rotation of -88.282 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:20.651 (t+167.354307s)] [CAN RX] Node 1 → status:1 cmd_id:14 action:150 completed:13 error:0
+[2026-04-19 10:59:22.011 (t+168.714802s)] [UART_ASSERV] finished a rotation of -88.282 degrees
+
+spacestate robot :
+position : x:1491.36 y:801.85 mm
+orientation : -178.95 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 491.361 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:24.192 (t+170.895372s)] [UART_ASSERV] finished a translation of distance 491.361 mm
+spacestate robot :
+position : x:1002.00 y:793.54 mm
+orientation : -179.11 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:24.198 (t+170.901162s)] [CAN RX] Node 1 → status:2 cmd_id:14 action:150 completed:14 error:200
+[2026-04-19 10:59:24.240 (t+170.943929s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=14 == completed_id=14
+[2026-04-19 10:59:24.264 (t+170.967914s)] [CAN TX] Node 1 → cmd_id:15 action:150 params:[2000, 800, 1, 0, 0, 0]
+[2026-04-19 10:59:24.276 (t+170.979034s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000F p1=2000 p2=800 p3=1 p4=0 p5=0 p6=0
+[CANopen C[2026-04-19 10:59:24.276 (t+170.979293s)] [UART_ASSERV] MD] Executing: GOTO
+[2026-04-19 10:59:24.276 (t+170.979452s)] [UART_ASSERV] [MOVEMENT] goto x:2000.000 y:800.00[2026-04-19 10:59:24.286 (t+170.989807s)] [UART_ASSERV] 0 requires translation -998.019mm and rotation -0.009deg
+performing a rotation of -0.523 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:24.289 (t+170.992563s)] [CAN RX] Node 1 → status:1 cmd_id:15 action:150 completed:14 error:0
+[2026-04-19 10:59:24.461 (t+171.164525s)] [UART_ASSERV] finished a rotation of -0.523 degrees
+
+spacestate robot :
+position : x:1002.00 y:793.54 mm
+orientation : -179.18 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance -998.019 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:28.010 (t+174.713014s)] [CAN RX] Node 1 → status:2 cmd_id:15 action:150 completed:15 error:200
+[2026-04-19 10:59:28.012 (t+174.715930s)] [UART_ASSERV] finished a translation of distance -998.019 mm
+spacestate robot :
+position : x:1998.24 y:809.18 mm
+orientation : -179.28 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:28.033 (t+174.736342s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=15 == completed_id=15
+[2026-04-19 10:59:28.051 (t+174.754034s)] [CAN TX] Node 1 → cmd_id:16 action:150 params:[1500, 800, 0, 0, 0, 0]
+[2026-04-19 10:59:28.054 (t+174.757461s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0010 p1=1500 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen[2026-04-19 10:59:28.054 (t+174.757832s)] [UART_ASSERV]  CMD] Executing: GOTO
+[2026-04-19 10:59:28.055 (t+174.758219s)] [UART_ASSERV] [MOVEMENT] g[2026-04-19 10:59:28.055 (t+174.758541s)] [UART_ASSERV] oto x:1500.000 y:800.000 requires [2026-04-19 10:59:28.055 (t+174.758857s)] [UART_ASSERV] translation 498.327mm and rotation 0.006deg
+[2026-04-19 10:59:28.066 (t+174.769341s)] [UART_ASSERV] performing a rotation of 0.339 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:28.067 (t+174.770890s)] [CAN RX] Node 1 → status:1 cmd_id:16 action:150 completed:15 error:0
+[2026-04-19 10:59:28.322 (t+175.025921s)] [UART_ASSERV] finished a rotation of 0.339 degrees
+
+spacestate robot :
+position : x:1998.24 y:809.18 mm
+orientation : -179.41 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+performing a translation of distance 498.327 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:30.535 (t+177.238085s)] [UART_ASSERV] finished a translation of distance 498.327 mm
+spacestate robot :
+position : x:1501.05 y:804.84 mm
+orientation : -179.52 degrees
+linear speed : -0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:30.539 (t+177.242307s)] [CAN RX] Node 1 → status:2 cmd_id:16 action:150 completed:16 error:200
+[2026-04-19 10:59:30.562 (t+177.265826s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=16 == completed_id=16
+[2026-04-19 10:59:30.563 (t+177.266601s)] [CAN TX] Node 1 → cmd_id:17 action:152 params:[3, 1, 0, 0, 0, 0]
+[2026-04-19 10:59:30.576 (t+177.279654s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0011 p1=3 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 10:59:30.584 (t+177.287888s)] [CAN RX] Node 1 → status:1 cmd_id:17 action:152 completed:16 error:0
+[2026-04-19 10:59:30.587 (t+177.290333s)] [UART_ASSERV] performing a rotation of -90.483 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:32.170 (t+178.873082s)] [UART_ASSERV] finished a rotation of -90.483 degrees
+
+spacestate robot :
+position : x:1501.05 y:804.84 mm
+orientation : 90.95 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 10:59:35.175 (t+181.878207s)] [UART_ASSERV] 
+______finished a recalibration
+
+spacestate robot :
+position : x:1501.05 y:147.50 mm
+[2026-04-19 10:59:35.175 (t+181.878575s)] [UART_ASSERV] orientation : 90.00 degrees
+li[2026-04-19 10:59:35.183 (t+181.886696s)] [CAN RX] Node 1 → status:2 cmd_id:17 action:152 completed:17 error:200
+[2026-04-19 10:59:35.184 (t+181.887590s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=17 == completed_id=17
+[2026-04-19 10:59:35.187 (t+181.890630s)] [UART_ASSERV] near speed : -2.56 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:35.203 (t+181.906017s)] [CAN TX] Node 1 → cmd_id:18 action:150 params:[1500, 175, 0, 0, 0, 0]
+[2026-04-19 10:59:35.209 (t+181.912162s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0012 p1=1500 p2=175 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:175.000 requires translation 27.520mm and rotation 0.038deg
+[2026-04-19 10:59:35.219 (t+181.922811s)] [CAN RX] Node 1 → status:1 cmd_id:18 action:150 completed:17 error:0
+[2026-04-19 10:59:35.220 (t+181.923609s)] [UART_ASSERV] performing a rotation of 2.177 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:35.385 (t+182.088395s)] [UART_ASSERV] finished a rotation of 2.177 degrees
+
+spacestate robot :
+position : x:1501.05 y:147.50 mm
+orientation : 90.56 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.48 deg/s
+performing a translation of distance 27.520 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:36.183 (t+182.886833s)] [UART_ASSERV] finished a translation of distance 27.520 mm
+spacestate robot :
+position : x:1500.81 y:173.30 mm
+orientation : 90.43 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:36.189 (t+182.892297s)] [CAN RX] Node 1 → status:2 cmd_id:18 action:150 completed:18 error:200
+[2026-04-19 10:59:36.208 (t+182.911583s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=18 == completed_id=18
+[2026-04-19 10:59:36.209 (t+182.912248s)] [CAN TX] Node 2 → cmd_id:19 action:6 params:[5, 820, 0, 0, 0, 0]
+[2026-04-19 10:59:36.215 (t+182.918183s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[06 00 05 00 34 03 00 00]
+[CO_RX] After callback: ACTION_ID=13 p1=0 p2=0 p3=0
+[2026-04-19 10:59:36.224 (t+182.926983s)] [CAN TX] Node 1 → cmd_id:20 action:150 params:[2225, 175, 1, 0, 0, 0]
+[2026-04-19 10:59:36.225 (t+182.928842s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: i[2026-04-19 10:59:36.226 (t+182.929077s)] [UART_AUTOM] dent=0x302 dlc=8 data=[00 00 00 00 00 00 13 00]
+[2026-04-19 10:59:36.230 (t+182.933239s)] [CAN RX] Node 2 → status:2 cmd_id:19 action:6 completed:19 error:0
+[2026-04-19 10:59:36.235 (t+182.938090s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0014 p1=2225 p2=175 p3=1 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2225.000 y:175.000 requi[2026-04-19 10:59:36.235 (t+182.938443s)] [UART_ASSERV] res translation -724.192mm and rotation 1[2026-04-19 10:59:36.235 (t+182.938784s)] [UART_ASSERV] .566deg
+[2026-04-19 10:59:36.236 (t+182.939571s)] [UART_AUTOM] [OD_READ] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0013 p1=5 p2=820 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=6, command_id=19
+[CANopen CMD] Executing: AX
+
+[CANopen STATUS] status=2 cmd_id=19 action_id=6 completed=19 error=0 (TPDO sent)
+[2026-04-19 10:59:36.246 (t+182.949363s)] [UART_ASSERV] performing a rotation of 89.701 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:36.247 (t+182.950107s)] [CAN RX] Node 1 → status:1 cmd_id:20 action:150 completed:18 error:0
+[2026-04-19 10:59:37.700 (t+184.403606s)] [UART_ASSERV] finished a rotation of 89.701 degrees
+
+spacestate robot :
+position : x:1500.81 y:173.30 mm
+orientation : 179.09 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance -724.192 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:40.543 (t+187.246150s)] [UART_ASSERV] finished a translation of distance -724.192 mm
+spacestate robot :
+position : x:2223.24 y:161.72 mm
+orientation[2026-04-19 10:59:40.543 (t+187.246941s)] [UART_ASSERV]  : 179.13 degrees
+linear speed : -0.64 mm/s
+angular spe[2026-04-19 10:59:40.544 (t+187.247444s)] [UART_ASSERV] ed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:40.550 (t+187.253650s)] [CAN RX] Node 1 → status:2 cmd_id:20 action:150 completed:20 error:200
+[2026-04-19 10:59:40.589 (t+187.292047s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=20 == completed_id=20
+[2026-04-19 10:59:40.589 (t+187.292760s)] [CAN TX] Node 2 → cmd_id:21 action:6 params:[5, 495, 0, 0, 0, 0]
+[2026-04-19 10:59:40.613 (t+187.316886s)] [CAN TX] Node 1 → cmd_id:22 action:150 params:[1800, 175, 1, 0, 0, 0]
+[2026-04-19 10:59:40.622 (t+187.325783s)] [CAN RX] Node 2 → status:2 cmd_id:21 action:6 completed:21 error:0
+[2026-04-19 10:59:40.624 (t+187.327799s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[06 00 05 00 EF 01 00 00]
+[CO_RX] After callback: ACTION_ID=6 p1=5 p2=820 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 15 00]
+[OD_READ] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0015 p1=5 p2=495 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=6, command_id=21
+[CANopen CMD] Executing: AX
+
+[CANopen STATUS] status=2 cmd_id=21 action_id=6 completed=21 error=0 (TPDO sent)
+[2026-04-19 10:59:40.627 (t+187.330204s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION[2026-04-19 10:59:40.627 (t+187.330700s)] [UART_ASSERV] _ID=0x0096 CMD_ID=0x0016 p1=1800 p2=175 p3=1 p4=0 p5=0 p6=0
+[CANopen C[2026-04-19 10:59:40.628 (t+187.331168s)] [UART_ASSERV] MD] Executing: GOTO
+[2026-04-19 10:59:40.638 (t+187.341850s)] [UART_ASSERV] [MOVEMENT] goto x:1800.000 y:175.000 requires translation -423.445mm and rotation 3.125deg
+performing a rotation of 179.077 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:40.642 (t+187.345238s)] [CAN RX] Node 1 → status:1 cmd_id:22 action:150 completed:20 error:0
+[2026-04-19 10:59:42.479 (t+189.182616s)] [UART_ASSERV] finished a rotation of 179.077 degrees
+
+spacestate robot :
+position : x:2223.24 y:161.72 mm
+orientation : -2.76 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance -423.445 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:44.518 (t+191.221439s)] [CAN RX] Node 1 → status:2 cmd_id:22 action:150 completed:22 error:200
+[2026-04-19 10:59:44.520 (t+191.223114s)] [UART_ASSERV] finished a translation of distance -423.445 mm
+spacestate robot :
+position : x:1801.57 y:182.02 mm
+orientation : -2.81 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:44.530 (t+191.233799s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=22 == completed_id=22
+[2026-04-19 10:59:44.549 (t+191.252330s)] [CAN TX] Node 1 → cmd_id:23 action:150 params:[2800, 800, 0, 0, 0, 0]
+[2026-04-19 10:59:44.571 (t+191.274542s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0017 p1=2800 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1174.207mm and rotation 0.603deg
+performing a rotation of 34.561 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:44.576 (t+191.279334s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:45.569 (t+192.272593s)] [UART_ASSERV] finished a rotation of 34.561 degrees
+
+spacestate robot :
+position : x:1801.57 y:182.02 mm
+orientation : 29.90 degrees
+linear speed : -0.64 mm/s
+angular spe[2026-04-19 10:59:45.569 (t+192.272862s)] [UART_ASSERV] ed : 0.24 deg/s
+[2026-04-19 10:59:45.580 (t+192.283394s)] [UART_ASSERV] performing a translation of distance 1174.207 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:53.899 (t+200.602191s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 1
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a translation of distance 1174.207 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : -22.59 degrees
+linear speed : 8.95 mm/s
+angular speed : -3.34 deg/s
+canopen queue finished callback
+[2026-04-19 10:59:53.902 (t+200.605538s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:101
+[2026-04-19 10:59:53.920 (t+200.623851s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 1.010deg
+performing a rotation of 57.842 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:54.004 (t+200.707391s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 57.842 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : -21.43 degrees
+linear speed : 4.48 mm/s
+angular speed : -1.67 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:54.013 (t+200.716254s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:54.015 (t+200.718196s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.989deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : -21.43 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 56.681 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:54.026 (t+200.729201s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sen[2026-04-19 10:59:54.026 (t+200.729739s)] [UART_ASSERV] sor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[2026-04-19 10:59:54.027 (t+200.730336s)] [UART_ASSERV] [EVITEMENT] infos endfinished a rotation of [2026-04-19 10:59:54.027 (t+200.730850s)] [UART_ASSERV] 56.681 degrees
+
+spacestate robot :
+posit[2026-04-19 10:59:54.028 (t+200.731458s)] [UART_ASSERV] ion : x:1937.25 y:190.26 mm
+orientation : -21.45 degrees
+linear spee[2026-04-19 10:59:54.028 (t+200.731936s)] [UART_ASSERV] d : 6.40 mm/s
+angular spe[2026-04-19 10:59:54.029 (t+200.732448s)] [UART_ASSERV] ed : -2.38 deg/s
+p[2026-04-19 10:59:54.030 (t+200.732966s)] [UART_ASSERV] erforming a translation of distance 1056.467[2026-04-19 10:59:54.030 (t+200.733501s)] [UART_ASSERV]  mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:54.041 (t+200.744353s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.990deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : -21.45 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 56.705 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:55.375 (t+202.078189s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 1
+se[2026-04-19 10:59:55.375 (t+202.078724s)] [UART_ASSERV] nsor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[2026-04-19 10:59:55.386 (t+202.089575s)] [UART_ASSERV] [EVITEMENT] infos endfinished a rotation of 56.705 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 7.53 degrees
+linear speed : 8.95 mm/s
+angular speed : -3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.484deg
+finis[2026-04-19 10:59:55.387 (t+202.090172s)] [UART_ASSERV] hed a translation of distance 1056.467 mm
+[2026-04-19 10:59:55.387 (t+202.090666s)] [UART_ASSERV] spacestate robot :
+[2026-04-19 10:59:55.388 (t+202.091137s)] [UART_ASSERV] position : x:1937.25 y:190.26 mm
+orienta[2026-04-19 10:59:55.388 (t+202.091609s)] [UART_ASSERV] tion : 7.53 degrees
+linear speed : 0.00 mm/s[2026-04-19 10:59:55.389 (t+202.092281s)] [UART_ASSERV] 
+angular speed : 0.00 deg/s
+pe[2026-04-19 10:59:55.389 (t+202.092777s)] [UART_ASSERV] rforming a rotation of 27.715 degrees, speed[2026-04-19 10:59:55.390 (t+202.093315s)] [UART_ASSERV]  0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:55.483 (t+202.186687s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:100
+[2026-04-19 10:59:55.484 (t+202.187388s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 27.715 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 8.58 degrees
+linear speed : 12.79 mm/s
+angular speed : -4.77 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:55.495 (t+202.198277s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.465deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 8.58 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 26.671 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:55.828 (t+202.531662s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:55.992 (t+202.695411s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 1
+[EVITEMENT] infos endfinished a rotation of 26.671 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 26.38 degrees
+linear speed : 20.47 mm/s
+angular spe[2026-04-19 10:59:55.993 (t+202.695983s)] [UART_ASSERV] ed : -7.63 deg/s
+p[2026-04-19 10:59:55.993 (t+202.696706s)] [UART_ASSERV] erforming a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/m[2026-04-19 10:59:55.994 (t+202.697197s)] [UART_ASSERV] s^2
+[2026-04-19 10:59:55.997 (t+202.700055s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:100
+[2026-04-19 10:59:56.005 (t+202.708042s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.155deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 26.38 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 8.873 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.026 (t+202.729137s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 1
+[EVITEMENT] infos endfinished a rotation of 8.873 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 26.35 degrees
+linear speed : 6.40 mm/s
+angular speed : -2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.037 (t+202.739975s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.155deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 26.35 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 8.897 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.373 (t+203.076899s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:56.678 (t+203.381549s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 8.897 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.85 degrees
+linear speed : -3.20 mm/s
+angular speed : 1.19 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.690 (t+203.393824s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.077deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.85 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.400 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.712 (t+203.415090s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.400 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.88 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.723 (t+203.426066s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.076deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.88 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.366 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.734 (t+203.436977s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos[2026-04-19 10:59:56.734 (t+203.437505s)] [UART_ASSERV]  start :
+sensor 0 is 0
+sensor 1 is 0
+se[2026-04-19 10:59:56.745 (t+203.448221s)] [UART_ASSERV] nsor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.366 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.94 degrees
+linear speed : -14.71 mm/s
+angular speed : 5.48 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 require[2026-04-19 10:59:56.745 (t+203.448856s)] [UART_ASSERV] s translation 1056.467mm and rotation 0.075d[2026-04-19 10:59:56.746 (t+203.449328s)] [UART_ASSERV] eg
+finished a translation of distance 1056.467 mm
+[2026-04-19 10:59:56.746 (t+203.449797s)] [UART_ASSERV] spacestate robot :
+positi[2026-04-19 10:59:56.747 (t+203.450342s)] [UART_ASSERV] on : x:1937.25 y:190.26 mm
+orientation[2026-04-19 10:59:56.747 (t+203.450810s)] [UART_ASSERV]  : 30.94 degrees
+linear speed : 0.00 mm/s
+[2026-04-19 10:59:56.748 (t+203.451278s)] [UART_ASSERV] angular speed : 0.00 deg/s
+pe[2026-04-19 10:59:56.748 (t+203.451743s)] [UART_ASSERV] rforming a rotation of 4.311 degrees, speed [2026-04-19 10:59:56.759 (t+203.462569s)] [UART_ASSERV] 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.770 (t+203.473404s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.311 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.95 degrees
+linear speed : -2.56 mm/s
+angular speed : 0.95 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.781 (t+203.484163s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.075deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.95 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.302 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.800 (t+203.503638s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:56.802 (t+203.505316s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.302 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.97 degrees
+linear speed : -5.12 mm/s
+angular speed : 1.91 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.813 (t+203.516202s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.075deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 30.97 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.283 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.834 (t+203.537384s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.283 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.00 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.834 (t+203.537930s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Exe[2026-04-19 10:59:56.835 (t+203.538620s)] [UART_ASSERV] cuting: GOTO
+[2026-04-19 10:59:56.836 (t+203.539107s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm a[2026-04-19 10:59:56.836 (t+203.539603s)] [UART_ASSERV] nd rotation 0.074deg
+[2026-04-19 10:59:56.837 (t+203.540153s)] [UART_ASSERV] finished a translation of distance [2026-04-19 10:59:56.837 (t+203.540767s)] [UART_ASSERV] 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+[2026-04-19 10:59:56.838 (t+203.541245s)] [UART_ASSERV] orientation : 31.00 degrees
+linear [2026-04-19 10:59:56.849 (t+203.552069s)] [UART_ASSERV] speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.249 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.860 (t+203.562952s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.249 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.06 degrees
+linear speed : -15.99 mm/s
+angular speed : 5.96 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.870 (t+203.573927s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.073deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.06 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.190 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.892 (t+203.595134s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.190 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.10 degrees
+linear speed : -11.51 mm/s
+angular speed : 4.29 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.903 (t+203.606030s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.072deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.10 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.147 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.924 (t+203.627214s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.147 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.16 degrees
+linear speed : -14.07 mm/s
+angular speed : 5.25 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:56.934 (t+203.637887s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.071deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.16 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.094 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.945 (t+203.648589s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. In[2026-04-19 10:59:56.945 (t+203.648929s)] [UART_ASSERV] fos start :
+sensor 0 is 0
+sensor 1 is 0[2026-04-19 10:59:56.946 (t+203.649243s)] [UART_ASSERV] 
+sensor 2 is 1
+sensor 3 is 0
+sensor [2026-04-19 10:59:56.946 (t+203.649552s)] [UART_ASSERV] 4 is 0
+[EVITE[2026-04-19 10:59:56.957 (t+203.660135s)] [UART_ASSERV] MENT] infos endfinished a rotation of 4.094 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.20 degrees
+linear speed : -10.87 mm/s
+angular speed : 4.05 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.071deg
+[2026-04-19 10:59:56.961 (t+203.664608s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:56.967 (t+203.670811s)] [UART_ASSERV] finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.20 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.054 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:56.978 (t+203.681434s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.054 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientat[2026-04-19 10:59:56.978 (t+203.681788s)] [UART_ASSERV] ion : 31.24 degrees
+linear s[2026-04-19 10:59:56.979 (t+203.682100s)] [UART_ASSERV] peed : -12.79 mm/s
+angular [2026-04-19 10:59:56.979 (t+203.682410s)] [UART_ASSERV] speed : 4.77 deg/s
+[2026-04-19 10:59:56.979 (t+203.682765s)] [UART_ASSERV] performing a translation of distance 1056.[2026-04-19 10:59:56.990 (t+203.693423s)] [UART_ASSERV] 467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.070deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.24 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 4.006 deg[2026-04-19 10:59:56.990 (t+203.693937s)] [UART_ASSERV] rees, speed 0.230 deg/ms, accel 0.080 deg[2026-04-19 10:59:56.991 (t+203.694258s)] [UART_ASSERV] /ms^2
+[2026-04-19 10:59:57.012 (t+203.715091s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 4.006 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.28 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.022 (t+203.725710s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.069deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.28 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.973 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.043 (t+203.746623s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.973 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.31 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.054 (t+203.757246s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.069deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.31 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.939 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.072 (t+203.774967s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:57.075 (t+203.778114s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.939 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.34 degrees
+linear speed : -7.67 mm/s
+angular speed : 2.86 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.085 (t+203.788799s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.068deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.34 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.911 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.096 (t+203.799416s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. In[2026-04-19 10:59:57.096 (t+203.799756s)] [UART_ASSERV] fos start :
+sensor 0 is 0
+sensor 1 is 0[2026-04-19 10:59:57.107 (t+203.810397s)] [UART_ASSERV] 
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.911 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.37 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[2026-04-19 10:59:57.107 (t+203.810746s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.000 requ[2026-04-19 10:59:57.108 (t+203.811061s)] [UART_ASSERV] ires translation 1056.467mm and rotation [2026-04-19 10:59:57.108 (t+203.811374s)] [UART_ASSERV] 0.068deg
+fi[2026-04-19 10:59:57.118 (t+203.821952s)] [UART_ASSERV] nished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.37 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.880 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.129 (t+203.832606s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.880 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.41 degrees
+l[2026-04-19 10:59:57.130 (t+203.832962s)] [UART_ASSERV] inear speed : -9.59 mm/s
+a[2026-04-19 10:59:57.130 (t+203.833325s)] [UART_ASSERV] ngular speed : 3.58 deg/s
+[2026-04-19 10:59:57.140 (t+203.843929s)] [UART_ASSERV] performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.067deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.41 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+[2026-04-19 10:59:57.151 (t+203.854572s)] [UART_ASSERV] performing a rotation of 3.844 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.844 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.41 degrees
+linear speed : -41912.16 mm/s
+angular speed : 15628.59 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.0[2026-04-19 10:59:57.151 (t+203.854932s)] [UART_ASSERV] 01 mm/ms^2
+[2026-04-19 10:59:57.162 (t+203.865548s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.067deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.41 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.844 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.193 (t+203.896706s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.844 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.43 degrees
+linear speed : -4.48 mm/s
+angular speed : 1.67 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.204 (t+203.907417s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.067deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.43 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.822 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.225 (t+203.928301s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.822 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.47 degrees
+linear speed : -11.51 mm/s
+angular speed : 4.29 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.233 (t+203.936788s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:57.235 (t+203.938931s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.066deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.47 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.780 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.256 (t+203.959796s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.780 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.51 degrees
+linear speed : -9.59 mm/s
+angular speed : 3.58 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.267 (t+203.970473s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.065deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.51 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.744 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.278 (t+203.981213s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0[2026-04-19 10:59:57.278 (t+203.981565s)] [UART_ASSERV] 
+sensor 2 is 1
+sensor 3 is 1
+sensor [2026-04-19 10:59:57.278 (t+203.981880s)] [UART_ASSERV] 4 is 0
+[EVITE[2026-04-19 10:59:57.279 (t+203.982195s)] [UART_ASSERV] MENT] infos endfinished a rotation of 3.7[2026-04-19 10:59:57.279 (t+203.982509s)] [UART_ASSERV] 44 degrees
+
+spacest[2026-04-19 10:59:57.279 (t+203.982821s)] [UART_ASSERV] ate robot :
+[2026-04-19 10:59:57.280 (t+203.983135s)] [UART_ASSERV] position : x:1937.25 y:190.26 mm
+[2026-04-19 10:59:57.290 (t+203.993776s)] [UART_ASSERV] orientation : 31.54 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.065deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orie[2026-04-19 10:59:57.301 (t+204.004440s)] [UART_ASSERV] ntation : 31.54 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.710 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.312 (t+204.015050s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.710 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.57 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.[2026-04-19 10:59:57.322 (t+204.025668s)] [UART_ASSERV] 467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.064deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.57 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.677 deg[2026-04-19 10:59:57.323 (t+204.026023s)] [UART_ASSERV] rees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.343 (t+204.046876s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.677 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.60 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.344 (t+204.047576s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:57.354 (t+204.057538s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.064deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.60 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.646 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.375 (t+204.078598s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.646 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.64 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.386 (t+204.089223s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.063deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.64 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.615 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.407 (t+204.110099s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.615 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.67 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.417 (t+204.120727s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.063deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.67 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.582 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.438 (t+204.141680s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.582 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.70 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT[2026-04-19 10:59:57.439 (t+204.142037s)] [UART_ASSERV] ] case 0 
+[CANopen CMD] Executing: GOTO
+[2026-04-19 10:59:57.449 (t+204.152616s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.062deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.70 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.551 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.460 (t+204.163279s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITE[2026-04-19 10:59:57.460 (t+204.163630s)] [UART_ASSERV] MENT] infos endfinished a rotation of 3.55[2026-04-19 10:59:57.460 (t+204.163947s)] [UART_ASSERV] 1 degrees
+
+spacestate robot :
+pos[2026-04-19 10:59:57.471 (t+204.174451s)] [UART_ASSERV] ition : x:1937.25 y:190.26 mm
+orientation : 31.73 degrees
+linear speed : -8.95 mm/s
+angular speed : 3.34 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.061deg
+finished a translation of distance 1056.467 [2026-04-19 10:59:57.471 (t+204.174800s)] [UART_ASSERV] mm
+spacestate robot :
+pos[2026-04-19 10:59:57.472 (t+204.175117s)] [UART_ASSERV] ition : x:1937.25 y:190.26 mm
+orientat[2026-04-19 10:59:57.482 (t+204.185696s)] [UART_ASSERV] ion : 31.73 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.517 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.493 (t+204.196438s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.517 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.76 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distan[2026-04-19 10:59:57.493 (t+204.196844s)] [UART_ASSERV] ce 1056.467 mm, top speed 0.400 mm[2026-04-19 10:59:57.494 (t+204.197159s)] [UART_ASSERV] /ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.504 (t+204.207740s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.061deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.76 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.486 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.525 (t+204.228605s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.486 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.80 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.536 (t+204.238970s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:57.536 (t+204.239373s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.060deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.80 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.455 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.557 (t+204.260185s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.455 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.83 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.567 (t+204.270611s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.060deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.83 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.424 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.588 (t+204.291307s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.424 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.86 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.598 (t+204.301729s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.059deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.86 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.393 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.619 (t+204.322417s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.393 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.89 degrees
+linear speed : -7.67 mm/s
+angular speed : 2.86 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.629 (t+204.332836s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.059deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.89 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.365 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.640 (t+204.343293s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. In[2026-04-19 10:59:57.640 (t+204.343532s)] [UART_ASSERV] fos start :
+sensor 0 is 0
+sensor 1 is 0
+[2026-04-19 10:59:57.645 (t+204.348936s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:57.650 (t+204.353891s)] [UART_ASSERV] 
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.365 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.92 degrees
+linear speed : -8.31 mm/s
+angular speed : 3.10 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[2026-04-19 10:59:57.661 (t+204.364494s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.058deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.92 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.334 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.672 (t+204.375061s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.3[2026-04-19 10:59:57.672 (t+204.375300s)] [UART_ASSERV] 34 degrees
+
+spacest[2026-04-19 10:59:57.672 (t+204.375453s)] [UART_ASSERV] ate robot :
+pos[2026-04-19 10:59:57.682 (t+204.385930s)] [UART_ASSERV] ition : x:1937.25 y:190.26 mm
+orientation : 31.95 degrees
+linear speed : -7.67 mm/s
+angular speed : 2.86 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.058deg
+finished a translation of distance 1056.467[2026-04-19 10:59:57.683 (t+204.386168s)] [UART_ASSERV]  mm
+spacestate robot :
+posi[2026-04-19 10:59:57.693 (t+204.396687s)] [UART_ASSERV] tion : x:1937.25 y:190.26 mm
+orientation : 31.95 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.305 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.704 (t+204.407338s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.305 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.97 degrees
+linear speed : -7.03 mm/s
+angular speed : 2.62 deg/s
+[2026-04-19 10:59:57.714 (t+204.417916s)] [UART_ASSERV] performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.057deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 31.97 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+[2026-04-19 10:59:57.715 (t+204.418189s)] [UART_ASSERV] performing a rotation of 3.279 deg[2026-04-19 10:59:57.725 (t+204.428675s)] [UART_ASSERV] rees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.736 (t+204.439251s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.279 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.00 degrees
+linear speed : -7.67 mm/s
+angular speed : 2.86 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.746 (t+204.449889s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.057deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.250 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.767 (t+204.470455s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.250 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.03 degrees
+linear speed : -7.67 mm/s
+angular speed : 2.86 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.778 (t+204.481098s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.056deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.03 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.221 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.799 (t+204.501975s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.221 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.05 degrees
+linear speed : -5.76 mm/s
+angular speed : 2.15 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.809 (t+204.512581s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.056deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.05 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.200 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.830 (t+204.533463s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.200 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.07 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.838 (t+204.541224s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:57.841 (t+204.544063s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.055deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.07 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.176 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.851 (t+204.554648s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos[2026-04-19 10:59:57.862 (t+204.565235s)] [UART_ASSERV]  start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.176 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.10 degrees
+linear speed : -7.03 mm/s
+angular speed : 2.62 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[2026-04-19 10:59:57.862 (t+204.565486s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.00[2026-04-19 10:59:57.873 (t+204.576006s)] [UART_ASSERV] 0 requires translation 1056.467mm and rotation 0.055deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.10 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.150 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.883 (t+204.586633s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of [2026-04-19 10:59:57.883 (t+204.586888s)] [UART_ASSERV] 3.150 degrees
+
+spacestate[2026-04-19 10:59:57.884 (t+204.587045s)] [UART_ASSERV]  robot :
+po[2026-04-19 10:59:57.894 (t+204.597541s)] [UART_ASSERV] sition : x:1937.25 y:190.26 mm
+orientation : 32.12 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.055deg
+finished a translation of distance 1056.467 mm
+[2026-04-19 10:59:57.895 (t+204.597960s)] [UART_ASSERV] spacestate robot :
+positi[2026-04-19 10:59:57.895 (t+204.598144s)] [UART_ASSERV] on : x:1937.25 y:190.26 mm
+orientation[2026-04-19 10:59:57.905 (t+204.608640s)] [UART_ASSERV]  : 32.12 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.126 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.916 (t+204.619230s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.126 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.15 degrees
+linear speed : -7.03 mm/s
+angular speed : 2.62 deg/s
+p[2026-04-19 10:59:57.916 (t+204.619489s)] [UART_ASSERV] erforming a translation of distance 1056.467[2026-04-19 10:59:57.916 (t+204.619647s)] [UART_ASSERV]  mm, top speed 0.400 mm/ms, accel 0.001 mm/m[2026-04-19 10:59:57.927 (t+204.630136s)] [UART_ASSERV] s^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.054deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.15 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.100 degrees, speed [2026-04-19 10:59:57.927 (t+204.630383s)] [UART_ASSERV] 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.948 (t+204.651082s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:57.948 (t+204.651549s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.100 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.17 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.959 (t+204.662101s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.054deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.17 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.076 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:57.979 (t+204.682951s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.076 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.20 degrees
+linear speed : -7.03 mm/s
+angular speed : 2.62 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:57.990 (t+204.693519s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.053deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.20 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.050 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.011 (t+204.714361s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.050 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.22 degrees
+linear speed : -5.76 mm/s
+angular speed : 2.15 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:58.022 (t+204.724977s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.053deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.22 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.028 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.042 (t+204.745825s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 3.028 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.25 degrees
+linear speed : -7.03 mm/s
+angular speed : 2.62 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EV[2026-04-19 10:59:58.043 (t+204.746073s)] [UART_ASSERV] IT] case 0 
+[CANopen CMD] Executing: GOT[2026-04-19 10:59:58.043 (t+204.746229s)] [UART_ASSERV] O
+[2026-04-19 10:59:58.053 (t+204.756700s)] [UART_ASSERV] [MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.052deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.25 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 3.002 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.064 (t+204.767257s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITE[2026-04-19 10:59:58.074 (t+204.777822s)] [UART_ASSERV] MENT] infos endfinished a rotation of 3.002 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.27 degrees
+linear speed : -5.76 mm/s
+angular speed : 2.15 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.052deg
+fi[2026-04-19 10:59:58.085 (t+204.788380s)] [UART_ASSERV] nished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.27 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.981 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.095 (t+204.798939s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.981 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientat[2026-04-19 10:59:58.096 (t+204.799183s)] [UART_ASSERV] ion : 32.29 degrees
+linear s[2026-04-19 10:59:58.106 (t+204.809664s)] [UART_ASSERV] peed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.052deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientati[2026-04-19 10:59:58.106 (t+204.809943s)] [UART_ASSERV] on : 32.29 degrees
+linear speed : 0.00 mm[2026-04-19 10:59:58.109 (t+204.812356s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:58.117 (t+204.820441s)] [UART_ASSERV] /s
+angular speed : 0.00 deg/s
+performing a rotation of 2.957 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.128 (t+204.831048s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.957 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.31 degrees
+linear speed : -5.12 mm/s
+angular speed : 1.91 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.0[2026-04-19 10:59:58.128 (t+204.831295s)] [UART_ASSERV] 01 mm/ms^2
+[2026-04-19 10:59:58.138 (t+204.841803s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.051deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.31 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.938 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.159 (t+204.862685s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.938 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.33 degrees
+linear speed : -5.76 mm/s
+angular speed : 2.15 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:58.170 (t+204.873314s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.051deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.33 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.916 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.191 (t+204.894047s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.916 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.36 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:58.201 (t+204.904637s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.050deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.36 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.892 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.222 (t+204.925517s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.892 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.38 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:58.233 (t+204.936106s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.050deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.38 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.869 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.250 (t+204.953942s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:102
+[2026-04-19 10:59:58.254 (t+204.957054s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 2.869 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.40 degrees
+linear speed : -5.76 mm/s
+angular speed : 2.15 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 10:59:58.254 (t+204.957365s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] [2026-04-19 10:59:58.264 (t+204.967879s)] [UART_ASSERV] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.050deg
+finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.40 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.847 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.275 (t+204.978465s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+se[2026-04-19 10:59:58.275 (t+204.978715s)] [UART_ASSERV] nsor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[2026-04-19 10:59:58.286 (t+204.989233s)] [UART_ASSERV] [EVITEMENT] infos endfinished a rotation of 2.847 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.43 degrees
+linear speed : -6.40 mm/s
+angular speed : 2.38 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 1056.467mm and rotation 0.049deg
+[2026-04-19 10:59:58.296 (t+204.999820s)] [UART_ASSERV] finished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 32.43 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 2.823 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 10:59:58.627 (t+205.330102s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 10:59:59.265 (t+205.968401s)] [UART_ASSERV] finished a rotation of 2.823 degrees
+
+spacestate robot :
+position : x:1937.25 y:190.26 mm
+orientation : 33.98 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 1056.467 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 11:00:00.533 (t+207.236769s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 1
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a translation of distance 1056.467 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : -5.00 degrees
+linear speed : 47.33 mm/s
+a[2026-04-19 11:00:00.541 (t+207.244552s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:100
+[2026-04-19 11:00:00.544 (t+207.247215s)] [UART_ASSERV] ngular speed : -17.65 deg/s
+canopen queue finished callback
+[2026-04-19 11:00:00.554 (t+207.257837s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.741deg
+performing a rotation of 42.436 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:00.565 (t+207.268512s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 1
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 1
+[EVITEMENT] infos endfinished a rotation of 42.436 degrees
+
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : -5.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 961.419 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 11:00:00.571 (t+207.274243s)] [CAN RX] Node 1 → status:4 cmd_id:23 action:150 completed:22 error:101
+[2026-04-19 11:00:00.576 (t+207.279292s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.741deg
+finished a translation of distance 961.419 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : -5.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 42.436 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:00.628 (t+207.331670s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 1
+sensor 2 is 0
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 42.436 degrees
+
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : -4.74 degrees
+linear speed : 20.47 mm/s
+angular speed : -7.63 deg/s
+performing a translation of distance 961.419 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 11:00:00.639 (t+207.342517s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.736deg
+finished a translation of distance 961.419 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : -4.74 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 42.174 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:00.640 (t+207.343660s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 11:00:00.990 (t+207.693794s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 42.174 degrees
+
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 13.98 degrees
+linear speed : -163.72 mm/s
+angular speed : 61.05 deg/s
+performing a translation of distance 961.419 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 11:00:01.001 (t+207.704398s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.409deg
+finished a translation of distance 961.419 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 13.98 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 23.458 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:01.022 (t+207.725279s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 1
+sensor 3 is 0
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 23.458 degrees
+
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 14.22 degrees
+linear speed : -64.59 mm/s
+angular speed : 24.09 deg/s
+performing a translation of distance 961.419 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 11:00:01.032 (t+207.735873s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.405deg
+finished a translation of distance 961.419 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 14.22 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 23.217 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:01.259 (t+207.962484s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a rotation of 23.217 degrees
+
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 24.48 degrees
+linear speed : -125.35 mm/s
+angular speed : 46.74 deg/s
+p[2026-04-19 11:00:01.259 (t+207.962743s)] [UART_ASSERV] erforming a translation of distance 961.419 [2026-04-19 11:00:01.270 (t+207.973282s)] [UART_ASSERV] mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2800.000 y:800.000 requires translation 961.419mm and rotation 0.226deg
+finished a translation of distance 961.419 mm
+spacestate robot :
+position : x:2036.61 y:215.57 mm
+orientation : 24.48 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a rotation of 12.955 degrees, speed[2026-04-19 11:00:01.280 (t+207.983933s)] [UART_ASSERV]  0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 11:00:01.767 (t+208.470236s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 11:00:01.830 (t+208.533018s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 11:00:01.830 (t+208.533620s)] [UART_AUTOM] CANopenNode - Running...
+[2026-04-19 11:00:01.862 (t+208.565097s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 11:00:01.976 (t+208.679152s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANop[2026-04-19 11:00:03.217 (t+209.919969s)] [UART_AUTOM] woke upA[2026-04-19 11:00:03.331 (t+210.034269s)] [UART_AUTOM] woke upAllocated 2520 b[2026-04-19 11:00:03.342 (t+210.045184s)] [UART_AUTOM] woke upAllocated 2520 bytes for CA[2026-04-19 11:00:03.373 (t+210.076422s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANo[2026-04-19 11:00:03.384 (t+210.087432s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANop[2026-04-19 11:00:03.477 (t+210.180697s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 11:00:03.549 (t+210.252878s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode -woke upAllocated 2520 bytes for CANopen objects
+CANopen[2026-04-19 11:00:03.560 (t+210.263723s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...[2026-04-19 11:00:03.571 (t+210.274329s)] [UART_AUTOM] woke uwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Rewoke upAllocated 2520 b[2026-04-19 11:00:03.581 (t+210.284936s)] [UART_AUTOM] woke upAll[2026-04-19 11:00:28.887 (t+235.590595s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...

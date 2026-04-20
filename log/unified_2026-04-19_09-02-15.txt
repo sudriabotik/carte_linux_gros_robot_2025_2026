@@ -1,0 +1,605 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-19_09-02-15
+Program started at: 2026-04-19 09:02:15.024315
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-19 09:02:15.266 (t+0.242671s)] [PYTHON] [StratDynamique] === DÉBUT DU MATCH ===
+[2026-04-19 09:02:15.267 (t+0.242891s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette
+[2026-04-19 09:02:26.508 (t+11.484317s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:02:26.603 (t+11.579417s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:02:27.018 (t+11.994101s)] [UART_AUTOM] sequencer: idle registered for machine 0
+sequencer: idle registered for machine 1
+[2026-04-19 09:02:27.018 (t+11.994433s)] [UART_AUTOM] [CANopen CMD] Processor initialized
+[2026-04-19 09:02:27.028 (t+12.004676s)] [UART_AUTOM] [CANopen STATUS] status=0 cmd_id=0 action_id=0 completed=0 error=0 (TPDO sent)
+[2026-04-19 09:02:27.107 (t+12.082741s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine callback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
+[2026-04-19 09:02:27.107 (t+12.083218s)] [CAN RX] Node 1 → status:0 cmd_id:0 action:0 completed:0 error:0
+[2026-04-19 09:02:27.324 (t+12.300644s)] [UART_AUTOM] [CANopen STATUS] status=1 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[CANopen CMD] Manual sequence started: action_id=1, cmd_id=0
+sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+[CAN_DEBUG] RX logging disabled
+===== CANopen [2026-04-19 09:02:27.325 (t+12.300860s)] [UART_AUTOM] Detailed Status =====
+Node ID: 2 [2026-04-19 09:02:27.328 (t+12.304572s)] [CAN RX] Node 2 → status:1 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 09:02:27.335 (t+12.311168s)] [UART_AUTOM] (desired: 2)
+Baudrate: 500 kbps
+NMT State: INITIALIZING
+Emergency: No errors
+SDO Server: Configured (index 0)
+TPDO: Configured
+RPDO: Configured
+SYNC: Available
+LED Status: Green=231 Red=135
+===================================
+[OD_READ] RAW OD values: ACTION_ID=0x0000 CMD_ID=0x0000 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[2026-04-19 09:02:27.345 (t+12.321554s)] [UART_AUTOM] sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 09:02:27.356 (t+12.331850s)] [UART_AUTOM] elevator V : homing wake
+loaded new state queue
+[2026-04-19 09:02:27.983 (t+12.959500s)] [UART_AUTOM] endstop_vertical
+[2026-04-19 09:02:27.994 (t+12.969953s)] [UART_AUTOM] elevator V : endstop reached, resetting position to 0
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 09:02:28.004 (t+12.980309s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 09:02:28.014 (t+12.990571s)] [UART_AUTOM] elevator H : homing wake
+loaded new state queue
+[2026-04-19 09:02:29.206 (t+14.182159s)] [UART_AUTOM] elevator H : endstop reached, resetting position to 0
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 09:02:29.215 (t+14.191505s)] [CAN RX] Node 2 → status:2 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 09:02:29.217 (t+14.192791s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=0
+[CANopen STATUS] status=2 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[2026-04-19 09:02:34.587 (t+19.563147s)] [PYTHON] [FunctStrat]  Tirette insérer Couleur équipe 0 (BLEU)
+[2026-04-19 09:02:34.587 (t+19.563449s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 09:02:34.588 (t+19.564140s)] [CAN TX] Node 2 → cmd_id:2 action:14 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:02:34.593 (t+19.569606s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0E 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=0 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 02 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000E CMD_ID=0x0002 p1=0 p2=0 [2026-04-19 09:02:34.594 (t+19.569813s)] [UART_AUTOM] p3=0 p4=0 p5=0 p6=0
+[[2026-04-19 09:02:34.596 (t+19.572513s)] [CAN RX] Node 2 → status:2 cmd_id:2 action:14 completed:2 error:0
+[2026-04-19 09:02:34.604 (t+19.580104s)] [UART_AUTOM] CANopen CMD] New command: action_id=14, command_id=2
+[CANopen CMD] Executing: CMD_COULEUR_EQUIPE
+[CANopen STATUS] status=2 cmd_id=2 action_id=14 completed=2 error=0 (TPDO sent)
+[2026-04-19 09:02:34.638 (t+19.614611s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=2 == completed_id=2
+[2026-04-19 09:02:34.640 (t+19.615695s)] [CAN TX] Node 2 → cmd_id:3 action:11 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:02:34.644 (t+19.620665s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0B 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=14 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 03 00]
+[OD_READ] RAW OD values: ACTION_I[2026-04-19 09:02:34.649 (t+19.625626s)] [CAN RX] Node 2 → status:1 cmd_id:3 action:11 completed:2 error:0
+[2026-04-19 09:02:34.655 (t+19.631197s)] [UART_AUTOM] D=0x000B CMD_ID=0x0003 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=11, command_id=3
+[CANopen CMD] Executing: CDM_CLOSE_PINCE
+[CANopen STATUS] status=1 cmd_id=3 action_id=11 completed=2 error=0 (TPDO sent)
+sequencer: add ACTION step 0 (delay=0ms)
+sequencer: add ACTION step 1 (delay=0ms)
+sequencer: start (2 steps)
+sequencer: executing ACTION step 1/2
+[2026-04-19 09:02:34.666 (t+19.641845s)] [UART_AUTOM] sequencer: executing ACTION step 2/2
+[2026-04-19 09:02:34.676 (t+19.652271s)] [UART_AUTOM] sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=3
+[CANopen STATUS] status=2 cmd_id=3 action_id=11 completed=3 error=0 (TPDO sent)
+[2026-04-19 09:02:34.677 (t+19.652731s)] [CAN RX] Node 2 → status:2 cmd_id:3 action:11 completed:3 error:0
+[2026-04-19 09:02:34.691 (t+19.667583s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 09:02:34.692 (t+19.667939s)] [PYTHON] [Stratégie] Début du calage de départ
+[2026-04-19 09:02:34.692 (t+19.668035s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 09:02:34.693 (t+19.668775s)] [CAN TX] Node 2 → cmd_id:4 action:13 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:02:34.693 (t+19.669082s)] [PYTHON] [Stratégie] Début du calage bleu
+[2026-04-19 09:02:34.693 (t+19.669165s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 09:02:34.693 (t+19.669529s)] [CAN TX] Node 1 → cmd_id:5 action:152 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:02:34.697 (t+19.672861s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0D 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=11 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: [2026-04-19 09:02:34.697 (t+19.673131s)] [UART_AUTOM] ident=0x302 dlc=8 data=[00 00 00 [2026-04-19 09:02:34.697 (t+19.673277s)] [UART_AUTOM] 00 00 00 04 00]
+[2026-04-19 09:02:34.698 (t+19.674086s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0005 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 09:02:34.703 (t+19.678767s)] [CAN RX] Node 2 → status:1 cmd_id:4 action:13 completed:3 error:0
+[2026-04-19 09:02:34.707 (t+19.683597s)] [UART_AUTOM] [OD_READ] RAW OD values: ACTION_ID=0x000D CMD_ID=0x0004 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=13, command_id=4
+[CANopen CMD] Executing: CDM_SAFE_POSITION_ASCENSEUR
+[CANopen STATUS] status=1 cmd_id=4 action_id=13 completed=3 error=0 (TPDO sent)
+sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 09:02:34.708 (t+19.684422s)] [UART_ASSERV] performing a rotation of 0.000 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:02:34.713 (t+19.688796s)] [CAN RX] Node 1 → status:1 cmd_id:5 action:152 completed:0 error:0
+[2026-04-19 09:02:34.718 (t+19.694259s)] [UART_AUTOM] elevator H : released hold
+elevator H : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 09:02:34.719 (t+19.694788s)] [UART_ASSERV] finished a rotation of 0.000 degrees
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 09:02:35.719 (t+20.694716s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+position : x:2884.50 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 1.92 mm/s
+angular speed : 0.00 deg[2026-04-19 09:02:35.719 (t+20.695379s)] [UART_ASSERV] /s
+canopen queue finished callback
+[2026-04-19 09:02:35.723 (t+20.699310s)] [CAN RX] Node 1 → status:2 cmd_id:5 action:152 completed:5 error:200
+[2026-04-19 09:02:35.747 (t+20.723344s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=5 == completed_id=5
+[2026-04-19 09:02:35.749 (t+20.724803s)] [CAN TX] Node 1 → cmd_id:6 action:100 params:[-110, 10, 10, 0, 0, 0]
+[2026-04-19 09:02:35.750 (t+20.725840s)] [PYTHON] [Stratégie]  calage suite
+[2026-04-19 09:02:35.761 (t+20.736760s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0006 p1=-110 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-04-19 09:02:35.769 (t+20.745416s)] [CAN RX] Node 1 → status:1 cmd_id:6 action:100 completed:5 error:0
+[2026-04-19 09:02:35.771 (t+20.747553s)] [UART_ASSERV] performing a translation of distance -110.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:02:36.791 (t+21.766929s)] [CAN RX] Node 1 → status:2 cmd_id:6 action:100 completed:6 error:200
+[2026-04-19 09:02:36.792 (t+21.768460s)] [UART_ASSERV] finished a translation of distance -110.000 mm
+spacestate robot :
+position : x:2774.26 y:-0.00 mm
+orientation : 0.11 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.48 deg/s
+canopen queue finished callback
+[2026-04-19 09:02:36.802 (t+21.778165s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=6 == completed_id=6
+[2026-04-19 09:02:36.802 (t+21.778609s)] [CAN TX] Node 1 → cmd_id:7 action:152 params:[1, 1, 0, 0, 0, 0]
+[2026-04-19 09:02:36.813 (t+21.789149s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTI[2026-04-19 09:02:36.813 (t+21.789435s)] [UART_ASSERV] ON_ID=0x0098 CMD_ID=0x0007 p1=1 p[2026-04-19 09:02:36.824 (t+21.799767s)] [UART_ASSERV] 2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 09:02:36.826 (t+21.802488s)] [CAN RX] Node 1 → status:1 cmd_id:7 action:152 completed:6 error:0
+[2026-04-19 09:02:36.834 (t+21.810207s)] [UART_ASSERV] performing a rotation of -90.110 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:02:37.360 (t+22.335851s)] [UART_AUTOM] elevator H : reached  mm (target was  mm)
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 09:02:37.370 (t+22.346282s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 09:02:37.380 (t+22.356520s)] [UART_AUTOM] elevator V : released hold
+elevator V : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 09:02:38.088 (t+23.064123s)] [UART_AUTOM] elevator V : reached  mm (target was  mm)
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 09:02:38.096 (t+23.072497s)] [CAN RX] Node 2 → status:2 cmd_id:4 action:13 completed:4 error:0
+[2026-04-19 09:02:38.099 (t+23.075611s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=4
+[CANopen STATUS] status=2 cmd_id=4 action_id=13 completed=4 error=0 (TPDO sent)
+[2026-04-19 09:02:38.140 (t+23.116463s)] [UART_ASSERV] finished a rotation of -90.110 degrees
+spacestate robot :
+position : x:2774.26 y:-0.00 mm
+orientation : -89.83 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 09:02:38.889 (t+23.864890s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+position : x:2774.26 y:1852.50 mm
+orientation : -90.00 degrees
+linear speed : 1.28 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:02:38.892 (t+23.868502s)] [CAN RX] Node 1 → status:2 cmd_id:7 action:152 completed:7 error:200
+[2026-04-19 09:02:38.907 (t+23.882790s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=7 == completed_id=7
+[2026-04-19 09:02:38.907 (t+23.883237s)] [CAN TX] Node 1 → cmd_id:8 action:100 params:[50, 10, 10, 0, 0, 0]
+[2026-04-19 09:02:38.919 (t+23.895411s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0008 p1=50 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-04-19 09:02:38.927 (t+23.903385s)] [CAN RX] Node 1 → status:1 cmd_id:8 action:100 completed:7 error:0
+[2026-04-19 09:02:38.930 (t+23.905713s)] [UART_ASSERV] performing a translation of distance 50.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:02:39.770 (t+24.746218s)] [UART_ASSERV] finished a translation of distance 50.000 mm
+spacestate robot :
+position : x:2774.49 y:1802.13 mm
+orientation : -90.12 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:02:39.774 (t+24.750420s)] [CAN RX] Node 1 → status:2 cmd_id:8 action:100 completed:8 error:200
+[2026-04-19 09:02:39.809 (t+24.785338s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=8 == completed_id=8
+[2026-04-19 09:02:39.809 (t+24.785653s)] [PYTHON] [Stratégie] Fin du calage de départ
+[2026-04-19 09:02:58.486 (t+43.462583s)] [PYTHON] [Stratégie] DEBUT DU MATCH, tirette retirer
+[2026-04-19 09:02:58.487 (t+43.463531s)] [CAN TX] Node 1 → cmd_id:9 action:4 params:[1, 0, 0, 0, 0, 0]
+[2026-04-19 09:02:58.499 (t+43.475013s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0004 CMD_ID=[2026-04-19 09:02:58.500 (t+43.475960s)] [UART_ASSERV] 0x0009 p1=1 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: CMD_EVITEMENT_ON_OFF
+[2026-04-19 09:02:58.512 (t+43.488353s)] [CAN RX] Node 1 → status:2 cmd_id:9 action:4 completed:9 error:0
+[2026-04-19 09:02:58.538 (t+43.514132s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=9 == completed_id=9
+[2026-04-19 09:02:58.539 (t+43.514807s)] [CAN TX] Node 1 → cmd_id:10 action:100 params:[250, 10, 10, 0, 0, 0]
+[2026-04-19 09:02:58.551 (t+43.527321s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x000A p1=250 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+performing a translation of distance 250.000 mm, top speed 0.400 m[2026-04-19 09:02:58.552 (t+43.528169s)] [UART_ASSERV] m/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:02:58.557 (t+43.533069s)] [CAN RX] Node 1 → status:1 cmd_id:10 action:100 completed:9 error:0
+[2026-04-19 09:02:59.812 (t+44.788604s)] [UART_ASSERV] finished a translation of distance 250.000 mm
+spacestate robot :
+position : x:2773.87 y:1552.25 mm
+orientation : -90.20 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:02:59.820 (t+44.796283s)] [CAN RX] Node 1 → status:2 cmd_id:10 action:100 completed:10 error:200
+[2026-04-19 09:02:59.841 (t+44.816916s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=10 == completed_id=10
+[2026-04-19 09:02:59.849 (t+44.825531s)] [CAN TX] Node 1 → cmd_id:11 action:150 params:[2500, 1200, 0, 0, 0, 0]
+[2026-04-19 09:02:59.853 (t+44.829290s)] [UART_ASSERV] [CANopen CMD] New command
+[2026-04-19 09:02:59.853 (t+44.829404s)] [UART_ASSERV] [CANopen CMD] RAW OD values: ACTI[2026-04-19 09:02:59.863 (t+44.839581s)] [UART_ASSERV] ON_ID=0x0096 CMD_ID=0x000B p1=2500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2500.000 y:1200.000 requires translation 446.190mm and rotation -0.657deg
+performing a rotation of -37.664 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:02:59.867 (t+44.843556s)] [CAN RX] Node 1 → status:1 cmd_id:11 action:150 completed:10 error:0
+[2026-04-19 09:03:01.155 (t+46.131327s)] [UART_ASSERV] finished a rotation of -37.664 degrees
+spacestate robot :
+position : x:2773.87 y:1552.25 mm
+orientation : -127.73 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 446.190 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:02.921 (t+47.896868s)] [CAN RX] Node 1 → status:2 cmd_id:11 action:150 completed:11 error:200
+[2026-04-19 09:03:02.921 (t+47.897408s)] [UART_ASSERV] finished a translation of distance 446.190 mm
+spacestate robot :
+position : x:2500.48 y:1199.70 mm
+orientation : -127.77 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:02.960 (t+47.936666s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=11 == completed_id=11
+[2026-04-19 09:03:02.976 (t+47.952488s)] [CAN TX] Node 1 → cmd_id:12 action:150 params:[1500, 1200, 0, 0, 0, 0]
+[2026-04-19 09:03:02.989 (t+47.965223s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000C p1=1500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:1200.000 requires translation 1000.479mm and rotation -0.912deg
+[2026-04-19 09:03:03.000 (t+47.975816s)] [UART_ASSERV] performing a rotation of -52.243 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:03.001 (t+47.977218s)] [CAN RX] Node 1 → status:1 cmd_id:12 action:150 completed:11 error:0
+[2026-04-19 09:03:04.083 (t+49.059108s)] [UART_ASSERV] finished a rotation of -52.243 degrees
+spacestate robot :
+position : x:2500.48 y:1199.70 mm
+orientation : -179.79 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 1000.479 mm, top speed 0.400 [2026-04-19 09:03:04.093 (t+49.069361s)] [UART_ASSERV] mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:07.369 (t+52.345358s)] [UART_ASSERV] finished a translation of distance 1000.479 mm
+spacestate robot :
+position : x:1499.61 y:1197.36 mm
+orientation : -179.83 degrees
+linear speed : -0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:07.372 (t+52.347705s)] [CAN RX] Node 1 → status:2 cmd_id:12 action:150 completed:12 error:200
+[2026-04-19 09:03:07.390 (t+52.366522s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=12 == completed_id=12
+[2026-04-19 09:03:07.416 (t+52.392680s)] [CAN TX] Node 1 → cmd_id:13 action:150 params:[1500, 800, 0, 0, 0, 0]
+[2026-04-19 09:03:07.432 (t+52.408448s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000D p1=1500 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:800.000 requires translation 397.360mm and rotation 1.569deg
+[2026-04-19 09:03:07.442 (t+52.417764s)] [CAN RX] Node 1 → status:1 cmd_id:13 action:150 completed:12 error:0
+[2026-04-19 09:03:07.443 (t+52.419478s)] [UART_ASSERV] performing a rotation of 89.891 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:08.809 (t+53.784922s)] [UART_ASSERV] finished a rotation of 89.891 degrees
+spacestate robot :
+position : x:1499.61 y:1197.36 mm
+orientation : -90.18 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 397.360 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:10.429 (t+55.404908s)] [CAN RX] Node 1 → status:2 cmd_id:13 action:150 completed:13 error:200
+[2026-04-19 09:03:10.431 (t+55.407116s)] [UART_ASSERV] finished a translation of distance 397.360 mm
+spacestate robot :
+position : x:1497.90 y:800.19 mm
+orientation : -90.24 degrees
+linear speed : -3.84 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:10.474 (t+55.449853s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=13 == completed_id=13
+[2026-04-19 09:03:10.484 (t+55.460548s)] [CAN TX] Node 1 → cmd_id:14 action:150 params:[1000, 800, 0, 0, 0, 0]
+[2026-04-19 09:03:10.503 (t+55.478729s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000E p1=1000 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1000.000 y:800.000 requires translation 497.896mm and rotation -1.566deg
+[2026-04-19 09:03:10.509 (t+55.485117s)] [CAN RX] Node 1 → status:1 cmd_id:14 action:150 completed:13 error:0
+[2026-04-19 09:03:10.513 (t+55.489558s)] [UART_ASSERV] performing a rotation of -89.735 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:11.866 (t+56.841852s)] [UART_ASSERV] finished a rotation of -89.735 degrees
+spacestate robot :
+[2026-04-19 09:03:11.866 (t+56.842017s)] [UART_ASSERV] position : x:1497.90 y:800.19 mm
+[2026-04-19 09:03:11.876 (t+56.852140s)] [UART_ASSERV] orientation : -179.78 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 497.896 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:13.825 (t+58.800802s)] [CAN RX] Node 1 → status:2 cmd_id:14 action:150 completed:14 error:200
+[2026-04-19 09:03:13.826 (t+58.801771s)] [UART_ASSERV] finished a translation of distance 497.896 mm
+spacestate robot :
+position : x:999.93 y:798.89 mm
+orientation : -179.73 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:13.843 (t+58.819392s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=14 == completed_id=14
+[2026-04-19 09:03:13.866 (t+58.842542s)] [CAN TX] Node 1 → cmd_id:15 action:150 params:[2000, 800, 1, 0, 0, 0]
+[2026-04-19 09:03:13.889 (t+58.864817s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000F p1=2000 p2=800 p3=1 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2000.000 y:800.000 requires translation -1000.073mm and rotation -0.004deg
+[2026-04-19 09:03:13.889 (t+58.865574s)] [UART_ASSERV] performing a rotation of -0.207 de[2026-04-19 09:03:13.890 (t+58.865928s)] [UART_ASSERV] grees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:13.894 (t+58.869768s)] [CAN RX] Node 1 → status:1 cmd_id:15 action:150 completed:14 error:0
+[2026-04-19 09:03:13.961 (t+58.937373s)] [UART_ASSERV] finished a rotation of -0.207 degrees
+spacestate robot :
+position : x:999.93 y:798.89 mm
+orientation : -179.73 degrees
+line[2026-04-19 09:03:13.962 (t+58.937950s)] [UART_ASSERV] ar speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+[2026-04-19 09:03:13.962 (t+58.938300s)] [UART_ASSERV] performing a translation of distan[2026-04-19 09:03:13.962 (t+58.938632s)] [UART_ASSERV] ce -1000.073 mm, top speed 0.400 m[2026-04-19 09:03:13.963 (t+58.938960s)] [UART_ASSERV] m/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:17.108 (t+62.084089s)] [UART_ASSERV] finished a translation of distance -1000.073 mm
+spacestate robot :
+position : x:2000.06 y:804.68 mm
+orientation : -179.62 degrees
+linear speed : 1.92 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:17.112 (t+62.087757s)] [CAN RX] Node 1 → status:2 cmd_id:15 action:150 completed:15 error:200
+[2026-04-19 09:03:17.127 (t+62.103151s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=15 == completed_id=15
+[2026-04-19 09:03:17.153 (t+62.129316s)] [CAN TX] Node 1 → cmd_id:16 action:150 params:[1500, 800, 0, 0, 0, 0]
+[2026-04-19 09:03:17.173 (t+62.149507s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0010 p1=1500 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:800.000 requires translation 500.083mm and rotation 0.003deg
+performing a rotation of 0.160 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:17.181 (t+62.156728s)] [CAN RX] Node 1 → status:1 cmd_id:16 action:150 completed:15 error:0
+[2026-04-19 09:03:17.265 (t+62.241481s)] [UART_ASSERV] finished a rotation of 0.160 degrees
+spacestate robot :
+position : x:2000.06 y:804.68 mm
+orientation : -179.64 degrees
+linear speed : -1.92 mm/s
+angular speed : 0.24 deg/s
+[2026-04-19 09:03:17.266 (t+62.242090s)] [UART_ASSERV] performing a translation of dista[2026-04-19 09:03:17.266 (t+62.242293s)] [UART_ASSERV] nce 500.083 mm, top speed 0.400 m[2026-04-19 09:03:17.277 (t+62.252787s)] [UART_ASSERV] m/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:19.123 (t+64.098946s)] [UART_ASSERV] finished a translation of distance 500.083 mm
+spacestate robot :
+position : x:1500.31 y:802.16 mm
+orientation : -179.67 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:19.125 (t+64.101393s)] [CAN RX] Node 1 → status:2 cmd_id:16 action:150 completed:16 error:200
+[2026-04-19 09:03:19.157 (t+64.132912s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=16 == completed_id=16
+[2026-04-19 09:03:19.158 (t+64.134477s)] [CAN TX] Node 1 → cmd_id:17 action:152 params:[3, 1, 0, 0, 0, 0]
+[2026-04-19 09:03:19.174 (t+64.149898s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0011 p1=3 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 09:03:19.182 (t+64.158653s)] [CAN RX] Node 1 → status:1 cmd_id:17 action:152 completed:16 error:0
+[2026-04-19 09:03:19.184 (t+64.160340s)] [UART_ASSERV] performing a rotation of -90.333 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:20.498 (t+65.473887s)] [UART_ASSERV] finished a rotation of -90.333 degrees
+spacestate robot :
+position : x:1500.31 y:802.16 mm
+[2026-04-19 09:03:20.498 (t+65.474077s)] [UART_ASSERV] orientation : 90.25 degrees
+linea[2026-04-19 09:03:20.508 (t+65.484174s)] [UART_ASSERV] r speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 09:03:23.419 (t+68.395533s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+position : x:1500.31 y:147.50 mm
+orientation : 90.00 degrees
+li[2026-04-19 09:03:23.420 (t+68.396127s)] [UART_ASSERV] near speed : 2.56 mm/s
+angular speed : 0.00 deg/s
+canopen queue fini[2026-04-19 09:03:23.420 (t+68.396535s)] [UART_ASSERV] shed callback
+[2026-04-19 09:03:23.421 (t+68.397416s)] [CAN RX] Node 1 → status:2 cmd_id:17 action:152 completed:17 error:200
+[2026-04-19 09:03:23.422 (t+68.397765s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=17 == completed_id=17
+[2026-04-19 09:03:23.441 (t+68.416759s)] [CAN TX] Node 1 → cmd_id:18 action:150 params:[1500, 175, 0, 0, 0, 0]
+[2026-04-19 09:03:23.443 (t+68.419409s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTIO[2026-04-19 09:03:23.444 (t+68.419957s)] [UART_ASSERV] N_ID=0x0096 CMD_ID=0x0012 p1=1500 p2=175 p3=0 p4=0 p5=0 p6=0
+[CANope[2026-04-19 09:03:23.444 (t+68.420316s)] [UART_ASSERV] n CMD] Executing: GOTO
+[2026-04-19 09:03:23.455 (t+68.430907s)] [UART_ASSERV] [MOVEMENT] goto x:1500.000 y:175.000 requires translation 27.502mm and rotation 0.011deg
+performing a rotation of 0.652 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:23.459 (t+68.434788s)] [CAN RX] Node 1 → status:1 cmd_id:18 action:150 completed:17 error:0
+[2026-04-19 09:03:23.516 (t+68.492532s)] [UART_ASSERV] finished a rotation of 0.652 degrees
+spacestate robot :
+position : x:1500.31 y:147.50 mm
+orientation : 90.04 degrees
+linear speed : 15.35 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 27.502 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:24.004 (t+68.980466s)] [UART_ASSERV] finished a translation of distance 27.502 mm
+spacestate robot :
+position : x:1500.26 y:174.75 mm
+orientation : 90.02 degrees
+linear speed : -3.20 mm/s
+angular speed : -0.24 deg/s
+canope[2026-04-19 09:03:24.010 (t+68.986203s)] [CAN RX] Node 1 → status:2 cmd_id:18 action:150 completed:18 error:200
+[2026-04-19 09:03:24.015 (t+68.990693s)] [UART_ASSERV] n queue finished callback
+[2026-04-19 09:03:24.043 (t+69.018920s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=18 == completed_id=18
+[2026-04-19 09:03:24.044 (t+69.020146s)] [CAN TX] Node 2 → cmd_id:19 action:6 params:[5, 820, 0, 0, 0, 0]
+[2026-04-19 09:03:24.053 (t+69.029675s)] [CAN TX] Node 1 → cmd_id:20 action:150 params:[2300, 175, 1, 0, 0, 0]
+[2026-04-19 09:03:24.057 (t+69.033008s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[06 00 05 00 34 03 00 00]
+[CO_RX] After callback: ACTION_ID=13 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: [2026-04-19 09:03:24.057 (t+69.033150s)] [UART_AUTOM] ident=0x302 dlc=8 data=[00 00 00 [2026-04-19 09:03:24.061 (t+69.037519s)] [CAN RX] Node 2 → status:2 cmd_id:19 action:6 completed:19 error:0
+[2026-04-19 09:03:24.065 (t+69.041649s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0014 p1=230[2026-04-19 09:03:24.067 (t+69.043272s)] [UART_AUTOM] 00 00 00 13 00]
+[OD_READ] RAW OD values: ACTION_ID=0x0006 CMD_ID=0x0013 p1=5 p2=820 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=6, command_id=19
+[CANopen CMD] Executing: AX
+[CANopen STATUS] status=2 cmd_id=19 action_id=6 completed=19 error=0 (TPDO sent)
+[2026-04-19 09:03:24.076 (t+69.051945s)] [UART_ASSERV] 0 p2=175 p3=1 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2300.000 y:175.000 requires translation -799.742mm and rotation 1.571deg
+performing a rotation of 89.999 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:24.079 (t+69.055209s)] [CAN RX] Node 1 → status:1 cmd_id:20 action:150 completed:18 error:0
+[2026-04-19 09:03:25.308 (t+70.284554s)] [UART_ASSERV] finished a rotation of 89.999 degrees
+spacestate robot :
+position : x:1500.26 y:174.75 mm
+orientation : -179.97 degrees
+linear speed : 1.92 mm/s
+angular speed : 0.24 deg/s
+performing a translation of distance -799.742 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:27.241 (t+72.216969s)] [UART_ASSERV] [EVITEMENT] Machine d'état arrêtée. Infos start :
+sensor 0 is 0
+sensor 1 is 0
+sensor 2 is 0
+sensor 3 is 1
+sensor 4 is 0
+[EVITEMENT] infos endfinished a translation of distance -799.742 mm
+spacestate robot :
+position : x:2152.50 y:174.80 mm
+orientation : -179.95 degrees
+linear speed : -396.51 mm/s
+angular speed : 0.48 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:27.244 (t+72.220641s)] [CAN RX] Node 1 → status:4 cmd_id:20 action:150 completed:18 error:103
+[2026-04-19 09:03:27.678 (t+72.654038s)] [UART_ASSERV] [DBG_EVIT] DECISION_AVOID_NONE 
+[DBG_EVIT] case 0 
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2300.000 y:175.000 requires translation -147.496mm and rotation 0.000deg
+performing a rotation of 0.024 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:27.928 (t+72.903961s)] [CAN RX] Node 1 → status:1 cmd_id:20 action:150 completed:18 error:0
+[2026-04-19 09:03:28.119 (t+73.095159s)] [UART_ASSERV] finished a rotation of 0.024 degrees
+spacestate robot :
+position : x:2152.50 y:174.80 mm
+orientation : -179.80 degrees
+linear speed : 7.67 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance -147.496 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:29.257 (t+74.232991s)] [UART_ASSERV] finished a translation of distance -147.496 mm
+spacestate robot :
+position : x:2300.37 y:175.24 mm
+orientation : -179.67 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.48 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:29.260 (t+74.236339s)] [CAN RX] Node 1 → status:2 cmd_id:20 action:150 completed:20 error:200
+[2026-04-19 09:03:29.265 (t+74.240824s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=20 == completed_id=20
+[2026-04-19 09:03:29.265 (t+74.241094s)] [CAN TX] Node 2 → cmd_id:21 action:6 params:[5, 495, 0, 0, 0, 0]
+[2026-04-19 09:03:29.274 (t+74.249896s)] [CAN TX] Node 1 → cmd_id:22 action:150 params:[1800, 175, 1, 0, 0, 0]
+[2026-04-19 09:03:29.279 (t+74.255110s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[06 00 05 00 EF 01 00 00]
+[CO_RX] After callback: ACTION_ID=6 p1=5 p2=820 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 15 00]
+[OD_READ] RAW OD values: ACTION_I[2026-04-19 09:03:29.279 (t+74.255497s)] [UART_AUTOM] D=0x0006 CMD_ID=0x0015 p1=5 p2=495 p3=0 p4=0 p5=0 p6=0
+[[2026-04-19 09:03:29.282 (t+74.258390s)] [CAN RX] Node 2 → status:2 cmd_id:21 action:6 completed:21 error:0
+[2026-04-19 09:03:29.288 (t+74.264038s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0016 p1=1800 p2=175 p3=1 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1800.000 y:175.000 requires translation -500.370mm and rotation 3.136deg
+[2026-04-19 09:03:29.290 (t+74.265747s)] [UART_AUTOM] CANopen CMD] New command: action_id=6, command_id=21
+[CANopen CMD] Executing: AX
+[CANopen STATUS] status=2 cmd_id=21 action_id=6 completed=21 error=0 (TPDO sent)
+[2026-04-19 09:03:29.296 (t+74.272394s)] [CAN RX] Node 1 → status:1 cmd_id:22 action:150 completed:20 error:0
+[2026-04-19 09:03:29.298 (t+74.274341s)] [UART_ASSERV] performing a rotation of 179.694 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:31.106 (t+76.082357s)] [UART_ASSERV] finished a rotation of 179.694 degrees
+spacestate robot :
+position : x:2300.37 y:175.24 mm
+orientation : -0.18 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 [2026-04-19 09:03:31.107 (t+76.082717s)] [UART_ASSERV] deg/s
+[2026-04-19 09:03:31.107 (t+76.082875s)] [UART_ASSERV] performing a translation of distance [2026-04-19 09:03:31.117 (t+76.093163s)] [UART_ASSERV] -500.370 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:33.102 (t+78.078183s)] [UART_ASSERV] finished a translation of distance -500.370 mm
+spacestate robot :
+position : x:1799.59 y:176.66 mm
+orientation : -0.21 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:33.106 (t+78.082544s)] [CAN RX] Node 1 → status:2 cmd_id:22 action:150 completed:22 error:200
+[2026-04-19 09:03:33.139 (t+78.115143s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=22 == completed_id=22
+[2026-04-19 09:03:33.151 (t+78.126872s)] [CAN TX] Node 1 → cmd_id:23 action:150 params:[2700, 800, 0, 0, 0, 0]
+[2026-04-19 09:03:33.163 (t+78.139488s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0017 p1=2700 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2700.000 y:800.[2026-04-19 09:03:33.164 (t+78.140047s)] [UART_ASSERV] 000 requires translation 1095.124mm and rotation 0.609deg
+[2026-04-19 09:03:33.174 (t+78.150395s)] [UART_ASSERV] performing a rotation of 34.903 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:33.176 (t+78.152404s)] [CAN RX] Node 1 → status:1 cmd_id:23 action:150 completed:22 error:0
+[2026-04-19 09:03:34.271 (t+79.247223s)] [UART_ASSERV] finished a rotation of 34.903 degrees
+spacestate robot :
+position : x:1799.59 y:176.66 mm
+orientation : 34.29 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 1095.124 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:37.652 (t+82.627782s)] [UART_ASSERV] finished a translation of distance 1095.124 mm
+spacestate robot :
+position : x:2704.94 y:792.75 mm
+[2026-04-19 09:03:37.656 (t+82.632274s)] [CAN RX] Node 1 → status:2 cmd_id:23 action:150 completed:23 error:200
+[2026-04-19 09:03:37.660 (t+82.635858s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=23 == completed_id=23
+[2026-04-19 09:03:37.660 (t+82.636106s)] [CAN TX] Node 1 → cmd_id:24 action:152 params:[0, 1, 0, 0, 0, 0]
+[2026-04-19 09:03:37.662 (t+82.638098s)] [UART_ASSERV] orientation : 34.26 degrees
+linear speed : -1.92 mm/s
+angular speed : -0.72 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:37.672 (t+82.648424s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0018 p1=0 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+performing a rotation of 145.744 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:37.681 (t+82.657568s)] [CAN RX] Node 1 → status:1 cmd_id:24 action:152 completed:23 error:0
+[2026-04-19 09:03:39.296 (t+84.272675s)] [UART_ASSERV] finished a rotation of 145.744 degrees
+spacestate robot :
+position : x:2704.94 y:792.75 mm
+orientation : 179.89 degrees
+linear speed : 0.64 mm/s
+angular speed : -0.24 deg/s
+performing a recalibration state wake
+[2026-04-19 09:03:39.992 (t+84.967967s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+position : x:2852.50 y:792.75 mm
+orientation : -180.00 degrees
+linear speed : 1.92 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:39.998 (t+84.974363s)] [CAN RX] Node 1 → status:2 cmd_id:24 action:152 completed:24 error:200
+[2026-04-19 09:03:40.013 (t+84.989577s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=24 == completed_id=24
+[2026-04-19 09:03:40.018 (t+84.994149s)] [CAN TX] Node 1 → cmd_id:25 action:150 params:[2825, 800, 0, 0, 0, 0]
+[2026-04-19 09:03:40.023 (t+84.998753s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x0019 p1=2825 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2825.000 y:800.000 requires translation 28.440mm[2026-04-19 09:03:40.023 (t+84.999014s)] [UART_ASSERV]  and rotation -0.258deg
+[2026-04-19 09:03:40.033 (t+85.009293s)] [UART_ASSERV] performing a rotation of -14.773 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:40.034 (t+85.010627s)] [CAN RX] Node 1 → status:1 cmd_id:25 action:150 completed:24 error:0
+[2026-04-19 09:03:46.201 (t+91.177351s)] [UART_ASSERV] finished a rotation of -14.773 degrees
+spacestate robot :
+[2026-04-19 09:03:46.201 (t+91.177532s)] [UART_ASSERV] position : x:2852.50 y:792.75 mm
+[2026-04-19 09:03:46.211 (t+91.187659s)] [UART_ASSERV] orientation : 167.05 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 28.440 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:46.726 (t+91.701994s)] [UART_ASSERV] finished a translation of distance 28.440 mm
+spacestate robot :
+position : x:2824.45 y:799.25 mm
+orientation[2026-04-19 09:03:46.726 (t+91.702394s)] [UART_ASSERV]  : 167.15 degrees
+linear speed : -1.92 mm/s
+angular spe[2026-04-19 09:03:46.729 (t+91.705576s)] [CAN RX] Node 1 → status:2 cmd_id:25 action:150 completed:25 error:200
+[2026-04-19 09:03:46.732 (t+91.707896s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=25 == completed_id=25
+[2026-04-19 09:03:46.737 (t+91.712799s)] [UART_ASSERV] ed : 1.19 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:46.758 (t+91.734098s)] [CAN TX] Node 1 → cmd_id:26 action:150 params:[2825, 1700, 0, 0, 0, 0]
+[2026-04-19 09:03:46.768 (t+91.744283s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x001A p1=2825 p2=1700 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:2825.000 y:1700.000 requires translation 900.747mm and rotation -1.347deg
+performing a rotation of -77.188 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:03:46.776 (t+91.752433s)] [CAN RX] Node 1 → status:1 cmd_id:26 action:150 completed:25 error:0
+[2026-04-19 09:03:48.035 (t+93.010686s)] [UART_ASSERV] finished a rotation of -77.188 degrees
+spacestate robot :
+[2026-04-19 09:03:48.035 (t+93.011035s)] [UART_ASSERV] position : x:2824.45 y:799.25 mm
+[2026-04-19 09:03:48.045 (t+93.021285s)] [UART_ASSERV] orientation : 90.19 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 900.747 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:03:50.908 (t+95.884194s)] [UART_ASSERV] finished a translation of distance 900.747 mm
+spacestate robot :
+position : x:2822.72 y:1699.73 mm
+orientation : 90.17 degrees
+linear speed : -0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:03:50.916 (t+95.892030s)] [CAN RX] Node 1 → status:2 cmd_id:26 action:150 completed:26 error:200
+[2026-04-19 09:03:50.925 (t+95.901131s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=26 == completed_id=26
+
+================================================================================
+Unified Debug Log - Stopped: 2026-04-19 09:03:50.934 (t+95.910344s)
+================================================================================

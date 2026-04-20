@@ -1,0 +1,433 @@
+================================================================================
+Unified Debug Log (UART + CAN) - Started: 2026-04-19_09-44-51
+Program started at: 2026-04-19 09:44:51.247721
+All timestamps use unified clock: absolute (relative)
+================================================================================
+
+[2026-04-19 09:44:51.461 (t+0.213292s)] [PYTHON] [StratDynamique] === DÉBUT DU MATCH ===
+[2026-04-19 09:44:51.461 (t+0.213440s)] [PYTHON] [FunctStrat] En attente de l'insertion de la tirette
+[2026-04-19 09:46:34.908 (t+103.661198s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:46:35.001 (t+103.754060s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:46:35.418 (t+104.171188s)] [UART_AUTOM] sequencer: idle registered for machine 0
+sequencer: idle registered for machine 1
+[CANopen CMD] Processor initialized
+[CANopen STATUS] status=0 cmd_id=0 action_id=0 completed=0 error=0 (TPDO sent)
+[2026-04-19 09:46:35.503 (t+104.255708s)] [CAN RX] Node 1 → status:0 cmd_id:0 action:0 completed:0 error:0
+[2026-04-19 09:46:35.506 (t+104.258807s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine callback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
+[2026-04-19 09:46:35.725 (t+104.477962s)] [UART_AUTOM] [CANopen STATUS] status=1 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[CANopen CMD] Manual sequence started: action_id=1, cmd_id=0
+sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+[CAN_DEBUG] RX logging disabled
+===== CANopen Detailed Status =====
+Node ID: 2 (desired: 2)
+Baudrate: 500 kbps
+NMT State: INITIALIZING
+Emergency: No errors
+SDO Server: Configured (index 0)
+TPDO: Configured
+RPDO: Configured
+SYNC: Available
+LED Status: Green=231 Red=135
+============[2026-04-19 09:46:35.725 (t+104.478277s)] [UART_AUTOM] =======================
+[2026-04-19 09:46:35.726 (t+104.478937s)] [CAN RX] Node 2 → status:1 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 09:46:35.736 (t+104.488627s)] [UART_AUTOM] [OD_READ] RAW OD values: ACTION_ID=0x0000 CMD_ID=0x0000 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 09:46:35.746 (t+104.499026s)] [UART_AUTOM] elevator V : homing wake
+loaded new state queue
+[2026-04-19 09:46:36.451 (t+105.203755s)] [UART_AUTOM] endstop_vertical
+[2026-04-19 09:46:36.461 (t+105.213984s)] [UART_AUTOM] elevator V : endstop reached, resetting position to 0
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 09:46:36.471 (t+105.224128s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 09:46:36.481 (t+105.234243s)] [UART_AUTOM] elevator H : homing wake
+loaded new state queue
+[2026-04-19 09:46:39.141 (t+107.893928s)] [UART_AUTOM] elevator H : endstop reached, resetting position to 0
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 09:46:39.148 (t+107.900848s)] [CAN RX] Node 2 → status:2 cmd_id:0 action:1 completed:0 error:0
+[2026-04-19 09:46:39.152 (t+107.904783s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=0
+[CANopen STATUS] status=2 cmd_id=0 action_id=1 completed=0 error=0 (TPDO sent)
+[2026-04-19 09:46:42.950 (t+111.703019s)] [PYTHON] [FunctStrat]  Tirette insérer Couleur équipe 1 (JAUNE)
+[2026-04-19 09:46:42.950 (t+111.703197s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 09:46:42.951 (t+111.703629s)] [CAN TX] Node 2 → cmd_id:2 action:14 params:[1, 0, 0, 0, 0, 0]
+[2026-04-19 09:46:42.960 (t+111.712367s)] [CAN RX] Node 2 → status:2 cmd_id:2 action:14 completed:2 error:0
+[2026-04-19 09:46:42.962 (t+111.714298s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0E 00 01 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=0 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 02 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000E CMD_ID=0x0002 p1=1 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=14, command_id=2
+[CANopen CMD] Executing: CMD_COULEUR_EQUIPE
+[CANopen STATUS] status=2 cmd_id=2 action_id=14 completed=2 error=0 (TPDO sent)
+[2026-04-19 09:46:43.001 (t+111.753989s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=2 == completed_id=2
+[2026-04-19 09:46:43.004 (t+111.756892s)] [CAN TX] Node 2 → cmd_id:3 action:11 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:46:43.012 (t+111.765099s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0B 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=14 p1=1 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 03 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000B CMD_ID=0x0003 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=11, command_id=3
+[CANopen CMD] Executing: CDM_CLOSE_PINCE
+[CANopen STATUS] status=1 cmd_id=3 action_id=11 completed=2 error=0 (TPDO sent)
+sequencer: add ACTION step 0 (delay=0ms)
+sequencer[2026-04-19 09:46:43.013 (t+111.765365s)] [UART_AUTOM] : add ACTION step 1 (delay=0ms)
+[2026-04-19 09:46:43.014 (t+111.766495s)] [CAN RX] Node 2 → status:1 cmd_id:3 action:11 completed:2 error:0
+[2026-04-19 09:46:43.023 (t+111.775634s)] [UART_AUTOM] sequencer: start (2 steps)
+sequencer: executing ACTION step 1/2
+[2026-04-19 09:46:43.033 (t+111.786135s)] [UART_AUTOM] sequencer: executing ACTION step 2/2
+[2026-04-19 09:46:43.044 (t+111.796600s)] [UART_AUTOM] sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=3
+[CANopen STATUS] status=2 cmd_id=3 action_id=11 completed=3 error=0 (TPDO sent)
+[2026-04-19 09:46:43.044 (t+111.797227s)] [CAN RX] Node 2 → status:2 cmd_id:3 action:11 completed:3 error:0
+[2026-04-19 09:46:43.055 (t+111.807979s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 09:46:43.055 (t+111.808213s)] [PYTHON] [Stratégie] Début du calage de départ
+[2026-04-19 09:46:43.056 (t+111.808327s)] [PYTHON] [CanActionNode] Node 2 NOT_BUSY: expected_id=3 == completed_id=3
+[2026-04-19 09:46:43.056 (t+111.809074s)] [CAN TX] Node 2 → cmd_id:4 action:13 params:[0, 0, 0, 0, 0, 0]
+[2026-04-19 09:46:43.057 (t+111.809574s)] [PYTHON] [Stratégie] Début du calage JAUNE
+[2026-04-19 09:46:43.057 (t+111.809681s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=0 == completed_id=0
+[2026-04-19 09:46:43.057 (t+111.810180s)] [CAN TX] Node 1 → cmd_id:5 action:152 params:[2, 1, 0, 0, 0, 0]
+[2026-04-19 09:46:43.064 (t+111.816997s)] [UART_AUTOM] [CO_RX] RPDO match! ID=0x202 calling callback
+[CO_RX] CAN msg before callback: ident=0x202 dlc=8 data=[0D 00 00 00 00 00 00 00]
+[CO_RX] After callback: ACTION_ID=11 p1=0 p2=0 p3=0
+[CO_RX] RPDO match! ID=0x302 calling callback
+[CO_RX] CAN msg before callback: ident=0x302 dlc=8 data=[00 00 00 00 00 00 04 00]
+[OD_READ] RAW OD values: ACTION_ID=0x000D CMD_ID=0x0004 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] New command: action_id=13, command_id=4
+[CANopen CMD] Executing: CDM_SAFE_POSITION_ASCENSEUR
+[CANopen STATUS] status=1 cmd_id=4 action_id=13 completed=3 error=0 (TPDO sent)
+[2026-04-19 09:46:43.064 (t+111.817208s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0005 p1=2 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+[2026-04-19 09:46:43.066 (t+111.818861s)] [CAN RX] Node 2 → status:1 cmd_id:4 action:13 completed:3 error:0
+[2026-04-19 09:46:43.075 (t+111.827577s)] [UART_ASSERV] performing a rotation of 0.000 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:46:43.075 (t+111.828135s)] [UART_AUTOM] sequencer: add MOTOR step 0
+sequencer: add MOTOR step 1
+sequencer: start (2 steps)
+sequencer: --> MOTOR step 1/2 sent
+[2026-04-19 09:46:43.076 (t+111.828650s)] [CAN RX] Node 1 → status:1 cmd_id:5 action:152 completed:0 error:0
+[2026-04-19 09:46:43.085 (t+111.837925s)] [UART_ASSERV] finished a rotation of 0.000 degrees
+spacestate robot :
+position : x:0.00 y:0.00 mm
+orientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a recalibration state wake
+[2026-04-19 09:46:43.086 (t+111.838405s)] [UART_AUTOM] elevator H : released hold
+elevator H : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 09:46:43.974 (t+112.726487s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+[2026-04-19 09:46:43.974 (t+112.726817s)] [UART_ASSERV] position : x:147.50 y:0.00 mm
+o[2026-04-19 09:46:43.978 (t+112.730697s)] [CAN RX] Node 1 → status:2 cmd_id:5 action:152 completed:5 error:200
+[2026-04-19 09:46:43.984 (t+112.737035s)] [UART_ASSERV] rientation : 0.00 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:46:44.009 (t+112.762215s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=5 == completed_id=5
+[2026-04-19 09:46:44.011 (t+112.763713s)] [CAN TX] Node 1 → cmd_id:6 action:100 params:[60, 10, 10, 0, 0, 0]
+[2026-04-19 09:46:44.012 (t+112.764526s)] [PYTHON] [Stratégie]  calage suite
+[2026-04-19 09:46:44.025 (t+112.777680s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0006 p1=60 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+performing a translation of distance 60.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:46:44.035 (t+112.788191s)] [CAN RX] Node 1 → status:1 cmd_id:6 action:100 completed:5 error:0
+[2026-04-19 09:46:44.682 (t+113.434481s)] [UART_ASSERV] finished a translation of distance 60.000 mm
+spacestate robot :
+position : x:207.39 y:0.06 mm
+orientation : -0.20 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:46:44.684 (t+113.436629s)] [CAN RX] Node 1 → status:2 cmd_id:6 action:100 completed:6 error:200
+[2026-04-19 09:46:44.713 (t+113.465777s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=6 == completed_id=6
+[2026-04-19 09:46:44.714 (t+113.466669s)] [CAN TX] Node 1 → cmd_id:7 action:152 params:[1, 1, 0, 0, 0, 0]
+[2026-04-19 09:46:44.723 (t+113.475361s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0098 CMD_ID=0x0007 p1=1 p2=1 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: recalibration
+performing a rotation of -89.797 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:46:44.731 (t+113.483337s)] [CAN RX] Node 1 → status:1 cmd_id:7 action:152 completed:6 error:0
+[2026-04-19 09:46:45.732 (t+114.485195s)] [UART_AUTOM] elevator H : reached  mm (target was  mm)
+sequencer: MOTOR step 1/2 done, restoring idle
+[2026-04-19 09:46:45.743 (t+114.495641s)] [UART_AUTOM] elevator H : holding position
+loaded new state queue
+sequencer: --> MOTOR step 2/2 sent
+[2026-04-19 09:46:45.743 (t+114.495861s)] [UART_AUTOM] elevator V : released hold
+el[2026-04-19 09:46:45.753 (t+114.506091s)] [UART_AUTOM] evator V : moving from  mm to  mm (distance:  mm)
+loaded new state queue
+[2026-04-19 09:46:46.279 (t+115.032176s)] [UART_ASSERV] finished a rotation of -89.797 degrees
+spacestate robot :
+position : x:207.39 y:0.06 mm
+orientation : -89.93 degrees
+linear speed : -0.64 mm/s
+angular speed : 0.24 deg/s
+performing a recalibration state wake
+[2026-04-19 09:46:46.338 (t+115.090821s)] [UART_AUTOM] elevator V : reached  mm (target was  mm)
+sequencer: MOTOR step 2/2 done, restoring idle
+[2026-04-19 09:46:46.344 (t+115.097008s)] [CAN RX] Node 2 → status:2 cmd_id:4 action:13 completed:4 error:0
+[2026-04-19 09:46:46.348 (t+115.101070s)] [UART_AUTOM] elevator V : holding position wake 
+loaded new state queue
+sequencer: ALL DONE (2 steps completed)
+[CANopen CMD] Sequence completed for command_id=4
+[CANopen STATUS] status=2 cmd_id=4 action_id=13 completed=4 error=0 (TPDO sent)
+[2026-04-19 09:46:46.955 (t+115.708019s)] [UART_ASSERV] ______finished a recalibration
+spacestate robot :
+[2026-04-19 09:46:46.956 (t+115.708340s)] [UART_ASSERV] position : x:207.39 y:1852.50 mm
+[2026-04-19 09:46:46.961 (t+115.713295s)] [CAN RX] Node 1 → status:2 cmd_id:7 action:152 completed:7 error:200
+[2026-04-19 09:46:46.966 (t+115.718599s)] [UART_ASSERV] orientation : -90.00 degrees
+linear speed : 0.64 mm/s
+angular speed : 0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:46:46.968 (t+115.721034s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=7 == completed_id=7
+[2026-04-19 09:46:46.969 (t+115.721719s)] [CAN TX] Node 1 → cmd_id:8 action:100 params:[50, 10, 10, 0, 0, 0]
+[2026-04-19 09:46:46.976 (t+115.729005s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x0008 p1=50 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+performing a translation of distance 50.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:46:46.985 (t+115.737675s)] [CAN RX] Node 1 → status:1 cmd_id:8 action:100 completed:7 error:0
+[2026-04-19 09:46:47.785 (t+116.538159s)] [UART_ASSERV] finished a translation of distance 50.000 mm
+spacestate robot :
+position : x:207.31 y:1802.40 mm
+orientation : -89.97 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:46:47.787 (t+116.539946s)] [CAN RX] Node 1 → status:2 cmd_id:8 action:100 completed:8 error:200
+[2026-04-19 09:46:47.821 (t+116.573935s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=8 == completed_id=8
+[2026-04-19 09:46:47.821 (t+116.574262s)] [PYTHON] [Stratégie] Fin du calage de départ
+[2026-04-19 09:47:08.913 (t+137.665385s)] [PYTHON] [Stratégie] DEBUT DU MATCH, tirette retirer
+[2026-04-19 09:47:08.913 (t+137.666106s)] [CAN TX] Node 1 → cmd_id:9 action:4 params:[1, 0, 0, 0, 0, 0]
+[2026-04-19 09:47:08.928 (t+137.680317s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0004 CMD_ID=0x0009 p1=1 p2=0 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: CMD_EVITEMENT_ON_OFF
+[2026-04-19 09:47:08.933 (t+137.685667s)] [CAN RX] Node 1 → status:2 cmd_id:9 action:4 completed:9 error:0
+[2026-04-19 09:47:08.964 (t+137.716642s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=9 == completed_id=9
+[2026-04-19 09:47:08.966 (t+137.718530s)] [CAN TX] Node 1 → cmd_id:10 action:100 params:[250, 10, 10, 0, 0, 0]
+[2026-04-19 09:47:08.979 (t+137.731661s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0064 CMD_ID=0x000A p1=250 p2=10 p3=10 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: TRANSLATION
+[2026-04-19 09:47:08.990 (t+137.742990s)] [UART_ASSERV] performing a translation of distance 250.000 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:47:08.991 (t+137.743466s)] [CAN RX] Node 1 → status:1 cmd_id:10 action:100 completed:9 error:0
+[2026-04-19 09:47:10.253 (t+139.005497s)] [CAN RX] Node 1 → status:2 cmd_id:10 action:100 completed:10 error:200
+[2026-04-19 09:47:10.253 (t+139.006196s)] [UART_ASSERV] finished a translation of distance 250.000 mm
+spacestate robot :
+position : x:207.69 y:1552.49 mm
+orientation : -89.99 degrees
+linear speed : -0.64 mm/s
+angular speed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:47:10.275 (t+139.027581s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=10 == completed_id=10
+[2026-04-19 09:47:10.286 (t+139.039131s)] [CAN TX] Node 1 → cmd_id:11 action:150 params:[500, 1200, 0, 0, 0, 0]
+[2026-04-19 09:47:10.304 (t+139.057256s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000B p1=500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:500.000 y:1200.000 requires translation 457.926mm and rotation 0.692deg
+[2026-04-19 09:47:10.311 (t+139.063721s)] [CAN RX] Node 1 → status:1 cmd_id:11 action:150 completed:10 error:0
+[2026-04-19 09:47:10.315 (t+139.068120s)] [UART_ASSERV] performing a rotation of 39.658 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:47:11.616 (t+140.368610s)] [UART_ASSERV] finished a rotation of 39.658 degrees
+spacestate robot :
+position : x:207.69 y:1552.49 mm
+orientation : -50.58 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 457.926 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:47:13.551 (t+142.304027s)] [UART_ASSERV] finished a translation of distance 457.926 mm
+spacestate robot :
+position : x:498.20 y:1198.39 mm
+orientation : -50.70 degrees
+linear speed : 0.64 mm/s
+angular spe[2026-04-19 09:47:13.552 (t+142.304807s)] [UART_ASSERV] ed : -0.24 deg/s
+canopen queue finished callback
+[2026-04-19 09:47:13.561 (t+142.313432s)] [CAN RX] Node 1 → status:2 cmd_id:11 action:150 completed:11 error:200
+[2026-04-19 09:47:13.600 (t+142.352760s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=11 == completed_id=11
+[2026-04-19 09:47:13.611 (t+142.363774s)] [CAN TX] Node 1 → cmd_id:12 action:150 params:[1500, 1200, 0, 0, 0, 0]
+[2026-04-19 09:47:13.624 (t+142.376906s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000C p1=1500 p2=1200 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:1200.000 requires translation 1001.797mm and rotation 0.886deg
+performing a rotation of 50.789 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:47:13.631 (t+142.383642s)] [CAN RX] Node 1 → status:1 cmd_id:12 action:150 completed:11 error:0
+[2026-04-19 09:47:14.733 (t+143.485884s)] [UART_ASSERV] finished a rotation of 50.789 degrees
+spacestate robot :
+position : x:498.20 y:1198.39 mm
+orientation : -0.15 degrees
+linear speed : 0.00 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 1001.797 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:47:17.972 (t+146.725161s)] [UART_ASSERV] finished a translation of distance 1001.797 mm
+spacestate robot :
+position : x:1500.10 y:1194.62 mm
+orientation : -0.15 degrees
+linear speed : -1.28 mm/s
+angular speed : 0.00 deg/s
+canopen queue finished callback
+[2026-04-19 09:47:17.977 (t+146.729881s)] [CAN RX] Node 1 → status:2 cmd_id:12 action:150 completed:12 error:200
+[2026-04-19 09:47:18.025 (t+146.777928s)] [PYTHON] [CanActionNode] Node 1 NOT_BUSY: expected_id=12 == completed_id=12
+[2026-04-19 09:47:18.038 (t+146.790515s)] [CAN TX] Node 1 → cmd_id:13 action:150 params:[1500, 800, 0, 0, 0, 0]
+[2026-04-19 09:47:18.044 (t+146.797119s)] [UART_ASSERV] [CANopen CMD] New command
+[CANopen CMD] RAW OD values: ACTION_ID=0x0096 CMD_ID=0x000D p1=1500 p2=800 p3=0 p4=0 p5=0 p6=0
+[CANopen CMD] Executing: GOTO
+[MOVEMENT] goto x:1500.000 y:800.[2026-04-19 09:47:18.045 (t+146.797410s)] [UART_ASSERV] 000 requires translation 394.617m[2026-04-19 09:47:18.055 (t+146.807662s)] [UART_ASSERV] m and rotation -1.568deg
+performing a rotation of -89.866 degrees, speed 0.230 deg/ms, accel 0.080 deg/ms^2
+[2026-04-19 09:47:18.057 (t+146.809989s)] [CAN RX] Node 1 → status:1 cmd_id:13 action:150 completed:12 error:0
+[2026-04-19 09:47:19.538 (t+148.290621s)] [UART_ASSERV] finished a rotation of -89.866 degrees
+spacestate robot :
+position : x:1500.10 y:1194.62 mm
+orientation : -89.86 degrees
+linear speed : 1.28 mm/s
+angular speed : 0.00 deg/s
+performing a translation of distance 394.617 mm, top speed 0.400 mm/ms, accel 0.001 mm/ms^2
+[2026-04-19 09:47:23.436 (t+152.188632s)] [UART_AUTOM] woke upAllocated 2520 byte[2026-04-19 09:47:23.447 (t+152.199830s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objectswoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicwoke upAllocated 2520 bytes for CANopen objects
+CA[2026-04-19 09:47:23.458 (t+152.210979s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+woke upAllocated 2520 bytes for CANopen obje[2026-04-19 09:47:23.459 (t+152.211298s)] [UART_AUTOM] cts
+CANopenNode - Reset communi[2026-04-19 09:47:23.469 (t+152.221835s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication.woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:47:23.469 (t+152.222170s)] [UART_AUTOM] CANopenNode - Running...
+[2026-04-19 09:47:23.480 (t+152.232719s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication.woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:47:23.501 (t+152.253599s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:47:23.511 (t+152.264188s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen o[2026-04-19 09:47:23.512 (t+152.264450s)] [UART_AUTOM] bjects
+CANopenNode - Reset communication..[2026-04-19 09:47:23.512 (t+152.264616s)] [UART_AUTOM] .
+[2026-04-19 09:47:23.522 (t+152.274999s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:47:23.533 (t+152.285478s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicationwoke upAllocated 2520 bytes for CANopen o[2026-04-19 09:47:23.533 (t+152.285711s)] [UART_AUTOM] bjects
+CANopenNode - Reset communication.[2026-04-19 09:47:23.533 (t+152.285872s)] [UART_AUTOM] .[2026-04-19 09:47:23.543 (t+152.296163s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNodwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communic[2026-04-19 09:47:23.554 (t+152.306527s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicatiwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset commuwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communica[2026-04-19 09:47:23.564 (t+152.317081s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset [2026-04-19 09:47:23.575 (t+152.327538s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopewoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicatio[2026-04-19 09:47:23.585 (t+152.338125s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:47:23.596 (t+152.348709s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communiwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication[2026-04-19 09:47:23.607 (t+152.359295s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:47:23.617 (t+152.369923s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:47:23.628 (t+152.380502s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset commwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicati[2026-04-19 09:48:50.420 (t+239.173136s)] [UART_AUTOM] woke upAllocated 2520 bytes for CAN[2026-04-19 09:48:50.421 (t+239.173551s)] [UART_AUTOM] open objects
+CANopenNode - Reset communication...
+[2026-04-19 09:48:50.452 (t+239.204403s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.462 (t+239.214934s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.504 (t+239.256441s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:48:50.504 (t+239.256850s)] [UART_AUTOM] CANopenNode - Running...
+[2026-04-19 09:48:50.529 (t+239.282023s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running.[2026-04-19 09:48:50.535 (t+239.288017s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.597 (t+239.350178s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.618 (t+239.371136s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.633 (t+239.385365s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.670 (t+239.423025s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:50.681 (t+239.433666s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicatiwoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:48:50.692 (t+239.444299s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllocated 2520 bytes for CANopen obje[2026-04-19 09:48:50.692 (t+239.444577s)] [UART_AUTOM] cts
+CANopenNode - Reset communicati[2026-04-19 09:48:51.537 (t+240.289581s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:48:51.548 (t+240.300282s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:51.630 (t+240.383097s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:51.712 (t+240.465213s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:48:51.723 (t+240.475839s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Resewoke upAllocated 2520 bytes for CANopen objects
+CANwoke upAllocated 2520 bytes for CANopen o[2026-04-19 09:48:51.723 (t+240.476259s)] [UART_AUTOM] bjects
+CANopenNode - Reset communication...
+[2026-04-19 09:48:51.734 (t+240.486696s)] [UART_AUTOM] woke upAllocated 2520 bytewoke upAllocated 252[2026-04-19 09:48:52.465 (t+241.217542s)] [UART_AUTOM] woke upAllocated 2520 bytes woke upAllocated 2520 byt[2026-04-19 09:48:52.475 (t+241.228251s)] [UART_AUTOM] woke upAllocated 25woke upAlloca[2026-04-19 09:48:52.486 (t+241.238866s)] [UART_AUTOM] woke upAllocated 2woke upAllocated 2woke upAllocated 2[2026-04-19 09:48:52.497 (t+241.249491s)] [UART_AUTOM] woke upAllocated 25woke upAllocated 25woke up[2026-04-19 09:48:52.507 (t+241.260071s)] [UART_AUTOM] woke upAllocwoke upAllocated 2520 bytes for CANopen objects
+CANwoke upAllocated 2520 byteswoke upAllocated 2520 bytes f[2026-04-19 09:48:52.518 (t+241.270651s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset cowoke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Resewoke upAllocated 2520 bytes for CANopen[2026-04-19 09:48:52.539 (t+241.291556s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset [2026-04-19 09:48:52.549 (t+241.302181s)] [UART_AUTOM] woke upAllocated 252woke upAllocated 2520 bytes for CANopen objecwoke upAllocated 2520 bytes [2026-04-19 09:48:52.560 (t+241.312868s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communicatiwoke upAllocwoke u[2026-04-19 09:48:52.571 (t+241.323499s)] [UART_AUTOM] woke upAllocated 2520 bytes for CANopen objects
+CANopenNode - Reset communication...
+woke upAllowoke upAlloc[2026-04-19 09:51:10.987 (t+379.740148s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+[2026-04-19 09:51:10.988 (t+379.741025s)] [UART_ASSERV] CANopenNode - Running...
+[2026-04-19 09:51:11.490 (t+380.243181s)] [CAN RX] Node 1 → status:0 cmd_id:0 action:0 completed:0 error:0
+[2026-04-19 09:51:11.493 (t+380.245965s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine callback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
+[2026-04-19 09:51:29.881 (t+398.633734s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:51:30.087 (t+398.839279s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:51:30.580 (t+399.332304s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine ca[2026-04-19 09:51:30.580 (t+399.333184s)] [UART_ASSERV] llback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
+[2026-04-19 09:51:47.213 (t+415.965508s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:51:52.120 (t+420.872996s)] [UART_ASSERV] Allocated 2940 bytes for CANopen objects
+CANopenNode - Reset communication...
+CANopenNode - Running...
+[2026-04-19 09:51:52.615 (t+421.368201s)] [UART_ASSERV] [CANopen CMD] initialized
+mv statemachine callback state : 0x800fb7d
+mv statemachine callback queue : 0x800fb29
+woke up
