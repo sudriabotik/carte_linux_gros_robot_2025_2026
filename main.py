@@ -18,7 +18,8 @@ def main():
 
     # Création et exécution de la stratégie dynamique
     strat_dyn = StratDynamique(hw.strat, hw.robot_state,(1000,1000),['tas_4', 'tas_8', 'tas_6', 'tas_3', 'tas_5', 'tas_2', 'tas_7', 'tas_1'] )
-    strat_dyn.run_strat()
+    #strat_dyn.run_strat()
+    strat_dyn.run_homologation()
 
     # Arrêt propre
     logger.log_info("Main", "Program finished")

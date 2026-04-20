@@ -8,6 +8,8 @@ import core.interface.can.canopen_wrapper as canopen_wrapper
 import time
 
 from core.interface.can.action_comm_node import CanActionNode
+from core.interface.gpio.gpio import read_gpio_couleur
+from core.interface.log_management.unified_logger import unified_logger
 
 class Face(IntEnum) :
 
@@ -29,6 +31,25 @@ class CanAsservNode(CanActionNode) :
 	def __init__(self, bus, node_id : int, robot=None):
 		# MODIFIED BY CLAUDE: Pass robot parameter to parent class for position updates
 		super().__init__(bus, node_id, robot=robot)
+
+	
+	""" 1 pour jaune, 0 pour bleu"""
+	def get_couleur(self) :
+		return read_gpio_couleur()
+
+	def team_dependent_flip_x_coordinates(self, x) -> int :
+		if self.get_couleur(self) == 0 :
+			return 3000 - x
+		else :
+			return x # keep original if yellow
+	
+
+	def team_dependent_flip_rotation(self, rot) -> int :
+		if self.get_couleur(self) == 0 :
+			return -rot
+		else :
+			return rot # keep original if yellow
+			
 	
 
 	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :
@@ -67,6 +88,9 @@ class CanAsservNode(CanActionNode) :
 		:param speed: Angular speed in thousandths of deg/ms
 		:param accel: Angular acceleration in thousandths of deg/ms^2
 		"""
+
+		angle_deg = self.team_dependent_flip_rotation(angle_deg)
+
 		canopen_wrapper.instance.request_action(self.node_id, 101, [angle_deg, speed, accel])
 		self.timestamp_last_command = time.time()
 
@@ -79,6 +103,9 @@ class CanAsservNode(CanActionNode) :
 		:param y_mm: Y coordinate in mm
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
 		"""
+
+		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
+
 		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face])
 		self.timestamp_last_command = time.time()
 

@@ -192,15 +192,33 @@ class CanActionNode :
 		"""
 		Check if the node is currently executing a command
 		"""
+		BUSY = 1
+		NOT_BUSY = 0
 		#print(f"vars : {self.can_reader.current_command_status}")
 
-		# if we didn't receive any tpdos since the last command, it is likely the node is still busy
-		if self.timestamp_last_command > self.can_reader.timestamp_last_tpdo : return True
-		
 		try :
-			return (self.can_reader.current_command_status == 1) or self.can_reader.current_command_status == -1
+			# if we didn't receive any tpdos since the last command, it is likely the node is still busy
+			if self.timestamp_last_command > self.can_reader.timestamp_last_tpdo :
+				return BUSY
+
+			if ((self.can_reader.current_command_status == CMD_STATUS_RUNNING) or (self.can_reader.current_command_status == -1) ):
+				return BUSY
+			
+			#if (self.can_reader.current_command_status == CMD_STATUS_COMPLETED):
+			#	return NOT_BUSY
+
+			if ( (self.can_reader.current_command_id == self.can_reader.last_completed_command_id) ):
+				return NOT_BUSY
+			else : 
+				return BUSY
+
+		# if status == 0 c'est ignorer. à tester. 
+
 		except Exception as e :
 			logger.log_error("CanActionNode", f"error : {type(e).__name__}: {e}")
 			logger.log_traceback("CanActionNode", str(traceback.format_exc()))
+			return BUSY
+
+
 			
 
