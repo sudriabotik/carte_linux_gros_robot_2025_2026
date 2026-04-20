@@ -5,6 +5,7 @@ import os
 import time
 import datetime
 import threading
+from tracemalloc import start
 
 from can.io import logger
 
@@ -17,7 +18,7 @@ use_std = True # write to stdout and sterr
 LOG_DIR = "log"
 
 # Global timing reference for all loggers (UART, CAN, console)
-initial_time = time.time()
+initial_time = -1
 start_date = datetime.datetime.now()
 
 
@@ -30,7 +31,9 @@ def get_timestamp_relative():
 
 	:return: Formatted string "t+X.XXXXXXs"
 	"""
-	elapsed = time.time() - initial_time
+	elapsed = 0
+	if initial_time != -1 :
+		elapsed = time.time() - initial_time
 	return f"t+{elapsed:.6f}s"
 
 
@@ -120,26 +123,37 @@ except Exception as e :
 	sys.stderr.write(f">> [FATAL] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [LOGGER] cannot start logger : {e}\n")
 
 
+def _format_msg(category : str, source : str, message : str) :
+	return f">> [{category}] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n"
 
 def log_verbose(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [VERB] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(_format_msg("VERB", source, message))
 
 def log_info(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [INFO] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(_format_msg("INFO", source, message))
 
 def log_warning(source : str, message : str) :
 	if (instance == None) : return
-	instance.write(f">> [WARN] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write(_format_msg("WARN", source, message))
 
 def log_error(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(f">> [ERR] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write_err(_format_msg("ERR", source, message))
 
 def log_traceback(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(f">> [TRCBCK] [{get_timestamp_absolute()}] [{get_timestamp_relative()}] [{source}] : {message}\n")
+	instance.write_err(_format_msg("TRCBCK", source, message))
+
+
+
+"""
+the relative timestamps stays zero until this function is called. Then, it starts counting up.
+"""
+def set_time_origin() :
+	global initial_time
+	initial_time = time.time()
 
 
 def close() :

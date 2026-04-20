@@ -48,11 +48,11 @@ class StratDynamique:
         # ======================
         couleur = self.funct.wait_and_read_team_color()
         
-        self.funct.wait_autom
+        self.funct.wait_autom()
         self.funct.node_autom.action_couleur_equipe(couleur)
-        self.funct.wait_autom
+        self.funct.wait_autom()
         self.funct.node_autom.action_close_pince()
-        self.funct.wait_autom
+        self.funct.wait_autom()
         # ======================
         # 2. CALAGE DE DÉPART
         # ======================
@@ -60,12 +60,13 @@ class StratDynamique:
         self.funct.calage_depart(couleur)
 
         self.funct.wait_debut_match()
+        logger.set_time_origin()
 
         self.funct.node_asserv.action_evitement_on_off(True)
         self.funct.wait_asserv()
 
         if (couleur == JAUNE):
-            module_unified_logger.unified_logger.log_python("Strat_homologation", " COULEUR JAUNE")
+            logger.log_info("Strat_homologation", "COULEUR JAUNE")
             self.funct.wait_asserv()
             self.funct.node_asserv.action_goto_xy(175,1500, comm_asserv.Face.FACE_AVANT )
 
@@ -82,7 +83,7 @@ class StratDynamique:
             logger.log_info("Strat_homologation", f"Position finale du robot: {self.robot}")
 
         if (couleur == BLEU):
-            module_unified_logger.unified_logger.log_python("Strat_homologation", " COULEUR BLEU")
+            logger.log_info("Strat_homologation", " COULEUR BLEU")
             self.funct.wait_asserv()
             self.funct.node_asserv.action_goto_xy((3000-175),1500, comm_asserv.Face.FACE_AVANT )
 
@@ -98,13 +99,13 @@ class StratDynamique:
             self.funct.wait_asserv()
             logger.log_info("Strat_homologation", f"Position finale du robot: {self.robot}")
 
-        module_unified_logger.unified_logger.log_python("Strat_homologation", "=== FIN DU MATCH ===")
+        logger.log_info("Strat_homologation", "=== FIN DU MATCH ===")
 
     def run_strat(self):
         """
         Exécute TOUTE la stratégie du match
         """
-        module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
+        logger.log_info("StratDynamique", "=== DÉBUT DU MATCH ===")
 
         asserv = self.funct.node_asserv
         autom  = self.funct.node_autom
@@ -127,6 +128,7 @@ class StratDynamique:
         self.funct.calage_depart(couleur)
 
         self.funct.wait_debut_match()
+        logger.set_time_origin()
 
         self.funct.node_asserv.action_evitement_on_off(True)
         self.funct.wait_asserv()

@@ -9,7 +9,6 @@ import time
 
 from core.interface.can.action_comm_node import CanActionNode
 from core.interface.gpio.gpio import read_gpio_couleur
-from core.interface.log_management.unified_logger import unified_logger
 
 class Face(IntEnum) :
 
