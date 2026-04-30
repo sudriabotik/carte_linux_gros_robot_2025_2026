@@ -103,6 +103,7 @@ class Logger :
 	"""
 	Will log the given line finished by a line break to the correct outputs.
 	"""
+	""" 
 	def write_err(self, line : str, suffix : str = "log") :
 
 		logfile = self.get_or_make_logfile_for_thread(suffix)
@@ -113,7 +114,7 @@ class Logger :
 			if use_file :
 				logfile.write(line + "\n")
 				logfile.flush()
-			
+	"""
 
 global instance
 instance : Logger | None = None
@@ -130,6 +131,10 @@ def log_verbose(source : str, message : str) :
 	if (instance == None) : return
 	instance.write(_format_msg("VERB", source, message))
 
+def log_can_tx(source : str, message : str) :
+	if (instance == None) : return
+	instance.write(_format_msg("CAN_TX", source, message))
+
 def log_info(source : str, message : str) :
 	if (instance == None) : return
 	instance.write(_format_msg("INFO", source, message))
@@ -140,12 +145,13 @@ def log_warning(source : str, message : str) :
 
 def log_error(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(_format_msg("ERR", source, message))
+	#instance.write_err(_format_msg("ERR", source, message))
+	instance.write(_format_msg("ERR", source, message))
 
 def log_traceback(source : str, message : str) :
 	if (instance == None) : return
-	instance.write_err(_format_msg("TRCBCK", source, message))
-
+	#instance.write_err(_format_msg("TRCBCK", source, message))
+	instance.write(_format_msg("ERR", source, message))
 
 
 """

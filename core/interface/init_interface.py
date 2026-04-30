@@ -11,7 +11,7 @@ from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.can.constants import ID_NOEUD_CAN_ASSERV, ID_NOEUD_CAN_AUTOM, ID_NOEUD_CAN_LIDAR 
 from core.interface.log_management import logger
-import core.interface.log_management.unified_logger as module_unified_logger
+#import core.interface.log_management.unified_logger as module_unified_logger
 from core.interface.gpio.gpio import read_gpio_couleur, read_gpio_tirette
 
 import time

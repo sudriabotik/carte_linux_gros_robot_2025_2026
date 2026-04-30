@@ -16,6 +16,16 @@ from core.robot import constants as const
 import core.interface.log_management.logger as logger
 import time
 
+
+from core.robot.function_strat import FunctStrat
+from core.interface.can.comm_asserv import CanAsservNode # Type hint uniquement (pour Ctrl+Click IDE)
+from core.interface.can.comm_autom import CanAutomNode #  Type hint uniquement (pour Ctrl+Click IDE)
+from core.robot.robot import Robot  # Type hint uniquement (pour Ctrl+Click IDE)
+
+
+# Import du module debug
+from debug.functions_debug import *  # Importe toutes les fonctions de debug
+
 print("=" * 60)
 print("🔧 INITIALISATION DU ROBOT...")
 print("=" * 60)
@@ -23,12 +33,25 @@ print("=" * 60)
 # Initialisation complète du robot
 hw = initialize_all()
 
+# Type hints pour l'IDE
+node_asserv: CanAsservNode
+node_autom: CanAutomNode
+robot: Robot
+funct: FunctStrat
+
 # Créer des variables globales pour accès direct dans le REPL
 node_asserv = hw.node_asserv
 node_autom = hw.node_autom
 robot = hw.robot_state
 funct = hw.strat
 bus = hw.bus
+
+# Initialiser les variables globales du module debug
+debug.node_asserv = hw.node_asserv
+debug.node_autom = hw.node_autom
+debug.robot = hw.robot_state
+debug.funct = hw.strat
+debug.bus = hw.bus
 
 print("\n" + "=" * 60)
 print("✅ DEBUG REPL READY!")
@@ -40,6 +63,12 @@ print("  • node_autom   → Commandes automation (actionneurs)")
 print("  • robot        → État du robot (position, couleur)")
 print("  • funct        → Fonctions stratégie complètes")
 print("  • bus          → Bus CAN")
+
+print("\n🎮 FONCTIONS DE DEBUG RAPIDES:")
+print("  • faire_carre(taille=300)         → Fait un carré")
+print("  • test_rotation(angle=45)         → Test rotation")
+print("  • info_robot()                    → Affiche infos robot")
+print("  • aide()                          → Liste toutes les fonctions")
 
 print("\n💡 EXEMPLES DE COMMANDES:")
 print("  # Commandes asservissement")
@@ -75,11 +104,11 @@ print("=" * 60 + "\n")
 """
 ========== TOUTES LES FONCTIONS NODE_AUTOM ==========
 
-node_autom.action_homing(speed_v_percent=10, speed_h_percent=10)
+node_autom.action_homing(speed_v_percent=13, speed_h_percent=13)
 node_autom.action_grab()
 node_autom.action_deposit()
-node_autom.action_pos_elevator_h(pos_mm=100)
-node_autom.action_pos_elevator_v(pos_mm=200)
+node_autom.action_pos_elevator_h(pos_mm=-100)
+node_autom.action_pos_elevator_v(pos_mm=-200)
 node_autom.action_pos_ax(id_ax=2, pos_ax=200)
 node_autom.action_pump_on_off(on_off=True)
 node_autom.action_open_pince()
@@ -95,12 +124,19 @@ node_autom.action_pos_ax_caca_calage()
 """
 
 
-
 """
 ========== TOUTES LES FONCTIONS NODE_ASSERV ==========
 
 node_asserv.action_set_linear_speed_accel(speed=100, acceleration=50)
 node_asserv.action_set_angular_speed_accel(speed=100, acceleration=50)
+node_asserv.action_evitement_on_off(enable=True)
+node_asserv.action_debug_on_off(enable=True)
+
+node_asserv.action_set_pid_motor_right(0.1,0,0)
+node_asserv.action_set_pid_motor_left(0.1,0,0)
+node_asserv.action_set_pid_translation(0.1,0,0)
+node_asserv.action_set_pid_rotation(0.1,0,0)
+
 node_asserv.action_translation(distance_mm=-1500, speed=100, accel=50)
 node_asserv.action_rotation(angle_deg=(360*10), speed=100, accel=50)
 node_asserv.action_goto_xy(x_mm=1000, y_mm=1500, face=comm_asserv.Face.FACE_AVANT)
@@ -108,6 +144,23 @@ node_asserv.action_recalibration(facing=comm_asserv.Facing.NEGATIVE_X, face=comm
 node_asserv.action_moveto(x_mm=800, y_mm=1200, face=comm_asserv.Face.FACE_AVANT)
 node_asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
 node_asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
-node_asserv.action_evitement_on_off(enable=True)
-node_asserv.action_debug_on_off(enable=True)
+
 """
+
+"""
+calage()
+hold_debug(3)
+translation_debug(1500)
+translation_debug(-1500)
+rotation_debug(90)
+# PID VITESSE
+funct.wait_asserv()
+node_asserv.action_set_pid_motor_right(0.23, 0.4, 20)
+funct.wait_asserv()
+node_asserv.action_set_pid_motor_left(0.23, 0.4, 20)
+#PID POSITION 
+funct.wait_asserv()
+node_asserv.action_set_pid_translation(1.5, 0.2, 0)
+funct.wait_asserv()
+node_asserv.action_set_pid_rotation(1.5, 0.2, 0)
+""" 

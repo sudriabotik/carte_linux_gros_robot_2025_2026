@@ -7,7 +7,7 @@ from enum import IntEnum
 import core.interface.can.canopen_wrapper as canopen_wrapper
 import time
 
-from core.interface.can.action_comm_node import CanActionNode
+from core.interface.can.action_comm_node import CanActionNode, _CanActionNodeReader  # CLAUDE: Import listener class
 from core.interface.gpio.gpio import read_gpio_couleur
 
 class Face(IntEnum) :
@@ -27,9 +27,8 @@ class Facing(IntEnum) :
 
 class CanAsservNode(CanActionNode) :
 
-	def __init__(self, bus, node_id : int, robot=None):
-		# MODIFIED BY CLAUDE: Pass robot parameter to parent class for position updates
-		super().__init__(bus, node_id, robot=robot)
+	def __init__(self, bus, node_id : int):
+		super().__init__(bus, node_id, _CanActionNodeReader)  # CLAUDE: Pass listener class to parent (robot param removed, set later by init_core.py)
 
 	
 	""" 1 pour jaune, 0 pour bleu"""
@@ -64,25 +63,31 @@ class CanAsservNode(CanActionNode) :
 			
 	
 
-	def action_set_linear_speed_accel(self, speed: int, acceleration : int) :
+	def action_set_linear_speed_accel(self, speed: float, acceleration : float) :
 		"""
-		performs the homing (initialisation of the motor positions using the switches)
-		The speed is in thousandths of mm/ms
-		The velocity is in thousandths of mm/ms^2
+		CMD_ACTION_SET_LINEAR_SPD_ACC (1): Set linear speed and acceleration
+
+		:param speed: Linear speed in m/s (ex: 0.1)
+		:param acceleration: Linear acceleration in m/s^2 (ex: 0.05)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 1, [speed, acceleration])
+		speed_int = int(speed * 1000 )
+		accel_int = int(acceleration * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 1, [speed_int, accel_int])
 		self.timestamp_last_command = time.time()
 	
-	def action_set_angular_speed_accel(self, speed: int, acceleration : int) :
+	def action_set_angular_speed_accel(self, speed: float, acceleration : float) :
 		"""
-		performs the homing (initialisation of the motor positions using the switches)
-		The speed is in thousandths of deg/ms
-		The velocity is in thousandths of deg/ms^2
+		CMD_ACTION_SET_ANGULAR_SPD_ACC (2): Set angular speed and acceleration
+
+		:param speed: Angular speed in deg/s (ex: 45.0)
+		:param acceleration: Angular acceleration in deg/s^2 (ex: 30.0)
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 2, [speed, acceleration])
+		speed_int = int(speed )
+		accel_int = int(acceleration )
+		canopen_wrapper.instance.request_action(self.node_id, 2, [speed_int, accel_int])
 		self.timestamp_last_command = time.time()
 	
-	def action_translation(self, distance_mm: int, speed : int, accel : int) :
+	def action_translation(self, distance_mm: int, speed : int=100, accel : int=100) :
 		"""
 		performs a translation
 		The speed is in thousandths of mm/ms
@@ -182,7 +187,7 @@ class CanAsservNode(CanActionNode) :
 	def action_orientation(self, target_angle_deg: float, face: Face = Face.FACE_AVANT,
 	                       speed_percent: int = 100, accel_percent: int = 100) :
 		"""
-		CMD_ACTION_ORIENTATION (10): Sets the robot orientation to a specific angle
+		CMD_ACTION_ORIENTATION (154): Sets the robot orientation to a specific angle
 
 		:param target_angle_deg: Target orientation in degrees
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE), default FACE_AVANT
@@ -202,6 +207,66 @@ class CanAsservNode(CanActionNode) :
 		self.timestamp_last_command = time.time()
 	
 	def action_evitement(self) :
-		
+
 		canopen_wrapper.instance.request_action(self.node_id, 12, [])
+		self.timestamp_last_command = time.time()
+
+
+	def action_set_pid_motor_right(self, kp: float, ki: float, kd: float):
+		"""
+		CMD_SET_PID_COEFF_M_R (6): Configure les coefficients PID du moteur droit
+
+		:param kp: Coefficient proportionnel (ex: 1.5)
+		:param ki: Coefficient integral (ex: 0.5)
+		:param kd: Coefficient derive (ex: 0.1)
+		"""
+		kp_int = int(kp * 1000)
+		ki_int = int(ki * 1000)
+		kd_int = int(kd * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 6, [kp_int, ki_int, kd_int])
+		self.timestamp_last_command = time.time()
+
+
+	def action_set_pid_motor_left(self, kp: float, ki: float, kd: float):
+		"""
+		CMD_SET_PID_COEFF_M_L (7): Configure les coefficients PID du moteur gauche
+
+		:param kp: Coefficient proportionnel (ex: 1.5)
+		:param ki: Coefficient integral (ex: 0.5)
+		:param kd: Coefficient derive (ex: 0.1)
+		"""
+		kp_int = int(kp * 1000)
+		ki_int = int(ki * 1000)
+		kd_int = int(kd * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 7, [kp_int, ki_int, kd_int])
+		self.timestamp_last_command = time.time()
+
+
+	def action_set_pid_translation(self, kp: float, ki: float, kd: float):
+		"""
+		CMD_SET_PID_COEFF_TRA (8): Configure les coefficients PID de translation
+
+		:param kp: Coefficient proportionnel (ex: 2.0)
+		:param ki: Coefficient integral (ex: 0.8)
+		:param kd: Coefficient derive (ex: 0.2)
+		"""
+		kp_int = int(kp * 1000)
+		ki_int = int(ki * 1000)
+		kd_int = int(kd * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 8, [kp_int, ki_int, kd_int])
+		self.timestamp_last_command = time.time()
+
+
+	def action_set_pid_rotation(self, kp: float, ki: float, kd: float):
+		"""
+		CMD_SET_PID_COEFF_ROT (9): Configure les coefficients PID de rotation
+
+		:param kp: Coefficient proportionnel (ex: 2.0)
+		:param ki: Coefficient integral (ex: 0.8)
+		:param kd: Coefficient derive (ex: 0.2)
+		"""
+		kp_int = int(kp )
+		ki_int = int(ki )
+		kd_int = int(kd )
+		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int])
 		self.timestamp_last_command = time.time()

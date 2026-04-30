@@ -1,0 +1,15 @@
+[Unit]
+Description=Start TigerVNC server at startup
+After=network.target
+
+[Service]
+Type=forking
+User=radxa
+PAMName=login
+PIDFile=/home/radxa/.vnc/%H:%i.pid
+ExecStart=/usr/bin/vncserver %i -localhost no
+ExecStop=/usr/bin/vncserver -kill %i
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

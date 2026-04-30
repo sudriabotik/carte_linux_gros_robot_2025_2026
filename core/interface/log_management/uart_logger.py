@@ -22,6 +22,8 @@ class UartLogger :
 		self.uart_port : str = uart_port
 		self.uart_baudrate : int = uart_baudrate
 		self.log_suffix : str = log_suffix
+		# Buffer pour accumuler les données UART incomplètes (lignes fragmentées)
+		self.line_buffer : str = ""
 
 		self.serial_port : serial.Serial = serial.Serial(
 			port=self.uart_port,
@@ -47,7 +49,7 @@ class UartLogger :
 		Private method that runs in the background thread.
 		Continuously reads UART data and writes to log file with [UART] tag.
 		"""
-		logger.log_info(self.name, f"UART listener thread running : {self.serial_port}", suffix=self.log_suffix)
+		logger.log_info(self.name, f"UART listener thread running : {self.serial_port}")
 
 		try:
 			while self.running:
@@ -63,7 +65,19 @@ class UartLogger :
 						text = str(data)
 
 					# Write to log file with [UART] tag and unified timestamp
-					logger.log_info(self.name, text, suffix=self.log_suffix)
+					#logger.log_info(self.name, text)  # CLAUDE: Removed suffix parameter (not supported in new logger)
+
+					# Accumulate data in the buffer
+					self.line_buffer += text
+					
+					# Process and log complete lines (delimited by \n)
+					while '\n' in self.line_buffer:
+						# Split at first newline
+						line, self.line_buffer = self.line_buffer.split('\n', 1)
+						
+						# Log only if the line is not empty
+						if line.strip():
+							logger.log_info(self.name, line)
 
 				else:
 					# Small sleep to avoid busy-waiting
@@ -71,6 +85,10 @@ class UartLogger :
 
 		except Exception as e:
 			logger.log_error("UnifiedLogger", f"Error in UART listener thread: {e}")
+
+				# Log any remaining incomplete data in the buffer when thread stops
+		if self.line_buffer.strip():
+			logger.log_info(self.name, self.line_buffer)
 
 		logger.log_info("UnifiedLogger", "UART listener thread stopped")
 

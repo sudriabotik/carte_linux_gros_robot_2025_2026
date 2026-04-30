@@ -1,0 +1,1 @@
+ SUBSYSTEM=="tty", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="117e", ATTRS{serial}=="209E32884845", SYMLINK+="canable", MODE="0666"

@@ -67,11 +67,11 @@ class CanopenWrapper :
 
 		msg = can.Message(arbitration_id=COB_ID_RPDO[rpdo_num] << 7 | node_id, data=data, is_extended_id=False)
 
-		logger.log_info("CanOpenWrapper", f"sending rpdo {msg}")
+		#logger.log_info("CanOpenWrapper", f"sending rpdo {msg}")
 
 		self.network.send(msg, timeout=None)
 
-		logger.log_info("CanOpenWrapper", f"sent rpdo ")
+		#logger.log_info("CanOpenWrapper", f"sent rpdo ")
 	
 
 	def determine_message_node_id(self, msg : can.Message) -> int :
@@ -150,7 +150,7 @@ class CanopenWrapper :
 			for i in range(len(param_resized)) :
 				param_resized[i] = int(param_resized[i])
 			
-			logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
+			#logger.log_info("CanOpenWrapper", f"requesting to node {node_id} the action {action_id} with arguments {param_resized}")
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			action_id_u16 = to_uint16(action_id)
@@ -190,8 +190,11 @@ class CanopenWrapper :
 				self.command_id_lidar = self.command_id 
 
 
-			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-				module_unified_logger.unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
+			#if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
+			#	module_unified_logger.unified_logger.log_can_tx(node_id, self.command_id, action_id, param_resized)
+
+			# CLAUDE: Format CAN TX message properly
+			logger.log_can_tx("CanopenWrapper", f"Node {node_id} ← cmd_id:{self.command_id} action:{action_id} params:{param_resized}")
 
 			# FIXED BY CLAUDE: Convert to uint16 to handle negative values correctly
 			param_3_u16 = to_uint16(param_resized[3])

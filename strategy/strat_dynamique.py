@@ -41,11 +41,13 @@ class StratDynamique:
 
 
     def run_homologation(self):
-        logger.log_info("Strat_homologation", "=== DÉBUT DU MATCH ===")
 
         # ======================
         # 1. ATTENTE DÉPART
         # ======================
+        self.funct.wait_heartbeat_all_node()
+        self.funct.node_autom.action_homing()
+
         couleur = self.funct.wait_and_read_team_color()
         
         self.funct.wait_autom()
@@ -65,7 +67,8 @@ class StratDynamique:
         self.funct.node_asserv.action_evitement_on_off(True)
         self.funct.wait_asserv()
 
-        module_unified_logger.unified_logger.log_python("Strat_homologation", " COULEUR JAUNE")
+        #module_unified_logger.unified_logger.log_python("Strat_homologation", " COULEUR JAUNE")
+
         self.funct.wait_asserv()
         self.funct.node_asserv.action_goto_xy(175,1500, comm_asserv.Face.FACE_AVANT )
 
@@ -85,7 +88,8 @@ class StratDynamique:
         logger.log_info("Strat_homologation", f"Position finale du robot: {self.robot}")
 
   
-        module_unified_logger.unified_logger.log_python("Strat_homologation", "=== FIN DU MATCH ===")
+        #module_unified_logger.unified_logger.log_python("Strat_homologation", "=== FIN DU MATCH ===")
+        logger.log_info("Strat_homologation","=== FIN DU MATCH ===")
 
     def run_strat(self):
         """
@@ -203,8 +207,8 @@ class StratDynamique:
         """
         Exécute TOUTE la stratégie du match
         """
-        module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
-
+        #module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
+        logger.log_info("StratDynamique", "=== DÉBUT DU MATCH ===")
         asserv = self.funct.node_asserv
         autom  = self.funct.node_autom
         wait_a = self.funct.wait_asserv
@@ -352,8 +356,8 @@ class StratDynamique:
         wait_a()
 
     def run_strat_3(self):
-        module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
-
+        #module_unified_logger.unified_logger.log_python("StratDynamique", "=== DÉBUT DU MATCH ===")
+        logger.log_info("StratDynamique", "=== DÉBUT DU MATCH ===")
         asserv = self.funct.node_asserv
         autom  = self.funct.node_autom
         wait_a = self.funct.wait_asserv

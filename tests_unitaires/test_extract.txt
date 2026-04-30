@@ -1,0 +1,20 @@
+>> [INFO] [2026-04-24_11:47:48:261] [t+0.000000s] [UART_ASSERV] :
+__START_LOOP__
+time = 810.000
+desired_position = 244.000
+distance_travelled = 129.967
+P_contribution =11.403 I_contribution =0.000 D_contribution =-0.000 out_before_clamp=11.403 pid_out
+
+>> [INFO] [2026-04-24_11:47:48:262] [t+0.000000s] [UART_ASSERV] : =11.403 P_contribution =-0.029 I_
+
+>> [INFO] [2026-04-24_11:47:48:272] [t+0.000000s] [UART_ASSERV] : contribution =-0.000 D_contribution =-0.000 out_before_clamp=-0.029 pid_out=-0.029 motor_r_rps_target = 11.319
+motor_l_rps_target = 11.377
+current_rps_R = 1.829
+current_rps_L = 1.943
+debut config moteur Right:
+ P_contribution =9.490 I_contribution =0.000 D_contribution =-0.000 out_before_clamp=9.490 pid_out=9.490 pwm_percent=9.49% duty=806 dir=1
+fin config moteur Right:
+ debut config moteur Light:
+ P_contribution =9.434 I_contribution =0.000 D_contribution =-0.000 out_before_clamp=9.434 pid_out=9.434 pwm_percent=9.43% duty=801 dir=1
+fin config moteur Light:
+__END_LOOP__

@@ -6,6 +6,11 @@ ID_NOEUD_CAN_ASSERV = 1
 ID_NOEUD_CAN_AUTOM = 2
 ID_NOEUD_CAN_LIDAR = 3
 
+# CLAUDE: CANopen Communication Object IDs
+COB_ID_RPDO = [0b0100, 0b0110, 0b1000, 0b1010]  # CLAUDE: Receive PDO base addresses
+COB_ID_TPDO = [0b0011, 0b0101, 0b0111, 0b1001]  # CLAUDE: Transmit PDO base addresses
+COB_ID_HEARTBEAT = 0x700  # CLAUDE: Heartbeat NMT base address (0x700 + node_id)
+
 #couleur equipe 
 BLEU = 0
 JAUNE = 1

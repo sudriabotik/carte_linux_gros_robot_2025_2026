@@ -1,0 +1,14 @@
+radxa@rock-5c:~/Repositories/carte_linux_gros_robot_2025_2026$ timedatectl
+               Local time: Tue 2026-04-21 08:22:05 UTC
+           Universal time: Tue 2026-04-21 08:22:05 UTC
+                 RTC time: n/a
+                Time zone: Etc/UTC (UTC, +0000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+radxa@rock-5c:~/Repositories/carte_linux_gros_robot_2025_2026$ timedatectl list-timezones | grep Paris
+Europe/Paris
+radxa@rock-5c:~/Repositories/carte_linux_gros_robot_2025_2026$ sudo timedatectl set-timezone Europe/Paris
+[sudo] password for radxa: 
+radxa@rock-5c:~/Repositories/carte_linux_gros_robot_2025_2026$ 
+

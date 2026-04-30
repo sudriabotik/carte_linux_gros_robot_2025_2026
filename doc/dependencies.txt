@@ -1,0 +1,16 @@
+# Dependencies installees sur la Rock 5C
+# Date de creation: 2026-04-28
+
+# ============================================================================
+# BIBLIOTHEQUES PYTHON
+# ============================================================================
+
+# Matplotlib - Visualisation de graphiques pour debug PID
+# Backend: TkAgg (compatible avec VNC bureau deporte)
+# Installation:
+pip3 install matplotlib
+
+# Utilisation:
+# - Auto-plot des logs UART de debug translation
+# - Affichage des 6 graphiques PID interactifs
+# - Sauvegarde optionnelle en PNG

@@ -10,7 +10,9 @@ import can
 import traceback
 import threading
 import time
-from typing import Type, override
+#from typing import Type, override
+from typing import Type
+from typing_extensions import override
 
 from core.interface.can.constants import *
 import core.interface.log_management.logger as logger
@@ -35,6 +37,8 @@ class _CanActionNodeReader(can.Listener) :
 
 		# IT IS IMPORTANT that this default value be lower than CanActionNode.timestamp_last_command
 		self.timestamp_last_tpdo = -2
+
+		self.last_heartbeat_time = 0  # CLAUDE: Timestamp of last heartbeat received
 
 		# Cache for change detection - stores last logged values
 		self.last_logged_values = {
@@ -145,7 +149,12 @@ class _CanActionNodeReader(can.Listener) :
 
 				except Exception as e :
 					logger.log_error("CanActionNodeReader", f"Error decoding TPDO[1] position: {e}")
-	
+
+			# CLAUDE: Handle Heartbeat NMT messages (COB-ID 0x700 + node_id)
+			elif (msg.arbitration_id & 0x780) == COB_ID_HEARTBEAT:
+				self.last_heartbeat_time = time.time()  # CLAUDE: Update heartbeat timestamp
+				#logger.log_verbose("CanActionNodeReader", f"[Node {id}] Heartbeat received")
+
 
 	def on_message_received_extension(self, msg: can.Message, id : int, func : FUNCTION_CODE, i : int) -> None:
 		pass
@@ -184,8 +193,8 @@ class CanActionNode :
 	
 
 	def __del__(self) :
-
-		self.can_reader.stop()
+		if hasattr(self, 'can_reader'):  # CLAUDE: Protect against missing can_reader if init failed
+			self.can_reader.stop()
 	
 
 	def is_busy(self) :
@@ -225,27 +234,28 @@ class CanActionNode :
 			# Comparer le compteur attendu avec last_completed_command_id
 			if expected_command_id == self.can_reader.last_completed_command_id:
 				# Log debug info BEFORE returning
-				if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-					module_unified_logger.unified_logger.log_python(
-						"CanActionNode",
-						f"Node {self.node_id} NOT_BUSY: expected_id={expected_command_id} == completed_id={self.can_reader.last_completed_command_id}"
-					)
+				#logger.log_verbose("CanActionNode",f"Node {self.node_id} NOT_BUSY: expected_id={expected_command_id} == completed_id={self.can_reader.last_completed_command_id}")
 				return NOT_BUSY
 			else:
 				return BUSY
 
 		except Exception as e:
 			error_msg = f"Node {self.node_id} is_busy() error: {type(e).__name__}: {e}"
-			if module_unified_logger.unified_logger and module_unified_logger.unified_logger.is_enabled():
-				module_unified_logger.unified_logger.log_python("CanActionNode_ERROR", error_msg)
-				module_unified_logger.unified_logger.log_python("CanActionNode_TRACEBACK", str(traceback.format_exc()))
-			else:
-				# Fallback to console if unified_logger not available
-				logger.log_error("CanActionNode", error_msg)
-				logger.log_traceback("CanActionNode", str(traceback.format_exc()))
-				
+			logger.log_error("CanActionNode", error_msg)
+			logger.log_error("CanActionNode", str(traceback.format_exc()))
 			return BUSY
 
 
-			
+	def check_heartbeat(self, timeout_sec: float) -> int:  # CLAUDE: Check if node heartbeat is alive
+		"""
+		Verifie si le heartbeat du noeud a ete recu recemment.
+
+		:param timeout_sec: Temps maximum depuis le dernier heartbeat (en secondes)
+		:return: 1 si heartbeat OK, 0 si timeout
+		"""
+		elapsed = time.time() - self.can_reader.last_heartbeat_time  # CLAUDE: Calculate time since last heartbeat
+		return 1 if elapsed < timeout_sec else 0  # CLAUDE: Return 1 if OK, 0 if timeout
+
+
+
 

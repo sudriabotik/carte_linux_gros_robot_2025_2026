@@ -1,4 +1,7 @@
 import time
+import os
+import sys
+
 from core.interface.can import comm_autom
 from core.interface.can import comm_asserv
 from core.interface.log_management import logger
@@ -14,14 +17,64 @@ class FunctStrat:
         self.node_autom = node_autom
         self.node_asserv = node_asserv
         self.robot_state = robot_state
+        self.heartbeat_ON_OFF = True  
 
-    def wait_asserv(self):
+
+    def wait_asserv(self):  # CLAUDE
         while (self.node_asserv.is_busy()) :
+            self.verifing_asserv_heartbeat_or_reset()  # CLAUDE: Only check asserv
             time.sleep(0.05)
 
-    def wait_autom(self):
+    def wait_autom(self):  # CLAUDE
         while (self.node_autom.is_busy()) :
+            self.verifing_autom_heartbeat_or_reset()  # CLAUDE: Only check autom
             time.sleep(0.05)
+
+    def verifing_asserv_heartbeat_or_reset(self):  # CLAUDE: Check only asserv heartbeat
+        if self.heartbeat_ON_OFF == False :
+            return
+
+        if (not self.node_asserv.check_heartbeat(4)):  # CLAUDE: Only asserv
+            logger.log_error("FunctStrat", "HEARTBEAT TIMEOUT: node_asserv ne repond plus !")  # CLAUDE
+            logger.log_error("FunctStrat", "REDEMARRAGE AUTOMATIQUE DU PROGRAMME...")  # CLAUDE
+            time.sleep(1)  # CLAUDE: Attendre 1 seconde pour voir les logs
+            os.execv(sys.executable, [sys.executable] + sys.argv)  # CLAUDE: Restart program
+
+    def verifing_autom_heartbeat_or_reset(self):  # CLAUDE: Check only autom heartbeat
+        if self.heartbeat_ON_OFF == False :
+            return
+
+        if (not self.node_autom.check_heartbeat(4)):  # CLAUDE: Only autom
+            logger.log_error("FunctStrat", "HEARTBEAT TIMEOUT: node_autom ne repond plus !")  # CLAUDE
+            logger.log_error("FunctStrat", "REDEMARRAGE AUTOMATIQUE DU PROGRAMME...")  # CLAUDE
+            time.sleep(1)  # CLAUDE: Attendre 1 seconde pour voir les logs
+            os.execv(sys.executable, [sys.executable] + sys.argv)  # CLAUDE: Restart program
+
+    def verifing_all_node_heartbeat_or_reset(self):  # CLAUDE: Keep for other uses
+        if self.heartbeat_ON_OFF == False :
+            return
+
+        if ((not self.node_autom.check_heartbeat(4)) or (not self.node_asserv.check_heartbeat(4))):  # CLAUDE
+            logger.log_error("FunctStrat", "HEARTBEAT TIMEOUT: node_autom or node_asserv ne repond plus !")  # CLAUDE
+            logger.log_error("FunctStrat", "REDEMARRAGE AUTOMATIQUE DU PROGRAMME...")  # CLAUDE
+            time.sleep(1)  # CLAUDE: Attendre 1 seconde pour voir les logs
+            os.execv(sys.executable, [sys.executable] + sys.argv)  # CLAUDE: Restart program
+
+    def wait_heartbeat_all_node(self):  # CLAUDE: Wait for all CANopen nodes to be alive
+        """
+        Attend que tous les noeuds CANopen soient vivants (heartbeat OK).
+
+        Verifie les heartbeats de:
+        - node_asserv (carte asservissement)
+        - node_autom (carte automation)
+        """
+        logger.log_info("FunctStrat", "Attente des heartbeats de tous les noeuds CAN...")  # CLAUDE
+
+        while (not self.node_asserv.check_heartbeat(4)) or (not self.node_autom.check_heartbeat(4)):  # CLAUDE
+            time.sleep(0.1)  # CLAUDE: Check every 100ms
+
+        logger.log_info("FunctStrat", "Tous les noeuds CAN sont vivants !")  # CLAUDE
+
 
     def wait_and_read_team_color(self):
         """
@@ -33,6 +86,7 @@ class FunctStrat:
         # Attente de la tirette
         logger.log_info("FunctStrat", "En attente de l'insertion de la tirette")
         while read_gpio_tirette() == const.ABSENCE_TIRETTE:
+            self.verifing_all_node_heartbeat_or_reset()
             time.sleep(0.05)
 
         # Lecture de la couleur
@@ -72,7 +126,6 @@ class FunctStrat:
             self.wait_asserv()
             self.node_asserv.action_translation(60, 10, 10)
 
-        logger.log_info.log_python("Stratégie", " calage suite")
         self.wait_asserv()
         self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 
@@ -88,8 +141,10 @@ class FunctStrat:
         '''
 
         while read_gpio_tirette() == const.PRESENCE_TIRETTE:
+            self.verifing_all_node_heartbeat_or_reset()
             time.sleep(0.05)
 
+        self.heartbeat_ON_OFF = False
         logger.log_info("Stratégie", "DEBUT DU MATCH, tirette retirer")
 
     def attraper_un_tas(self):

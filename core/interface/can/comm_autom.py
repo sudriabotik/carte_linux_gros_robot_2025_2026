@@ -6,7 +6,7 @@ at the correct address to control the card.
 import core.interface.can.canopen_wrapper as canopen_wrapper
 import time
 
-from core.interface.can.action_comm_node import CanActionNode
+from core.interface.can.action_comm_node import CanActionNode, _CanActionNodeReader  # CLAUDE: Import listener class
 
 # debut config pour les hint uniquement : 
 from core.interface.can.canopen_wrapper import CanopenWrapper  # Type hint uniquement
@@ -19,10 +19,10 @@ canopen_wrapper.instance = CanopenWrapper(None)
 class CanAutomNode(CanActionNode) : 
 
 	def __init__(self, bus, node_id : int):
-		super().__init__(bus, node_id)
+		super().__init__(bus, node_id, _CanActionNodeReader)  # CLAUDE: Pass listener class to parent
 	
 
-	def action_homing(self, speed_v_percent: int = 10, speed_h_percent: int = 10) :
+	def action_homing(self, speed_v_percent: int = 13, speed_h_percent: int = 13) :
 		"""
 		CMD_HOMING (1): Performs the homing sequence (initialisation of motor positions using switches)
 
