@@ -439,6 +439,119 @@ class StratDynamique:
         #asserv.action_goto_xy(200,1700)
         #wait_a()
 
+    def run_strat_test_autom(self):
+        """
+		Une stratégie simple pour tester :
+		- déplacements
+		- grab
+		- caca
+        """
+
+        # ======================
+        # 1. ATTENTE DÉPART
+        # ======================
+        self.funct.wait_heartbeat_all_node()
+        self.funct.node_autom.action_homing()
+
+        couleur = self.funct.wait_and_read_team_color()
+        
+        self.funct.wait_autom()
+        self.funct.node_autom.action_couleur_equipe(couleur)
+        self.funct.wait_autom()
+        self.funct.node_autom.action_close_pince()
+        self.funct.wait_autom()
+        # ======================
+        # 2. CALAGE DE DÉPART
+        # ======================
+
+        self.funct.calage_depart(couleur)
+
+        self.funct.wait_debut_match()
+        logger.set_time_origin()
+
+        self.funct.node_asserv.action_evitement_on_off(True)
+        self.funct.wait_asserv()
+
+
+        # ── 1. Aller à t1_a puis catch tas_1 ──
+        self.funct.node_asserv.action_goto_xy(175, 1600, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+
+        # lookat centre tas_1, ouvrir pinces, avancer, grab, deposit
+        self.funct.node_asserv.action_lookat(175, 1200, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+        self.funct.node_autom.action_open_pince()
+        self.funct.wait_autom()
+        self.funct.node_asserv.action_goto_xy(175, 1200, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+        self.funct.node_autom.action_grab()
+        self.funct.wait_autom()
+        self.funct.node_autom.action_deposit()
+
+        # ── 2. Déposer en d3 : se placer à 240mm au-dessus de d3_b, éjecter 4× en avançant de 60mm ──
+        # d3_b = (175, 600), donc départ y = 600 + 240 = 840
+        # Le robot est à (175, 1200), orienté vers y négatif → descendre
+        self.funct.wait_autom()
+        self.funct.node_asserv.action_goto_xy(175, 860, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+
+        # Ouvrir les pinces avant de déposer
+        #autom.action_open_pince()
+        #self.funct.wait_autom()
+
+        # Éjecter 1 élément, avancer 60mm, 4 fois
+        # y = 840 → 780 → 720 → 660
+        for i in range(4):
+            self.funct.node_autom.action_ejecter(1)
+            self.funct.wait_autom()
+            if i < 3:  # pas d'avance après le dernier
+                self.funct.node_asserv.action_translation(55, 10, 10)  # -60 car le robot avance vers y négatif
+                self.funct.wait_asserv()
+
+        # Robot est maintenant à environ (175, 660), proche de d3_b (175, 600)
+
+        # ── 3. Catch tas_5 : continuer vers le bas, pinces ouvertes, attraper ──
+        self.funct.node_asserv.action_lookat(175, 400, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+        self.funct.node_autom.action_open_pince()
+        self.funct.wait_autom()
+        self.funct.node_asserv.action_goto_xy(175, 400, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+        self.funct.node_autom.action_grab()
+        self.funct.wait_autom()
+        self.funct.node_autom.action_deposit()
+        self.funct.wait_autom()
+        self.funct.node_autom.action_close_pince()
+        self.funct.wait_autom()
+
+        return
+
+        # ── 4. Recalage : face avant vers y négatif, puis x négatif ──
+        # Recalage Y négatif (mur bas à y=0), face avant
+        asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y, comm_asserv.Face.FACE_AVANT)
+        wait_a()
+        asserv.action_translation(-80, 10, 10)  # s'éloigner du mur
+        wait_a()
+
+        # Recalage X négatif (mur gauche à x=0), face avant
+        asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
+        wait_a()
+        asserv.action_translation(60, 10, 10)  # s'éloigner du mur
+        wait_a()
+
+        # ── 5. Déposer en d8 : se placer à 240mm avant d8_b, ouvrir pinces, éjecter ──
+        # d8_b = (500, 175), le robot arrive par la gauche
+        # Se placer à x = 500 - 240 = 260, y = 175
+        asserv.action_goto_xy(260, 175, comm_asserv.Face.FACE_AVANT)
+        wait_a()
+ 
+
+        logger.log_info("StratDynamique", f"Position finale du robot: {self.robot}")
+
+        # ======================
+        # 4. FIN DU MATCH
+        # ======================
+        logger.log_info("StratDynamique", "=== FIN DU MATCH ===")
 
 
 
