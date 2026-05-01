@@ -269,3 +269,6 @@ class CanopenWrapper :
 
 # Global configuration variables for debugging
 DEBUG_CAN_CHANGES_ONLY = True  # Will be set from main.py
+
+
+instance : CanopenWrapper

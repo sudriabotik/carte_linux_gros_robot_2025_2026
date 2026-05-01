@@ -58,7 +58,7 @@ class _CanLidarNodeReader(can.Listener) :
 
 						self.timestamp_last_tpdo = time.time()
 
-						self.on_msg_callback()
+						self.on_msg_callback(self.lidar_status)
 
 					else :
 						logger.log_info("CanActionNode", f"error receiving TPDO 1 for node {self.id}")
@@ -68,16 +68,13 @@ class _CanLidarNodeReader(can.Listener) :
 
 class CanLidarNode(CanCommNode) :
 
-	def __init__(self, bus : can.BusABC, node_id : int, robot : Robot | None):
+	def __init__(self, bus : can.BusABC, node_id : int, data_callback : Callable):
 
-		def callback() : self.process_opponent_data()
-		
-		self.lidar_reader : _CanLidarNodeReader = _CanLidarNodeReader(node_id, callback)
+		self.lidar_reader : _CanLidarNodeReader = _CanLidarNodeReader(node_id, data_callback)
 
 		super().__init__(bus, node_id, self.lidar_reader)
 
-		self.robot : Robot | None = robot
-		self.on_evitement : Callable | None  # CLAUDE: Callable instead of FunctionType
+		self.robot : Robot | None = None
 	
 	def get_opponent_pos(self) :
 		return (self.lidar_reader.opponent_x, self.lidar_reader.opponent_y)
@@ -86,15 +83,4 @@ class CanLidarNode(CanCommNode) :
 		if self.robot == None : return None
 		x, y = self.robot.get_position_x_y()
 		return math.sqrt((x - self.lidar_reader.opponent_x)**2 + (y - self.lidar_reader.opponent_y)**2)
-
-	def process_opponent_data(self) :
-		
-		distance = self.get_opponent_distance()
-		if (distance == None) :
-			logger.log_error("CanLidarNode", "Cannot obtain distance to opponent")
-			return
-
-		if distance < 2000 :
-			if self.on_evitement != None :
-				self.on_evitement()
 

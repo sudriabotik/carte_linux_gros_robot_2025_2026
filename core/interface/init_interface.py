@@ -120,7 +120,11 @@ def initialize_interfaces() -> InterfacesContext:
     
     node_lidar = None
     try :
-        node_lidar = comm_lidar.CanLidarNode(bus, 3)
+        def send_lidar_data(self, num : int) :
+            # 5 ==COMMAND_SET_AVOID
+            canopen_wrapper.instance.request_action(ID_NOEUD_CAN_ASSERV, 5, [num]);
+
+        node_lidar = comm_lidar.CanLidarNode(bus, 3, send_lidar_data)
     except Exception as e:
         logger.log_error("Init", f"Cannot create lidar node: {e}")
 
