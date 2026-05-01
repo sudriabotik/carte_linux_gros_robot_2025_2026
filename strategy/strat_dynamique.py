@@ -492,7 +492,11 @@ class StratDynamique:
         # d3_b = (175, 600), donc départ y = 600 + 240 = 840
         # Le robot est à (175, 1200), orienté vers y négatif → descendre
         self.funct.wait_autom()
-        self.funct.node_asserv.action_goto_xy(175, 860, comm_asserv.Face.FACE_AVANT)
+        self.funct.node_autom.action_safe_position_ascenseur()
+        self.funct.wait_autom()
+        self.funct.node_autom.action_open_pince()
+        self.funct.wait_autom()
+        self.funct.node_asserv.action_goto_xy(175, 730, comm_asserv.Face.FACE_AVANT)
         self.funct.wait_asserv()
 
         # Ouvrir les pinces avant de déposer
@@ -528,22 +532,22 @@ class StratDynamique:
 
         # ── 4. Recalage : face avant vers y négatif, puis x négatif ──
         # Recalage Y négatif (mur bas à y=0), face avant
-        asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y, comm_asserv.Face.FACE_AVANT)
-        wait_a()
-        asserv.action_translation(-80, 10, 10)  # s'éloigner du mur
-        wait_a()
+        self.funct.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
+        self.funct.nod_asserv.action_translation(-80, 10, 10)  # s'éloigner du mur
+        self.funct.wait_asserv()
 
         # Recalage X négatif (mur gauche à x=0), face avant
-        asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
-        wait_a()
-        asserv.action_translation(60, 10, 10)  # s'éloigner du mur
-        wait_a()
+        self.funct.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
+        self.funct.wait_asserv()
+        self.funct.node_asserv.action_translation(60, 10, 10)  # s'éloigner du mur
+        self.funct.wait_asserv()
 
         # ── 5. Déposer en d8 : se placer à 240mm avant d8_b, ouvrir pinces, éjecter ──
         # d8_b = (500, 175), le robot arrive par la gauche
         # Se placer à x = 500 - 240 = 260, y = 175
-        asserv.action_goto_xy(260, 175, comm_asserv.Face.FACE_AVANT)
-        wait_a()
+        self.funct.node_asserv.action_goto_xy(260, 175, comm_asserv.Face.FACE_AVANT)
+        self.funct.wait_asserv()
  
 
         logger.log_info("StratDynamique", f"Position finale du robot: {self.robot}")
