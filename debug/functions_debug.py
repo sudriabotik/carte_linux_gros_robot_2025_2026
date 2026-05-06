@@ -101,12 +101,17 @@ def translation_debug(distance_mm, auto_plot=None):
 
 def rotation_debug(degrés, auto_plot=None):
     """
-    Execute une rotation
+    Execute une rotation avec debug UART active.
+
+    :param degrés: Angle de rotation en degrés
+    :param auto_plot: Si True, affiche automatiquement les graphiques apres le mouvement.
+                      Si None, utilise la valeur de debug.auto_plot_enabled.
+                      Si False, pas de plot.
     """
-    debug.funct.heartbeat_ON_OFF = False 
+    debug.funct.heartbeat_ON_OFF = False
     debug.node_asserv.action_debug_on_off(enable=True)
     debug.funct.wait_asserv()
-    debug.node_asserv.action_rotation(degrés,10,10)
+    debug.node_asserv.action_rotation(degrés, 100, 100)  # CLAUDE: Updated to use percent (was 10, 10)
     debug.funct.wait_asserv()
     debug.node_asserv.action_debug_on_off(enable=False)
 

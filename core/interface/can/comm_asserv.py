@@ -87,54 +87,60 @@ class CanAsservNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 2, [speed_int, accel_int])
 		self.timestamp_last_command = time.time()
 	
-	def action_translation(self, distance_mm: int, speed : int=100, accel : int=100) :
+	def action_translation(self, distance_mm: int, speed_percent: int=100, accel_percent: int=100) :
 		"""
-		performs a translation
-		The speed is in thousandths of mm/ms
-		The acceleration is in thousandths of mm/ms^2
+		CMD_ACTION_TRANSLATION (100): Performs a translation
+
+		:param distance_mm: Distance in mm
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 100, [distance_mm, speed, accel])
+		canopen_wrapper.instance.request_action(self.node_id, 100, [distance_mm, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
-	def action_rotation(self, angle_deg: int, speed : int, accel : int) :
+	def action_rotation(self, angle_deg: int, speed_percent: int=100, accel_percent: int=100) :
 		"""
-		CMD_ACTION_ROTATION (4): Performs a rotation by the specified angle
+		CMD_ACTION_ROTATION (101): Performs a rotation by the specified angle
 
 		:param angle_deg: Angle in degrees to rotate
-		:param speed: Angular speed in thousandths of deg/ms
-		:param accel: Angular acceleration in thousandths of deg/ms^2
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
 
 		angle_deg = self.team_dependent_flip_rotation(angle_deg)
 
-		canopen_wrapper.instance.request_action(self.node_id, 101, [angle_deg, speed, accel])
+		canopen_wrapper.instance.request_action(self.node_id, 101, [angle_deg, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
-	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face=None ) :
+	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face=None, speed_percent: int=100, accel_percent: int=100) :
 		"""
-		CMD_ACTION_GOTO (5): Goes to the given point, using the requested face
+		CMD_ACTION_GOTO (150): Goes to the given point, using the requested face
 
 		:param x_mm: X coordinate in mm
 		:param y_mm: Y coordinate in mm
-		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)( par default FACE_AVANT)
+		:param face: Face to use (FACE_AVANT or FACE_ARRIERE), default FACE_AVANT
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
 		if face == None:
 			face = Face.FACE_AVANT
 
 		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
 
-		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
-	def action_recalibration(self, facing : Facing, face : Face) :
+	def action_recalibration(self, facing : Facing, face : Face, speed_percent: int=12, accel_percent: int=12) :
 		"""
 		CMD_ACTION_RECALIBRATE (152): Resets a coordinate of the robot using the walls of the table
 
 		:param facing: Direction to recalibrate (POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y)
 		:param face: Face to use during recalibration (FACE_AVANT or FACE_ARRIERE)
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 10
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 10
 		"""
 		"""
 		if self.get_couleur() == 0 : # bleu 
@@ -143,34 +149,38 @@ class CanAsservNode(CanActionNode) :
 			elif facing == Facing.NEGATIVE_X :
 				facing = Facing.POSITIVE_X
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 152, [facing, face])
+		canopen_wrapper.instance.request_action(self.node_id, 152, [facing, face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
-	def action_moveto(self, x_mm: int, y_mm : int, face : Face) :
+	def action_moveto(self, x_mm: int, y_mm : int, face : Face, speed_percent: int=100, accel_percent: int=100) :
 		"""
 		CMD_ACTION_MOVETO (151): Moves to the given point using the requested face (without rotation)
 
 		:param x_mm: X coordinate in mm
 		:param y_mm: Y coordinate in mm
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
-		canopen_wrapper.instance.request_action(self.node_id, 151, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 151, [x_mm, y_mm, face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
-	def action_lookat(self, x_mm: int, y_mm : int, face : Face) :
+	def action_lookat(self, x_mm: int, y_mm : int, face : Face, speed_percent: int=100, accel_percent: int=100) :
 		"""
 		CMD_ACTION_LOOKAT (153): Rotates to look at the given point using the requested face
 
 		:param x_mm: X coordinate in mm to look at
 		:param y_mm: Y coordinate in mm to look at
 		:param face: Face to use (FACE_AVANT or FACE_ARRIERE)
+		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
+		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
 
 		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
 
-		canopen_wrapper.instance.request_action(self.node_id, 153, [x_mm, y_mm, face])
+		canopen_wrapper.instance.request_action(self.node_id, 153, [x_mm, y_mm, face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
 
@@ -265,8 +275,8 @@ class CanAsservNode(CanActionNode) :
 		:param ki: Coefficient integral (ex: 0.8)
 		:param kd: Coefficient derive (ex: 0.2)
 		"""
-		kp_int = int(kp )
-		ki_int = int(ki )
-		kd_int = int(kd )
+		kp_int = int(kp * 1000 )
+		ki_int = int(ki * 1000 )
+		kd_int = int(kd * 1000 )
 		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int])
 		self.timestamp_last_command = time.time()

@@ -171,3 +171,17 @@ class CanAutomNode(CanActionNode) :
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 17, [])
 		self.timestamp_last_command = time.time()
+
+	def action_open_cursor(self):  # CLAUDE
+		"""
+		CMD_AX_CURSOR_OUVERT (18): Ouvre le curseur/pince
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 18, [])
+		self.timestamp_last_command = time.time()
+
+	def action_close_cursor(self):  # CLAUDE
+		"""
+		CMD_AX_CURSOR_FERMER (19): Ferme le curseur/pince
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 19, [])
+		self.timestamp_last_command = time.time()

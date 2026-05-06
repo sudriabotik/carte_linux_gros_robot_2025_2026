@@ -121,10 +121,11 @@ node_autom.action_couleur_equipe(couleur_equipe=0)
 node_autom.action_fermer_porte_rentrer_ax_caca()
 node_autom.action_pos_vitesse_ax(6,500,100)
 node_autom.action_pos_ax_caca_calage()
+node_autom.action_open_cursor()
+node_autom.action_close_cursor()
 """
 
-
-"""
+""" 
 ========== TOUTES LES FONCTIONS NODE_ASSERV ==========
 
 node_asserv.action_set_linear_speed_accel(speed=100, acceleration=50)
@@ -137,17 +138,16 @@ node_asserv.action_set_pid_motor_left(0.1,0,0)
 node_asserv.action_set_pid_translation(0.1,0,0)
 node_asserv.action_set_pid_rotation(0.1,0,0)
 
-node_asserv.action_translation(distance_mm=-1500, speed=100, accel=50)
-node_asserv.action_rotation(angle_deg=(360*10), speed=100, accel=50)
+node_asserv.action_translation(distance_mm=-1500, speed_percent=100, accel_percent=50)
+node_asserv.action_rotation(angle_deg=(360*10), speed_percent=100, accel_percent=50)
 node_asserv.action_goto_xy(x_mm=1000, y_mm=1500, face=comm_asserv.Face.FACE_AVANT)
 node_asserv.action_recalibration(facing=comm_asserv.Facing.NEGATIVE_X, face=comm_asserv.Face.FACE_ARRIERE)
 node_asserv.action_moveto(x_mm=800, y_mm=1200, face=comm_asserv.Face.FACE_AVANT)
 node_asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
 node_asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
 
-"""
 
-"""
+
 calage()
 hold_debug(3)
 translation_debug(1500)
@@ -163,4 +163,5 @@ funct.wait_asserv()
 node_asserv.action_set_pid_translation(1.5, 0.2, 0)
 funct.wait_asserv()
 node_asserv.action_set_pid_rotation(1.5, 0.2, 0)
-""" 
+
+"""

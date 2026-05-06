@@ -15,7 +15,7 @@ COB_ID_HEARTBEAT = 0x700  # CLAUDE: Heartbeat NMT base address (0x700 + node_id)
 BLEU = 0
 JAUNE = 1
 
-# presence tirette 
+# tirette 
 PRESENCE_TIRETTE = 0
 ABSENCE_TIRETTE = 1 
 

@@ -114,7 +114,7 @@ class FunctStrat:
             self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X, comm_asserv.Face.FACE_AVANT)
 
             self.wait_asserv()
-            self.node_asserv.action_translation(-110, 10, 10)
+            self.node_asserv.action_translation(-110)
             
 
         if (couleur_equipe == const.JAUNE):
@@ -124,13 +124,13 @@ class FunctStrat:
             self.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
 
             self.wait_asserv()
-            self.node_asserv.action_translation(60, 10, 10)
+            self.node_asserv.action_translation(60)
 
         self.wait_asserv()
         self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 
         self.wait_asserv()
-        self.node_asserv.action_translation(50, 10, 10)
+        self.node_asserv.action_translation(50)
 
         self.wait_asserv()
         logger.log_info("Stratégie", "Fin du calage de départ")
@@ -155,7 +155,7 @@ class FunctStrat:
         self.node_autom.action_open_pince()
 
         self.wait_asserv()
-        self.node_asserv.action_translation(100, 10, 10)
+        self.node_asserv.action_translation(100, 20, 20)
 
         self.wait_autom()
         self.wait_asserv()
