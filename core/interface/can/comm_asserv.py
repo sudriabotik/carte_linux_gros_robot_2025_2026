@@ -6,7 +6,7 @@ from enum import IntEnum
 
 import core.interface.can.canopen_wrapper as canopen_wrapper
 import time
-
+from core.interface.can.constants import *
 from core.interface.can.action_comm_node import CanActionNode, _CanActionNodeReader  # CLAUDE: Import listener class
 from core.interface.gpio.gpio import read_gpio_couleur
 
@@ -27,40 +27,45 @@ class Facing(IntEnum) :
 
 class CanAsservNode(CanActionNode) :
 
+	"""
+	NOTE: Les méthodes commençant par "action_" déclenchent automatiquement un wait
+	avant leur exécution (via AutoWaitWrapper dans FunctStrat).
+	Cela évite les appels manuels wait_asserv()/wait_autom() dans le code stratégie.
+	"""
+
 	def __init__(self, bus, node_id : int):
 		super().__init__(bus, node_id, _CanActionNodeReader)  # CLAUDE: Pass listener class to parent (robot param removed, set later by init_core.py)
+		self.couleur = None
 
 	
 	""" 1 pour jaune, 0 pour bleu"""
 	def get_couleur(self) :
 		return read_gpio_couleur()
+	
+	def set_couleur(self,couleur: int):
+		self.couleur = couleur
 
 	def team_dependent_flip_x_coordinates(self, x) -> int :
-		if self.get_couleur() == 0 :
+		if self.couleur == BLEU:
 			return 3000 - x
 		else :
 			return x # keep original if yellow
 	
-
 	def team_dependent_flip_rotation(self, rot) -> int :
-		if self.get_couleur() == 0 :
+		#il ne faut pas utiliser cette fonction
+		if self.couleur == BLEU:
 			return -rot
 		else :
 			return rot # keep original if yellow
 	
 	def team_dependent_flip_orientation(self, orientation) -> int :
-		result = orientation
-		if self.get_couleur() == 0 :
-			result = -result
+		if self.couleur == BLEU:
+			if orientation == 0:
+				return 180
+			elif orientation == 180:
+				return 0
 		
-		# normalize
-		if result < -180 :
-			result += 360
-		if result > 180 :
-			result -= 360
-		
-		return result
-			
+		return orientation
 	
 
 	def action_set_linear_speed_accel(self, speed: float, acceleration : float) :
@@ -82,7 +87,7 @@ class CanAsservNode(CanActionNode) :
 		:param speed: Angular speed in deg/s (ex: 45.0)
 		:param acceleration: Angular acceleration in deg/s^2 (ex: 30.0)
 		"""
-		speed_int = int(speed )
+		speed_int = int(speed  )
 		accel_int = int(acceleration )
 		canopen_wrapper.instance.request_action(self.node_id, 2, [speed_int, accel_int])
 		self.timestamp_last_command = time.time()
@@ -114,7 +119,7 @@ class CanAsservNode(CanActionNode) :
 		self.timestamp_last_command = time.time()
 
 
-	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face=None, speed_percent: int=100, accel_percent: int=100) :
+	def action_goto_xy(self, x_mm: int, y_mm : int, face : Face = Face.FACE_AVANT, speed_percent: int=100, accel_percent: int=100) :
 		"""
 		CMD_ACTION_GOTO (150): Goes to the given point, using the requested face
 
@@ -124,9 +129,6 @@ class CanAsservNode(CanActionNode) :
 		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
 		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
-		if face == None:
-			face = Face.FACE_AVANT
-
 		x_mm = self.team_dependent_flip_x_coordinates(x_mm)
 
 		canopen_wrapper.instance.request_action(self.node_id, 150, [x_mm, y_mm, face, speed_percent, accel_percent])
@@ -204,6 +206,9 @@ class CanAsservNode(CanActionNode) :
 		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 100
 		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 100
 		"""
+
+		target_angle_deg = self.team_dependent_flip_orientation(target_angle_deg)
+
 		canopen_wrapper.instance.request_action(self.node_id, 154,
 			[int(target_angle_deg), face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
@@ -221,36 +226,28 @@ class CanAsservNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 12, [])
 		self.timestamp_last_command = time.time()
 
-
-	def action_set_pid_motor_right(self, kp: float, ki: float, kd: float):
+	def action_set_pid_vitesse(self, kp: float, ki: float, kd: float, kff: float = 0.0, i_lim: float = 0.0):
 		"""
-		CMD_SET_PID_COEFF_M_R (6): Configure les coefficients PID du moteur droit
-
-		:param kp: Coefficient proportionnel (ex: 1.5)
-		:param ki: Coefficient integral (ex: 0.5)
-		:param kd: Coefficient derive (ex: 0.1)
-		"""
-		kp_int = int(kp * 1000)
-		ki_int = int(ki * 1000)
-		kd_int = int(kd * 1000)
-		canopen_wrapper.instance.request_action(self.node_id, 6, [kp_int, ki_int, kd_int])
-		self.timestamp_last_command = time.time()
-
-
-	def action_set_pid_motor_left(self, kp: float, ki: float, kd: float):
-		"""
-		CMD_SET_PID_COEFF_M_L (7): Configure les coefficients PID du moteur gauche
-
-		:param kp: Coefficient proportionnel (ex: 1.5)
-		:param ki: Coefficient integral (ex: 0.5)
-		:param kd: Coefficient derive (ex: 0.1)
+		CMD_SET_PID_VITESSE (6): Configure les coefficients PID vitesse moteurs (roues droite et gauche)
+		
+		:param kp: Coefficient proportionnel (ex: 0.23)
+		:param ki: Coefficient integral (ex: 0.4)
+		:param kd: Coefficient derive (ex: 20.0)
+		:param kff: Coefficient feedforward (optionnel, ex: 0.0)
+		:param i_lim: Limite de l'intégrale (optionnel, ex: 50.0)
 		"""
 		kp_int = int(kp * 1000)
 		ki_int = int(ki * 1000)
 		kd_int = int(kd * 1000)
-		canopen_wrapper.instance.request_action(self.node_id, 7, [kp_int, ki_int, kd_int])
+		kff_int = int(kff * 1000)
+		i_lim_int = int(i_lim * 1000)
+		
+		canopen_wrapper.instance.request_action(
+			self.node_id, 
+			6, 
+			[kp_int, ki_int, kd_int, kff_int, i_lim_int]
+		)
 		self.timestamp_last_command = time.time()
-
 
 	def action_set_pid_translation(self, kp: float, ki: float, kd: float):
 		"""
@@ -279,4 +276,27 @@ class CanAsservNode(CanActionNode) :
 		ki_int = int(ki * 1000 )
 		kd_int = int(kd * 1000 )
 		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int])
+		self.timestamp_last_command = time.time()
+
+	def action_set_pid_hold(self, kp: float, ki: float, kd: float, max_output: float, 
+                        i_lim: float = 0.0, min_output: float = 0.0):
+		"""
+		CMD_ACTION_SET_PID_HOLD (10): Configure les coefficients PID Hold
+		
+		:param kp: Coefficient proportionnel (ex: 1.5)
+		:param ki: Coefficient integral (ex: 0.5)
+		:param kd: Coefficient derive (ex: 0.1)
+		:param max_output: Sortie maximale du PID (ex: 100.0)
+		:param i_lim: Limite de l'intégrale (optionnel, ex: 50.0)
+		:param min_output: Sortie minimale du PID (optionnel, ex: -100.0)
+		"""
+		kp_int = int(kp * 1000)
+		ki_int = int(ki * 1000)
+		kd_int = int(kd * 1000)
+		max_output_int = int(max_output * 100)
+		i_lim_int = int(i_lim * 1000)
+		
+		canopen_wrapper.instance.request_action(
+			self.node_id, 10,[kp_int, ki_int, kd_int, max_output_int, i_lim_int]
+		)
 		self.timestamp_last_command = time.time()

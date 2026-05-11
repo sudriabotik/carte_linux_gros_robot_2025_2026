@@ -18,6 +18,12 @@ canopen_wrapper.instance = CanopenWrapper(None)
 
 class CanAutomNode(CanActionNode) : 
 
+	"""
+	NOTE: Les méthodes commençant par "action_" déclenchent automatiquement un wait
+	avant leur exécution (via AutoWaitWrapper dans FunctStrat).
+	Cela évite les appels manuels wait_asserv()/wait_autom() dans le code stratégie.
+	"""
+
 	def __init__(self, bus, node_id : int):
 		super().__init__(bus, node_id, _CanActionNodeReader)  # CLAUDE: Pass listener class to parent
 	
@@ -184,4 +190,11 @@ class CanAutomNode(CanActionNode) :
 		CMD_AX_CURSOR_FERMER (19): Ferme le curseur/pince
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 19, [])
+		self.timestamp_last_command = time.time()
+
+	def action_grab_pince(self):
+		"""
+		CMD_AX_GRAB_PINCE (20)
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 20, [])
 		self.timestamp_last_command = time.time()

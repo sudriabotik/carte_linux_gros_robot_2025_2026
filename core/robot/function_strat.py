@@ -7,6 +7,7 @@ from core.interface.can import comm_asserv
 from core.interface.log_management import logger
 from core.interface.can import constants as const
 from core.interface.gpio.gpio import read_gpio_tirette, read_gpio_couleur
+from core.robot.auto_wait_wrapper import AutoWaitWrapper
 
 from core.interface.can.comm_asserv import CanAsservNode # Type hint uniquement (pour Ctrl+Click IDE)
 from core.interface.can.comm_autom import CanAutomNode #  Type hint uniquement (pour Ctrl+Click IDE)
@@ -14,8 +15,14 @@ from core.robot.robot import Robot  # Type hint uniquement (pour Ctrl+Click IDE)
 
 class FunctStrat:
     def __init__(self, node_autom: "CanAutomNode", node_asserv: "CanAsservNode", robot_state: "Robot"):
-        self.node_autom = node_autom
-        self.node_asserv = node_asserv
+
+        # Enveloppe les nodes avec AutoWaitWrapper pour attente automatique
+        # avant chaque action_* (élimine les wait manuels dans le code stratégie)
+        self.node_autom = AutoWaitWrapper(node_autom, self.wait_autom)
+        self.node_asserv = AutoWaitWrapper(node_asserv, self.wait_asserv)
+
+        #self.node_autom = node_autom
+        #self.node_asserv = node_asserv
         self.robot_state = robot_state
         self.heartbeat_ON_OFF = True  
 
@@ -105,6 +112,7 @@ class FunctStrat:
 
         logger.log_info("Stratégie", "Début du calage de départ")
 
+        comm_asserv
         self.wait_autom()
         self.node_autom.action_safe_position_ascenseur()
 
@@ -114,7 +122,7 @@ class FunctStrat:
             self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X, comm_asserv.Face.FACE_AVANT)
 
             self.wait_asserv()
-            self.node_asserv.action_translation(-110)
+            self.node_asserv.action_translation(-290) #410-115
             
 
         if (couleur_equipe == const.JAUNE):
@@ -124,13 +132,13 @@ class FunctStrat:
             self.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_ARRIERE)
 
             self.wait_asserv()
-            self.node_asserv.action_translation(60)
+            self.node_asserv.action_translation(263) #410-147.5
 
         self.wait_asserv()
         self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
 
         self.wait_asserv()
-        self.node_asserv.action_translation(50)
+        self.node_asserv.action_translation(140) # 280 - 115.5
 
         self.wait_asserv()
         logger.log_info("Stratégie", "Fin du calage de départ")

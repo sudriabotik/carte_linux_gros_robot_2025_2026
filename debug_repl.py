@@ -34,14 +34,14 @@ print("=" * 60)
 hw = initialize_all()
 
 # Type hints pour l'IDE
-node_asserv: CanAsservNode
-node_autom: CanAutomNode
+asserv: CanAsservNode
+autom: CanAutomNode
 robot: Robot
 funct: FunctStrat
 
 # Créer des variables globales pour accès direct dans le REPL
-node_asserv = hw.node_asserv
-node_autom = hw.node_autom
+asserv = hw.node_asserv
+autom = hw.node_autom
 robot = hw.robot_state
 funct = hw.strat
 bus = hw.bus
@@ -101,67 +101,67 @@ print("  Pour arrêter proprement: unified_logger.stop()")
 print("=" * 60 + "\n")
 
 
-"""
+""" 
 ========== TOUTES LES FONCTIONS NODE_AUTOM ==========
 
-node_autom.action_homing(speed_v_percent=13, speed_h_percent=13)
-node_autom.action_grab()
-node_autom.action_deposit()
-node_autom.action_pos_elevator_h(pos_mm=-100)
-node_autom.action_pos_elevator_v(pos_mm=-200)
-node_autom.action_pos_ax(id_ax=2, pos_ax=200)
-node_autom.action_pump_on_off(on_off=True)
-node_autom.action_open_pince()
-node_autom.action_close_pince()
-node_autom.action_ejecter(num_element=1)
-node_autom.action_i2c_servo(channel=0, position=1500)
-node_autom.action_ready_to_grap()
-node_autom.action_safe_position_ascenseur()
-node_autom.action_couleur_equipe(couleur_equipe=0)
-node_autom.action_fermer_porte_rentrer_ax_caca()
-node_autom.action_pos_vitesse_ax(6,500,100)
-node_autom.action_pos_ax_caca_calage()
-node_autom.action_open_cursor()
-node_autom.action_close_cursor()
+autom.action_homing(speed_v_percent=13, speed_h_percent=13)
+autom.action_grab()
+autom.action_deposit()
+autom.action_pos_elevator_h(pos_mm=-100)
+autom.action_pos_elevator_v(pos_mm=-200)
+autom.action_pos_ax(id_ax=2, pos_ax=200)
+autom.action_pump_on_off(on_off=True)
+autom.action_open_pince()
+autom.action_close_pince()
+autom.action_ejecter(num_element=1)
+autom.action_i2c_servo(channel=0, position=1500)
+autom.action_ready_to_grap()
+autom.action_safe_position_ascenseur()
+autom.action_couleur_equipe(couleur_equipe=0)
+autom.action_fermer_porte_rentrer_ax_caca()
+autom.action_pos_vitesse_ax(6,500,100)
+autom.action_pos_ax_caca_calage()
+autom.action_open_cursor()
+autom.action_close_cursor()
 """
+""" 
+#========== TOUTES LES FONCTIONS NODE_ASSERV ==========
+
+asserv.action_set_linear_speed_accel(speed=100, acceleration=50)
+asserv.action_set_angular_speed_accel(speed=100, acceleration=50)
+asserv.action_evitement_on_off(enable=True)
+asserv.action_debug_on_off(enable=True)
+
+asserv.action_set_pid_hold(kp=1.5, ki=0.5, kd=0.1, max_output=100.0, i_lim=50.0, min_output=-100.0)
+asserv.action_set_pid_vitesse(kp=0.23, ki=0.4, kd=20.0, kff=0.0, i_lim=50.0)
+asserv.action_set_pid_translation(0.1,0,0)
+asserv.action_set_pid_rotation(0.1,0,0)
+
+asserv.action_translation(distance_mm=-1500, speed_percent=100, accel_percent=50)
+asserv.action_rotation(angle_deg=(360*10), speed_percent=100, accel_percent=50)
+asserv.action_goto_xy(x_mm=1000, y_mm=1500, face=comm_asserv.Face.FACE_AVANT)
+asserv.action_recalibration(facing=comm_asserv.Facing.NEGATIVE_X, face=comm_asserv.Face.FACE_ARRIERE)
+asserv.action_recalibration(facing=comm_asserv.Facing.POSITIVE_X, face=comm_asserv.Face.FACE_AVANT)
+asserv.action_recalibration(facing=comm_asserv.Facing.POSITIVE_Y, face=comm_asserv.Face.FACE_ARRIERE)
+asserv.action_moveto(x_mm=800, y_mm=1200, face=comm_asserv.Face.FACE_AVANT)
+asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
+asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
+""" 
 
 """ 
-========== TOUTES LES FONCTIONS NODE_ASSERV ==========
-
-node_asserv.action_set_linear_speed_accel(speed=100, acceleration=50)
-node_asserv.action_set_angular_speed_accel(speed=100, acceleration=50)
-node_asserv.action_evitement_on_off(enable=True)
-node_asserv.action_debug_on_off(enable=True)
-
-node_asserv.action_set_pid_motor_right(0.1,0,0)
-node_asserv.action_set_pid_motor_left(0.1,0,0)
-node_asserv.action_set_pid_translation(0.1,0,0)
-node_asserv.action_set_pid_rotation(0.1,0,0)
-
-node_asserv.action_translation(distance_mm=-1500, speed_percent=100, accel_percent=50)
-node_asserv.action_rotation(angle_deg=(360*10), speed_percent=100, accel_percent=50)
-node_asserv.action_goto_xy(x_mm=1000, y_mm=1500, face=comm_asserv.Face.FACE_AVANT)
-node_asserv.action_recalibration(facing=comm_asserv.Facing.NEGATIVE_X, face=comm_asserv.Face.FACE_ARRIERE)
-node_asserv.action_moveto(x_mm=800, y_mm=1200, face=comm_asserv.Face.FACE_AVANT)
-node_asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
-node_asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
-
-
-
 calage()
 hold_debug(3)
 translation_debug(1500)
 translation_debug(-1500)
 rotation_debug(90)
+
 # PID VITESSE
 funct.wait_asserv()
-node_asserv.action_set_pid_motor_right(0.23, 0.4, 20)
-funct.wait_asserv()
-node_asserv.action_set_pid_motor_left(0.23, 0.4, 20)
+asserv.action_set_pid_vitesse(0.23, 0.4, 20, 0.0, 50.0)
+
 #PID POSITION 
 funct.wait_asserv()
-node_asserv.action_set_pid_translation(1.5, 0.2, 0)
+asserv.action_set_pid_translation(1.5, 0.2, 0)
 funct.wait_asserv()
-node_asserv.action_set_pid_rotation(1.5, 0.2, 0)
-
-"""
+asserv.action_set_pid_rotation(1.5, 0.2, 0)
+""" 

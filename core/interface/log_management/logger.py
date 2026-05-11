@@ -15,7 +15,11 @@ use_file = True # write to file
 use_std = True # write to stdout and sterr
 
 # constants
-LOG_DIR = "log"
+#LOG_DIR = "log"
+
+# Chemin absolu basé sur le répertoire de travail (où main.py se trouve)
+# main.py est toujours la racine du projet, donc on utilise getcwd()
+LOG_DIR = os.path.join(os.getcwd(), "log")
 
 # Global timing reference for all loggers (UART, CAN, console)
 initial_time = -1
@@ -59,6 +63,9 @@ class Logger :
 
 		self.start_date : str = get_timestamp_absolute()
 		
+		# Log de diagnostic pour vérifier le chemin absolu des logs
+		print(f"[LOGGER] LOG_DIR absolu utilisé: {LOG_DIR}", file=sys.stderr, flush=True)
+
 		self.current_log_dir : str = os.path.join(LOG_DIR, self.start_date)
 		if not os.path.exists(self.current_log_dir) :
 			os.makedirs(self.current_log_dir)

@@ -40,6 +40,9 @@ class _CanActionNodeReader(can.Listener) :
 
 		self.last_heartbeat_time = 0  # CLAUDE: Timestamp of last heartbeat received
 
+		# Callback pour notifier des changements de statut CAN (pour parallélisme)
+		self.on_status_change_callback = None
+
 		# Cache for change detection - stores last logged values
 		self.last_logged_values = {
 			'command_status': None,
@@ -84,6 +87,14 @@ class _CanActionNodeReader(can.Listener) :
 		self.last_logged_values['completed_command_id'] = vals[3]
 		self.last_logged_values['error_code'] = vals[4]
 
+	def _notify_status_change(self):
+		"""
+		Notifie qu'un changement de statut CAN a eu lieu.
+		Utilisé pour le système de parallélisme.
+		"""
+		if self.on_status_change_callback:
+			self.on_status_change_callback(self.id)
+
 
 	def on_message_received(self, msg):
 		"""
@@ -95,11 +106,11 @@ class _CanActionNodeReader(can.Listener) :
 		:param msg: The received CAN message from the bus
 		"""
 
-		func, i = canopen_wrapper.instance.determine_message_type(msg)
+		func, index_tpdo_rpdo = canopen_wrapper.instance.determine_message_type(msg)
 		id = canopen_wrapper.instance.determine_message_node_id(msg)
 
 		if id == self.id :
-			if func == FUNCTION_CODE.IS_TPDO and i == 0 :
+			if func == FUNCTION_CODE.IS_TPDO and index_tpdo_rpdo == 0 :
 
 				self.timestamp_last_tpdo = time.time()
 				try :
@@ -127,8 +138,11 @@ class _CanActionNodeReader(can.Listener) :
 					self.command_error_code = vals[4]
 					#logger.log_info("CanActionNodeReader", f"[DEBUG] Node {id} Updated current_command_status = {self.current_command_status}")  # ADDED BY CLAUDE: Debug
 
+				# Notifier le changement de statut (pour système de parallélisme)
+				self._notify_status_change()
+
 			# ADDED BY CLAUDE: Handle TPDO[1] - Robot position (X, Y, θ)
-			elif func == FUNCTION_CODE.IS_TPDO and i == 1 :
+			elif func == FUNCTION_CODE.IS_TPDO and index_tpdo_rpdo == 1 :
 				try :
 					# TPDO[1] contains robot position data from odometry
 					# Bytes 0-1: X position in mm (INT16, little-endian)
@@ -190,7 +204,15 @@ class CanActionNode :
 
 		print(f"node {self.node_id} created on thread : {threading.get_native_id()}")
 
-	
+	def set_status_change_callback(self, callback):
+		"""
+		Définit un callback appelé quand le statut CAN change.
+		Utilisé pour le système de tâches d'arrière-plan (parallélisme).
+
+		Args:
+			callback: Fonction callback(node_id) à appeler
+		"""
+		self.can_reader.on_status_change_callback = callback
 
 	def __del__(self) :
 		if hasattr(self, 'can_reader'):  # CLAUDE: Protect against missing can_reader if init failed
