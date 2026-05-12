@@ -192,9 +192,45 @@ class CanAutomNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 19, [])
 		self.timestamp_last_command = time.time()
 
+	def action_open_cursor_2(self):
+		"""
+		CMD_OPEN_CURSOR_2 (21): Ouvre le curseur/pince 2
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 21, [])
+		self.timestamp_last_command = time.time()
+
+	def action_close_cursor_2(self):
+		"""
+		CMD_CLOSE_CURSOR_2 (22): Ferme le curseur/pince 2
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 22, [])
+		self.timestamp_last_command = time.time()
+
 	def action_grab_pince(self):
 		"""
 		CMD_AX_GRAB_PINCE (20)
 		"""
 		canopen_wrapper.instance.request_action(self.node_id, 20, [])
 		self.timestamp_last_command = time.time()
+
+	def action_start_match(self):
+		"""
+		CMD_START_MATCH (23): Démarre le chronomètre du match
+
+		Enregistre le tick de départ du match côté STM32 pour le timing interne.
+		Utilisé pour synchroniser les actions temporisées.
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 23, [])
+		self.timestamp_last_command = time.time()
+
+	def action_emergency_stop(self):
+		"""
+		CMD_EMERGENCY_STOP (99): Arrêt d'urgence du robot
+
+		Stoppe immédiatement tous les mouvements et actions en cours.
+		Fonction critique pour la sécurité.
+		ATTENTION: Cette commande met le système en boucle infinie d'urgence.
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 99, [])
+		self.timestamp_last_command = time.time()
+

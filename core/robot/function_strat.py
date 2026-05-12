@@ -18,8 +18,8 @@ class FunctStrat:
 
         # Enveloppe les nodes avec AutoWaitWrapper pour attente automatique
         # avant chaque action_* (élimine les wait manuels dans le code stratégie)
-        self.node_autom = AutoWaitWrapper(node_autom, self.wait_autom)
-        self.node_asserv = AutoWaitWrapper(node_asserv, self.wait_asserv)
+        self.node_autom :CanAutomNode  = AutoWaitWrapper(node_autom, self.wait_autom)
+        self.node_asserv : CanAsservNode = AutoWaitWrapper(node_asserv, self.wait_asserv)
 
         #self.node_autom = node_autom
         #self.node_asserv = node_asserv
@@ -82,6 +82,25 @@ class FunctStrat:
 
         logger.log_info("FunctStrat", "Tous les noeuds CAN sont vivants !")  # CLAUDE
 
+    def get_pos_cursor_x(self):
+        if (self.robot_state.couleur_equipe == const.BLEU):
+            return 650
+        else:
+            return 750
+
+    def open_cursor(self):
+
+        if (self.robot_state.couleur_equipe == const.BLEU):
+            self.node_autom.action_open_cursor_2()
+        else :
+            self.node_autom.action_open_cursor()
+    
+    def close_cursor(self):
+        if (self.robot_state.couleur_equipe == const.BLEU):
+            self.node_autom.action_close_cursor_2()
+        else:
+            self.node_autom.action_close_cursor()
+
 
     def wait_and_read_team_color(self):
         """
@@ -107,6 +126,23 @@ class FunctStrat:
         self.robot_state.update_couleur_equipe(couleur)
 
         return couleur
+
+    def wait_time_match(self, target_seconds: float):
+        """
+        Attend que le temps de match atteigne un certain nombre de secondes.
+        
+        :param target_seconds: Temps cible en secondes depuis le début du match (ex: 90)
+        """
+        
+        if logger.initial_time == -1:
+            logger.log_warning("wait_time_match", "Match time not started yet!")
+            return
+        
+        while True:
+            elapsed = time.time() - logger.initial_time
+            if elapsed >= target_seconds:
+                break
+            time.sleep(0.1)  # Attendre 100ms avant de revérifier
 
     def calage_depart(self, couleur_equipe):
 
@@ -153,6 +189,8 @@ class FunctStrat:
             time.sleep(0.05)
 
         self.heartbeat_ON_OFF = False
+        self.node_asserv.action_start_match()
+        self.node_autom.action_start_match()
         logger.log_info("Stratégie", "DEBUT DU MATCH, tirette retirer")
 
     def attraper_un_tas(self):

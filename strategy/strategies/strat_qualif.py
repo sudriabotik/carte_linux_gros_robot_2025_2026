@@ -91,9 +91,11 @@ def run(funct:FunctStrat , robot_state:Robot ):
     #asserv.action_goto_xy(1500,200)
     asserv.action_translation(52) #200 - 147.5
     asserv.action_orientation(180)
-    autom.action_open_cursor()
+    #autom.action_open_cursor()
+    funct.wait_asserv()
+    funct.open_cursor()
     autom.action_open_pince()
-    asserv.action_translation(100)
+    asserv.action_translation(150)
 
     #ejecte 
     autom.action_ejecter(1)
@@ -113,16 +115,19 @@ def run(funct:FunctStrat , robot_state:Robot ):
     funct.wait_asserv()
     autom.action_grab()
     autom.action_deposit()
-    asserv.action_goto_xy(750,200)
+    x_cursor = funct.get_pos_cursor_x()
+    asserv.action_goto_xy(x_cursor,200)
     funct.wait_asserv()
-    autom.action_close_cursor()
+    #autom.action_close_cursor()
+    funct.close_cursor()
     funct.wait_autom()
 
-    asserv.action_goto_xy(600,250)
+    #asserv.action_goto_xy(600,300)
+    asserv.action_orientation(90)
     funct.wait_asserv()
     autom.action_ejecter(1)
     funct.wait_autom()
-    asserv.action_translation(60)
+    asserv.action_translation(60,200,200)
     funct.wait_asserv()
     autom.action_ejecter(1)
     funct.wait_autom()
@@ -141,8 +146,49 @@ def run(funct:FunctStrat , robot_state:Robot ):
 
     autom.action_safe_position_ascenseur()
     asserv.action_goto_xy(200,800)
+    asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_AVANT)
+    asserv.action_translation(-52)
+    asserv.action_orientation(-90)
+    funct.wait_asserv()
+    autom.action_open_pince()
+    asserv.action_goto_xy(200,500,comm_asserv.Face.FACE_AVANT, 70,50)
+    asserv.action_orientation(-90)
+    funct.wait_asserv()
+    autom.action_grab_pince()
+    asserv.action_translation(100)
+    funct.wait_asserv()
+    autom.action_grab()
+    autom.action_deposit()
+    asserv.action_orientation(-70)
+    asserv.action_orientation(90)
+    funct.wait_asserv()
+    autom.action_open_pince()
+    asserv.action_goto_xy(200,850)
+
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(55)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(55)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(55)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+
+    asserv.action_orientation(90)
+    autom.action_pos_ax_caca_calage()
+
+
+    funct.wait_time_match(95)
     asserv.action_goto_xy(200,1700)
 
+
+    
 
 
 

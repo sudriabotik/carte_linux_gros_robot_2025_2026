@@ -45,11 +45,16 @@ def run(funct, robot_state):
     # ======================
     # 3. PARCOURS HOMOLOGATION
     # ======================
+    asserv.action_set_linear_speed_accel(0.4,0.5)
+    asserv.action_translation(300)
+    asserv.action_goto_xy(700,800,comm_asserv.Face.FACE_AVANT)
+    asserv.action_goto_xy(1400,800,comm_asserv.Face.FACE_AVANT)
+    """ 
     asserv.action_goto_xy(175, 1500, comm_asserv.Face.FACE_AVANT)
     asserv.action_goto_xy(175, 900, comm_asserv.Face.FACE_AVANT)
     asserv.action_goto_xy(175, 1300, comm_asserv.Face.FACE_ARRIERE)
     asserv.action_goto_xy(900, 800, comm_asserv.Face.FACE_AVANT)
     asserv.action_goto_xy(1350, 800, comm_asserv.Face.FACE_AVANT)
-
+    """
     logger.log_info("Strat_homologation", f"Position finale du robot: {robot_state}")
     logger.log_info("Strat_homologation", "=== FIN DU MATCH ===")

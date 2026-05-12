@@ -123,6 +123,11 @@ autom.action_pos_vitesse_ax(6,500,100)
 autom.action_pos_ax_caca_calage()
 autom.action_open_cursor()
 autom.action_close_cursor()
+autom.action_open_cursor_2()
+autom.action_close_cursor_2()
+autom.action_grab_pince()
+autom.action_start_match()
+autom.action_emergency_stop()
 """
 """ 
 #========== TOUTES LES FONCTIONS NODE_ASSERV ==========
@@ -136,6 +141,9 @@ asserv.action_set_pid_hold(kp=1.5, ki=0.5, kd=0.1, max_output=100.0, i_lim=50.0,
 asserv.action_set_pid_vitesse(kp=0.23, ki=0.4, kd=20.0, kff=0.0, i_lim=50.0)
 asserv.action_set_pid_translation(0.1,0,0)
 asserv.action_set_pid_rotation(0.1,0,0)
+
+asserv.action_start_match()
+asserv.action_emergency_stop()
 
 asserv.action_translation(distance_mm=-1500, speed_percent=100, accel_percent=50)
 asserv.action_rotation(angle_deg=(360*10), speed_percent=100, accel_percent=50)

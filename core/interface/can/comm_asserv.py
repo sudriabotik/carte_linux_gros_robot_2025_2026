@@ -58,15 +58,20 @@ class CanAsservNode(CanActionNode) :
 		else :
 			return rot # keep original if yellow
 	
-	def team_dependent_flip_orientation(self, orientation) -> int :
+	def team_dependent_flip_orientation(self, orientation) -> int:
 		if self.couleur == BLEU:
-			if orientation == 0:
-				return 180
-			elif orientation == 180:
-				return 0
+			result = 180 - orientation
+			
+			# Normaliser entre -180 et +180
+			if result > 180:
+				result -= 360
+			elif result < -180:
+				result += 360
+			
+			return result
 		
 		return orientation
-	
+		
 
 	def action_set_linear_speed_accel(self, speed: float, acceleration : float) :
 		"""
@@ -144,13 +149,13 @@ class CanAsservNode(CanActionNode) :
 		:param speed_percent: Speed coefficient 0-100% (0 or 100 = full speed), default 10
 		:param accel_percent: Acceleration coefficient 0-100% (0 or 100 = full accel), default 10
 		"""
-		"""
-		if self.get_couleur() == 0 : # bleu 
+		
+		if self.couleur == BLEU : # bleu 
 			if facing == Facing.POSITIVE_X :
 				facing = Facing.NEGATIVE_X
 			elif facing == Facing.NEGATIVE_X :
 				facing = Facing.POSITIVE_X
-		"""
+		
 		canopen_wrapper.instance.request_action(self.node_id, 152, [facing, face, speed_percent, accel_percent])
 		self.timestamp_last_command = time.time()
 
@@ -299,4 +304,24 @@ class CanAsservNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(
 			self.node_id, 10,[kp_int, ki_int, kd_int, max_output_int, i_lim_int]
 		)
+		self.timestamp_last_command = time.time()
+
+	def action_start_match(self):
+		"""
+		CMD_ACTION_START_MATCH (11): Démarre le chronomètre du match
+
+		Enregistre le tick de départ du match côté STM32 pour le timing interne.
+		Utilisé pour synchroniser les actions temporisées.
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 11, [])
+		self.timestamp_last_command = time.time()
+
+	def action_emergency_stop(self):
+		"""
+		CMD_EMERGENCY_STOP (12): Arrêt d'urgence du robot
+
+		Stoppe immédiatement tous les mouvements et actions en cours.
+		Fonction critique pour la sécurité.
+		"""
+		canopen_wrapper.instance.request_action(self.node_id, 12, [])
 		self.timestamp_last_command = time.time()

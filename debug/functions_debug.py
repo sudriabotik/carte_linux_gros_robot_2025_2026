@@ -22,13 +22,14 @@ from core.robot.robot import Robot  # Type hint uniquement (pour Ctrl+Click IDE)
 # ============================================================================
 
 def calage ():
-    debug.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X,comm_asserv.Face.FACE_ARRIERE)
+    debug.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_X,comm_asserv.Face.FACE_ARRIERE)
     debug.funct.wait_asserv()
-    debug.node_asserv.action_translation(100)
+    debug.node_asserv.action_translation(1500)
     debug.funct.wait_asserv()
     debug.node_asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y,comm_asserv.Face.FACE_ARRIERE)
     debug.funct.wait_asserv()
-    debug.node_asserv.action_translation(500)
+    debug.node_asserv.action_translation(52)
+    debug.node_asserv.action_orientation(0)
 
 def faire_carre(taille=200, vitesse=10, accel=10):
     """

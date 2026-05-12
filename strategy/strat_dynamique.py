@@ -44,7 +44,7 @@ class StratDynamique:
         self.zone_depose_utiliser = []
         logger.log_info("StratDynamique", "Moteur de stratégie dynamique initialisé")
 
-    def run_homologation_V2(self):
+    def run_homologation(self):
         """Exécute la stratégie d'homologation"""
         strat_homologation.run(self.funct, self.robot)
 
