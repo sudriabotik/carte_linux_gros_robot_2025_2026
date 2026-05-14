@@ -33,26 +33,28 @@ def run(funct:FunctStrat , robot_state:Robot ):
     # ======================
     funct.wait_heartbeat_all_node()
     autom.action_homing()
-
-    couleur = funct.wait_and_read_team_color()
-    asserv.set_couleur(couleur)
-    autom.action_couleur_equipe(couleur)
     autom.action_close_pince()
+    asserv.action_set_linear_speed_accel(0.7,0.9)
+    couleur = funct.wait_and_read_team_color()
     
     # ======================
     # 2. CALAGE DE DÉPART
     # ======================
     funct.calage_depart(couleur)
+    #asserv.set_couleur(couleur) # il faut que la couleur soit et aprés le callage pour l'asserv. 
+    autom.action_couleur_equipe(couleur)
 
     funct.wait_debut_match()
     logger.set_time_origin()
 
     asserv.action_evitement_on_off(True)
     
-    asserv.action_translation(255) # pour sortie du nids 
+    #asserv.action_translation(-255) # pour sortie du nids 
     #funct.node_autom.disable_auto_wait()
+    asserv.action_goto_xy(0,1450,comm_asserv.Face.FACE_ARRIERE)
     autom.action_ready_to_grap()
-    asserv.action_goto_xy(700,800,comm_asserv.Face.FACE_AVANT)
+    asserv.action_goto_xy(700,800,comm_asserv.Face.FACE_ARRIERE)
+    asserv.action_orientation(0)
     autom.action_open_pince()
 
     #attrape tas 3
@@ -121,6 +123,8 @@ def run(funct:FunctStrat , robot_state:Robot ):
     #autom.action_close_cursor()
     funct.close_cursor()
     funct.wait_autom()
+    asserv.action_orientation(160)
+    asserv.action_translation(70)
 
     #asserv.action_goto_xy(600,300)
     asserv.action_orientation(90)
@@ -147,15 +151,15 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_safe_position_ascenseur()
     asserv.action_goto_xy(200,800)
     asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X, comm_asserv.Face.FACE_AVANT)
-    asserv.action_translation(-52)
+    asserv.action_translation(-85)
     asserv.action_orientation(-90)
     funct.wait_asserv()
     autom.action_open_pince()
     asserv.action_goto_xy(200,500,comm_asserv.Face.FACE_AVANT, 70,50)
     asserv.action_orientation(-90)
     funct.wait_asserv()
-    autom.action_grab_pince()
-    asserv.action_translation(100)
+    #autom.action_grab_pince()
+    asserv.action_translation(130)
     funct.wait_asserv()
     autom.action_grab()
     autom.action_deposit()
@@ -163,7 +167,7 @@ def run(funct:FunctStrat , robot_state:Robot ):
     asserv.action_orientation(90)
     funct.wait_asserv()
     autom.action_open_pince()
-    asserv.action_goto_xy(200,850)
+    asserv.action_goto_xy(200,900)
 
     funct.wait_asserv()
     autom.action_ejecter(1)
@@ -182,10 +186,11 @@ def run(funct:FunctStrat , robot_state:Robot ):
 
     asserv.action_orientation(90)
     autom.action_pos_ax_caca_calage()
+    autom.action_safe_position_ascenseur()
 
 
-    funct.wait_time_match(95)
-    asserv.action_goto_xy(200,1700)
+    funct.wait_time_match(97)
+    asserv.action_goto_xy(200,1710)
 
 
     

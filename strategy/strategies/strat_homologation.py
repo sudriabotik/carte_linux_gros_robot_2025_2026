@@ -45,7 +45,7 @@ def run(funct, robot_state):
     # ======================
     # 3. PARCOURS HOMOLOGATION
     # ======================
-    asserv.action_set_linear_speed_accel(0.4,0.5)
+    asserv.action_set_linear_speed_accel(0.3,0.5)
     asserv.action_translation(300)
     asserv.action_goto_xy(700,800,comm_asserv.Face.FACE_AVANT)
     asserv.action_goto_xy(1400,800,comm_asserv.Face.FACE_AVANT)

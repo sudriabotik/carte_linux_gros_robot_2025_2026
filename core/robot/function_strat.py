@@ -171,12 +171,14 @@ class FunctStrat:
             self.node_asserv.action_translation(263) #410-147.5
 
         self.wait_asserv()
-        self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_ARRIERE)
+        self.node_asserv.action_recalibration(comm_asserv.Facing.POSITIVE_Y, comm_asserv.Face.FACE_AVANT)
 
         self.wait_asserv()
-        self.node_asserv.action_translation(140) # 280 - 115.5
+        #self.node_asserv.action_translation(-135) # 280 - 115.5 // #250 - 115
+        self.node_asserv.action_goto_xy(0,1750, comm_asserv.Face.FACE_ARRIERE)
 
         self.wait_asserv()
+        self.node_asserv.set_couleur(couleur_equipe)
         logger.log_info("Stratégie", "Fin du calage de départ")
 
     def wait_debut_match(self):

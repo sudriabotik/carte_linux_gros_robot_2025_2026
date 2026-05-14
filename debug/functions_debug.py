@@ -78,33 +78,13 @@ def faire_aller_retour(distance=200, vitesse=10, accel=10):
 # MOUVEMENT AVEC DEBUG PRINT ON
 # ============================================================================
 
-def translation_debug(distance_mm, auto_plot=None):
+def translation_debug(distance_mm, vitesse=100, accel=100, auto_plot=None):
     """
     Execute une translation avec debug UART active.
 
     :param distance_mm: Distance de translation en mm
-    :param auto_plot: Si True, affiche automatiquement les graphiques apres le mouvement.
-                      Si None, utilise la valeur de debug.auto_plot_enabled.
-                      Si False, pas de plot.
-    """
-    debug.funct.heartbeat_ON_OFF = False 
-    debug.node_asserv.action_debug_on_off(enable=True)
-    debug.funct.wait_asserv()
-    debug.node_asserv.action_translation(distance_mm)
-    debug.funct.wait_asserv()
-    debug.node_asserv.action_debug_on_off(enable=False)
-
-    # Auto-plot si demande
-    should_plot = auto_plot if auto_plot is not None else debug.auto_plot_enabled
-    if should_plot:
-        time.sleep(0.5)  # Attendre que les logs soient bien ecrits
-        debug.plotter.plot_last_log(plot_mode=debug.plot_mode)
-
-def rotation_debug(degrés, auto_plot=None):
-    """
-    Execute une rotation avec debug UART active.
-
-    :param degrés: Angle de rotation en degrés
+    :param vitesse: Vitesse en pourcentage (0-100, defaut: 100)
+    :param accel: Acceleration en pourcentage (0-100, defaut: 100)
     :param auto_plot: Si True, affiche automatiquement les graphiques apres le mouvement.
                       Si None, utilise la valeur de debug.auto_plot_enabled.
                       Si False, pas de plot.
@@ -112,15 +92,41 @@ def rotation_debug(degrés, auto_plot=None):
     debug.funct.heartbeat_ON_OFF = False
     debug.node_asserv.action_debug_on_off(enable=True)
     debug.funct.wait_asserv()
-    debug.node_asserv.action_rotation(degrés, 100, 100)  # CLAUDE: Updated to use percent (was 10, 10)
+    debug.node_asserv.action_translation(distance_mm, vitesse, accel)
     debug.funct.wait_asserv()
     debug.node_asserv.action_debug_on_off(enable=False)
 
-    # Auto-plot si demande
+    # Auto-plot si demande - utilise le nouveau plotter generique
     should_plot = auto_plot if auto_plot is not None else debug.auto_plot_enabled
     if should_plot:
         time.sleep(0.5)  # Attendre que les logs soient bien ecrits
-        debug.plotter.plot_last_log(plot_mode=debug.plot_mode)
+        import debug.plotter_generic as plotter_generic
+        plotter_generic.plot_last_log()
+
+def rotation_debug(degrés, vitesse=100, accel=100, auto_plot=None):
+    """
+    Execute une rotation avec debug UART active.
+
+    :param degrés: Angle de rotation en degrés
+    :param vitesse: Vitesse en pourcentage (0-100, defaut: 100)
+    :param accel: Acceleration en pourcentage (0-100, defaut: 100)
+    :param auto_plot: Si True, affiche automatiquement les graphiques apres le mouvement.
+                      Si None, utilise la valeur de debug.auto_plot_enabled.
+                      Si False, pas de plot.
+    """
+    debug.funct.heartbeat_ON_OFF = False
+    debug.node_asserv.action_debug_on_off(enable=True)
+    debug.funct.wait_asserv()
+    debug.node_asserv.action_rotation(degrés, vitesse, accel)
+    debug.funct.wait_asserv()
+    debug.node_asserv.action_debug_on_off(enable=False)
+
+    # Auto-plot si demande - utilise le nouveau plotter generique
+    should_plot = auto_plot if auto_plot is not None else debug.auto_plot_enabled
+    if should_plot:
+        time.sleep(0.5)  # Attendre que les logs soient bien ecrits
+        import debug.plotter_generic as plotter_generic
+        plotter_generic.plot_last_log()
 
 
 def hold_debug(time_debug_sec, auto_plot=None):

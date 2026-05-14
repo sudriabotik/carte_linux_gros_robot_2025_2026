@@ -138,9 +138,9 @@ asserv.action_evitement_on_off(enable=True)
 asserv.action_debug_on_off(enable=True)
 
 asserv.action_set_pid_hold(kp=1.5, ki=0.5, kd=0.1, max_output=100.0, i_lim=50.0, min_output=-100.0)
-asserv.action_set_pid_vitesse(kp=0.23, ki=0.4, kd=20.0, kff=0.0, i_lim=50.0)
-asserv.action_set_pid_translation(0.1,0,0)
-asserv.action_set_pid_rotation(0.1,0,0)
+asserv.action_set_pid_vitesse(kp=0.23, ki=0.4, kd=20.0, kff=0.0, i_lim=50.0, max_output=100.0)
+asserv.action_set_pid_translation(kp=0.1, ki=0, kd=0, max_output=1.0)
+asserv.action_set_pid_rotation(kp=0.1, ki=0, kd=0, max_output=360.0)
 
 asserv.action_start_match()
 asserv.action_emergency_stop()
@@ -156,20 +156,19 @@ asserv.action_lookat(x_mm=1500, y_mm=1000, face=comm_asserv.Face.FACE_AVANT)
 asserv.action_orientation(target_angle_deg=0, face=comm_asserv.Face.FACE_AVANT, speed_percent=100, accel_percent=100)
 """ 
 
-""" 
+
 calage()
 hold_debug(3)
-translation_debug(1500)
-translation_debug(-1500)
+translation_debug(-50,90,70)
+translation_debug(-1500,100,60)
 rotation_debug(90)
 
 # PID VITESSE
 funct.wait_asserv()
-asserv.action_set_pid_vitesse(0.23, 0.4, 20, 0.0, 50.0)
+asserv.action_set_pid_vitesse(kp=0.3, ki=1, kd=0.0, kff=0.1, i_lim=5.0 )
+#PID POSITION
+funct.wait_asserv()
+asserv.action_set_pid_translation(kp=15, ki=0, kd=0, max_output=1)
+funct.wait_asserv()
+asserv.action_set_pid_rotation(kp=0.1, ki=0, kd=0 )
 
-#PID POSITION 
-funct.wait_asserv()
-asserv.action_set_pid_translation(1.5, 0.2, 0)
-funct.wait_asserv()
-asserv.action_set_pid_rotation(1.5, 0.2, 0)
-""" 

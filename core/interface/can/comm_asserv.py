@@ -35,7 +35,7 @@ class CanAsservNode(CanActionNode) :
 
 	def __init__(self, bus, node_id : int):
 		super().__init__(bus, node_id, _CanActionNodeReader)  # CLAUDE: Pass listener class to parent (robot param removed, set later by init_core.py)
-		self.couleur = None
+		self.couleur = JAUNE  # couleur par default JAUNE 
 
 	
 	""" 1 pour jaune, 0 pour bleu"""
@@ -46,6 +46,9 @@ class CanAsservNode(CanActionNode) :
 		self.couleur = couleur
 
 	def team_dependent_flip_x_coordinates(self, x) -> int :
+		if (x == 0):
+			return x
+		
 		if self.couleur == BLEU:
 			return 3000 - x
 		else :
@@ -140,7 +143,7 @@ class CanAsservNode(CanActionNode) :
 		self.timestamp_last_command = time.time()
 
 
-	def action_recalibration(self, facing : Facing, face : Face, speed_percent: int=12, accel_percent: int=12) :
+	def action_recalibration(self, facing : Facing, face : Face, speed_percent: int=25, accel_percent: int=25) :
 		"""
 		CMD_ACTION_RECALIBRATE (152): Resets a coordinate of the robot using the walls of the table
 
@@ -231,56 +234,62 @@ class CanAsservNode(CanActionNode) :
 		canopen_wrapper.instance.request_action(self.node_id, 12, [])
 		self.timestamp_last_command = time.time()
 
-	def action_set_pid_vitesse(self, kp: float, ki: float, kd: float, kff: float = 0.0, i_lim: float = 0.0):
+	def action_set_pid_vitesse(self, kp: float, ki: float, kd: float, kff: float = 0.0, i_lim: float = 0.0, max_output: float = 0.0):
 		"""
 		CMD_SET_PID_VITESSE (6): Configure les coefficients PID vitesse moteurs (roues droite et gauche)
-		
+
 		:param kp: Coefficient proportionnel (ex: 0.23)
 		:param ki: Coefficient integral (ex: 0.4)
 		:param kd: Coefficient derive (ex: 20.0)
 		:param kff: Coefficient feedforward (optionnel, ex: 0.0)
 		:param i_lim: Limite de l'intégrale (optionnel, ex: 50.0)
+		:param max_output: Sortie maximale du PID en % PWM (optionnel, ex: 100.0)
 		"""
 		kp_int = int(kp * 1000)
 		ki_int = int(ki * 1000)
 		kd_int = int(kd * 1000)
 		kff_int = int(kff * 1000)
 		i_lim_int = int(i_lim * 1000)
-		
+		max_output_int = int(max_output * 1000)
+
 		canopen_wrapper.instance.request_action(
-			self.node_id, 
-			6, 
-			[kp_int, ki_int, kd_int, kff_int, i_lim_int]
+			self.node_id,
+			6,
+			[kp_int, ki_int, kd_int, kff_int, i_lim_int, max_output_int]
 		)
 		self.timestamp_last_command = time.time()
 
-	def action_set_pid_translation(self, kp: float, ki: float, kd: float):
+	def action_set_pid_translation(self, kp: float, ki: float, kd: float, max_output: float = 0.0):
 		"""
 		CMD_SET_PID_COEFF_TRA (8): Configure les coefficients PID de translation
 
 		:param kp: Coefficient proportionnel (ex: 2.0)
 		:param ki: Coefficient integral (ex: 0.8)
 		:param kd: Coefficient derive (ex: 0.2)
+		:param max_output: Sortie maximale du PID en m/s (optionnel, ex: 1.0)
 		"""
 		kp_int = int(kp * 1000)
 		ki_int = int(ki * 1000)
 		kd_int = int(kd * 1000)
-		canopen_wrapper.instance.request_action(self.node_id, 8, [kp_int, ki_int, kd_int])
+		max_output_int = int(max_output * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 8, [kp_int, ki_int, kd_int, max_output_int])
 		self.timestamp_last_command = time.time()
 
 
-	def action_set_pid_rotation(self, kp: float, ki: float, kd: float):
+	def action_set_pid_rotation(self, kp: float, ki: float, kd: float, max_output: float = 0.0):
 		"""
 		CMD_SET_PID_COEFF_ROT (9): Configure les coefficients PID de rotation
 
 		:param kp: Coefficient proportionnel (ex: 2.0)
 		:param ki: Coefficient integral (ex: 0.8)
 		:param kd: Coefficient derive (ex: 0.2)
+		:param max_output: Sortie maximale du PID en deg/s (optionnel, ex: 360.0)
 		"""
-		kp_int = int(kp * 1000 )
-		ki_int = int(ki * 1000 )
-		kd_int = int(kd * 1000 )
-		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int])
+		kp_int = int(kp * 1000)
+		ki_int = int(ki * 1000)
+		kd_int = int(kd * 1000)
+		max_output_int = int(max_output * 1000)
+		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int, max_output_int])
 		self.timestamp_last_command = time.time()
 
 	def action_set_pid_hold(self, kp: float, ki: float, kd: float, max_output: float, 
