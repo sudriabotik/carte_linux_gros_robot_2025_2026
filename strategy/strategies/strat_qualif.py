@@ -11,6 +11,7 @@ from core.robot.robot import Robot
 from strategy.parallel_executor import ParallelExecutor
 
 def run(funct:FunctStrat , robot_state:Robot ):
+    logger.log_info("strat_qualif"," debut execution fonction run fichier strat_qualif")
     """
     Exécute la stratégie d'homologation
     

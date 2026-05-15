@@ -6,7 +6,7 @@ import time
 # =========================
 DEBUG = True
 
-UART_PORT = "/dev/ttyS2"
+UART_PORT = "/dev/ttyS6"
 BAUDRATE = 1000000
 LOG_FILE = "log_uart.txt"
 

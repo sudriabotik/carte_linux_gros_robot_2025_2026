@@ -253,6 +253,12 @@ class CanActionNode :
 				# Fallback pour nodes inconnus : utiliser le compteur global
 				expected_command_id = canopen_wrapper.instance.command_id
 			
+
+			if expected_command_id < self.can_reader.last_completed_command_id:
+				logger.log_error("CanActionNode", f"expected_command_id {expected_command_id} < self.can_reader.last_completed_command_id {self.can_reader.last_completed_command_id}")
+				
+				time.sleep(0.5)
+
 			# Comparer le compteur attendu avec last_completed_command_id
 			if expected_command_id == self.can_reader.last_completed_command_id:
 				# Log debug info BEFORE returning

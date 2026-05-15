@@ -24,7 +24,7 @@ class FunctStrat:
         #self.node_autom = node_autom
         #self.node_asserv = node_asserv
         self.robot_state = robot_state
-        self.heartbeat_ON_OFF = True  
+        self.heartbeat_ON_OFF = False  
 
 
     def wait_asserv(self):  # CLAUDE
