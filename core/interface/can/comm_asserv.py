@@ -177,7 +177,7 @@ class CanAsservNode(CanActionNode) :
 		self.timestamp_last_command = time.time()
 
 
-	def action_lookat(self, x_mm: int, y_mm : int, face : Face, speed_percent: int=100, accel_percent: int=100) :
+	def action_lookat(self, x_mm: int, y_mm : int, face : Face = Face.FACE_AVANT, speed_percent: int=100, accel_percent: int=100) :
 		"""
 		CMD_ACTION_LOOKAT (153): Rotates to look at the given point using the requested face
 

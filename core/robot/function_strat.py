@@ -84,7 +84,7 @@ class FunctStrat:
 
     def get_pos_cursor_x(self):
         if (self.robot_state.couleur_equipe == const.BLEU):
-            return 650
+            return 670
         else:
             return 750
 
@@ -195,6 +195,47 @@ class FunctStrat:
         self.node_autom.action_start_match()
         logger.log_info("Stratégie", "DEBUT DU MATCH, tirette retirer")
 
+    def ejecter_rouler_x(self, x, num_eject):
+        sens_x_negatif = 1 
+
+        if (self.robot_state.position_x  > x):
+            sens_x_negatif = -1 
+
+        while(self.robot_state.position_x * sens_x_negatif < x* sens_x_negatif ):
+            time.sleep(0.01)
+        
+        logger.log_info("FunctStrat",f"robot_x eject_1={self.robot_state.position_x}")
+        self.node_autom.action_ejecter(1)
+
+        if (num_eject == 1):
+            return
+
+        while(self.robot_state.position_x * sens_x_negatif < (x + 45) * sens_x_negatif ):
+            time.sleep(0.01)
+
+        logger.log_info("FunctStrat",f"robot_x eject_2={self.robot_state.position_x}")
+        self.node_autom.action_ejecter(1)
+
+    def ejecter_rouler_y(self, y, num_eject):
+        sens_y_negatif = 1 
+
+        if (self.robot_state.position_y  > y):
+            sens_y_negatif = -1 
+
+        while(self.robot_state.position_y * sens_y_negatif  < y * sens_y_negatif ):
+            time.sleep(0.01)
+        
+        self.node_autom.action_ejecter(1)
+
+        if (num_eject == 1):
+            return
+
+        while(self.robot_state.position_y * sens_y_negatif < (y + 45) * sens_y_negatif ):
+            time.sleep(0.01)
+        
+        self.node_autom.action_ejecter(1)
+        
+        
     def attraper_un_tas(self):
 
         #orienter le robot vers le tas en question

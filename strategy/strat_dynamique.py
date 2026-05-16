@@ -20,6 +20,8 @@ from strategy.strategies import strat_1
 from strategy.strategies import strat_2
 from strategy.strategies import test_paralle
 from strategy.strategies import strat_qualif
+from strategy.strategies import strat_final_test
+from strategy.strategies import strat_final
 
 class StratDynamique:
     """
@@ -62,6 +64,12 @@ class StratDynamique:
 
     def run_strat_qualif(self):
         strat_qualif.run(self.funct, self.robot)
+    
+    def run_strat_final_test(self):
+        strat_final_test.run(self.funct, self.robot)
+
+    def run_strat_final(self):
+        strat_final.run(self.funct, self.robot)
 
     #### fonction intelligente #### 
 

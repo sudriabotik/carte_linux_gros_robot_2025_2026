@@ -1,7 +1,7 @@
-"""Stratégie d'homologation"""
+
 from core.interface.can import comm_asserv, comm_autom
 from core.interface.log_management import logger
-
+import time 
 # Type hints pour l'autocomplétion IDE
 from core.interface.can.comm_asserv import CanAsservNode
 from core.interface.can.comm_autom import CanAutomNode
@@ -65,6 +65,20 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_grab()
     funct.wait_autom()
     autom.action_deposit()
+    funct.wait_autom()
+
+    asserv.action_goto_xy(2600,0,comm_asserv.Face.FACE_AVANT,50,70)
+    while(robot_state.position_x < 1600):
+        time.sleep(0.01)
+    
+    autom.action_ejecter(1)
+
+    while(robot_state.position_x < 1645):
+        time.sleep(0.01)
+    
+    autom.action_ejecter(1)
+
+
     """ 
     asserv.action_goto_xy(1650,1300,comm_asserv.Face.FACE_ARRIERE)
     funct.wait_autom()
@@ -75,7 +89,7 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_ejecter(1)
     autom.action_fermer_porte_rentrer_ax_caca()
     asserv.action_translation(60)
-    """
+    
     asserv.action_goto_xy(1500,650)
     asserv.action_orientation(-90)
     funct.wait_asserv()
@@ -194,7 +208,7 @@ def run(funct:FunctStrat , robot_state:Robot ):
     funct.wait_time_match(97)
     asserv.action_goto_xy(200,1720,comm_asserv.Face.FACE_AVANT,90,90)
     autom.action_open_pince()
-
+    """
 
     
 
