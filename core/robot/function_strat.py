@@ -196,6 +196,10 @@ class FunctStrat:
         logger.log_info("Stratégie", "DEBUT DU MATCH, tirette retirer")
 
     def ejecter_rouler_x(self, x, num_eject):
+
+        if self.robot_state.couleur_equipe == const.BLEU:
+            x = self.node_asserv.team_dependent_flip_x_coordinates(x)
+
         sens_x_negatif = 1 
 
         if (self.robot_state.position_x  > x):
@@ -235,7 +239,7 @@ class FunctStrat:
         
         self.node_autom.action_ejecter(1)
         
-        
+
     def attraper_un_tas(self):
 
         #orienter le robot vers le tas en question

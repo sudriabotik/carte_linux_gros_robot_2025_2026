@@ -1,7 +1,7 @@
 
 from core.interface.can import comm_asserv, comm_autom
 from core.interface.log_management import logger
-
+import time
 # Type hints pour l'autocomplétion IDE
 from core.interface.can.comm_asserv import CanAsservNode
 from core.interface.can.comm_autom import CanAutomNode
@@ -40,7 +40,7 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_couleur_equipe(couleur)
     asserv.action_lookat(450,800,comm_asserv.Face.FACE_ARRIERE)
     funct.wait_debut_match()
-    asserv.action_set_linear_speed_accel(0.8,1.2)
+    asserv.action_set_linear_speed_accel(0.8,0.8)
     logger.set_time_origin()
 
     asserv.action_evitement_on_off(True)
@@ -70,27 +70,47 @@ def run(funct:FunctStrat , robot_state:Robot ):
         lambda: autom.action_fermer_porte_rentrer_ax_caca()
     )
 
-    asserv.action_goto_xy(1500,250,comm_asserv.Face.FACE_ARRIERE)
+    asserv.action_goto_xy(1425,250,comm_asserv.Face.FACE_ARRIERE)
 
     asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y,comm_asserv.Face.FACE_ARRIERE)
     asserv.action_goto_xy(0,200)
-    asserv.action_goto_xy(2050,200,comm_asserv.Face.FACE_ARRIERE) # pousse tas pour fair chier advs
+    asserv.action_goto_xy(1900,200,comm_asserv.Face.FACE_ARRIERE,80,50) # pousse tas pour fair chier advs
 
     wait_parallel_autom()
-    funct.open_cursor()
+    
     autom.action_open_pince()
-    x = funct.get_pos_cursor_x()
-    asserv.action_goto_xy(x + 100,200,comm_asserv.Face.FACE_AVANT,50,65)
-    funct.ejecter_rouler_x(1600,2)
-    autom.action_fermer_porte_rentrer_ax_caca()
-    funct.wait_asserv()
+
+    asserv.action_goto_xy(1350,200)
     asserv.action_orientation(180)
-    autom.action_grab_pince()
-    asserv.action_goto_xy(x,200,comm_asserv.Face.FACE_AVANT,60,65)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(50)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(50)
+
+
+    funct.open_cursor()
+    x = funct.get_pos_cursor_x()
+    #asserv.action_goto_xy(x + 100,200,comm_asserv.Face.FACE_AVANT,50,65)
+
+    #funct.ejecter_rouler_x(1600,2) avec les goto cs de la merde
+    autom.action_fermer_porte_rentrer_ax_caca()
+    #asserv.action_orientation(180)
+    #autom.action_grab_pince()
+    #autom.action_open_pince()
+    #funct.wait_autom()
+    #asserv.action_translation(110)
+    asserv.action_goto_xy(x,200,comm_asserv.Face.FACE_AVANT,60,60)
+    funct.wait_asserv()
+    #asserv.action_goto_xy(x,200,comm_asserv.Face.FACE_AVANT,60,65)
     funct.close_cursor()
 
     autom.action_grab()
     funct.wait_autom() #peut-etre rajouter wait. 
+    #time.sleep(0.2)
     autom.action_deposit() # trop long en temps 3 s et il reste encore 2 élement
     funct.wait_autom()
 
@@ -107,31 +127,85 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_ejecter(1)
     funct.wait_autom()
     asserv.action_translation(100)
+    autom.action_ready_to_grap()
+    #autom.action_deposit()
 
-    autom.action_deposit()
-
-    asserv.action_goto_xy(200,800,comm_asserv.Face.FACE_ARRIERE,100,80)
-    asserv.action_orientation(-90)
+    #attrape tas
+    asserv.action_goto_xy(200,800,comm_asserv.Face.FACE_AVANT,100,80)
+    asserv.action_orientation(45)
+    asserv.action_orientation(-90,comm_asserv,50,50)
+    funct.wait_asserv()
     autom.action_open_pince()
-    asserv.action_goto_xy(0,400,comm_asserv.Face.FACE_AVANT,70,50)
+    asserv.action_goto_xy(190,400,comm_asserv.Face.FACE_AVANT,70,50)
+    funct.wait_asserv()
     autom.action_grab()
     autom.action_deposit()
+    asserv.action_orientation(0,comm_asserv.Face.FACE_AVANT,70,70)
     asserv.action_goto_xy(200,800,comm_asserv.Face.FACE_AVANT, 40,40)
     autom.action_pos_ax_caca_calage()
     asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_X,comm_asserv.Face.FACE_ARRIERE)
-
-    # on commence à faire le tour du terrain. 
-    asserv.action_set_linear_speed_accel(0.6,0.8)
-    autom.action_fermer_porte_rentrer_ax_caca()
+    # on commence à faire le tour du terrain.
+    # avec 8 element jeux
+    asserv.action_set_linear_speed_accel(0.5,0.6) 
+    asserv.action_translation(100)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
     funct.wait_autom()
-    asserv.action_goto_xy(1725,800,comm_asserv.Face.FACE_AVANT,70,70)
-    funct.ejecter_rouler_x(825,1)
-    funct.ejecter_rouler_x(1525,1)
-    autom.action_fermer_porte_rentrer_ax_caca()
-    asserv.action_goto_xy(2000,200)
-    asserv.action_goto_xy(2350,200)
+    asserv.action_translation(50)
+    funct.wait_asserv()
     autom.action_ejecter(1)
 
+    autom.action_fermer_porte_rentrer_ax_caca()
+
+    asserv.action_goto_xy(925,800)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_goto_xy(1625,800,comm_asserv.Face.FACE_AVANT,70,70)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    autom.action_deposit()
+    #asserv.action_goto_xy(1725,800,comm_asserv.Face.FACE_AVANT,70,70)
+    #funct.ejecter_rouler_x(825,1)
+    #funct.ejecter_rouler_x(1525,1)
+    #autom.action_fermer_porte_rentrer_ax_caca()
+    asserv.action_goto_xy(2000,200)
+    asserv.action_goto_xy(2250,200)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    asserv.action_goto_xy(2050,400, comm_asserv.Face.FACE_AVANT,80,80)
+    asserv.action_goto_xy(2050,950)
+    asserv.action_orientation(115)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+
+    asserv.action_goto_xy(2000,1250)
+    asserv.action_orientation(180)
+    asserv.action_orientation(0)
+    asserv.action_goto_xy(2000,1300)
+    
+    asserv.action_goto_xy(1580,1300)
+    asserv.action_orientation(-135)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_translation(45)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_goto_xy(1400,1200)
+    #autom.action_ejecter(1)
+
+    ##fin 
+
+    """ 
+    asserv.action_goto_xy(2050,400, comm_asserv.Face.FACE_AVANT,80,80)
+
+
+    funct.wait_asserv()
+    autom.action_ejecter(1)
     funct.wait_autom()
     asserv.action_goto_xy(2550,200)
     #funct.ejecter_rouler_x(2350,1)
@@ -139,12 +213,21 @@ def run(funct:FunctStrat , robot_state:Robot ):
     asserv.action_recalibration(comm_asserv.Facing.NEGATIVE_Y,comm_asserv.Face.FACE_ARRIERE)
     asserv.action_translation(100)
     asserv.action_goto_xy(2800,500)
-    asserv.action_goto_xy(2800,900)
-    funct.ejecter_rouler_y(850,1)
-    asserv.action_goto_xy(2500,1350)
-
-
-    """ 
+    asserv.action_goto_xy(2750,900)
+    asserv.action_orientation(180)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_goto_xy(2090,900)
+    autom.action_ejecter(1)
+    #funct.ejecter_rouler_y(850,1)
+    asserv.action_goto_xy(2100,1350)
+    asserv.action_goto_xy(1750,1350)
+    funct.wait_asserv()
+    autom.action_ejecter(1)
+    funct.wait_autom()
+    asserv.action_goto_xy(500,1000)
+ 
     asserv.action_goto_xy(1650,1300,comm_asserv.Face.FACE_ARRIERE)
     funct.wait_autom()
     autom.action_ejecter(1) #depose zone 2
@@ -154,9 +237,9 @@ def run(funct:FunctStrat , robot_state:Robot ):
     autom.action_ejecter(1)
     autom.action_fermer_porte_rentrer_ax_caca()
     asserv.action_translation(60)
-    """
+   
 
-    """
+   
     asserv.action_goto_xy(1500,650)
     asserv.action_orientation(-90)
     funct.wait_asserv()
@@ -276,7 +359,7 @@ def run(funct:FunctStrat , robot_state:Robot ):
     asserv.action_goto_xy(200,1720,comm_asserv.Face.FACE_AVANT,90,90)
     autom.action_open_pince()
 
-     """
+    """
     
 
 
