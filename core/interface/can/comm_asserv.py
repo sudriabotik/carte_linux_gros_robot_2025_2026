@@ -288,7 +288,7 @@ class CanAsservNode(CanActionNode) :
 		kp_int = int(kp * 1000)
 		ki_int = int(ki * 1000)
 		kd_int = int(kd * 1000)
-		max_output_int = int(max_output * 1000)
+		max_output_int = int(max_output)
 		canopen_wrapper.instance.request_action(self.node_id, 9, [kp_int, ki_int, kd_int, max_output_int])
 		self.timestamp_last_command = time.time()
 
